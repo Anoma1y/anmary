@@ -12,5 +12,18 @@
 	       	$result = $result->fetch();
 			return $result;
 		}
+		public static function editProductById() {
+			$routes = explode('/', $_SERVER['REQUEST_URI']);
+			$id = $routes[3];
+			$db = Db::getConnection();
+			//$sql = 'SELECT product.* FROM product WHERE id = :id';
+ 	        $sql = 'SELECT product.*, brand.brand_name, category.category_name, color.color_name, season.season_name FROM product, category, season, color, brand WHERE product.id = :id and brand.id = product.brand_id and category.id = product.category_id and color.id = product.color_id and season.id = product.season_id';
+	        $result = $db->prepare($sql);
+	        $result->bindParam(':id', $id, PDO::PARAM_STR);
+	        $result->setFetchMode(PDO::FETCH_ASSOC);
+	        $result->execute();
+	       	$result = $result->fetch();
+			return $result;
+		}
 	}
 ?>

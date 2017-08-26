@@ -42,25 +42,9 @@
                 $('#tabs').empty();
             	qwe = $.parseJSON(data);
                 console.log(qwe)
-                $('#tabs').append(`
-                        <table>
-                            <tr>
-                                <th>ID</th>
-                                <th>Название</th>
-                                <th>Цена</th>
-                            </tr>
-                            ${qwe.item.map(function(items) {
-                                return `<tr>
-                                <td>${items['id']}</td>
-                                <td>${items['name']}</td>
-                                <td>${items['price']}</td>
-                                <td><a href="/admin/delete/${items['id']}">Изменить </a></td>
-                                <td><a href="/admin/delete/${items['id']}">Удалить</a></td>
-                                   </tr>`
-                                })}
-                        </table>
-                `);
-    
+                $('#tabs').append('\n<table>\n<tr>\n<th>ID</th>\n<th>Название</th>\n<th>Цена</th>\n</tr>\n'+qwe.item.map(function (items) {
+                    return '<tr>\n<td>'+items['id']+'</td>\n<td>'+items['name']+'</td>\n<td>'+items['price']+'</td>\n<td><a href="/admin/edit/'+items['id']+'">Изменить </a></td>\n<td><a href="/admin/delete/'+items['id']+'">Удалить</a></td>\n</tr>';
+                })+'\n</table>\n');
             	total_items = qwe['total_item'];
             	item_on_page = qwe['record_per_page'];
             	currentPage = qwe['current_page'];

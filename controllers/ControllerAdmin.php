@@ -32,6 +32,20 @@
 	    		die('Access Denied');
 			}	    	
 	    }
+	    public function edit() {
+	    	$user = User::getCurrentUser();
+	    	if ($user['role'] == "admin") {
+		    	$brandList = Admins::getBrand();
+		    	$categoryList = Admins::getCategory();
+		    	$seasonList = Admins::getSeason();
+		    	$colorList = Admins::getColor();
+		    	$productData = ProductModel::editProductById();
+				require_once('views/admin/edit.php');
+			    return true;  		
+	    	} else {
+	    		die('Access Denied');
+			}    	
+	    }
 	    public function addProduct() {
 	    	$user = User::getCurrentUser();
 	    	if ($user['role'] == "admin") {
