@@ -1,0 +1,196 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import 'fonts.sass'
+@import 'vars.sass'
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+
+@import "header.sass"
+
+.brand-area
+	background-color: #2d2d2d
+	padding: 70px
+	.single-brand
+		margin: 0 auto
+		width: 250px
+		img
+			width: 100%
+	
+$white_catalog: #fff
+$get_catalog_color: #c52323
+#catalog
+	background-color: rgba(245,245,245,1)
+	h3
+		text-align: center
+		margin-top: 30px
+		font-family: "Lobster 1.4 Regular"
+		font-size: em(37px)
+	.items
+		.item
+			margin: 0 auto 20px
+			width: 230px
+			img
+				width: 100%
+			p
+				margin: 0
+				font-family: 'Lato, sans-serif'
+				font-size: em(18px)
+	a.get_catalog
+		display: block
+		color: white
+		text-decoration: none
+		background-color: $get_catalog_color
+		padding: 20px
+		text-align: center
+		font-family: "Lobster 1.4 Regular"
+		font-size: em(34px)
+		line-height: 35px
+		margin-bottom: 50px
+		-webkit-transition: background-color, color .15s ease-out
+		-moz-transition: background-color, color .15s ease-out
+		-o-transition: background-color, color .15s ease-out
+		transition: background-color, color .15s ease-out
+		&:hover
+			color: darken(#fff, 15)
+			background-color: lighten($get_catalog_color, 5)
+
+
+
+$border_reasons_color: rgba(255,255,255,.8)
+$border_reasons_color_hover: rgba(0,0,0,.8)
+$bg_hover_reasos: #f7f7f7
+#reasons
+	background: url('../img/reasons_bg4.jpg')
+	background-size: cover
+	background-repeat: no-repeat
+
+	h3
+		text-align: center
+		margin-top: 30px
+		color: #fff
+		font-family: "Lobster 1.4 Regular"
+		font-size: em(37px)	
+	.reasons
+		margin: 0
+		.reasons_item
+			width: 100%
+			border: 1px solid rgba(#fff, .05)
+			-webkit-transition: all .3s ease-out
+			-moz-transition: all .3s ease-out
+			-o-transition: all .3s ease-out
+			transition: all .3s ease-out
+			&:hover
+				background-color: rgba($bg_hover_reasos, .9)
+			&:hover .reasons_img	
+				border-color: lighten($border_reasons_color_hover, 2)
+			&:hover p
+				color: #000	
+			.reasons_img
+				-webkit-transition: all .3s ease-out
+				-moz-transition: all .3s ease-out
+				-o-transition: all .3s ease-out
+				transition: all .3s ease-out
+				margin: 40px auto 0
+				width: 200px
+				height: 200px
+				border: 1px solid $border-reasons_color
+				border-radius: 50%
+				position: relative
+				img
+					width: 80%
+					display: block
+					position: absolute
+					top: 50%
+					left: 50%
+					-moz-transform: translate(-50%, -50%)
+					-ms-transform: translate(-50%, -50%)
+					-webkit-transform: translate(-50%, -50%)
+					-o-transform: translate(-50%, -50%)
+					transform: translate(-50%, -50%)
+			p
+				-webkit-transition: all .3s ease-out
+				-moz-transition: all .3s ease-out
+				-o-transition: all .3s ease-out
+				transition: all .3s ease-out
+				text-align: center
+				margin: 0 0 20px
+				color: #fff
+				font-family: "Lobster 1.4 Regular"
+				font-size: em(30px)		
+.clearPadding
+	padding: 0
+	margin: 0
+$bg_footer_color: #333333
+#footer
+	position: relative
+	background-color: $bg_footer_color
+	p
+		color: white
+		font-family: "Lobster 1.4 Regular"
+		font-size: em(20px)	
+	.footer_menu
+		list-style-type: none
+		li
+			a
+				color: white
+				font-family: "Lobster 1.4 Regular"
+				font-size: em(18px)
+				text-decoration: none
+				&:hover
+					color: darken(white, 15)
+
+	.credit_card
+		p
+			text-align: right
+			font-size: em(16px)
+		.card_item
+			float: right
+			width: 50px
+			img
+				width: 100%		 
+	.copyright
+		margin-top: 35px
+		.logo
+			float: left
+			width: 70px
+			img
+				width: 100%
+		span
+			margin: 0 10px
+			color: white
+			font-family: "Lobster 1.4 Regular"
+			font-size: em(14px)	
+	.contact
+		position: absolute
+		bottom: -59px
+		right: 12px
+		p
+			text-align: right
+			margin: 0
+			color: white
+			font-family: "Lobster 1.4 Regular"
+			font-size: em(16px)	
+
+
+@import 'media.sass'

@@ -1,0 +1,15 @@
+$output-bourbon-deprecation-warnings: false !default
+@import 'bourbon'
+
+@mixin transition_all($selector, $time, $timing_function)
+	-webkit-transition: $selector $time $timing_function
+	-moz-transition: $selector $time $timing_function
+	-o-transition: $selector $time $timing_function
+	transition: $selector $time $timing_function
+
+@mixin transform_all($type, $val)
+	-moz-transform: $type($val)
+	-ms-transform: $type($val)
+	-webkit-transform: $type($val)
+	-o-transform: $type($val)
+	transform: $type($val)
