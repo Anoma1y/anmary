@@ -55,6 +55,15 @@
 	    		die('Access Denied');
 			}
 	    }
+	    public function editProduct() {
+	    	$user = User::getCurrentUser();
+	    	if ($user['role'] == "admin") {
+		    	$view = new View();
+				$view->render('admin/edit_product');    		
+	    	} else {
+	    		die('Access Denied');
+			}
+	    }
 	    public function getAllProducts() {
 	    	$user = User::getCurrentUser();
 	    	if ($user['role'] == "admin") {

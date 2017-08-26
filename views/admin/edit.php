@@ -1,6 +1,7 @@
 <h1 align="center">Изменить товар</h1>
 
-<form action="addProduct" method="POST" enctype="multipart/form-data">
+<form action="../editProduct" method="POST" enctype="multipart/form-data">
+	<input type="text" name="product_id" value="<?php $getID = explode('/', $_SERVER['REQUEST_URI']); echo "$getID[3]"; ?>" style="display: none">
 	<p><input type="text" name="name" value="<?=$productData[name]?>" placeholder="Название"></p>
 
 	<p><input type="text" name="article" value="<?=$productData[article]?>" placeholder="Артикль"></p>
