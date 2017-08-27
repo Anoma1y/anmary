@@ -23,11 +23,11 @@
 
 <form action="../editProduct" method="POST" enctype="multipart/form-data">
 	<input type="text" name="product_id" value="<?php $getID = explode('/', $_SERVER['REQUEST_URI']); echo "$getID[3]"; ?>" style="display: none">
-	<p><input type="text" name="name" value="<?=$productData[name]?>" placeholder="Название"></p>
+	<p>Название: <input type="text" name="name" value="<?=$productData[name]?>" placeholder="Название"></p>
 
-	<p><input type="text" name="article" value="<?=$productData[article]?>" placeholder="Артикль"></p>
+	<p>Артикль: <input type="text" name="article" value="<?=$productData[article]?>" placeholder="Артикль"></p>
 
-	<p>
+	<p>Бренд: 
 		<select name="brand" id="brand">
 			<?php 
 				echo "<option value='$productData[brand_id]'>$productData[brand_name]</option>";
@@ -37,7 +37,7 @@
 			?>			
 		</select>
 	</p>
-	<p>
+	<p>Категория: 
 		<select name="category" id="category">
 			<?php 
 				echo "<option value='$productData[category_id]'>$productData[category_name]</option>";
@@ -48,7 +48,7 @@
 		</select>
 	</p>
 
-	<p>
+	<p>Сезон: 
 		<select name="season" id="season">
 			<?php 
 				echo "<option value='$productData[season_id]'>$productData[season_name]</option>";
@@ -58,8 +58,8 @@
 			?>		
 		</select>
 	</p>
-	<p><input type="text" name="size" value="<?=$productData[size]?>" placeholder="Размер"></p>
-	<p>
+	<p>Размер: <input type="text" name="size" value="<?=$productData[size]?>" placeholder="Размер"></p>
+	<p>Цвет: 
 		<select name="colour" id="colour">
 			<?php 
 				echo "<option value='$productData[color_id]'>$productData[color_name]</option>";
@@ -70,9 +70,11 @@
 		</select>
 	</p>
 
-	<p><input type="text" name="composition" value="<?=$productData[composition]?>" placeholder="Состав"></p>
-	<p><input type="text" name="description" value="<?=$productData[description]?>" placeholder="Описание"></p>
-	<p><input type="text" name="price" value="<?=$productData[price]?>" placeholder="Цена"></p>
+	<p>Состав: <input type="text" name="composition" value="<?=$productData[composition]?>" placeholder="Состав"></p>
+	<p>Скидка: <input type="checkbox" <?php if ($productData['is_sale'] == 1) echo "checked"; ?> name="is_sale"></p>
+	<p>Цена: <input type="text" name="price" value="<?=$productData[price]?>" placeholder="Цена"></p>
+	<p>Цена со скидкой: <input type="text" name="sale_price" value="<?=$productData[sale_price]?>" placeholder="Цена со скидкой"></p>
+	<p>Наличие: <input type="checkbox" name="is_availability" <?php if ($productData['is_availability'] == 1) echo "checked"; ?>></p>
 	<p><input id="uploadimage" type="file" name="image"></p>
 	<input type="submit" name="add" value="Добавить">
 </form>

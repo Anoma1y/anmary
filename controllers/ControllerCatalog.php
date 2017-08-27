@@ -14,7 +14,7 @@
 	    }
 	   	public function getAllUsers() {
 	    	$view = new View();
-			$view->render('catalog/getAllUsers_action');
+			$view->render('catalog/getAllProduct_action');
 	    }
 	}
 ?>

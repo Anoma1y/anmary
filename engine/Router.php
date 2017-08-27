@@ -55,9 +55,9 @@
 	} 
 	catch (Exception $e) {
 		if (file_exists('debug')) {
-			echo $e->getMessage();
-		}else {
 			require_once "views/errors/404.php";
+		}else {	
+			echo $e->getMessage();
 		}
 	}
 

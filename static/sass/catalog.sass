@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i')
 $slider_color: #ec5355
 $slider_range: #DBDBDB
 .sidebar-content 
@@ -83,12 +84,31 @@ $slider_range: #DBDBDB
     padding-right: 20px
     text-transform: uppercase
     z-index: 2
-
+$catalog_menu_color: #000000
+.catalog_menu
+    padding: 20px
+    text-align: center
+    font-family: "Helvetica", sans-serif
+    p
+        color: $catalog_menu_color
+        font-size: 18px
+        margin: 0
+    p.time_work
+        color: lighten($catalog_menu_color, 50)
+        font-size: 14px
+    .logo
+        img
+            display: block
+            margin: 0 auto
+            width: 80%  
 .active 
     color: $slider_color
 .shop-main-area
+    .pagination-content
+        float: right
     margin-top: 30px
     .product_item
+        font-family: "Open Sans", sans-serif
         margin-bottom: 20px
         .product_name
             margin: 0
@@ -99,9 +119,21 @@ $slider_range: #DBDBDB
                 font-size: 18px
                 text-decoration: none
                 text-transform: uppercase
-                font-weight: normal
+                font-weight: bold
+                &:hover
         img
             width: 100%
+    .price
+        color: black
+        &:before 
+            content: "₽"
+    .old_price
+        color: black
+        opacity: .5
+        text-decoration: line-through
+        &:before
+            content: "₽"
+
     .sidebar-content
 
         img

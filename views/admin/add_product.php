@@ -20,8 +20,16 @@
 					$upload = $src.$_FILES['image']['name'];
 					$sql_src = '/uploads/'.$_FILES['image']['name'];
 					move_uploaded_file($_FILES['image']['tmp_name'], $upload);
-					$query = 'INSERT INTO product (name, article, brand_id, category_id, season_id, size, color_id, composition, description, price, image) VALUES (:name, :article, :brand_id, :category_id, :season_id, :size, :color_id, :composition, :description, :price, :image)'; 
+					$query = 'INSERT INTO product (name, article, brand_id, category_id, season_id, size, color_id, composition, is_sale, price, sale_price, is_availability, image) VALUES (:name, :article, :brand_id, :category_id, :season_id, :size, :color_id, :composition, :is_sale, :price, :sale_price, :is_availability, :image)'; 
 					$result_insert = $db->prepare($query);
+					$is_sale = 0;
+					$is_availability = 1;
+					if (!empty($_POST['is_sale'])) {
+						$is_sale = 1;
+					}
+					if (empty($_POST['is_availability'])) {
+						$is_availability = 0;
+					}
 					$result_insert->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
 					$result_insert->bindParam(':article', $_POST['article'], PDO::PARAM_STR);
 					$result_insert->bindParam(':brand_id', $_POST['brand'], PDO::PARAM_INT);
@@ -30,8 +38,10 @@
 					$result_insert->bindParam(':size', $_POST['size'], PDO::PARAM_STR);
 					$result_insert->bindParam(':color_id', $_POST['colour'], PDO::PARAM_INT);
 					$result_insert->bindParam(':composition', $_POST['composition'], PDO::PARAM_STR);
-					$result_insert->bindParam(':description', $_POST['description'], PDO::PARAM_STR);
+					$result_insert->bindParam(':is_sale', $is_sale, PDO::PARAM_INT);
 					$result_insert->bindParam(':price', $_POST['price'], PDO::PARAM_INT);
+					$result_insert->bindParam(':sale_price', $_POST['sale_price'], PDO::PARAM_INT);
+					$result_insert->bindParam(':is_availability', $is_availability, PDO::PARAM_INT);
 				    $result_insert->bindParam(':image', $sql_src, PDO::PARAM_STR);
 				    $result_insert->setFetchMode(PDO::FETCH_ASSOC);
 				    $result_insert->execute();	

@@ -19,59 +19,54 @@
 </div>
 
 <div class="main">
-
-<form action="addProduct" method="POST" enctype="multipart/form-data">
-	<p><input type="text" name="name" value="asd" placeholder="Название"></p>
-
-	<p><input type="text" name="article" value="asd" placeholder="Артикль"></p>
-
-	<p>
-		<select name="brand" id="brand">
-			<?php 
-				foreach ($brandList as $key) {
-					echo "<option value='$key[id]'>$key[brand_name]</option>";
-				}
-			?>			
-		</select>
-	</p>
-	<p>
-		<select name="category" id="category">
-			<?php 
-				foreach ($categoryList as $key) {
-					echo "<option value='$key[id]'>$key[category_name]</option>";
-				}
-			?>		
-		</select>
-	</p>
-
-	<p>
-		<select name="season" id="season">
-			<?php 
-				foreach ($seasonList as $key) {
-					echo "<option value='$key[id]'>$key[season_name]</option>";
-				}
-			?>		
-		</select>
-	</p>
-	<p><input type="text" name="size" value="asd" placeholder="Размер"></p>
-	<p>
-		<select name="colour" id="colour">
-			<?php 
-				foreach ($colorList as $key) {
-					echo "<option value='$key[id]'>$key[color_name]</option>";
-				}
-			?>		
-		</select>
-	</p>
-
-	<p><input type="text" name="composition" value="asd" placeholder="Состав"></p>
-	<p><input type="text" name="description" value="asd" placeholder="Описание"></p>
-	<p><input type="text" name="price" value="777" placeholder="Цена"></p>
-
-	<p><input id="uploadimage" type="file" name="image"></p>
-	<input type="submit" name="add" value="Добавить">
-</form>
-
+	<form action="addProduct" method="POST" enctype="multipart/form-data">
+		<p>Название: <input type="text" name="name" value="asd" placeholder="Название"></p>
+		<p>Артикль: <input type="text" name="article" value="asd" placeholder="Артикль"></p>
+		<p>Бренд: 
+			<select name="brand" id="brand">
+				<?php 
+					foreach ($brandList as $key) {
+						echo "<option value='$key[id]'>$key[brand_name]</option>";
+					}
+				?>			
+			</select>
+		</p>
+		<p>Категория: 
+			<select name="category" id="category">
+				<?php 
+					foreach ($categoryList as $key) {
+						echo "<option value='$key[id]'>$key[category_name]</option>";
+					}
+				?>		
+			</select>
+		</p>
+		<p>Сезон: 
+			<select name="season" id="season">
+				<?php 
+					foreach ($seasonList as $key) {
+						echo "<option value='$key[id]'>$key[season_name]</option>";
+					}
+				?>		
+			</select>
+		</p>
+		<p>Размер: <input type="text" name="size" value="asd" placeholder="Размер"></p>
+		<p>Цвет: 
+			<select name="colour" id="colour">
+				<?php 
+					foreach ($colorList as $key) {
+						echo "<option value='$key[id]'>$key[color_name]</option>";
+					}
+				?>		
+			</select>
+		</p>
+		<p>Состав: <input type="text" name="composition" value="asd" placeholder="Состав"></p>
+		<p>Скидка: <input type="checkbox" name="is_sale"></p>
+		<p>Цена: <input type="text" name="price" value="777" placeholder="Цена"></p>
+		<p>Цена со скидкой: <input type="text" name="sale_price" value="0" placeholder="Цена со скидкой"></p>
+		<p>Наличие: <input type="checkbox" name="is_availability" checked></p>
+		<p><input id="uploadimage" type="file" name="image"></p>
+		<button>Добавить</button>
+	</form>
 </div>
 
 

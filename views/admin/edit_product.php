@@ -26,8 +26,11 @@
 											 size = :size, 
 											 color_id = :color_id, 
 											 composition = :composition, 
-											 description = :description,
-											 price = :price WHERE id = :id_product";
+											 is_sale = :is_sale,
+											 price = :price,
+											 sale_price = :sale_price,
+											 is_availability = :is_availability 
+											 WHERE id = :id_product";
 			} else {
 				$query = "UPDATE product SET name = :name,
 										     article = :article,
@@ -37,10 +40,20 @@
 											 size = :size, 
 											 color_id = :color_id, 
 											 composition = :composition, 
-											 description = :description,
+											 is_sale = :is_sale,
 											 price = :price,
+											 sale_price = :sale_price,
+											 is_availability = :is_availability,
 											 image = :image WHERE id = :id_product";			 	
 			 }
+			$is_sale = 0;
+			$is_availability = 0;
+			if (!empty($_POST['is_sale'])) {
+				$is_sale = 1;
+			}
+			if (!empty($_POST['is_availability'])) {
+				$is_availability = 1;
+			}
 			$result = $db->prepare($query);
 			$result->bindParam(':id_product', $_POST['product_id'], PDO::PARAM_INT);
 			$result->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
@@ -51,8 +64,10 @@
 			$result->bindParam(':size', $_POST['size'], PDO::PARAM_STR);
 			$result->bindParam(':color_id', $_POST['colour'], PDO::PARAM_INT);
 			$result->bindParam(':composition', $_POST['composition'], PDO::PARAM_STR);
-			$result->bindParam(':description', $_POST['description'], PDO::PARAM_STR);
+			$result->bindParam(':is_sale', $is_sale, PDO::PARAM_INT);
 			$result->bindParam(':price', $_POST['price'], PDO::PARAM_INT);
+			$result->bindParam(':sale_price', $_POST['sale_price'], PDO::PARAM_INT);
+			$result->bindParam(':is_availability', $is_availability, PDO::PARAM_INT);
 			if (!empty($_FILES['image']['name'])) {
 		    	$result->bindParam(':image', $sql_src, PDO::PARAM_STR);
 		    }
