@@ -24,64 +24,11 @@
 	<style>
 		
 	</style>
+	<link rel="stylesheet" href="/static/css/simplePagination.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/static/css/aos.css">
 	<link rel="stylesheet" href="/static/css/owl.carousel.css">
 	<link rel="stylesheet" href="/static/css/main.min.css">
-	
+
 </head>
 <body>
-
-	<header id="main">
-		<div class="bg_blackout"></div>
-		<div class="container">
-			<div class="row">
-				<!-- <div id="mobile_menu"> -->
-					<ul id="mobile_nav">
-<!-- 						<div class="close_btn"></div>
- -->
- 						<a class="close_mobile">X</a>
- 						<li>
- 							<a href="#">
- 								<img src="../static/img/logo.png" alt="">
- 							</a>
- 						</li>
- 						<li><a href="#">Главная</a></li>
-						<li><a href="#">О нас</a></li>
-						<li><a href="#">Каталог</a></li>
-						<li><a href="#">Контакты</a></li>
-					</ul>							
-				<!-- </div> -->
-				<div class="col-md-3 col-sm-6 col-xs-6">
-					<div class="logo">
-						<img src="../static/img/logo.png" alt="">
-					</div>
-				</div>
-				<div class="col-md-9 col-sm-6 col-xs-6">
-					<ul id="nav">
-						<li><a href="#">Главная</a></li>
-						<li><a href="#">О нас</a></li>
-						<li><a href="#">Каталог</a></li>
-						<li><a href="#">Контакты</a></li>
-					</ul>
-					<div id="mobile_toggle">
-						<!-- <span></span> -->
-						<div id="nav_toggle"></div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12" data-aos="flip-up" data-aos-duration="1000">
-					<h1>МАГАЗИН <br> ПРИБАЛТИЙСКОГО <br> ТРИКОТАЖА</h1>
-					<h3>Роскошь может быть <br> доступной</h3>					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-2 col-md-offset-5">
-					<a href="#brand"><div class="arrow_down"></div></a>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!--  -->
-	<!--  -->
