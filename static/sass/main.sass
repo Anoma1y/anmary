@@ -41,21 +41,52 @@ $white_catalog: #fff
 $get_catalog_color: #c52323
 #catalog
 	background-color: rgba(245,245,245,1)
+	padding: 0 0 50px
 	h3
 		text-align: center
-		margin-top: 30px
-		font-family: "Lobster 1.4 Regular"
-		font-size: em(37px)
+		font-family: "Gotham Pro Light"
+		font-weight: 200
+		text-transform: uppercase
+		font-size: em(36px)
 	.items
 		.item
-			margin: 0 auto 20px
-			width: 230px
+			margin: 0 auto 15px
+			width: 240px
 			img
+				display: block
+				margin: 0 auto
 				width: 100%
+			p.item_name
+				padding-top: 3px
+				font-size: em(20px)
+				font-weight: 700
+				cursor: pointer
+			a
+				text-decoration: none
+				color: #000
+				&:hover
+					color: $get_catalog_color
 			p
 				margin: 0
-				font-family: 'Lato, sans-serif'
+				padding-left: 3px
+				font-family: "Gotham Pro Light"
 				font-size: em(18px)
+				line-height: 20px
+				white-space: nowrap
+			.item_price
+				padding-left: 3px
+				&:after 
+					content: " ₽"
+			.item_old_price
+				padding-left: 3px
+				opacity: .5
+				text-decoration: line-through
+				&:after
+					content: " ₽"
+			&:hover
+				-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.47)
+				-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.47)
+				box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.47)
 	a.get_catalog
 		display: block
 		color: white
@@ -66,7 +97,6 @@ $get_catalog_color: #c52323
 		font-family: "Lobster 1.4 Regular"
 		font-size: em(34px)
 		line-height: 35px
-		margin-bottom: 50px
 		-webkit-transition: background-color, color .15s ease-out
 		-moz-transition: background-color, color .15s ease-out
 		-o-transition: background-color, color .15s ease-out
@@ -78,19 +108,23 @@ $get_catalog_color: #c52323
 
 
 $border_reasons_color: rgba(255,255,255,.8)
-$border_reasons_color_hover: rgba(0,0,0,.8)
+$border_reasons_color_hover: #f73453
 $bg_hover_reasos: #f7f7f7
+$reason_text_color: #fff
+$reason_text_color_hover: #f73453
 #reasons
+	padding: 30px 0 100px
 	background: url('../img/reasons_bg4.jpg')
 	background-size: cover
 	background-repeat: no-repeat
-
 	h3
 		text-align: center
-		margin-top: 30px
 		color: #fff
-		font-family: "Lobster 1.4 Regular"
-		font-size: em(37px)	
+		text-transform: uppercase
+		font-family: "Gotham Pro Light"
+		font-weight: 200
+		font-size: em(36px)
+		line-height: 45px	
 	.reasons
 		margin: 0
 		.reasons_item
@@ -105,9 +139,9 @@ $bg_hover_reasos: #f7f7f7
 			&:hover .reasons_img	
 				border-color: lighten($border_reasons_color_hover, 2)
 			&:hover p
-				color: #000	
+				color: $reason_text_color_hover
 			.reasons_img
-				-webkit-transition: all .3s ease-out
+				-webkit-transition: all .3s ease-out 
 				-moz-transition: all .3s ease-out
 				-o-transition: all .3s ease-out
 				transition: all .3s ease-out
@@ -118,7 +152,7 @@ $bg_hover_reasos: #f7f7f7
 				border-radius: 50%
 				position: relative
 				img
-					width: 80%
+					width: 50%
 					display: block
 					position: absolute
 					top: 50%
@@ -135,9 +169,10 @@ $bg_hover_reasos: #f7f7f7
 				transition: all .3s ease-out
 				text-align: center
 				margin: 0 0 20px
-				color: #fff
-				font-family: "Lobster 1.4 Regular"
-				font-size: em(30px)		
+				color: $reason_text_color
+				font-family: "Gotham Pro Light"
+				font-weight: 700
+				font-size: em(20px)		
 .clearPadding
 	padding: 0
 	margin: 0

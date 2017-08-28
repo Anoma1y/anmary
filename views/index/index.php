@@ -14,10 +14,9 @@
  								<img src="../static/img/logo.png" alt="">
  							</a>
  						</li>
- 						<li><a href="#">Главная</a></li>
-						<li><a href="#">О нас</a></li>
-						<li><a href="#">Каталог</a></li>
-						<li><a href="#">Контакты</a></li>
+ 						<li><a href="/">Главная</a></li>
+						<li><a href="/catalog/all">Каталог</a></li>
+						<li><a href="/contacts">Контакты</a></li>
 					</ul>							
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="logo">
@@ -26,10 +25,9 @@
 				</div>
 				<div class="col-md-9 col-sm-6 col-xs-6">
 					<ul id="nav">
-						<li><a href="#">Главная</a></li>
-						<li><a href="#">О нас</a></li>
-						<li><a href="#">Каталог</a></li>
-						<li><a href="#">Контакты</a></li>
+						<li><a href="/">Главная</a></li>
+						<li><a href="/catalog/all">Каталог</a></li>
+						<li><a href="/contacts">Контакты</a></li>
 					</ul>
 					<div id="mobile_toggle">
 						<div id="nav_toggle"></div>
@@ -106,9 +104,15 @@
 		 				foreach ($data as $key) {
 		 					echo '<div class="col-md-3 col-sm-6">';
 		 					echo '<div class="item" data-aos="zoom-in-down">';
-		 					echo '<img src="../static/img/banner_8.jpg" alt="">';
-		 					echo '<p class="item_name">'.$key[name].'</p>';
-		 					echo '<p class="item_price">'.$key[price].'</p>';
+		 					echo '<a href="/product/'.$key[id].'"><img src="../static/img/banner_8.jpg" alt=""></a>';
+		 					echo '<a href="/product/'.$key[id].'"><p class="item_name">'.$key[name].' '.$key[article].'</p></a>';
+		 					if ($key['is_sale'] == 1) {
+		 						echo '<span class="item_old_price">'.$key[sale_price].'</span>';
+		 						echo "&nbsp;&nbsp;";
+		 						echo '<span class="item_price">'.$key[price].'</span>';
+		 					} else {
+		 						echo '<span class="item_price">'.$key[price].'</span>';
+		 					}
 		 					echo '</div></div>';
 		 				}
 		 			?>
@@ -130,7 +134,7 @@
 			<div class="row">
 				<div class="col-md-6 clearPadding">
 					<div class="reasons_item" data-aos="flip-right">
-						<div class="reasons_img"><img src="../static/img/quality.png" alt=""></div>
+						<div class="reasons_img"><img src="../static/img/textile.png" alt=""></div>
 						<p>Уникальные и натуральные ткани</p>
 					</div>
 				</div>
@@ -144,13 +148,13 @@
 			<div class="row">
 				<div class="col-md-6 clearPadding">
 					<div class="reasons_item" data-aos="flip-left">
-						<div class="reasons_img"><img src="../static/img/quality.png" alt=""></div>
+						<div class="reasons_img"><img src="../static/img/european_red.png" alt=""></div>
 						<p>Работа европейских дизайнеров</p>
 					</div>
 				</div>
 				<div class="col-md-6 clearPadding">
 					<div class="reasons_item" data-aos="flip-left">
-						<div class="reasons_img"><img src="../static/img/quality.png" alt=""></div>
+						<div class="reasons_img"><img src="../static/img/size.png" alt=""></div>
 						<p>Большой размерный ряд</p>
 					</div>
 				</div>

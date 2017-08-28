@@ -1,12 +1,12 @@
 "use strict";
 
-// $(function() {
-// 	if(!Modernizr.svg) {
-// 		$("img[src*='svg']").attr("src", function() {
-// 			return $(this).attr("src").replace(".svg", ".png");
-// 		});
-// 	};
-// });
+$(function () {
+	if (!Modernizr.svg) {
+		$("img[src*='svg']").attr("src", function () {
+			return $(this).attr("src").replace(".svg", ".png");
+		});
+	};
+});
 
 AOS.init();
 $(document).ready(function () {
