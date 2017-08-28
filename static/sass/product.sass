@@ -1,0 +1,25 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import 'fonts.sass'
+@import 'vars.sass'
+
+.category-products
+	.last-items
+		margin-top: 20px
+		&:after
+			content: ""
+			display: block
+			clear: both
+			height: 1px
+		.last-items-image
+			float: left
+			margin-right: 10px
+			max-width: 50%
+			img
+				width: 100%
+		.last-items-text
+			h2, p
+				margin: 0
+			a
+				color: black
+				font-size: 14px
