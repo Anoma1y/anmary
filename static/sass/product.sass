@@ -2,7 +2,9 @@ $output-bourbon-deprecation-warnings: false !default;
 @import "bourbon";
 @import 'fonts.sass'
 @import 'vars.sass'
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i')
+.product-area
+	padding: 50px 0 50px
 .category-products
 	.last-items
 		margin-top: 20px
@@ -23,3 +25,23 @@ $output-bourbon-deprecation-warnings: false !default;
 			a
 				color: black
 				font-size: 14px
+.related-products
+	.related-product
+		.related-image
+			img
+				width: 100%
+		p
+			font-family: "Open Sans", sans-serif
+			margin: 0
+		p.related-name
+			font-size: em(15px)
+			font-weight: 600
+		.related-price
+			> p 
+				display: inline-block
+			p.old-price
+				text-decoration: line-through
+				opacity: .6
+			p.price, p.old-price
+				&:after
+					content: " ₽"

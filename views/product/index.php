@@ -30,9 +30,10 @@
 </div>
 
 <div class="container">
-	<div class="row">
-		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-			<div class="product-image">
+    <div class="product-area">
+        <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <div class="product-image">
                 <img src="/static/img/8.jpg" alt="">
             </div>
             <div class="product-content">
@@ -53,11 +54,11 @@
                     <p class="composition">полиэстер 52%,нейлон 23%,акрил 17%,шерсть 8%</p>
                 </div>
             </div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-			<div class="product-title">
-				<h2>Последние товары</h2>
-			</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="product-title">
+                <h2>Последние товары</h2>
+            </div>
             <div class="category-products">
                 <div class="last-items">
                     <div class="last-items-image">
@@ -67,41 +68,41 @@
                     </div>
                     <div class="last-items-text">
                         <h2 class="last-items-name">
-                        	<a href="#">Aliquam consequat</a>
+                            <a href="#">Aliquam consequat</a>
                         </h2>
                         <p class="last-items-price">
                             <span class="price">₽345.00</span>
-                        </p> 											
+                        </p>                                            
                     </div>
                 </div>
                 <div class="last-items">
-                	<div class="last-items-image">
+                    <div class="last-items-image">
                         <a href="#">
                             <img alt="" src="/static/img/7777.jpg">
                         </a>
                     </div>
                     <div class="last-items-text">
                         <h2 class="last-items-name">
-                        	<a href="#">Aliquam consequat</a>
+                            <a href="#">Aliquam consequat</a>
                         </h2>
                         <p class="last-items-price">
                             <span class="price">₽345.00</span>
-                        </p> 											
+                        </p>                                            
                     </div>
                 </div>
                 <div class="last-items">
-                	<div class="last-items-image">
+                    <div class="last-items-image">
                         <a href="#">
                             <img alt="" src="/static/img/7777.jpg">
                         </a>
                     </div>
                     <div class="last-items-text">
                         <h2 class="last-items-name">
-                        	<a href="#">Aliquam consequat</a>
+                            <a href="#">Aliquam consequat</a>
                         </h2>
                         <p class="last-items-price">
                             <span class="price">₽345.00</span>
-                        </p> 											
+                        </p>                                            
                     </div>
                 </div>
             </div>
@@ -110,70 +111,102 @@
                     <a href="#"><img alt="" src="/static/img/14.jpg"></a>
                 </div>
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="related-products-name">
+                <h2>Похожие товары</h2>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="related-products">
-            <div class="col-md-2">
-                <div class="related-image">
-                    <img src="/static/img/7777.jpg" alt="">
+
+            <?php foreach ($relatedProducts as $key): ?>
+                <div class="col-md-2">
+                    <div class="related-product">
+                        <div class="related-image">
+                            <a href="#">
+                                <img src="/static/img/7777.jpg" alt="">
+                            </a>
+                        </div>
+                        <p class="related-name"><?=$key['name']; ?> <?=$key['article']; ?></p>
+                        <div class="related-price">
+                            <?php if ($key['is_sale'] == 1): ?>
+                                <p class="old-price"><?=$key['price']; ?></p>
+                                <p class="price">&nbsp;<?=$key['sale_price']; ?></p>
+                            <?php else: ?>
+                                <p class="price">&nbsp;<?=$key['price']; ?></p>                 
+                            <?php endif ?>
+                        </div>                   
+                    </div>
                 </div>
-                <p class="related-name">Название</p>
-                <div class="related-price">
-                    <p>1245 руб.</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="related-image">
-                    <img src="/static/img/7777.jpg" alt="">
-                </div>
-                <p class="related-name">Название</p>
-                <div class="related-price">
-                    <p>1245 руб.</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="related-image">
-                    <img src="/static/img/7777.jpg" alt="">
-                </div>
-                <p class="related-name">Название</p>
-                <div class="related-price">
-                    <p>1245 руб.</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="related-image">
-                    <img src="/static/img/7777.jpg" alt="">
-                </div>
-                <p class="related-name">Название</p>
-                <div class="related-price">
-                    <p>1245 руб.</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="related-image">
-                    <img src="/static/img/7777.jpg" alt="">
-                </div>
-                <p class="related-name">Название</p>
-                <div class="related-price">
-                    <p>1245 руб.</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="related-image">
-                    <img src="/static/img/7777.jpg" alt="">
-                </div>
-                <p class="related-name">Название</p>
-                <div class="related-price">
-                    <p>1245 руб.</p>
-                </div>
-            </div>
+            <?php endforeach ?>
+
         </div>    
     </div>
+    </div>
+	
 </div>
-
-<?php 
-
-	// var_dump($data);
-
-?>
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-3 col-xs-4">
+                <div class="footer_menu">
+                    <p>Информация</p>
+                    <ul>
+                        <li><a href="#main">Главная</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-4">
+                <div class="footer_menu">
+                    <p>Каталог</p>
+                    <ul>
+                        <li><a href="#">Перейти к каталогу</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-5 col-sm-6 col-xs-4">
+                <div class="credit_card">
+                    <p>Принимаем к оплате:</p>
+                    <div class="card_item">
+                        <img src="../static/img/maestro.png" alt="">
+                    </div>
+                    <div class="card_item">
+                        <img src="../static/img/maestro.png" alt="">
+                    </div>
+                    <div class="card_item">
+                        <img src="../static/img/maestro.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="copyright">
+                    <div class="logo">
+                        <img src="../static/img/logo.png" alt="">
+                    </div>
+                    <span>
+                        Авторские права © 2017 "Магазин"
+                    </span>
+                </div>  
+            </div>
+            <div class="col-md-6">
+                <div class="contact">
+                    <div class="telephone">
+                        <p>7-(963)-040-25-19</p>
+                    </div>
+                    <div class="adress">
+                        <p>г. Санкт Петербург, Скобелевский пр.,</p>
+                        <p>ТЦ Президентский, 2 этаж</p>
+                        <p>nt-nt@mail.ru</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

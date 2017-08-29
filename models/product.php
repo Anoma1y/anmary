@@ -16,14 +16,32 @@
 			$routes = explode('/', $_SERVER['REQUEST_URI']);
 			$id = $routes[3];
 			$db = Db::getConnection();
-			//$sql = 'SELECT product.* FROM product WHERE id = :id';
  	        $sql = 'SELECT product.*, brand.brand_name, category.category_name, color.color_name, season.season_name FROM product, category, season, color, brand WHERE product.id = :id and brand.id = product.brand_id and category.id = product.category_id and color.id = product.color_id and season.id = product.season_id';
 	        $result = $db->prepare($sql);
-	        $result->bindParam(':id', $id, PDO::PARAM_STR);
+	        $result->bindParam(':id', $id, PDO::PARAM_INT);
 	        $result->setFetchMode(PDO::FETCH_ASSOC);
 	        $result->execute();
 	       	$result = $result->fetch();
 			return $result;
+		}
+		public static function getRelatedProducts($category_id) {
+			try {
+				$db = Db::getConnection();
+	 	        $sql = 'SELECT name, article, price, sale_price, is_sale, is_availability FROM product WHERE category_id = :category_id ORDER BY RAND() LIMIT 6';
+		        $result = $db->prepare($sql);
+		        $result->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+		        $result->setFetchMode(PDO::FETCH_ASSOC);
+		        $result->execute();
+		        $i = 0;
+		        $all = array();
+		        while ($row = $result->fetch()) {
+		            $all[$i] = $row;
+		            $i++;
+		        }
+		        return $all;				
+			} catch (Exception $e) {
+				echo "$e";
+			}
 		}
 	}
 ?>
