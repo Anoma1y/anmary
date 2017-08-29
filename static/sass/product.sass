@@ -5,6 +5,24 @@ $output-bourbon-deprecation-warnings: false !default;
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i')
 .product-area
 	padding: 50px 0 50px
+	.current-item
+		.product-image
+			img
+				width: 100%
+		.product-content
+			padding: 0 20px
+			font-family: "Open Sans", sans-serif
+			.product-name
+				h2
+					margin: 0
+					text-transform: uppercase
+					font-weight: 200
+			.availability
+				.is_availability_yes
+					color: green
+				.is_availability_no
+					color: red
+
 .category-products
 	.last-items
 		margin-top: 20px
@@ -20,11 +38,29 @@ $output-bourbon-deprecation-warnings: false !default;
 			img
 				width: 100%
 		.last-items-text
-			h2, p
+			p
 				margin: 0
+			.last-items-price
+				p
+					display: inline-block
+				p.price
+					&:after
+						content: " ₽"					
+				p.old-price
+					text-decoration: line-through
+					opacity: .6
+					&:after
+						content: " ₽"				
 			a
+				font-family: "Open Sans", sans-serif
 				color: black
-				font-size: 14px
+				font-size: em(16px)
+				font-weight: 700
+.sidebar-content
+	margin-top: 10px
+	.banner-box
+		img
+			width: 100%
 .related-products
 	.related-product
 		.related-image

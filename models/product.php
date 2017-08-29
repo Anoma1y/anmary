@@ -27,7 +27,7 @@
 		public static function getRelatedProducts($category_id) {
 			try {
 				$db = Db::getConnection();
-	 	        $sql = 'SELECT name, article, price, sale_price, is_sale, is_availability FROM product WHERE category_id = :category_id ORDER BY RAND() LIMIT 6';
+	 	        $sql = 'SELECT name, article, price, sale_price, is_sale, is_availability FROM product WHERE category_id = :category_id and is_availability = 1 ORDER BY RAND() LIMIT 6';
 		        $result = $db->prepare($sql);
 		        $result->bindParam(':category_id', $category_id, PDO::PARAM_INT);
 		        $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -42,6 +42,20 @@
 			} catch (Exception $e) {
 				echo "$e";
 			}
+		}
+		public static function lastProducts() {
+			$db = Db::getConnection();
+ 	        $sql = 'SELECT name, article, price, sale_price, is_sale, is_availability FROM product WHERE is_availability = 1 LIMIT 3';
+	        $result = $db->prepare($sql);
+	        $result->setFetchMode(PDO::FETCH_ASSOC);
+	        $result->execute();
+	        $i = 0;
+	        $all = array();
+	        while ($row = $result->fetch()) {
+	            $all[$i] = $row;
+	            $i++;
+	        }
+	        return $all;				
 		}
 	}
 ?>
