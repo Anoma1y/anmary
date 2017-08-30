@@ -78,6 +78,7 @@
             data:{page: page, state},  
             success:function(data){ 
             	items = $.parseJSON(data);
+                console.log(items);
             	$('#list_product').empty();
                 if (items.hasOwnProperty('item') === true) {
                     for (var i = 0; i < items.item.length; i++) {

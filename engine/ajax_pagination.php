@@ -68,7 +68,6 @@
 		    $this->data['total_page'] = $this->total_pages;
 		    $this->data['record_per_page'] = $this->record_per_page;
 		    $this->data['current_page'] = $this->page;
-		    $this->data['fasdfsadfasdf'] = $_POST['state'];
 		    die(json_encode($this->data));		
 		}
 	}

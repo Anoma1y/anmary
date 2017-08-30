@@ -14,7 +14,6 @@
 	            $i++;
 	        }
 	        return $all;
-
 		}
 		public static function getCategory() {
 			$db = Db::getConnection();

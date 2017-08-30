@@ -2,7 +2,6 @@ node_modules
 .idea
 uploads
 catalog
-static/img
 static/libs
 views/anime
 views/animes

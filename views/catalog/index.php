@@ -1,36 +1,6 @@
-<!-- <link rel="stylesheet" href="../static/css/main.min.css">
- -->
-<?php require_once '/views/index/header.php'; ?>
+<?php require_once '/views/catalog/header.php'; ?>
 
-<link rel="stylesheet" href="/static/css/catalog.min.css">
-<style>
 
-</style>
-        <div class="catalog_menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="contact">
-                            <p>+7-(963)-040-25-19</p>
-                            <p>nt-nt@mail.ru</p>
-                            <p class="time_work">Пн-вс, с 10:00 до 20:00</p>
-                        </div>                        
-                    </div>
-                    <div class="col-md-4">
-                         <div class="logo">
-                            <img src="/static/img/logo_black.png" alt="">
-                        </div>                       
-                    </div>
-                    <div class="col-md-4">
-                        <div class="adress">
-                            <p>г. Санкт Петербург, Скобелевский пр.,</p>
-                            <p>ТЦ Президентский, 2 этаж</p>
-                            <p>Остановка: метро Удельная</p>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="banner-image-area">
             <div class="container">
                 <div class="row">
