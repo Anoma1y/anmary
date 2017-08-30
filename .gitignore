@@ -1,12 +1,3 @@
 node_modules
 .idea
 uploads
-catalog
-static/libs
-views/anime
-views/animes
-views/profile
-controllers/ControllerAnime.php
-controllers/ControllerProfile.php
-models/anime
-models/profile
