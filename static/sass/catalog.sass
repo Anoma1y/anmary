@@ -6,6 +6,8 @@ $output-bourbon-deprecation-warnings: false !default;
 
 
 
+
+
 $slider_color: #ec5355
 $slider_range: #DBDBDB
 .sidebar-content 
@@ -107,7 +109,35 @@ $catalog_menu_color: #000000
         img
             display: block
             margin: 0 auto
-            width: 80%  
+            width: 80%
+$catalog-menu-border-color: rgba(0,0,0, .25)  
+$menu-color-hover: #f73453
+#menu-catalog
+    width: 100%
+    padding: 15px
+    margin: 0
+    border-top: 1px solid $catalog-menu-border-color
+    border-bottom: 1px solid $catalog-menu-border-color
+    list-style-type: none
+    text-align: center
+    li
+        margin: 0 20px
+        font-family: 'Gotham Pro Light"'
+        font-size: em(18px)
+        text-transform: uppercase
+        font-weight: 700
+        display: inline-block
+        a
+            text-decoration: none
+            color: black
+            -webkit-transition:color .2s ease-in-out
+            -moz-transition:color .2s ease-in-out
+            -o-transition:
+            transition: color .2s ease-in-out
+            &:hover
+                color: $menu-color-hover
+
+
 .active 
     color: $slider_color
 .shop-main-area
@@ -132,14 +162,14 @@ $catalog_menu_color: #000000
             width: 100%
     .price
         color: black
-        &:before 
-            content: "₽"
+        &:after 
+            content: " руб."
     .old_price
         color: black
         opacity: .5
         text-decoration: line-through
-        &:before
-            content: "₽"
+        &:after
+            content: " руб."
 
     .sidebar-content
 

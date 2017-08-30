@@ -25,6 +25,11 @@
                         </div>                        
                     </div>
                 </div>
+
+            </div>
+        
+        </div>
+            <div class="container-fluid" style="padding: 0">
                 <div class="row">
                     <div class="col-md-12">
                         <ul id="menu-catalog">
@@ -35,5 +40,3 @@
                     </div>
                 </div>
             </div>
-        
-        </div>

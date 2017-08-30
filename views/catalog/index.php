@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="category-image"><img alt="women" src="../static/img/13.jpg" width="100%"></div>
+                        <div class="category-image"><img alt="" src="../static/img/13.jpg" width="100%"></div>
                     </div>
                 </div>
             </div>

@@ -5,10 +5,7 @@
 	require_once 'models/admin.php';
 	require_once 'models/user.php';
 	require_once 'models/catalog.php';
-	require_once 'models/anime.php';
 	require_once 'models/product.php';
-
-	// require_once 'models/comment.php';
 
 	return array(
 		'home_title' => 'SITE NAME',
