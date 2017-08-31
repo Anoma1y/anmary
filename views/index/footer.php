@@ -68,6 +68,8 @@
 	<![endif]-->
 	
 	<script src="static/js/libs.min.js"></script>
+	<script src="static/js/parallax.min.js"></script>
+
 	<script src="static/js/index.js"></script> 
 </body>
 </html>

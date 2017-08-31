@@ -1,9 +1,9 @@
 $output-bourbon-deprecation-warnings: false !default
 @import "bourbon"
 @import "vars.sass"
-
+$defaul-fontsize: 16px
 body
-	font-size: 16px
+	font-size: $defaul-fontsize
 	min-width: 320px
 	position: relative
 	line-height: 1.6
@@ -15,14 +15,23 @@ header
 	height: 100vh
 	min-height: 800px
 	width: 100%
-	background: url('../img/bg.jpg')
-	background-size: cover
+	// background: url('../img/bg.jpg')
+	// background-size: cover
 	font-size: 16px
 	color: white
 	text-align: center
 	.logo
 		img
 			width: 220px
+	.bg-image
+		// background: url('../img/bg.jpg')
+		background-size: cover
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		
 	.bg_blackout
 		position: absolute
 		top: 0

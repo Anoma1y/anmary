@@ -4,6 +4,7 @@
 
 
 <header id="main">
+		<div class="bg-image"></div>
 		<div class="bg_blackout"></div>
 		<div class="container">
 			<div class="row">
@@ -47,7 +48,6 @@
 			</div>
 		</div>
 	</header>
-
 
 <div id="brand" class="brand-area">
 	<div class="container">
