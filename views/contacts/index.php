@@ -1,5 +1,4 @@
 <?php require_once '/views/catalog/header.php'; ?>
-
 <div class="contacts">
 	<div class="container">
 		<div class="row">
@@ -24,11 +23,26 @@
 			</div>
 			<div class="col-md-9 col-sm-9 col-xs-12">
 				<div class="map">
-					
+					<div id="map"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+	<script>
+		      function initMap() {
+        var uluru = {lat: 60.016828, lng: 30.313727};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+	</script>, 
+	    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADny6Mjy49YDCexGxeRlvNFbi0QdbVqRA&callback=initMap">
+    </script>
 <?php require_once '/views/index/footer.php'; ?>

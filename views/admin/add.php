@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="/static/css/admin.css">
 
 <div class="header">
@@ -49,7 +50,7 @@
 				?>		
 			</select>
 		</p>
-		<p>Размер: <input type="text" name="size" value="asd" placeholder="Размер"></p>
+		<p>Размер: <input type="text" name="size" value="" disabled></p>
 		<p>Цвет: 
 			<select name="colour" id="colour">
 				<?php 
@@ -67,6 +68,38 @@
 		<p><input id="uploadimage" type="file" name="image"></p>
 		<button>Добавить</button>
 	</form>
+	<div class="size_chois">
+		42<input type="checkbox" value="42" name="size_chois">
+		44<input type="checkbox" value="44" name="size_chois">
+		46<input type="checkbox" value="46" name="size_chois">
+		48<input type="checkbox" value="48" name="size_chois">
+		50<input type="checkbox" value="50" name="size_chois">
+		52<input type="checkbox" value="52" name="size_chois">
+		54<input type="checkbox" value="54" name="size_chois">
+		56<input type="checkbox" value="56" name="size_chois">
+	</div>
 </div>
+
+<script src="/static/js/libs.min.js"></script>
+<script>
+//Добавление размера
+$('input[name="size_chois"]').on('change', function() {
+	if (this.checked) {
+		if ($('input[name="size"]').val().length <= 1) {
+			$('input[name="size"]').val($('input[name="size"]').val() + this.value);
+		} else {
+			$('input[name="size"]').val($('input[name="size"]').val() + "," + this.value);
+		}
+	} else if (this.checked === false) {
+		var str = $('input[name="size"]').val();
+		if (str.length == 2) {
+			$('input[name="size"]').val(str.replace(new RegExp(this.value,"g"), ""));
+		} else if (str.length > 2) {
+			$('input[name="size"]').val(str.replace(new RegExp("," + this.value,"g"), ""));
+		}
+	}
+})
+</script>
+
 
 

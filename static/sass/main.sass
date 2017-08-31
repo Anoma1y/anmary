@@ -36,7 +36,7 @@ body textarea:required:valid
 		width: 250px
 		img
 			width: 100%
-
+	
 $white_catalog: #fff
 $get_catalog_color: #c52323
 #catalog
@@ -226,6 +226,25 @@ $bg_footer_color: #333333
 			color: white
 			font-family: "Lobster 1.4 Regular"
 			font-size: em(16px)	
-
-
+$color-contact: rgba(0,0,0,.5)
+.contacts
+	padding: 15px 0
+	#map
+		height: 600px
+		width: 100%
+	.contact-info
+		// padding: 10px 0
+		font-family: "Gotham Pro Light"
+		text-align: center
+		p
+			margin: 5px 0 20px
+			font-size: em(18px)
+		p.contact-name
+			font-weight: 700
+			font-size: em(22px)
+			line-height: 25px
+		p.contact-email
+			color: $get_catalog_color
+		span
+			color: $color-contact
 @import 'media.sass'

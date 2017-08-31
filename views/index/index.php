@@ -3,7 +3,7 @@
 
 
 
-<header id="main">
+	<header id="main">
 		<div class="bg-image"></div>
 		<div class="bg_blackout"></div>
 		<div class="container">

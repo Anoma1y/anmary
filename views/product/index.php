@@ -74,11 +74,6 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            <div class="sidebar-content">
-                <div class="banner-box">
-                    <a href="#"><img alt="" src="/static/img/14.jpg"></a>
-                </div>
-            </div>
         </div>
     </div>
     <div class="row">
