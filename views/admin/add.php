@@ -60,7 +60,7 @@
 				?>		
 			</select>
 		</p>
-		<p>Состав: <input type="text" name="composition" value="asd" placeholder="Состав"></p>
+		<p>Состав: <input type="text" name="composition" disabled></p>
 		<p>Скидка: <input type="checkbox" name="is_sale"></p>
 		<p>Цена: <input type="text" name="price" value="777" placeholder="Цена"></p>
 		<p>Цена со скидкой: <input type="text" name="sale_price" value="0" placeholder="Цена со скидкой"></p>
@@ -78,10 +78,92 @@
 		54<input type="checkbox" value="54" name="size_chois">
 		56<input type="checkbox" value="56" name="size_chois">
 	</div>
+	<div id="composition_chois">
+		Шерсть<input type="checkbox" value="Шерсть" id="composition_chois_wool_cbx"> Количество: <input type="text" id="composition_chois_wool_count" value="">% <input type="button" id="add_composition_wool" value="Добавить"><input type="button" id="delete_composition_wool" value="Удалить"><br>
+
+		Нейлон<input type="checkbox" value="Нейлон" id="composition_chois_nylon_cbx"> Количество: <input type="text" id="composition_chois_nylon_count" value="">% <input type="button" id="add_composition_nylon" value="Добавить"><input type="button" id="delete_composition_nylon" value="Удалить"><br>
+	</div>
 </div>
 
 <script src="/static/js/libs.min.js"></script>
 <script>
+class addComposition {
+
+  constructor(composition, composition_ru) {
+  	this.composition_ru = composition_ru;
+    this.composition = composition;
+    this.check = 0;
+    this.str = 0;
+  }
+  createInput() {
+  	$('#composition_chois').append(`${this.composition_ru} <input type="checkbox" value="${this.composition_ru}" id="composition_chois_${this.composition}_cbx"> Количество: <input type="text" id="composition_chois_${this.composition}_count" value="">% <input type="button" id="add_composition_${this.composition}" value="Добавить" onclick="${this.composition}.add()"><input type="button" id="delete_composition_${this.composition}" value="Удалить"><br>`);
+  }
+  add() {
+
+ 	if ($('#composition_chois_' + this.composition + '_cbx').prop('checked') && this.check == 0) {
+		if ($('#composition_chois_' + this.composition + '_count').val().length !== 0) {
+			if ($('#composition_chois_' + this.composition + '_count').val() >= 0 && $('#composition_chois_' + this.composition + '_count').val() <= 100) {
+				this.str = $('#composition_chois_' + this.composition + '_cbx').val() + "-" + $('#composition_chois_' + this.composition + '_count').val() + "% ";
+				$('input[name="composition"]').val($('input[name="composition"]').val() + this.str);
+				this.check = 1;
+			}
+		}
+	} 	
+  }
+  delete() {
+
+  }
+
+}
+
+let polyester = new addComposition("polyester", "Полиэстер");
+polyester.createInput(); 
+
+
+var checkWool = 0;
+var WoolStr = "";
+
+$('#add_composition_wool').on('click', function() {
+	if ($('#composition_chois_wool_cbx').prop('checked') && checkWool == 0) {
+		if ($('#composition_chois_wool_count').val().length !== 0) {
+			if ($('#composition_chois_wool_count').val() >= 0 && $('#composition_chois_wool_count').val() <= 100) {
+				WoolStr = $('#composition_chois_wool_cbx').val() + "-" + $('#composition_chois_wool_count').val() + "% ";
+				$('input[name="composition"]').val($('input[name="composition"]').val() + WoolStr);
+				checkWool = 1;
+			}
+		}
+	}
+});	
+$('#delete_composition_wool').on('click', function() {
+	if (checkWool == 1) {
+		var str = $('input[name="composition"]').val();
+		$('input[name="composition"]').val(str.replace(WoolStr ,""));
+		checkWool = 0;
+	}
+});
+
+var checkNylon = 0;
+var NylonStr = "";
+
+$('#add_composition_nylon').on('click', function() {
+	if ($('#composition_chois_nylon_cbx').prop('checked') && checkNylon == 0) {
+		if ($('#composition_chois_nylon_count').val().length !== 0) {
+			if ($('#composition_chois_nylon_count').val() >= 0 && $('#composition_chois_nylon_count').val() <= 100) {
+				NylonStr = $('#composition_chois_nylon_cbx').val() + "-" + $('#composition_chois_nylon_count').val() + "% ";
+				$('input[name="composition"]').val($('input[name="composition"]').val() + NylonStr);
+				checkNylon = 1;
+			}
+		}
+	}
+});	
+$('#delete_composition_nylon').on('click', function() {
+	if (checkNylon == 1) {
+		var str = $('input[name="composition"]').val();
+		$('input[name="composition"]').val(str.replace(NylonStr ,""));
+		checkNylon = 0;
+	}
+});
+
 //Добавление размера
 $('input[name="size_chois"]').on('change', function() {
 	if (this.checked) {
