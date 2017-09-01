@@ -1,15 +1,43 @@
 $output-bourbon-deprecation-warnings: false !default
 @import 'bourbon'
+//Шрифт по-умолчанию
+$defaul-fontsize: 16px
 
-@mixin transition_all($selector, $time, $timing_function)
-	-webkit-transition: $selector $time $timing_function
-	-moz-transition: $selector $time $timing_function
-	-o-transition: $selector $time $timing_function
-	transition: $selector $time $timing_function
+//Цвет ссылок в меню при наведении
+$hover_menu: #cf0325
 
-@mixin transform_all($type, $val)
-	-moz-transform: $type($val)
-	-ms-transform: $type($val)
-	-webkit-transform: $type($val)
-	-o-transform: $type($val)
-	transform: $type($val)
+//Мобильное меню (меньше 992px)
+$toggle_color: #fff
+$toggle_hover_color: rgba($toggle_color, .7)
+$border_mobile_menu_color: #fff
+$mobile_menu_color: #272727
+$mobile_menu_text_color: #fff
+
+//Цвета с причин выбора
+$border_reasons_color: rgba(255,255,255,.8)
+$border_reasons_color_hover: #f73453
+$bg_hover_reasos: #f7f7f7
+$reason_text_color: #fff
+$reason_text_color_hover: #f73453
+
+//Цвета скаталога
+$white_catalog: #fff
+$get_catalog_color: #c52323
+
+//Цвета футера
+$bg_footer_color: #333333
+
+//Цвета слайдера цены
+$slider_color: #ec5355
+$slider_range: #DBDBDB
+
+//Цвета каталога + меню верхнее
+$catalog_menu_color: #000000
+$catalog-menu-border-color: rgba(0,0,0, .15)  
+$menu-color-hover: #f73453
+
+//Цвет контактов
+$color-contact: rgba(0,0,0,.5)
+
+//Цвет с продуктов
+$sale-color-font: #f25549

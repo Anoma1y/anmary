@@ -83,7 +83,7 @@
 	</div>
 	<div id="composition_chois">
 	</div> 
-<!-- <img src="<?=$productData[image]?>" alt=""> -->
+	<img src="<?=$productData[image]?>" alt="">
 
 </div>
 

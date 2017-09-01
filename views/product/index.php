@@ -32,31 +32,30 @@
                             </div>
                             <div class="product-price">
                                 <?php if ($data['is_sale'] == 1): ?>
-                                    <div class="old-price">
-                                        <p><?=$data['sale_price'] ?></p>
-                                    </div>
-                                    <div class="price">
-                                        <p><?=$data['price'] ?></p>
-                                    </div>
+                                    <p class="old-price"><?=$data['sale_price'] ?></p>
+                                    <p class="price sale"><?=$data['price'] ?></p>
                                 <?php else: ?>
-                                    <div class="price">
-                                        <p><?=$data['price'] ?></p>
-                                    </div>                                                                 
+                                    <p class="price"><?=$data['price'] ?></p>
                                 <?php endif ?>
 
                             </div>
                             <div class="product-info">
-                                <p class="color">черный</p>
-                                <?=$getSize[0] ?>
-                                <p class="composition">
-                                 <?php 
-                                    // $composition = explode(' ', $data['composition']);
-                                    // foreach ($composition as $key) {
-                                    //     $cc = str_replace('-', ' ', $key);
-                                    //     echo $cc.'<br>';
-                                    // }
-                                ?>                                   
-                                </p>
+                                <div class="product-color">
+                                    <h3>Цвет</h3> <?=$data['color_name'] ?>
+                                </div>
+                                <div class="product-size">
+                                    <h3>Размер</h3>
+                                    <?php foreach ($getSize as $key): ?>
+                                        <div class="product-size-item"><?=$key; ?></div>
+                                    <?php endforeach ?>
+                                </div>
+                                
+                                <div class="product-composition">
+                                    <h3>Состав</h3>
+                                    <?php foreach ($getComposition as $key): ?>
+                                        <p class="product-composition-item"><?=$key; ?></p>    
+                                    <?php endforeach ?>
+                                </div>
                             </div>
                         </div>              
                     </div>

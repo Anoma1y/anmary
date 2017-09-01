@@ -36,7 +36,7 @@ gulp.task('libs', () => {
 		'./static/libs/modernizr.js',
 		'./static/libs/jquery-2.2.4.min.js',
 		'./static/libs/jquery-ui.min.js',
-		// './static/libs/animate/animate-css.js',
+		'./static/libs/parallax.min.js',
 		'./static/libs/jquery.simplePagination.js',
 		'./static/libs/owl.carousel.min.js',
 		'./static/libs/aos.js'

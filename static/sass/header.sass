@@ -1,7 +1,7 @@
 $output-bourbon-deprecation-warnings: false !default
 @import "bourbon"
 @import "vars.sass"
-$defaul-fontsize: 16px
+
 body
 	font-size: $defaul-fontsize
 	min-width: 320px
@@ -17,8 +17,6 @@ header
 	height: 100vh
 	min-height: 800px
 	width: 100%
-	// background: url('../img/bg.jpg')
-	// background-size: cover
 	font-size: 16px
 	color: white
 	text-align: center
@@ -26,7 +24,6 @@ header
 		img
 			width: 220px
 	.bg-image
-		// background: url('../img/bg.jpg')
 		background-size: cover
 		position: absolute
 		top: 0
@@ -46,7 +43,6 @@ header
 	    	opacity: 0
 	    to 
 	    	opacity: 1
-	$hover_menu: #cf0325
 	#nav
 		animation-name: example
 		animation-duration: 1s
@@ -59,16 +55,15 @@ header
 				color: #fff
 				font-family: "Lobster 1.4 Regular"
 				font-size: em(30px)
-				@include transition_all(color, .2s, ease-in-out)
+				-webkit-transition: color .2s ease-in-out
+				-moz-transition: color .2s ease-in-out
+				-o-transition: color .2s ease-in-out
+				transition: color .2s ease-in-out				
 				&:hover
-					text-decoration: none
-					color: rgba($hover_menu, .8)
+						text-decoration: none
+						color: rgba($hover_menu, .8)
 
-	$toggle_color: #fff
-	$toggle_hover_color: rgba($toggle_color, .7)
-	$border_mobile_menu_color: #fff
-	$mobile_menu_color: #272727
-	$mobile_menu_text_color: #fff
+
 	#mobile_nav
 		display: none
 		position: fixed
@@ -113,7 +108,10 @@ header
 				width: 100%
 				font-family: "Lobster 1.4 Regular"
 				font-size: em(30px)
-				@include transition_all(color, .2s, ease-in-out)
+				-webkit-transition: color .2s ease-in-out
+				-moz-transition: color .2s ease-in-out
+				-o-transition: color .2s ease-in-out
+				transition: color .2s ease-in-out
 				&:hover 
 					text-decoration: none
 					color: rgba($hover_menu, .8)
@@ -139,7 +137,10 @@ header
 			height: 5px
 			background-color: $toggle_color
 			border-radius: 10px
-			@include transition_all(all, .1s, ease-out)
+			-webkit-transition: all .1s ease-out
+			-moz-transition: all .1s ease-out
+			-o-transition: all .1s ease-out
+			transition: all .1s ease-out
 			&:before
 				content: ""
 				display: block
@@ -188,7 +189,10 @@ header
 		background: url('../img/arrow.png')
 		background-size: cover
 		cursor: pointer
-		@include transition_all(transform, 0.2s, ease-in-out)
+		-webkit-transition: transform .2s ease-in-out
+		-moz-transition: transform .2s ease-in-out
+		-o-transition: transform .2s ease-in-out
+		transition: transform .2s ease-in-out
 		&:hover
 			transform: scale(1.3)
 

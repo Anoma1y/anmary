@@ -3,6 +3,8 @@ $output-bourbon-deprecation-warnings: false !default;
 @import 'fonts.sass'
 @import 'vars.sass'
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i')
+
+
 .product-area
 	padding: 50px 0 50px
 	.current-item
@@ -25,6 +27,52 @@ $output-bourbon-deprecation-warnings: false !default;
 					color: green
 				.is_availability_no
 					color: red
+			.product-price
+				p
+					display: inline-block
+					margin: 0 0 10px
+					&:after
+						content: " руб."
+				p.old-price
+					text-decoration: line-through
+					color: lighten(#000, 60)
+				p.sale
+					margin-left: 20px
+					color: $sale-color-font
+					font-weight: 700
+					font-size: em(28px)
+			.product-info
+				.product-color
+					h3
+						margin: 0
+				.product-size
+					padding: 5px 0
+					h3
+						padding-bottom: 3px
+						font-size: em(17px)
+						font-weight: 700
+						margin: 0
+						text-transform: uppercase
+					&:after
+						content: ""
+						display: table
+						clear: both
+					.product-size-item
+						float: left
+						padding: 5px 8px
+						margin: 5px 2px 0
+						border: 1px solid black
+						cursor: pointer
+						&:hover
+							background-color: darken(#fff, 5)
+				.product-composition
+					p.product-composition-item
+						margin: 0
+						padding: 0 10px
+					h3
+						margin: 0				
+
+
 .product-title
 	h2
 		margin: 0
