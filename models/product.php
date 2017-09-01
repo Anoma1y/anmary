@@ -4,7 +4,7 @@
 			$routes = explode('/', $_SERVER['REQUEST_URI']);
 			$id = $routes[2];
 			$db = Db::getConnection();
- 	        $sql = 'SELECT * FROM product WHERE id = :id';
+ 	        $sql = 'SELECT product.*, brand.brand_name, category.category_name, color.color_name, season.season_name FROM product, brand, category, color, season WHERE product.id = :id and product.brand_id = brand.id and product.category_id = category.id and product.color_id = color.id and product.season_id = season.id';
 	        $result = $db->prepare($sql);
 	        $result->bindParam(':id', $id, PDO::PARAM_STR);
 	        $result->setFetchMode(PDO::FETCH_ASSOC);

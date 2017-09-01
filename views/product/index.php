@@ -14,37 +14,55 @@
                 <div class="row">
                     <div class="col-md-6">
                          <div class="product-image">
-                            <img src="/static/img/8.jpg" alt="">
+                            <img src="<?=$data['image']; ?>" alt="">
                         </div>                       
                     </div>
                     <div class="col-md-6">
                         <div class="product-content">
                             <div class="product-name">
-                                <h2 class="product-title">Платье, Vaide</h2>
-                                <h2 class="product-article">ART 1457</h2>
+                                <h2 class="product-title"><?=$data['name'].", ". $data['brand_name'] ?></h2>
+                                <h2 class="product-article"><?=$data['article'] ?></h2>
                             </div>
                             <div class="availability">
-                                Наличие: <span class="is_availability_yes">Есть в наличии</span>
+                                <?php if ($data['is_availability'] == 1): ?>
+                                    Наличие: <span class="is_availability_yes">Есть в наличии</span>
+                                <?php else: ?>
+                                    Наличие: <span class="is_availability_no">Нет в наличии</span>
+                                <?php endif ?>
                             </div>
                             <div class="product-price">
-                                <div class="old-price">
-                                    <p>1 299 руб.</p>
-                                </div>
-                                <div class="price">
-                                    <p>1 119 руб.</p>
-                                </div>
+                                <?php if ($data['is_sale'] == 1): ?>
+                                    <div class="old-price">
+                                        <p><?=$data['sale_price'] ?></p>
+                                    </div>
+                                    <div class="price">
+                                        <p><?=$data['price'] ?></p>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="price">
+                                        <p><?=$data['price'] ?></p>
+                                    </div>                                                                 
+                                <?php endif ?>
+
                             </div>
                             <div class="product-info">
-                                <p class="article">454577</p>
                                 <p class="color">черный</p>
-                                <p class="composition">полиэстер 52%,нейлон 23%,акрил 17%,шерсть 8%</p>
+                                <?=$getSize[0] ?>
+                                <p class="composition">
+                                 <?php 
+                                    // $composition = explode(' ', $data['composition']);
+                                    // foreach ($composition as $key) {
+                                    //     $cc = str_replace('-', ' ', $key);
+                                    //     echo $cc.'<br>';
+                                    // }
+                                ?>                                   
+                                </p>
                             </div>
                         </div>              
                     </div>
                 </div>
                 
             </div>
-
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="product-title">
@@ -173,3 +191,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+</script>
