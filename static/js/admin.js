@@ -60,3 +60,5 @@ function load_allProduct(page) {
     }  
   })  
 }  
+
+

@@ -58,7 +58,7 @@
 			?>		
 		</select>
 	</p>
-	<p>Размер: <input type="text" name="size" value="<?=$productData[size]?>" placeholder="Размер"></p>
+	<p>Размер: <input type="text" name="size" value="<?=$productData[size]?>" readonly></p>
 	<p>Цвет: 
 		<select name="colour" id="colour">
 			<?php 
@@ -70,7 +70,7 @@
 		</select>
 	</p>
 
-	<p>Состав: <input type="text" name="composition" value="<?=$productData[composition]?>" placeholder="Состав"></p>
+	<p>Состав: <input type="text" name="composition" value="<?=$productData[composition]?>" readonly></p>
 	<p>Скидка: <input type="checkbox" <?php if ($productData['is_sale'] == 1) echo "checked"; ?> name="is_sale"></p>
 	<p>Цена: <input type="text" name="price" value="<?=$productData[price]?>" placeholder="Цена"></p>
 	<p>Цена со скидкой: <input type="text" name="sale_price" value="<?=$productData[sale_price]?>" placeholder="Цена со скидкой"></p>
@@ -78,6 +78,18 @@
 	<p><input id="uploadimage" type="file" name="image"></p>
 	<input type="submit" name="add" value="Добавить">
 </form>
-<img src="<?=$productData[image]?>" alt="">
+	<div class="size_chois">
+
+	</div>
+	<div id="composition_chois">
+	</div> 
+<!-- <img src="<?=$productData[image]?>" alt=""> -->
 
 </div>
+
+
+
+<script src="/static/js/libs.min.js"></script>
+<script src="/static/js/edit_product.js"></script>
+
+

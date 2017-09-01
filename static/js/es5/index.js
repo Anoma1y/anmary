@@ -42,4 +42,6 @@ $(document).ready(function () {
 		navigation: false,
 		items: 3
 	});
+
+	$('.bg-image').parallax({ imageSrc: '/static/img/bg.jpg' });
 });

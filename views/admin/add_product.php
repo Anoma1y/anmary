@@ -1,6 +1,4 @@
 <?php 
-
-
     if (isset($_COOKIE['username_hash'])){
 	   	$hash = $_COOKIE['username_hash'];
 	    $db = Db::getConnection();
