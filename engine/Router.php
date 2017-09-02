@@ -4,10 +4,7 @@
             return explode('/', $_SERVER['REQUEST_URI']);
         }
 	}
- 	// var_dump(substr($visit, -1));
 	$routes = getURI();
-
-	// var_dump(end($routes));
 	$class_name = "Main";
 	$method_name = "index";
 
@@ -18,10 +15,8 @@
 	if (!empty($routes[2])) {
 		$method_name = $routes[2];
 	}
-	// $file_name = "controllers/Controller".strtolower($class_name).".php";
 	$file_name = "controllers/Controller".$class_name.".php";
 	try {
-		// array_pop($routes)
 		if (($routes[2] !== "") and ($routes[3] !== "") and ($routes[4] !== "") and ($routes[5] !== "")) {
 			if (file_exists($file_name)) {
 				require_once $file_name;
