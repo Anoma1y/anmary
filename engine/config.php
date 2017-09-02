@@ -18,13 +18,9 @@
 		'site_offline' => 'yes',
 		'registration ban' => 'no',
 	    'host' => 'localhost',
-	    
 	    'dbname' => 'srv77500_anmary',
-
 	    'user' => '',
-
 	    'password' => '',
-
 	    'dbcharset' => 'utf8',
 	     //Пагинация AJAX
 	    'record_per_page' => 9, //Записей на странице
