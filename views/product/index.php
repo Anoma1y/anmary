@@ -2,7 +2,7 @@
 <!-- <link rel="stylesheet" href="/static/css/catalog.min.css"> -->
 
 
-<?php require_once '/views/catalog/header.php'; ?>
+<?php require_once 'views/catalog/header.php'; ?>
 <!-- <link rel="stylesheet" href="/static/css/product.min.css">
  -->
 
@@ -32,8 +32,8 @@
                             </div>
                             <div class="product-price">
                                 <?php if ($data['is_sale'] == 1): ?>
-                                    <p class="old-price"><?=$data['sale_price'] ?></p>
-                                    <p class="price sale"><?=$data['price'] ?></p>
+                                    <p class="old-price"><?=$data['price'] ?></p>
+                                    <p class="price sale"><?=$data['sale_price'] ?></p>
                                 <?php else: ?>
                                     <p class="price"><?=$data['price'] ?></p>
                                 <?php endif ?>
@@ -72,7 +72,7 @@
                     <div class="last-items">
                         <div class="last-items-image">
                             <a href="#">
-                                <img alt="" src="/static/img/7777.jpg">
+                                <img alt="" src="<?=$key['image']; ?>">
                             </a>
                         </div>
                         <div class="last-items-text">
@@ -108,7 +108,7 @@
                     <div class="related-product">
                         <div class="related-image">
                             <a href="#">
-                                <img src="/static/img/7777.jpg" alt="">
+                                <img src="<?=$key['image']; ?>" alt="">
                             </a>
                         </div>
                         <p class="related-name"><?=$key['name']; ?> <?=$key['article']; ?></p>

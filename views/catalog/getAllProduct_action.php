@@ -14,22 +14,22 @@
     
     //Вывод только по ценовому диапазону, все категории и все бренды
     if ($categoryName == "all_category" && $brandName == "all_brand") {
-        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability FROM product WHERE price <= $maxPrice and price >= $minPrice ORDER BY id DESC LIMIT :start_from, :record_per_page";
+        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability, image FROM product WHERE price <= $maxPrice and price >= $minPrice ORDER BY id DESC LIMIT :start_from, :record_per_page";
         $sql1 = "SELECT id FROM product WHERE price <= $maxPrice and price >= $minPrice ORDER BY id";
     }
     //Вывод только по ценовому диапазону и по категориям
     elseif ($categoryName !== "all_category" && $brandName == "all_brand") {
-        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability FROM product WHERE price <= $maxPrice and price >= $minPrice and category_id = $cat_id[1] ORDER BY id DESC LIMIT :start_from, :record_per_page";
+        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability, image FROM product WHERE price <= $maxPrice and price >= $minPrice and category_id = $cat_id[1] ORDER BY id DESC LIMIT :start_from, :record_per_page";
         $sql1 = "SELECT id FROM product WHERE price <= $maxPrice and price >= $minPrice and category_id = $cat_id[1] ORDER BY id";        
     }
     //Вывод только по ценовому диапазону и по брендами
     elseif ($categoryName == "all_category" && $brandName !== "all_brand") {
-        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability FROM product WHERE price <= $maxPrice and price >= $minPrice and brand_id = $brand_li[1] ORDER BY id DESC LIMIT :start_from, :record_per_page";
+        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability, image FROM product WHERE price <= $maxPrice and price >= $minPrice and brand_id = $brand_li[1] ORDER BY id DESC LIMIT :start_from, :record_per_page";
         $sql1 = "SELECT id FROM product WHERE price <= $maxPrice and price >= $minPrice and brand_id = $brand_li[1] ORDER BY id";
     }
     //Вывод по ценовому диапазону, категориям и брендам
     elseif ($categoryName !== "all_category" && $brandName !== "all_brand") {
-        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability FROM product WHERE price <= $maxPrice and price >= $minPrice and brand_id = $brand_li[1] and category_id = $cat_id[1] ORDER BY id DESC LIMIT :start_from, :record_per_page";
+        $sql = "SELECT id, name, price, sale_price, is_sale, is_availability, image FROM product WHERE price <= $maxPrice and price >= $minPrice and brand_id = $brand_li[1] and category_id = $cat_id[1] ORDER BY id DESC LIMIT :start_from, :record_per_page";
         $sql1 = "SELECT id FROM product WHERE price <= $maxPrice and price >= $minPrice and brand_id = $brand_li[1] ORDER BY id";
     }
     //Сортировка по айди

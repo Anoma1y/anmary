@@ -1,4 +1,4 @@
-<?php require_once '/views/catalog/header.php'; ?>
+<?php require_once 'views/catalog/header.php'; ?>
 
 
         <div class="banner-image-area">

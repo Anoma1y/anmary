@@ -17,8 +17,8 @@
 	    {
 	        session_start();
 	        unset($_SESSION["username"]);
-	        setcookie("username_id", $_COOKIE['username_id'], time()-60*60*24*30, '/', 'site.loc');
-	        setcookie("username_hash", $_COOKIE['username_hash'], time()-60*60*24*30, '/', 'site.loc');	 
+	        setcookie("username_id", $_COOKIE['username_id'], time()-60*60*24*30, '/', 'anmary');
+	        setcookie("username_hash", $_COOKIE['username_hash'], time()-60*60*24*30, '/', 'anmary');	 
             header("Location: /");
 	    }
 		public function login_action() {

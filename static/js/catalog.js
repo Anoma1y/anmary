@@ -87,22 +87,7 @@
                         } else {
                             sale_price = `<span class="price">${items.item[i]["price"]}</span>`
                         }
-                        $('#list_product').append(`
-                            <div class="col-md-4 col-sm-4">
-                                <div class="product_item">
-                                    <div class="single_product clearfix">
-                                        <a href="../product/${items.item[i]["id"]}">
-                                            <span class="product_image">
-                                                <img src="../static/img/14.jpg" alt="" width="200px">
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <h2 class="product_name"><a href="../product/${items.item[i]["id"]}">${items.item[i]["name"]}</a></h2>
-                                    <div class="oroduct_price">
-                                        ${sale_price}
-                                    </div>
-                                </div>
-                            </div>`);
+                        $('#list_product').append("\n<div class=\"col-md-4 col-sm-4\">\n<div class=\"product_item\">\n<div class=\"single_product clearfix\">\n<a href=\"../product/" + items.item[i]["id"] + "\">\n<span class=\"product_image\">\n<img src=\"" + items.item[i]["image"] + "\" alt=\"\" width=\"200px\">\n</span>\n</a>\n</div>\n<h2 class=\"product_name\"><a href=\"../product/" + items.item[i]["id"] + "\">" + items.item[i]["name"] + "</a></h2>\n<div class=\"oroduct_price\">\n" + sale_price + "\n</div>\n</div>\n</div>");
                     }                   
                 } else {
                     $('#list_product').append('Пусто');////

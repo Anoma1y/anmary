@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="/static/css/admin.css">
+<link rel="stylesheet" href="/static/css/admin.min.css">
 
 <div class="header">
   <a href="#" id="menu-action">
@@ -21,9 +21,9 @@
 
 <div class="main">
 	<form action="addProduct" method="POST" enctype="multipart/form-data">
-		<p>Название: <input type="text" name="name" value="asd" placeholder="Название"></p>
-		<p>Артикль: <input type="text" name="article" value="asd" placeholder="Артикль"></p>
-		<p>Бренд: 
+		<p>Название:</p> <input type="text" name="name" value="">
+		<p>Артикль:</p> <input type="text" name="article" value="">
+		<p>Бренд:</p> 
 			<select name="brand" id="brand">
 				<?php 
 					foreach ($brandList as $key) {
@@ -31,8 +31,8 @@
 					}
 				?>			
 			</select>
-		</p>
-		<p>Категория: 
+		
+		<p>Категория:</p> 
 			<select name="category" id="category">
 				<?php 
 					foreach ($categoryList as $key) {
@@ -40,8 +40,8 @@
 					}
 				?>		
 			</select>
-		</p>
-		<p>Сезон: 
+		
+		<p>Сезон: </p>
 			<select name="season" id="season">
 				<?php 
 					foreach ($seasonList as $key) {
@@ -49,9 +49,9 @@
 					}
 				?>		
 			</select>
-		</p>
-		<p>Размер: <input type="text" name="size" readonly></p>
-		<p>Цвет: 
+		
+		<p>Размер: </p><input type="text" name="size" readonly>
+		<p>Цвет: </p>
 			<select name="colour" id="colour">
 				<?php 
 					foreach ($colorList as $key) {
@@ -59,17 +59,19 @@
 					}
 				?>		
 			</select>
-		</p>
-		<p>Состав: <input type="text" name="composition" readonly></p>
-		<p>Скидка: <input type="checkbox" name="is_sale"></p>
-		<p>Цена: <input type="text" name="price" value="777" placeholder="Цена"></p>
-		<p>Цена со скидкой: <input type="text" name="sale_price" value="0" placeholder="Цена со скидкой"></p>
-		<p>Наличие: <input type="checkbox" name="is_availability" checked></p>
-		<p><input id="uploadimage" type="file" name="image"></p>
+		
+		<p>Состав: </p><input type="text" name="composition" readonly>
+		<p>Скидка: </p><input type="checkbox" name="is_sale">
+		<p>Цена: </p><input type="text" name="price" value="">
+		<p>Цена со скидкой: </p><input type="text" name="sale_price" value="0">
+		<p>Наличие: </p><input type="checkbox" name="is_availability" checked>
+		<p>Изображение: </p><input id="uploadimage" type="file" name="image">
 		<button>Добавить</button>
 	</form>
+	<p>Размер: </p>
 	<div class="size_chois">
 	</div>
+	<p>Состав: </p>
 	<div id="composition_chois">
 	</div> 
 </div>

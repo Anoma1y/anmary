@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/static/css/admin.css">
+<link rel="stylesheet" href="/static/css/admin.min.css">
 
 <div class="header">
   <a href="#" id="menu-action">

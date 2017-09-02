@@ -5,6 +5,7 @@
         }
 	}
 	$routes = getURI();
+
 	$class_name = "Main";
 	$method_name = "index";
 
@@ -45,7 +46,6 @@
 		}  else {
 			$uri = preg_replace("#/$#", "", $_SERVER['REQUEST_URI']); 
 			header("Location: $uri"); 
-
 		}
 	} 
 	catch (Exception $e) {

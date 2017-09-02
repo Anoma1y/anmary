@@ -1,4 +1,4 @@
-<?php require_once '/views/catalog/header.php'; ?>
+<?php require_once 'views/catalog/header.php'; ?>
 <div class="contacts">
 	<div class="container">
 		<div class="row">
@@ -7,9 +7,9 @@
 					<p class="contact-name">Магазин прибалтийского трикотажа</p>
 					<span>Адрес</span>
 					<p class="contact-adress">
-					    г. Санкт Петербург, Скобелевский пр.,
-                        ТЦ Президентский, 2 этаж
-                        Остановка: метро Удельная
+					    г. Санкт Петербург, пр. Испытателей, 30,
+                        ТЦ Миллер, 2 этаж
+                        Остановка метро: Комендантский проспект
 					</p>
 					<span>Телефон</span>
 					<p class="contact-telephone">
@@ -31,9 +31,10 @@
 </div>
 	<script>
 		      function initMap() {
-        var uluru = {lat: 60.016828, lng: 30.313727};
+
+        var uluru = {lat: 60.006932, lng: 30.2646299};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
+          zoom: 16,
           center: uluru
         });
         var marker = new google.maps.Marker({
@@ -45,4 +46,4 @@
 	    <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADny6Mjy49YDCexGxeRlvNFbi0QdbVqRA&callback=initMap">
     </script>
-<?php require_once '/views/index/footer.php'; ?>
+<?php require_once 'views/index/footer.php'; ?>

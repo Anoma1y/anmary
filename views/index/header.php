@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html class="no-js" lang="ru">
 <head>
 
 	<meta charset="utf-8">
 
-	<title><?=$title['name']?></title>
+	<title>Anmary</title>
 
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

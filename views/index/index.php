@@ -1,7 +1,4 @@
-<?php require_once '/views/index/header.php'; ?>
-
-
-
+<?php require_once 'views/index/header.php'; ?>
 
 	<header id="main">
 		<div class="bg-image"></div>
@@ -104,8 +101,8 @@
 		 				foreach ($data as $key) {
 		 					echo '<div class="col-md-3 col-sm-6">';
 		 					echo '<div class="item" data-aos="zoom-in-down">';
-		 					echo '<a href="/product/'.$key[id].'"><img src="../static/img/banner_8.jpg" alt=""></a>';
-		 					echo '<a href="/product/'.$key[id].'"><p class="item_name">'.$key[name].' '.$key[article].'</p></a>';
+		 					echo '<a href="/product/'.$key[id].'"><img src="'.$key[image].'" alt=""></a>';
+		 					echo '<a href="/product/'.$key[id].'"><p class="item_name">'.$key[name].' '.$key[brand_name].'</p></a>';
 		 					if ($key['is_sale'] == 1) {
 		 						echo '<span class="item_old_price">'.$key[sale_price].'</span>';
 		 						echo "&nbsp;&nbsp;";
@@ -120,7 +117,7 @@
 		 	</div> 
 		 	<div class="row">
 		 		<div class="col-md-4 col-md-offset-4">
-		 			<a href="#" class="get_catalog">Посмотреть полный каталог</a>
+		 			<a href="/catalog/all" class="get_catalog">Посмотреть полный каталог</a>
 		 		</div>		 			
 		 	</div>	
 	</div>
@@ -166,4 +163,4 @@
 
 
 
-<?php require_once '/views/index/footer.php'; ?>
+<?php require_once 'views/index/footer.php'; ?>

@@ -1,5 +1,6 @@
 <?php
-	require_once "/engine/db.php";
+
+	require_once "engine/db.php";
 
 	class User
 	{

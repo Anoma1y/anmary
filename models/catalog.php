@@ -1,5 +1,5 @@
 <?php
-	require_once "/engine/db.php";
+	require_once "engine/db.php";
 	class CatalogModel {
 	    public static function getAllProducts() {
 			$db = Db::getConnection();
@@ -45,7 +45,7 @@
 		}
 		public static function getPopularModel() {
 			$db = Db::getConnection();
- 	        $sql = 'SELECT * FROM product ORDER BY RAND() LIMIT 8';
+ 	        $sql = 'SELECT product.*, brand.brand_name FROM product, brand WHERE brand.id = product.brand_id ORDER BY RAND() LIMIT 8';
 	        $result = $db->prepare($sql);
 	    	$result->setFetchMode(PDO::FETCH_ASSOC);
 	    	$result->execute();

@@ -1,7 +1,7 @@
 <?
-
-mysql_connect("localhost", "root", "");
-mysql_select_db("magazine");
+$params = include($paramsPath);
+mysql_connect("localhost", $params['user'], $params['password']);   
+mysql_select_db("srv77500_anmary");
 if (isset($_COOKIE['user_id']) and isset($_COOKIE['hash'])) {   
     $query = mysql_query("SELECT *,INET_NTOA(user_ip) FROM users WHERE user_id = '".intval($_COOKIE['user_id'])."' LIMIT 1");
     $userdata = mysql_fetch_assoc($query);

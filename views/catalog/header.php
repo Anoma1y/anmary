@@ -1,6 +1,6 @@
-<?php require_once '/views/index/header.php'; ?>
-<link rel="stylesheet" href="/static/css/catalog.min.css">
-<link rel="stylesheet" href="/static/css/product.min.css">
+<?php require_once 'views/index/header.php'; ?>
+<link rel="stylesheet" href="../static/css/catalog.min.css">
+<link rel="stylesheet" href="../static/css/product.min.css">
 
         <div class="catalog_menu">
             <div class="container">
@@ -14,13 +14,13 @@
                     </div>
                     <div class="col-md-4">
                          <div class="logo">
-                            <img src="/static/img/logo_black.png" alt="">
+                            <img src="../static/img/logo_black.png" alt="">
                         </div>                       
                     </div>
                     <div class="col-md-4">
                         <div class="adress">
-                            <p>г. Санкт Петербург, Скобелевский пр.,
-                            ТЦ Президентский, 2 этаж</p>
+                            <p>г. Санкт Петербург, пр. Испытателей, 30,
+                            ТЦ Миллер, 2 этаж</p>
                         </div>                        
                     </div>
                 </div>
