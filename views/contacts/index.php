@@ -7,13 +7,12 @@
 					<p class="contact-name">Магазин прибалтийского трикотажа</p>
 					<span>Адрес</span>
 					<p class="contact-adress">
-					    г. Санкт Петербург, пр. Испытателей, 30,
-                        ТЦ Миллер, 2 этаж
-                        Остановка метро: Комендантский проспект
+					    г. Санкт Петербург, ул. Фёдора Абрамова, 8,
+                        Остановка метро: Парнас
 					</p>
 					<span>Телефон</span>
 					<p class="contact-telephone">
-						+7-(963)-040-25-19 
+						+7-(904)-619-10-24 
 					</p>
 					<span>E-Mail</span>
 					<p class="contact-email">
@@ -32,7 +31,7 @@
 	<script>
 		      function initMap() {
 
-        var uluru = {lat: 60.006932, lng: 30.2646299};
+        var uluru = {lat: 60.074241, lng: 30.338525};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
           center: uluru

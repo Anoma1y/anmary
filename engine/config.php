@@ -17,13 +17,18 @@
 		'keywords' => 'Ключевые, Слова, Через, Запятую',
 		'site_offline' => 'yes',
 		'registration ban' => 'no',
-	    'host' => 'localhost',
-	    'dbname' => 'srv77500_anmary',
-	    'user' => '',
-	    'password' => '',
-	    'dbcharset' => 'utf8',
+	    'host' => 'localhost', //Хост БД
+	    'dbname' => 'srv77500_anmary', //Имя БД
+	    'user' => 'root', //Логин от БД
+	    'password' => '', //Пароль от БД
+	    'dbcharset' => 'utf8', //Кодировка БД
 	     //Пагинация AJAX
 	    'record_per_page' => 9, //Записей на странице
-	    'record_admin_page' => 20 
+	    'record_admin_page' => 20, //Записей на странице админки
+	    //Куки
+	    'domain' => 'anmary',
+	    //Информация о магазине
+	    'schedule' => 'Пн-вс, с 10:00 до 20:00',
+
 	);
 

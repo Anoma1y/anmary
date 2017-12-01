@@ -47,11 +47,10 @@
 				<div class="col-md-6">
 					<div class="contact">
 						<div class="telephone">
-							<p>7-(963)-040-25-19</p>
+							<p>7-(904)-619-10-24</p>
 						</div>
 						<div class="adress">
-							<p>г. Санкт Петербург, пр. Испытателей, 30</p>
-							<p>ТЦ Миллер, 2 этаж</p>
+							<p>г. Санкт Петербург, ул. Фёдора Абрамова, 8,</p>
 							<p>nt-nt@mail.ru</p>
 						</div>
 					</div>
