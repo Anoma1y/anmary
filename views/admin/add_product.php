@@ -14,7 +14,6 @@
     	else {
 			if (!empty($_FILES) && !empty($_POST)) {
 				if ($_FILES['uploadimage']['error'] == 0) {
-					die(var_dump($_FILES));
 					if ($_FILES["uploadimage"]["size"] > 800000) {
 						die("Большой размер файла");
 					}
@@ -39,8 +38,8 @@
 					$result_insert->bindParam(':is_availability', $_POST['productIsAvailability'], PDO::PARAM_INT);
 				    $result_insert->bindParam(':image', $sql_src, PDO::PARAM_STR);
 				    $result_insert->setFetchMode(PDO::FETCH_ASSOC);
-				    $result_insert->execute();	
-					die(header("Location: /admin"));
+				    $result_insert->execute();
+				    die(true);	
 				}
 			}    		
     	}

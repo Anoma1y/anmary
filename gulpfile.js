@@ -11,6 +11,7 @@ const cache = require('gulp-cache');
 const babel = require('gulp-babel');
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync');
+const errorHandler = require('gulp-error-handle');
 
 gulp.task('styles', () => {
 	return gulp.src('static/sass/**/*.+(sass|scss)')
@@ -47,17 +48,19 @@ gulp.task('libs', () => {
 });
 
 gulp.task('script', () => {
-	return gulp.src('static/js/dev/**/*.js')
+	return gulp.src(['static/js/dev/**/*.js', '!static/js/dev/libs.min.js'])
+		.pipe(errorHandler())
         .pipe(babel({
             presets: ['es2015']
         }))
+
         .pipe(gulp.dest('static/js/'));
 })
 
 gulp.task('watch', ['browser-sync', 'styles', 'libs', 'script'], () => {
 	gulp.watch('static/sass/**/*.+(sass|scss)', ['styles']);
 	gulp.watch('static/libs/**/*.js', ['libs']);
-	gulp.watch('static/js/**/*.js').on("change", browserSync.reload);
+	gulp.watch('static/js/dev/*.js', ['script']);
 	gulp.watch('views/**/*.php').on('change', browserSync.reload);
 });
 
