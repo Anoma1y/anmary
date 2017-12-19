@@ -1,5 +1,6 @@
 $output-bourbon-deprecation-warnings: false !default;
 @import "bourbon";
+@import 'mixin.sass'
 @import 'fonts.sass'
 @import 'vars.sass'
 
@@ -87,35 +88,61 @@ $output-bourbon-deprecation-warnings: false !default;
     text-transform: uppercase
     z-index: 2
 .catalog_menu
-    padding: 20px
-    text-align: center
+    display: flex
+    justify-content: space-between
+    align-items: center
     font-family: "Gotham Pro Light", sans-serif
-    p
-        color: $catalog_menu_color
-        font-size: 18px
-        margin: 0
-    p.time_work
-        color: lighten($catalog_menu_color, 50)
-        font-size: 14px
-    .adress
+    .contact
+        width: 20%
         p
+            color: $catalog_menu_color
+            font-size: em(18px)
+            margin: 0
+            text-align: center
+            &.time_work
+                color: lighten($catalog_menu_color, 50)
+                font-size: em(14px)
+    .adress
+        width: 20%
+        p
+            text-align: center
             margin-top: 10px
     .logo
+        margin-top: 10px
+        width: 50%
         img
             display: block
             margin: 0 auto
-            width: 80%
+            width: 60%
+// .catalog_menu
+//     padding: 20px
+//     text-align: center
+//     font-family: "Gotham Pro Light", sans-serif
+//     p
+//         color: $catalog_menu_color
+//         font-size: 18px
+//         margin: 0
+//     p.time_work
+//         color: lighten($catalog_menu_color, 50)
+//         font-size: 14px
+//     .adress
+//         p
+//             margin-top: 10px
+//     .logo
+//         img
+//             display: block
+//             margin: 0 auto
+//             width: 80%
 
 #menu-catalog
-    width: 100%
-    padding: 15px
     margin: 0
     border-top: 1px solid $catalog-menu-border-color
     border-bottom: 1px solid $catalog-menu-border-color
     list-style-type: none
     text-align: center
     li
-        margin: 0 20px
+        padding: 0
+        margin: 0 10px
         font-family: 'Gotham Pro Light"'
         font-size: em(18px)
         text-transform: uppercase
@@ -124,9 +151,9 @@ $output-bourbon-deprecation-warnings: false !default;
         a
             text-decoration: none
             color: black
-            -webkit-transition:color .2s ease-in-out
-            -moz-transition:color .2s ease-in-out
-            -o-transition:
+            -webkit-transition: color .2s ease-in-out
+            -moz-transition: color .2s ease-in-out
+            -o-transition: color .2s ease-in-out
             transition: color .2s ease-in-out
             &:hover
                 color: $menu-color-hover
@@ -219,3 +246,4 @@ $output-bourbon-deprecation-warnings: false !default;
             border: 1px solid #E3E1D5
             &:focus
                 border: none
+@import 'media.sass'

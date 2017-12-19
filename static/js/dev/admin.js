@@ -1,7 +1,5 @@
-'use strict';
-
 //Открытие бокового меню
-$('#menu-action').click(function () {
+$('#menu-action').click(function() {
   $('.sidebar').toggleClass('active');
   $('.main').toggleClass('active');
   $(this).toggleClass('active');
@@ -16,9 +14,10 @@ $('#menu-action').click(function () {
 });
 
 // Добавление эффекта наведения на меню
-$('#menu-action').hover(function () {
+$('#menu-action').hover(function() {
   $('.sidebar').toggleClass('hovered');
 });
+
 
 load_allProduct();
 //Подтверждение удаления товара
@@ -28,20 +27,18 @@ function confirmDelete(id) {
   }
 }
 //Переход на страницу редактирования товара
-function editItem(id) {
+function editItem(id){
   window.location = "admin/edit/" + id;
 }
 
-var total_pages,
-    items,
-    currentPage = 1;
+var total_pages, items, currentPage = 1;
 //Получение всех записей о товарах 
-function load_allProduct(page) {
-  $.ajax({
-    url: "admin/getAllProducts", /*???*/
-    method: "POST",
-    data: { page: page },
-    success: function success(data) {
+function load_allProduct(page) {  
+  $.ajax({  
+    url:"admin/getAllProducts", /*???*/  
+    method:"POST",  
+    data:{page:page}, 
+    success:function(data){ 
       $('#tabs').empty();
       items = $.parseJSON(data);
       $('#tabs').append("<table>\n<tr>\n<th>Название</th>\n<th>Артикль</th>\n<th>Бренд</th>\n<th>Категория</th>\n<th>Сезон</th>\n<th>Размер</th>\n<th>Цвет</th>\n<th>Состав</th>\n<th>Цена</th>\n<th></th>\n<th></th>\n</tr>" + items.item.map(function (items) {
@@ -55,11 +52,13 @@ function load_allProduct(page) {
         itemsOnPage: item_on_page,
         cssStyle: 'dark-theme',
         hrefTextPrefix: '',
-        currentPage: currentPage,
-        onPageClick: function onPageClick(pageNumber) {
+        currentPage : currentPage,
+        onPageClick : function(pageNumber) {
           load_allProduct(pageNumber);
         }
       });
-    }
-  });
-}
+    }  
+  })  
+}  
+
+

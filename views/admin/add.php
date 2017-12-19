@@ -61,9 +61,17 @@
 			</select>
 		
 		<p>Состав: </p><input type="text" name="composition" readonly>
+
+
+	
 		<p>Скидка: </p><input type="checkbox" name="is_sale">
-		<p>Цена: </p><input type="text" name="price" value="">
-		<p>Цена со скидкой: </p><input type="text" name="sale_price" value="0">
+
+		<p>Процент скидки</p><input type="text" id="salePercent" value="0">
+		<p>Цена: </p><input type="text" name="price" value="0" id="priceProduct">
+		<p>Цена со скидкой: </p><input type="text" name="sale_price" id="priceAfterSale">
+
+
+
 		<p>Наличие: </p><input type="checkbox" name="is_availability" checked>
 		<p>Изображение: </p><input id="uploadimage" type="file" name="image">
 		<button>Добавить</button>
@@ -77,8 +85,44 @@
 </div>
 
 <script src="/static/js/libs.min.js"></script>
-<script src="/static/js/add_product.js"></script>
+<script src="/static/js/dev/add_product.js"></script>
+<script>
+	// salePercent >= 0 && salePercent <= 100 && salePercent[0] != '0'
+	const salePercent = document.getElementById('salePercent');
+	const priceProduct = document.getElementById('priceProduct');
+	const priceAfterSale = document.getElementById('priceAfterSale');
 
+	function getSale(price ,percent) {
+		if (percent >= 0 && percent <= 100 && percent[0] != '0') {
+			return price - (price * (percent / 100));
+		} else {
+			return 0;
+		}
+	}
+	function getPercent(price, salePrice) {
+		let percent = Math.floor(100 - ((salePrice * 100) / price));
+		if (percent <= 100 && percent >= 0) {
+			return percent;
+		} else {
+			return 'Ошибка';
+		}
+	}
+	//Скидка
+	salePercent.addEventListener('keyup', (e) => {
+		let value = e.target.value;
+		priceAfterSale.value = getSale(priceProduct.value, value);
+	}, false);
+	//Цена без скидки
+	priceProduct.addEventListener('keyup', (e) => {
+		let value = e.target.value;
+		priceAfterSale.value = getSale(value, salePercent.value)
+	}, false);
+	//Цена после скидки
+	priceAfterSale.addEventListener('keyup', (e) => {
+		let value = e.target.value;
+		salePercent.value = getPercent(priceProduct.value, value);
+	}, false);	
+</script>
 
 
 

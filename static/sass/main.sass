@@ -1,5 +1,6 @@
 $output-bourbon-deprecation-warnings: false !default;
 @import "bourbon";
+@import 'mixin.sass'
 @import 'fonts.sass'
 @import 'vars.sass'
 
@@ -39,53 +40,56 @@ body textarea:required:valid
 	
 
 #catalog
-	background-color: rgba(245,245,245,1)
-	padding: 0 0 50px
-	h3
+	margin: 100px 0 
+	text-align: center
+	h1
 		text-align: center
+		color: #000
+		text-transform: uppercase
 		font-family: "Gotham Pro Light"
 		font-weight: 200
-		text-transform: uppercase
 		font-size: em(36px)
+		line-height: 45px	
 	.items
+		a
+			text-decoration: none
+			color: black
+			font-weight: bold
+
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+		align-items: flex-end
 		.item
-			margin: 0 auto 15px
-			width: 240px
+			position: relative
+			width: 20%
+			margin: 15px 20px
+			vertical-align: middle
+			overflow: hidden
+			font-family: "PragmaticaLightC-Regular"
+			.sale
+				position: absolute
+				left: 0
+				top: 5%
+				padding: 5px 15px
+				background-color: #f00
+				color: #fff
+				text-transform: uppercase
+			.item_name
+				text-align: center
+			.item_price
+				&::after
+					content: ' ₽'
+			.item_old_price
+				span
+					text-decoration: line-through
+					font-size: em(14px)
+				&::after
+					content: ' ₽'
 			img
 				display: block
-				margin: 0 auto
-				width: 100%
-			p.item_name
-				padding-top: 3px
-				font-size: em(20px)
-				font-weight: 700
-				cursor: pointer
-			a
-				text-decoration: none
-				color: #000
-				&:hover
-					color: $get_catalog_color
-			p
-				margin: 0
-				padding-left: 3px
-				font-family: "Gotham Pro Light"
-				font-size: em(18px)
-				line-height: 20px
-				white-space: nowrap
-			.item_price
-				padding-left: 3px
-				&:after 
-					content: " руб. "
-			.item_old_price
-				padding-left: 3px
-				opacity: .5
-				text-decoration: line-through
-				&:after
-					content: " руб. "
-			&:hover
-				-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.47)
-				-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.47)
-				box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.47)
+				max-width: 100%
+
 	a.get_catalog
 		display: block
 		color: white
@@ -93,7 +97,7 @@ body textarea:required:valid
 		background-color: $get_catalog_color
 		padding: 20px
 		text-align: center
-		font-family: "Lobster 1.4 Regular"
+		font-family: "PragmaticaLightC-Regular"
 		font-size: em(34px)
 		line-height: 35px
 		-webkit-transition: background-color, color .15s ease-out
@@ -112,7 +116,7 @@ body textarea:required:valid
 	background: url('../img/reasons_bg4.jpg')
 	background-size: cover
 	background-repeat: no-repeat
-	h3
+	h1
 		text-align: center
 		color: #fff
 		text-transform: uppercase
@@ -121,9 +125,11 @@ body textarea:required:valid
 		font-size: em(36px)
 		line-height: 45px	
 	.reasons
+		display: flex
+		flex-wrap: wrap
 		margin: 0
 		.reasons_item
-			width: 100%
+			width: 49%
 			border: 1px solid rgba(#fff, .05)
 			-webkit-transition: all .3s ease-out
 			-moz-transition: all .3s ease-out
@@ -136,6 +142,10 @@ body textarea:required:valid
 			&:hover p
 				color: $reason_text_color_hover
 			.reasons_img
+				width: 200px
+				height: 200px
+				margin: 40px auto 0
+
 				-webkit-transition: all .3s ease-out 
 				-moz-transition: all .3s ease-out
 				-o-transition: all .3s ease-out
@@ -147,7 +157,7 @@ body textarea:required:valid
 				border-radius: 50%
 				position: relative
 				img
-					width: 50%
+					width: 70%
 					display: block
 					position: absolute
 					top: 50%
@@ -163,7 +173,7 @@ body textarea:required:valid
 				-o-transition: all .3s ease-out
 				transition: all .3s ease-out
 				text-align: center
-				margin: 0 0 20px
+				margin: 20px 0 20px
 				color: $reason_text_color
 				font-family: "Gotham Pro Light"
 				font-weight: 700
@@ -172,61 +182,36 @@ body textarea:required:valid
 	padding: 0
 	margin: 0
 #footer
-	position: relative
 	background-color: $bg_footer_color
-	p
-		color: white
-		font-family: "Lobster 1.4 Regular"
-		font-size: em(20px)	
-	.footer_menu
-		list-style-type: none
-		li
-			a
-				color: white
-				font-family: "Lobster 1.4 Regular"
-				font-size: em(18px)
-				text-decoration: none
-				&:hover
-					color: darken(white, 15)
+	.container
+		max-width: 1280px
+		height: 80px
+		position: relative
+		display: flex
+		justify-content: space-between
+		color: #fff
+		font-family: "PragmaticaLightC-Regular"
+		.copyright
+			line-height: 80px
+		.cards
+			display: flex
+			flex-wrap: wrap
+			line-height: 80px
+			&_item
+				width: 50px
+				margin-right: 8px
+				&:last-child
+					margin-right: 0
+				img
+					width: 100%
 
-	.credit_card
-		p
-			text-align: right
-			font-size: em(16px)
-		.card_item
-			float: right
-			width: 50px
-			img
-				width: 100%		 
-	.copyright
-		margin-top: 35px
-		.logo
-			float: left
-			width: 70px
-			img
-				width: 100%
-		span
-			margin: 0 10px
-			color: white
-			font-family: "Lobster 1.4 Regular"
-			font-size: em(14px)	
-	.contact
-		position: absolute
-		bottom: -59px
-		right: 12px
-		p
-			text-align: right
-			margin: 0
-			color: white
-			font-family: "Lobster 1.4 Regular"
-			font-size: em(16px)	
 .contacts
 	padding: 15px 0
 	#map
 		height: 600px
 		width: 100%
 	.contact-info
-		// padding: 10px 0
+		padding: 10px 0
 		font-family: "Gotham Pro Light"
 		text-align: center
 		p
@@ -240,4 +225,6 @@ body textarea:required:valid
 			color: $get_catalog_color
 		span
 			color: $color-contact
+
+
 @import 'media.sass'
