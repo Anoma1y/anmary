@@ -20,11 +20,11 @@
 </div>
 
 <div class="main">
-	<form action="addProduct" method="POST" enctype="multipart/form-data">
-		<p>Название:</p> <input type="text" id="productTitle" name="name" value="">
-		<p>Артикль:</p> <input type="text" id="productArticle" name="article" value="">
+	<form action="#" method="POST" enctype="multipart/form-data">
+		<p>Название:</p> <input type="text" id="productTitle" name="productTitle" value="Title">
+		<p>Артикль:</p> <input type="text" id="productArticle" name="productArticle" value="Article">
 		<p>Бренд:</p> 
-			<select name="brand" id="brand">
+			<select name="productBrand" id="productBrand">
 				<?php 
 					foreach ($brandList as $key) {
 						echo "<option value='$key[id]'>$key[brand_name]</option>";
@@ -33,7 +33,7 @@
 			</select>
 		
 		<p>Категория:</p> 
-			<select name="category" id="category">
+			<select name="productCategory" id="productCategory">
 				<?php 
 					foreach ($categoryList as $key) {
 						echo "<option value='$key[id]'>$key[category_name]</option>";
@@ -42,7 +42,7 @@
 			</select>
 		
 		<p>Сезон: </p>
-			<select name="season" id="season">
+			<select name="productSeason" id="productSeason">
 				<?php 
 					foreach ($seasonList as $key) {
 						echo "<option value='$key[id]'>$key[season_name]</option>";
@@ -50,9 +50,9 @@
 				?>		
 			</select>
 		
-		<p>Размер: </p><input type="text" name="size" id="productSize" readonly>
+		<p>Размер: </p><input type="text" name="productSize" id="productSize" value="42, 46" readonly>
 		<p>Цвет: </p>
-			<select name="colour" id="colour">
+			<select name="productColour" id="productColour">
 				<?php 
 					foreach ($colorList as $key) {
 						echo "<option value='$key[id]'>$key[color_name]</option>";
@@ -60,21 +60,21 @@
 				?>		
 			</select>
 		
-		<p>Состав: </p><input type="text" name="composition" readonly id="productComposition">
+		<p>Состав: </p><input type="text" name="productComposition" id="productComposition" readonly value="chtoto">
 
 
 	
-		<p>Скидка: </p><input type="checkbox" name="is_sale">
+		<p>Скидка: </p><input type="checkbox" name="productIsSale" id="productIsSale">
 
-		<p>Процент скидки</p><input type="text" id="salePercent" value="0">
-		<p>Цена: </p><input type="text" name="price" value="0" id="priceProduct">
-		<p>Цена со скидкой: </p><input type="text" name="sale_price" id="priceAfterSale">
+		<p>Процент скидки</p><input type="text" name="salePercent" id="salePercent" value="10">
+		<p>Цена: </p><input type="text" name="priceProduct"  id="priceProduct" value="5000">
+		<p>Цена со скидкой: </p><input type="text" name="sale_price" id="priceAfterSale" value="4500">
 
 
 
-		<p>Наличие: </p><input type="checkbox" name="is_availability" checked>
-		<p>Изображение: </p><input id="uploadimage" type="file" name="image">
-		<button>Добавить</button>
+		<p>Наличие: </p><input type="checkbox" name="is_availability" id="is_availability" checked>
+		<p>Изображение: </p><input  type="file" name="uploadimage" id="uploadimage">
+		<input type="submit" value="Добавить" id="addProduct">
 	</form>
 	<p>Размер: </p>
 	<div class="size_chois" id="size_chois">
@@ -84,8 +84,6 @@
 	</div> 
 </div>
 
-<script src="/static/js/libs.min.js"></script>
-<script src="/static/js/dev/add_product.js"></script>
 <script>
 	const salePercent = document.getElementById('salePercent');
 	const priceProduct = document.getElementById('priceProduct');
@@ -105,8 +103,68 @@
 	const productComposition = document.getElementById('productComposition');
 	const sizeCheckbox = document.getElementsByName('size_chois');
 	const productSize = document.getElementById('productSize');
+	const addProductBtn = document.getElementById('addProduct');
 	let productCompositionArr = [];
 	let sizeArr = [];
+
+	function getSelected(sel) {
+		if (sel.options) {
+			for (var i = 0; i < sel.options.length; i++) {
+				if (sel.options[i].selected) {
+					return sel.options[i].value;
+				}
+			}			
+		}
+	}
+	function translateBoolToInt(val) {
+		return val === true ? 1 : 0;
+	}
+	addProduct.addEventListener('click', function(e){
+		e.preventDefault();
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'addProduct', true);
+
+		let productTitle = document.getElementById('productTitle');
+		let productArticle = document.getElementById('productArticle');
+		let productCategory = document.getElementById('productCategory');
+		let productBrand = document.getElementById('productBrand');
+		let productSeason = document.getElementById('productSeason');
+		let productSize = document.getElementById('productSize');
+		let productComposition = document.getElementById('productComposition');
+		let productIsSale = document.getElementById('productIsSale');
+		let productPercent = document.getElementById('salePercent');
+		let productPrice = document.getElementById('priceProduct');
+		let productPriceAfterSale = document.getElementById('priceAfterSale');
+		let productIsAvailability = document.getElementById('is_availability');
+
+		var file = document.getElementById('uploadimage').files[0];
+		var fd = new FormData();
+
+		fd.append("uploadimage", file);
+		fd.append("productTitle", productTitle.value);
+		fd.append("productArticle", productArticle.value);
+		fd.append("productCategory", getSelected(productCategory));
+		fd.append("productBrand", getSelected(productBrand));
+		fd.append("productColour", getSelected(productColour));
+		fd.append("productSeason", getSelected(productSeason));
+		fd.append("productSize", productSize.value);
+		fd.append("productComposition", productComposition.value);
+		fd.append("productIsSale", translateBoolToInt(productIsSale.checked));
+		fd.append("productPercent", productPercent.value);
+		fd.append("productPrice", productPrice.value);
+		fd.append("productPriceAfterSale", productPriceAfterSale.value);
+		fd.append("productIsAvailability", translateBoolToInt(productIsAvailability.checked));
+		xhr.send(fd);
+		xhr.onreadystatechange = function() { // (3)
+			if (xhr.readyState != 4) return;
+			if (xhr.status != 200) {
+				console.log(`${xhr.status} : ${xhr.statusText}`);
+			} else {
+				console.log(xhr.responseText);
+			}
+		}
+	}, false);
+
 
 	function createCheckBox(sizeName) {
 		const appendTo = document.getElementById('size_chois');
@@ -159,7 +217,7 @@
 			window[`composition_${key}`].addInput();
 		}
 	}
-	
+
 	class Composition{
 		constructor(composition_ru, composition, id) {
 		    this.composition_ru = composition_ru;
@@ -210,10 +268,11 @@
 		}
 		add() {
 			let checkBox = document.getElementById(`checkbox_${this.id}`);
-			let count = document.getElementById(`text_${this.id}`);
-			if (checkBox.checked && this.check == 0 && count.value >= 1 && count.value <= 100) {
-				this.str = `${this.composition_ru}-${count.value}%`;
-				this.count = count.value;
+			let count = document.getElementById(`text_${this.id}`).value;
+
+			if (checkBox.checked && this.check == 0 && count >= 1 && count <= 100 ) {
+				this.str = `${this.composition_ru}-${count}%`;
+				this.count = count;
 				this.check = 1;
 				productCompositionArr.push(this.str);
 				this.renderValue(productCompositionArr);
@@ -259,7 +318,7 @@
 	//Цена без скидки
 	priceProduct.addEventListener('keyup', (e) => {
 		let value = e.target.value;
-		priceAfterSale.value = getSale(value, salePercent.value)
+		priceAfterSale.value = Math.floor(getSale(value, salePercent.value));
 	}, false);
 
 	//Цена после скидки
