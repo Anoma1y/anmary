@@ -8,6 +8,7 @@
 	    $result->setFetchMode(PDO::FETCH_ASSOC);
 	    $result->execute();
 	    $result = $result->fetch();
+	    die(var_dump($_POST));
     	if ($_COOKIE['username_hash'] !== $result['hash']) {
     		die();
     	} 
