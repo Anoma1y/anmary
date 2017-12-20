@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="/static/css/simplePagination.css">
 <link rel="stylesheet" href="/static/css/admin.min.css">
-
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
 <div class="header">
   <a href="#" id="menu-action">
     <i class="fa fa-bars"></i>
@@ -21,15 +23,36 @@
 
 <div class="main">
     <div id="tabs">
-
+      <table id="table">
+        <thead>
+        <tr>
+          <th class="sortingProduct" id="productIdTh">id</th>
+          <th>Название</th>
+          <th>Артикль</th>
+          <th class="sortingProduct" id="productBrandTh">Бренд</th>
+          <th class="sortingProduct" id="productCategoryTh">Категория</th>
+          <th class="sortingProduct" id="productSeasonTh">Сезон</th>
+          <th>Размер</th>
+          <th>Цвет</th>
+          <th>Состав</th>
+          <th>Цена</th>
+          <th>Цена со скидкой</th>
+          <th>Процент скидки</th>
+          <th class="sortingProduct" id="productAvailabilityTh">Наличие</th>
+          <th class="sortingProduct" id="productIsSaleTh">Скидка</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+          
+        </tbody>
+      </table>
     </div> 
     <div class="paginations">
     
     </div> 
 </div>
 
-<script src="/static/js/libs.min.js"></script>
-<script src="/static/js/admin.js"></script>
-<script type="text/javascript">
-
-</script>
+<!-- <script src="/static/js/libs.min.js"></script> -->
+<script src="/static/js/adminMain.js"></script>

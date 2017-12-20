@@ -7,6 +7,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //Box for size checkbox
 var sizeCheckbox = document.getElementsByName('size_chois');
 //Product info
+var productId = document.getElementById('productId');
 var productComposition = document.getElementById('productComposition');
 var productSize = document.getElementById('productSize');
 var productTitle = document.getElementById('productTitle');
@@ -22,6 +23,7 @@ var productIsAvailability = document.getElementById('productIsavailability');
 //Button
 var addProductBtn = document.getElementById('addProduct');
 var editProductBtn = document.getElementById('editProduct');
+var previewImage = document.getElementById('previewImage');
 var compositions = {
 	wool: { ru: "Шерсть", eng: "wool" },
 	polyester: { ru: "Полиэстер", eng: "polyester" },
@@ -37,6 +39,7 @@ var sizeName = [42, 44, 46, 48, 50, 52, 54, 56, 58, 60];
 
 var errorText = document.getElementById('error');
 var successText = document.getElementById('success');
+
 var productCompositionArr = [];
 var sizeArr = [];
 
@@ -102,7 +105,6 @@ function ajaxAdd(e) {
 		fd.append("productIsAvailability", translateBoolToInt(productIsAvailability.checked));
 		xhr.send(fd);
 		xhr.onreadystatechange = function () {
-			// (3)
 			if (xhr.readyState != 4) return;
 			if (xhr.status != 200) {
 				console.log(xhr.status + ' : ' + xhr.statusText);
@@ -120,40 +122,79 @@ function ajaxAdd(e) {
 
 function ajaxEdit(e) {
 	e.preventDefault();
-	console.log(e);
+	if (productTitle.value.length >= 1 && productArticle.value.length >= 1 && productSize.value.length >= 1 && productComposition.value.length >= 1 && productPercent.value.length >= 1 && productPrice.value.length >= 1 && productPriceAfterSale.value.length >= 1) {
+		var xhr = new XMLHttpRequest();
+		var url = '../editProduct';
+		var file = document.getElementById('uploadimage').files[0];
+		var fd = new FormData();
+
+		xhr.open('POST', url, true);
+		fd.append("uploadimage", file);
+		fd.append("productId", productId.value);
+		fd.append("productTitle", productTitle.value);
+		fd.append("productArticle", productArticle.value);
+		fd.append("productCategory", getSelected(productCategory));
+		fd.append("productBrand", getSelected(productBrand));
+		fd.append("productColour", getSelected(productColour));
+		fd.append("productSeason", getSelected(productSeason));
+		fd.append("productSize", productSize.value);
+		fd.append("productComposition", productComposition.value);
+		fd.append("productIsSale", translateBoolToInt(productIsSale.checked));
+		fd.append("productPercent", productPercent.value);
+		fd.append("productPrice", productPrice.value);
+		fd.append("productPriceAfterSale", productPriceAfterSale.value);
+		fd.append("productIsAvailability", translateBoolToInt(productIsAvailability.checked));
+		xhr.send(fd);
+		xhr.onreadystatechange = function () {
+			// (3)
+			if (xhr.readyState != 4) return;
+			if (xhr.status != 200) {
+				console.log(xhr.status + ' : ' + xhr.statusText);
+				errorText.textContent = 'Ошибка';
+			} else {
+				if (xhr.responseText == 1) {
+					window.location = '../';
+				}
+			}
+		};
+	} else {
+		errorText.textContent = "Заполните все поля!";
+	}
 }
 function createCheckBox(sizeName) {
 	var appendTo = document.getElementById('size_chois');
-	var _iteratorNormalCompletion = true;
-	var _didIteratorError = false;
-	var _iteratorError = undefined;
+	if (appendTo) {
+		var _iteratorNormalCompletion = true;
+		var _didIteratorError = false;
+		var _iteratorError = undefined;
 
-	try {
-		for (var _iterator = sizeName[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-			var key = _step.value;
-
-			var checkBox = document.createElement('input');
-			var label = document.createElement('label');
-			checkBox.type = 'checkbox';
-			checkBox.value = key;
-			checkBox.name = "size_chois";
-			checkBox.id = 'size_' + key;
-			label.htmlFor = 'size_' + key;
-			label.textContent = key;
-			appendTo.appendChild(label);
-			appendTo.appendChild(checkBox);
-		}
-	} catch (err) {
-		_didIteratorError = true;
-		_iteratorError = err;
-	} finally {
 		try {
-			if (!_iteratorNormalCompletion && _iterator.return) {
-				_iterator.return();
+			for (var _iterator = sizeName[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+				var key = _step.value;
+
+				var checkBox = document.createElement('input');
+				var label = document.createElement('label');
+				checkBox.type = 'checkbox';
+				checkBox.value = key;
+				checkBox.name = "size_chois";
+				checkBox.id = 'size_' + key;
+				label.htmlFor = 'size_' + key;
+				label.textContent = key;
+				appendTo.appendChild(label);
+				appendTo.appendChild(checkBox);
 			}
+		} catch (err) {
+			_didIteratorError = true;
+			_iteratorError = err;
 		} finally {
-			if (_didIteratorError) {
-				throw _iteratorError;
+			try {
+				if (!_iteratorNormalCompletion && _iterator.return) {
+					_iterator.return();
+				}
+			} finally {
+				if (_didIteratorError) {
+					throw _iteratorError;
+				}
 			}
 		}
 	}
@@ -172,7 +213,7 @@ function init() {
 			var size = _step2.value;
 
 			size.addEventListener('change', function (e) {
-				function addToProductSize(arr) {
+				var addToProductSize = function addToProductSize(arr) {
 					if (arr.length >= 1) {
 						arr.sort(function (a, b) {
 							if (a > b) {
@@ -185,7 +226,7 @@ function init() {
 					} else if (arr.length == 0) {
 						productSize.value = "";
 					}
-				}
+				};
 				if (e.target.checked) {
 					sizeArr.push(parseInt(e.target.value));
 					addToProductSize(sizeArr);
@@ -260,18 +301,20 @@ var Composition = function () {
 		key: 'init',
 		value: function init() {
 			var div = document.createElement('div');
-			div.className = 'composition_box';
-			this.container.appendChild(div);
-			this.createInput(div, 'checkbox');
-			this.createInput(div, 'text');
-			this.createInput(div, 'button', "Добавить", function (e) {
-				var id = e.target.id.split('_')[1];
-				window['composition_' + id].add();
-			});
-			this.createInput(div, 'button', "Удалить", function (e) {
-				var id = e.target.id.split('_')[1];
-				window['composition_' + id].delete();
-			});
+			if (this.container) {
+				div.className = 'composition_box';
+				this.container.appendChild(div);
+				this.createInput(div, 'checkbox');
+				this.createInput(div, 'text');
+				this.createInput(div, 'button', "Добавить", function (e) {
+					var id = e.target.id.split('_')[1];
+					window['composition_' + id].add();
+				});
+				this.createInput(div, 'button', "Удалить", function (e) {
+					var id = e.target.id.split('_')[1];
+					window['composition_' + id].delete();
+				});
+			}
 		}
 	}, {
 		key: 'renderValue',

@@ -65,10 +65,15 @@
 
 	
 		<p>Скидка: </p><input type="checkbox" name="productIsSale" id="productIsSale">
+
 		<p>Процент скидки</p><input type="text" name="productSalePercent" id="productSalePercent" value="">
+
 		<p>Цена: </p><input type="text" name="productPrice"  id="productPrice" value="">
+
 		<p>Цена со скидкой: </p><input type="text" name="productPriceAfterSale" id="productPriceAfterSale" value="">
+
 		<p>Наличие: </p><input type="checkbox" name="productIsavailability" id="productIsavailability" checked>
+		
 		<p>Изображение: </p><input  type="file" name="uploadimage" id="uploadimage">
 		<input type="submit" value="Добавить" id="addProduct">
 		<p id="error"></p>
@@ -83,7 +88,7 @@
 	</div> 
 </div>
 
-<script src="/static/js/admin_v2.js"></script>
+<script src="/static/js/adminEdit.js"></script>
 
 
 
