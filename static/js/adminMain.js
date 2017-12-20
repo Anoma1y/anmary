@@ -5,6 +5,8 @@ var url = 'admin/getAllProducts';
 
 //Id th for sorting
 var productIdTh = document.getElementById('productIdTh');
+var productTitleTh = document.getElementById('productTitleTh');
+var productArticleTh = document.getElementById('productArticleTh');
 var productBrandTh = document.getElementById('productBrandTh');
 var productCategoryTh = document.getElementById('productCategoryTh');
 var productSeasonTh = document.getElementById('productSeasonTh');
@@ -110,40 +112,42 @@ function getProduct(obj) {
 	var numSortingColumn = cellIndex;
 	var ss = sorting(numSortingColumn, desc);
 	var tbody = document.getElementById('tbody');
-	tbody.innerHTML = '';
+	if (ss) {
+		tbody.innerHTML = '';
 
-	var _loop2 = function _loop2(key) {
-		var tr = document.createElement('tr');
-		for (i = 0; i < Object.keys(obj[key]).length; i++) {
-			var td = document.createElement('td');
-			if (Object.keys(obj[key])[i] === 'is_availability' || Object.keys(obj[key])[i] === 'is_sale') {
-				td.textContent = obj[key][Object.keys(obj[key])[i]] == 1 ? 'Да' : 'Нет';
-			} else {
-				td.textContent = obj[key][Object.keys(obj[key])[i]];
+		var _loop2 = function _loop2(key) {
+			var tr = document.createElement('tr');
+			for (i = 0; i < Object.keys(obj[key]).length; i++) {
+				var td = document.createElement('td');
+				if (Object.keys(obj[key])[i] === '12' || Object.keys(obj[key])[i] === '13') {
+					td.textContent = obj[key][Object.keys(obj[key])[i]] == 1 ? 'Да' : 'Нет';
+				} else {
+					td.textContent = obj[key][Object.keys(obj[key])[i]];
+				}
+				tr.appendChild(td);
 			}
-			tr.appendChild(td);
+			var tdBtnEdit = document.createElement('td');
+			tdBtnEdit.className = 'tdBtnEdit';
+			tdBtnEdit.onclick = function () {
+				return editItem(obj[key][0]);
+			};
+			tdBtnEdit.textContent = 'Изменить';
+			tr.appendChild(tdBtnEdit);
+			var tdBtnDelete = document.createElement('td');
+			tdBtnDelete.className = 'tdBtnDelete';
+			tdBtnDelete.onclick = function () {
+				return deleteItem(obj[key][0]);
+			};
+			tdBtnDelete.textContent = 'Удалить';
+			tr.appendChild(tdBtnDelete);
+			tbody.appendChild(tr);
+		};
+
+		for (var key in obj) {
+			var i;
+
+			_loop2(key);
 		}
-		var tdBtnEdit = document.createElement('td');
-		tdBtnEdit.className = 'tdBtnEdit';
-		tdBtnEdit.onclick = function () {
-			return editItem(obj[key][0]);
-		};
-		tdBtnEdit.textContent = 'Изменить';
-		tr.appendChild(tdBtnEdit);
-		var tdBtnDelete = document.createElement('td');
-		tdBtnDelete.className = 'tdBtnDelete';
-		tdBtnDelete.onclick = function () {
-			return deleteItem(obj[key][0]);
-		};
-		tdBtnDelete.textContent = 'Удалить';
-		tr.appendChild(tdBtnDelete);
-		tbody.appendChild(tr);
-	};
-
-	for (var key in obj) {
-		var i;
-
-		_loop2(key);
 	}
 }
 

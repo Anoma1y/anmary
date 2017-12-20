@@ -27,8 +27,8 @@
         <thead>
         <tr>
           <th class="sortingProduct" id="productIdTh">id</th>
-          <th>Название</th>
-          <th>Артикль</th>
+          <th class="sortingProduct" id="productTitleTh">Название</th>
+          <th class="sortingProduct" id="productArticleTh">Артикль</th>
           <th class="sortingProduct" id="productBrandTh">Бренд</th>
           <th class="sortingProduct" id="productCategoryTh">Категория</th>
           <th class="sortingProduct" id="productSeasonTh">Сезон</th>

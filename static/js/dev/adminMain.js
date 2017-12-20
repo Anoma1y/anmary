@@ -3,6 +3,8 @@ const url = 'admin/getAllProducts';
 
 //Id th for sorting
 const productIdTh = document.getElementById('productIdTh');
+const productTitleTh = document.getElementById('productTitleTh');
+const productArticleTh = document.getElementById('productArticleTh');
 const productBrandTh = document.getElementById('productBrandTh');
 const productCategoryTh = document.getElementById('productCategoryTh');
 const productSeasonTh = document.getElementById('productSeasonTh');
@@ -77,30 +79,33 @@ function getProduct(obj, cellIndex = 0, activeDesc = false) {
 	let numSortingColumn = cellIndex;
 	let ss = sorting(numSortingColumn, desc);
 	const tbody = document.getElementById('tbody');
-	tbody.innerHTML = '';
-	for (let key in obj) {
-		const tr = document.createElement('tr');
-		for (var i = 0; i < Object.keys(obj[key]).length; i++) {
-			let td = document.createElement('td');
-			if (Object.keys(obj[key])[i] === 'is_availability' || Object.keys(obj[key])[i] === 'is_sale') {
-				td.textContent = obj[key][Object.keys(obj[key])[i]] == 1 ? 'Да' : 'Нет';
-			} else {
-				td.textContent = obj[key][Object.keys(obj[key])[i]];
+	if (ss) {
+		tbody.innerHTML = '';
+		for (let key in obj) {
+			const tr = document.createElement('tr');
+			for (var i = 0; i < Object.keys(obj[key]).length; i++) {
+				let td = document.createElement('td');
+				if (Object.keys(obj[key])[i] === '12' || Object.keys(obj[key])[i] === '13') {
+					td.textContent = obj[key][Object.keys(obj[key])[i]] == 1 ? 'Да' : 'Нет';
+				} else {
+					td.textContent = obj[key][Object.keys(obj[key])[i]];
+				}
+				tr.appendChild(td);
 			}
-			tr.appendChild(td);
-		}
-		let tdBtnEdit = document.createElement('td');
-		tdBtnEdit.className = 'tdBtnEdit';
-		tdBtnEdit.onclick = function() {return editItem(obj[key][0])};
-		tdBtnEdit.textContent = 'Изменить';
-		tr.appendChild(tdBtnEdit);
-		let tdBtnDelete = document.createElement('td');
-		tdBtnDelete.className = 'tdBtnDelete';
-		tdBtnDelete.onclick = function() {return deleteItem(obj[key][0])};
-		tdBtnDelete.textContent = 'Удалить';
-		tr.appendChild(tdBtnDelete);
-		tbody.appendChild(tr);
+			let tdBtnEdit = document.createElement('td');
+			tdBtnEdit.className = 'tdBtnEdit';
+			tdBtnEdit.onclick = function() {return editItem(obj[key][0])};
+			tdBtnEdit.textContent = 'Изменить';
+			tr.appendChild(tdBtnEdit);
+			let tdBtnDelete = document.createElement('td');
+			tdBtnDelete.className = 'tdBtnDelete';
+			tdBtnDelete.onclick = function() {return deleteItem(obj[key][0])};
+			tdBtnDelete.textContent = 'Удалить';
+			tr.appendChild(tdBtnDelete);
+			tbody.appendChild(tr);
+		}		
 	}
+
 }
 
 //Удаление товара с подтверждением
