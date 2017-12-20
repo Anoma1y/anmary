@@ -21,10 +21,8 @@ function ajax(type, url) {
 		xhr.onload = () => {
 			if (xhr.status >= 200 && xhr.status < 300) {
 				let data = JSON.parse(xhr.responseText);
-				for (let key in data) {
-					productData[key] = Object.keys(data[key]).map(elem => data[key][elem] )
-				}
-				res(productData);
+				productData = Array.prototype.slice.call(data);
+				res(data);
 			} else {
 				rej({
 					status: xhr.status,
@@ -41,43 +39,47 @@ function ajax(type, url) {
 	})
 }
 window.onload = ajax('GET', url).then((data) => {
-	getProduct(data)
+	getProduct(data);
 }).catch(() => {
 	console.log('Error');
 })
 
 for (let sorting of sortingProduct) {
 	sorting.addEventListener('click', (e) => {
+		let id_name = e.target.id.split('-')[1];
 		 e.target.classList.toggle("activeDesc");
 		 let activeDesc = false;
 		 if (e.target.classList[1] !== undefined) {
 		 	activeDesc = true;
 		 }
-		 let numberColumn = e.target.cellIndex;
-		getProduct(productData, numberColumn, activeDesc);
+		getProduct(productData, id_name, activeDesc);
 	}, false);
 }
 
-function getProduct(obj, cellIndex = 0, activeDesc = false) {
-	let sorting = (numSortingColumn, desc) => {
-		obj.sort((a, b) => {
-			if (a[numSortingColumn] > b[numSortingColumn]) {
-				let f = desc === true ? -1 : 1;
-				return f;
-			}
-			else if (a[numSortingColumn] < b[numSortingColumn]) {
-				let f = desc === true ? 1 : -1;
-				return f;
-			}
-			else {
-				return 0;
+function getProduct(obj, column = 'id', activeDesc = false) {
+	let sorting = (sortingColumn, desc) =>{
+		obj.sort((a,b) => {
+			if (sortingColumn == 'id' || sortingColumn == 'price' || sortingColumn == 'sale_price' || sortingColumn == 'percentSale') {
+				a[sortingColumn] = parseInt(a[sortingColumn]);
+				b[sortingColumn] = parseInt(b[sortingColumn]);
+				if (a[sortingColumn] < b[sortingColumn]) {
+					let f = desc === true ? -1 : 1;
+					return f;
+				}
+				if (a[sortingColumn] > b[sortingColumn]) {
+					let f = desc === true ? 1 : -1;
+					return f;
+				}
+			} else {
+				if (desc) {return a[sortingColumn].localeCompare(b[sortingColumn]);}
+				else { return b[sortingColumn].localeCompare(a[sortingColumn]); }
 			}
 		});
-		return true;		
+		return true;
 	}
 	let desc = activeDesc;
-	let numSortingColumn = cellIndex;
-	let ss = sorting(numSortingColumn, desc);
+	let SortingColumn = column;
+	let ss = sorting(SortingColumn, desc);
 	const tbody = document.getElementById('tbody');
 	if (ss) {
 		tbody.innerHTML = '';
@@ -85,7 +87,7 @@ function getProduct(obj, cellIndex = 0, activeDesc = false) {
 			const tr = document.createElement('tr');
 			for (var i = 0; i < Object.keys(obj[key]).length; i++) {
 				let td = document.createElement('td');
-				if (Object.keys(obj[key])[i] === '12' || Object.keys(obj[key])[i] === '13') {
+				if (Object.keys(obj[key])[i] === 'is_availability' || Object.keys(obj[key])[i] === 'is_sale') {
 					td.textContent = obj[key][Object.keys(obj[key])[i]] == 1 ? 'Да' : 'Нет';
 				} else {
 					td.textContent = obj[key][Object.keys(obj[key])[i]];
@@ -94,12 +96,12 @@ function getProduct(obj, cellIndex = 0, activeDesc = false) {
 			}
 			let tdBtnEdit = document.createElement('td');
 			tdBtnEdit.className = 'tdBtnEdit';
-			tdBtnEdit.onclick = function() {return editItem(obj[key][0])};
+			tdBtnEdit.onclick = function() {return editItem(obj[key]['id'])};
 			tdBtnEdit.textContent = 'Изменить';
 			tr.appendChild(tdBtnEdit);
 			let tdBtnDelete = document.createElement('td');
 			tdBtnDelete.className = 'tdBtnDelete';
-			tdBtnDelete.onclick = function() {return deleteItem(obj[key][0])};
+			tdBtnDelete.onclick = function() {return deleteItem(obj[key]['id'])};
 			tdBtnDelete.textContent = 'Удалить';
 			tr.appendChild(tdBtnDelete);
 			tbody.appendChild(tr);
@@ -118,3 +120,9 @@ function deleteItem(id) {
 function editItem(id) {
 	window.location = "admin/edit/" + id;
 }
+var items = ['Privet', 'kak', 'dela', 'Gay'];
+items.sort(function (a, b) {
+  return a.localeCompare(b);
+});
+console.log(items)
+// items равен ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']

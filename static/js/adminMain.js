@@ -22,20 +22,9 @@ function ajax(type, url) {
 		xhr.send();
 		xhr.onload = function () {
 			if (xhr.status >= 200 && xhr.status < 300) {
-				(function () {
-					var data = JSON.parse(xhr.responseText);
-
-					var _loop = function _loop(key) {
-						productData[key] = Object.keys(data[key]).map(function (elem) {
-							return data[key][elem];
-						});
-					};
-
-					for (var key in data) {
-						_loop(key);
-					}
-					res(productData);
-				})();
+				var data = JSON.parse(xhr.responseText);
+				productData = Array.prototype.slice.call(data);
+				res(data);
 			} else {
 				rej({
 					status: xhr.status,
@@ -66,13 +55,13 @@ try {
 		var sorting = _step.value;
 
 		sorting.addEventListener('click', function (e) {
+			var id_name = e.target.id.split('-')[1];
 			e.target.classList.toggle("activeDesc");
 			var activeDesc = false;
 			if (e.target.classList[1] !== undefined) {
 				activeDesc = true;
 			}
-			var numberColumn = e.target.cellIndex;
-			getProduct(productData, numberColumn, activeDesc);
+			getProduct(productData, id_name, activeDesc);
 		}, false);
 	}
 } catch (err) {
@@ -91,35 +80,44 @@ try {
 }
 
 function getProduct(obj) {
-	var cellIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	var column = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'id';
 	var activeDesc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-	var sorting = function sorting(numSortingColumn, desc) {
+	var sorting = function sorting(sortingColumn, desc) {
 		obj.sort(function (a, b) {
-			if (a[numSortingColumn] > b[numSortingColumn]) {
-				var f = desc === true ? -1 : 1;
-				return f;
-			} else if (a[numSortingColumn] < b[numSortingColumn]) {
-				var _f = desc === true ? 1 : -1;
-				return _f;
+			if (sortingColumn == 'id' || sortingColumn == 'price' || sortingColumn == 'sale_price' || sortingColumn == 'percentSale') {
+				a[sortingColumn] = parseInt(a[sortingColumn]);
+				b[sortingColumn] = parseInt(b[sortingColumn]);
+				if (a[sortingColumn] < b[sortingColumn]) {
+					var f = desc === true ? -1 : 1;
+					return f;
+				}
+				if (a[sortingColumn] > b[sortingColumn]) {
+					var _f = desc === true ? 1 : -1;
+					return _f;
+				}
 			} else {
-				return 0;
+				if (desc) {
+					return a[sortingColumn].localeCompare(b[sortingColumn]);
+				} else {
+					return b[sortingColumn].localeCompare(a[sortingColumn]);
+				}
 			}
 		});
 		return true;
 	};
 	var desc = activeDesc;
-	var numSortingColumn = cellIndex;
-	var ss = sorting(numSortingColumn, desc);
+	var SortingColumn = column;
+	var ss = sorting(SortingColumn, desc);
 	var tbody = document.getElementById('tbody');
 	if (ss) {
 		tbody.innerHTML = '';
 
-		var _loop2 = function _loop2(key) {
+		var _loop = function _loop(key) {
 			var tr = document.createElement('tr');
 			for (i = 0; i < Object.keys(obj[key]).length; i++) {
 				var td = document.createElement('td');
-				if (Object.keys(obj[key])[i] === '12' || Object.keys(obj[key])[i] === '13') {
+				if (Object.keys(obj[key])[i] === 'is_availability' || Object.keys(obj[key])[i] === 'is_sale') {
 					td.textContent = obj[key][Object.keys(obj[key])[i]] == 1 ? 'Да' : 'Нет';
 				} else {
 					td.textContent = obj[key][Object.keys(obj[key])[i]];
@@ -129,14 +127,14 @@ function getProduct(obj) {
 			var tdBtnEdit = document.createElement('td');
 			tdBtnEdit.className = 'tdBtnEdit';
 			tdBtnEdit.onclick = function () {
-				return editItem(obj[key][0]);
+				return editItem(obj[key]['id']);
 			};
 			tdBtnEdit.textContent = 'Изменить';
 			tr.appendChild(tdBtnEdit);
 			var tdBtnDelete = document.createElement('td');
 			tdBtnDelete.className = 'tdBtnDelete';
 			tdBtnDelete.onclick = function () {
-				return deleteItem(obj[key][0]);
+				return deleteItem(obj[key]['id']);
 			};
 			tdBtnDelete.textContent = 'Удалить';
 			tr.appendChild(tdBtnDelete);
@@ -146,7 +144,7 @@ function getProduct(obj) {
 		for (var key in obj) {
 			var i;
 
-			_loop2(key);
+			_loop(key);
 		}
 	}
 }
@@ -161,3 +159,9 @@ function deleteItem(id) {
 function editItem(id) {
 	window.location = "admin/edit/" + id;
 }
+var items = ['Privet', 'kak', 'dela', 'Gay'];
+items.sort(function (a, b) {
+	return a.localeCompare(b);
+});
+console.log(items);
+// items равен ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']
