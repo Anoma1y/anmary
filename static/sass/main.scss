@@ -1,0 +1,35 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import 'mixin.scss';
+@import 'fonts.scss';
+@import 'vars.scss';
+
+*::-webkit-input-placeholder {
+	color: #666;
+	opacity: 1;
+}
+
+*:-moz-placeholder {
+	color: #666;
+	opacity: 1;
+}
+*::-moz-placeholder {
+	color: #666;
+	opacity: 1;
+}
+*:-ms-input-placeholder {
+	color: #666;
+	opacity: 1;
+}
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+	color: #666;
+}
+body input:required:valid,
+body textarea:required:valid {
+	color: #666;
+}
+
+@import "header.scss";
+
+@import 'media.scss';

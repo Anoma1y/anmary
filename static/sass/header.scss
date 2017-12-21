@@ -1,0 +1,19 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import "reset.scss";
+@import "mixin.scss";
+@import "vars.scss";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: $defaul-fontsize;
+	min-width: 320px;
+	position: relative;
+	line-height: 1.6;
+	overflow-x: hidden;
+}

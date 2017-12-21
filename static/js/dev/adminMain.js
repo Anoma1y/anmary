@@ -1,18 +1,20 @@
 let productData = [];
 const url = 'admin/getAllProducts';
 
-//Id th for sorting
-const productIdTh = document.getElementById('productIdTh');
-const productTitleTh = document.getElementById('productTitleTh');
-const productArticleTh = document.getElementById('productArticleTh');
-const productBrandTh = document.getElementById('productBrandTh');
-const productCategoryTh = document.getElementById('productCategoryTh');
-const productSeasonTh = document.getElementById('productSeasonTh');
-const productAvailabilityTh = document.getElementById('productAvailabilityTh');
-const productIsSaleTh = document.getElementById('productIsSaleTh');
-//Class for sorting
+// //Айди для 
+// const productIdTh = document.getElementById('productIdTh');
+// const productTitleTh = document.getElementById('productTitleTh');
+// const productArticleTh = document.getElementById('productArticleTh');
+// const productBrandTh = document.getElementById('productBrandTh');
+// const productCategoryTh = document.getElementById('productCategoryTh');
+// const productSeasonTh = document.getElementById('productSeasonTh');
+// const productAvailabilityTh = document.getElementById('productAvailabilityTh');
+// const productIsSaleTh = document.getElementById('productIsSaleTh');
+
+//Класс для сортировки
 const sortingProduct = document.getElementsByClassName('sortingProduct');
 
+//Получение всех товаров (принимает 2 параметра: тип и ссылку)
 function ajax(type, url) {
 	let xhr = new XMLHttpRequest();
 	return new Promise((res, rej) => {
@@ -21,6 +23,7 @@ function ajax(type, url) {
 		xhr.onload = () => {
 			if (xhr.status >= 200 && xhr.status < 300) {
 				let data = JSON.parse(xhr.responseText);
+				//создание массива объектов для последующей сортировки
 				productData = Array.prototype.slice.call(data);
 				res(data);
 			} else {
@@ -44,18 +47,25 @@ window.onload = ajax('GET', url).then((data) => {
 	console.log('Error');
 })
 
+//Объявление обработчика событий для сортировки по столбцам
+//полученные по классу "sortingProduct"
 for (let sorting of sortingProduct) {
 	sorting.addEventListener('click', (e) => {
 		let id_name = e.target.id.split('-')[1];
-		 e.target.classList.toggle("activeDesc");
-		 let activeDesc = false;
-		 if (e.target.classList[1] !== undefined) {
-		 	activeDesc = true;
-		 }
+		//добавления класса activeDesc для проверки сортировки по столбцу
+		e.target.classList.toggle("activeDesc");
+		let activeDesc = false;
+		if (e.target.classList[1] !== undefined) {
+			activeDesc = true;
+		}
+		//вызов функции для добавления и сортировки всех товаров
+		//принимает 3 параметра: объект с данными, текущий столбец таблицы (равен названию в БД) и true/false выбранного столбца
 		getProduct(productData, id_name, activeDesc);
 	}, false);
 }
 
+//функция для добавления и сортировки товаров
+//принимает 3 параметра: объект с данными, текущий столбец таблицы (равен названию в БД) и true/false выбранного столбца
 function getProduct(obj, column = 'id', activeDesc = false) {
 	let sorting = (sortingColumn, desc) =>{
 		obj.sort((a,b) => {
