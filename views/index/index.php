@@ -244,21 +244,21 @@
 		</div>
 		<div class="footer-center">
 			<nav>
+				<h4>Навигация</h4>
 				<ul class="footer_menu">
 					<li><a href="#">Ссылка-1</a></li>
 					<li><a href="#">Ссылка-2</a></li>
 					<li><a href="#">Ссылка-3</a></li>
 					<li><a href="#">Ссылка-4</a></li>
-					<li><a href="#">Ссылка-5</a></li>
 				</ul>
 			</nav>
 			<nav>
+				<h4>Каталог</h4>
 				<ul class="footer_menu">
 					<li><a href="#">Ссылка-1</a></li>
 					<li><a href="#">Ссылка-2</a></li>
 					<li><a href="#">Ссылка-3</a></li>
 					<li><a href="#">Ссылка-4</a></li>
-					<li><a href="#">Ссылка-5</a></li>
 				</ul>
 			</nav>
 		</div>

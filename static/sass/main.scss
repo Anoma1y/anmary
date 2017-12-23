@@ -771,19 +771,25 @@ footer {
 		display: flex;
 		justify-content: space-around;
 		nav {
+			h4 {
+				font-family: $main-font-family;
+				letter-spacing: 0.6px;
+				text-align: center;
+				font-size: em(20px);
+			}
+
 			ul {
+				margin-top: 10px;
 				li {
 					padding: 10px;
 					transition-property: color background-color;
 					transition: .3s ease;
+					cursor: pointer;
 					&:hover {
 						background-color: #ffab00;
 					}
 					&:hover a { 
 						color: #000;
-					}
-					&:first-child {
-
 					}
 					a {
 						font-family: $main-font-family;
@@ -1093,6 +1099,51 @@ footer {
 		.product {
 			width: 90%;
 			margin-bottom: 20px;
+		}
+	}
+	footer {
+		.container {
+			flex-direction: column;
+			.footer-left {
+				width: 100%;
+				padding: 0 0 15px 0;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				.footer_about {
+					h4 {
+						text-align: center;
+						font-size: em(18px);
+					}
+				}
+			}
+			.footer-center {
+				width: 100%;
+				padding: 15px;
+				border-top: 1px solid rgba(255,255,255,.4);
+				justify-content: center;
+				nav {
+					margin: 0 15px;
+				}
+			}
+			.footer-right {
+				width: 100%;
+				padding: 15px 0 0 0;
+				border-top: 1px solid rgba(255,255,255,.4);
+				.footer_contact {
+					text-align: center;
+					p {
+						text-transform: uppercase;
+					}
+				}
+				.footer_email {
+					font-size: em(20px);
+				}
+				.footer_social {
+					text-align: center;
+					font-size: em(30px);
+				}
+			}
 		}
 	}
 }
