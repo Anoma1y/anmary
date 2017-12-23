@@ -28,6 +28,7 @@
     "node-bourbon": "^4.2.8"
   },
   "dependencies": {
-    "gulp-error-handle": "^1.0.0"
+    "gulp-error-handle": "^1.0.0",
+    "gulp-pug": "^3.3.0"
   }
 }

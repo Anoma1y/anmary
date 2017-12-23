@@ -12,6 +12,7 @@ const babel = require('gulp-babel');
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync');
 const errorHandler = require('gulp-error-handle');
+const pug = require('gulp-pug');
 
 gulp.task('styles', () => {
 	return gulp.src('static/sass/**/*.+(sass|scss)')
@@ -20,7 +21,7 @@ gulp.task('styles', () => {
 	 }).on('error', sass.logError))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions', 'ie 8', 'ie 7'], { cascade: true }))
-	.pipe(cleanCSS())
+	// .pipe(cleanCSS())
 	.pipe(gulp.dest('static/css/'))
 	.pipe(browserSync.reload({stream: true}))
 });
@@ -53,7 +54,6 @@ gulp.task('script', () => {
         .pipe(babel({
             presets: ['es2015']
         }))
-
         .pipe(gulp.dest('static/js/'));
 })
 
