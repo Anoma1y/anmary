@@ -3,16 +3,6 @@
 var productData = [];
 var url = 'admin/getAllProducts';
 
-// //Айди для 
-// const productIdTh = document.getElementById('productIdTh');
-// const productTitleTh = document.getElementById('productTitleTh');
-// const productArticleTh = document.getElementById('productArticleTh');
-// const productBrandTh = document.getElementById('productBrandTh');
-// const productCategoryTh = document.getElementById('productCategoryTh');
-// const productSeasonTh = document.getElementById('productSeasonTh');
-// const productAvailabilityTh = document.getElementById('productAvailabilityTh');
-// const productIsSaleTh = document.getElementById('productIsSaleTh');
-
 //Класс для сортировки
 var sortingProduct = document.getElementsByClassName('sortingProduct');
 
@@ -170,9 +160,3 @@ function deleteItem(id) {
 function editItem(id) {
 	window.location = "admin/edit/" + id;
 }
-var items = ['Privet', 'kak', 'dela', 'Gay'];
-items.sort(function (a, b) {
-	return a.localeCompare(b);
-});
-console.log(items);
-// items равен ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']

@@ -1,6 +1,6 @@
 <?php 
-    if (isset($_COOKIE['username_hash'])){
-	   	$hash = $_COOKIE['username_hash'];
+    if (isset($_COOKIE['user_hash'])){
+	   	$hash = $_COOKIE['user_hash'];
 	    $db = Db::getConnection();
 	    $sql = "SELECT users.hash FROM users WHERE users.hash = :hash";
 	    $result = $db->prepare($sql);
@@ -8,7 +8,7 @@
 	    $result->setFetchMode(PDO::FETCH_ASSOC);
 	    $result->execute();
 	    $result = $result->fetch();
-    	if ($_COOKIE['username_hash'] !== $result['hash']) {
+    	if ($_COOKIE['user_hash'] !== $result['hash']) {
     		die();
     	} 
     	else {

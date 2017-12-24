@@ -44,23 +44,23 @@
 						<a class="mobile-trigger" href="#" id="mobile-trigger"><span></span></a>
 						<nav class="menu-main-wrap">
 							<ul class="ui menu menu-effect_1">
-								<li><a href="#">Link-1</a></li>
-								<li><a href="#">Link-2</a></li>
+								<li><a href="#">Главная</a></li>
+								<li><a href="#">Каталог</a></li>
 								<li><a href="#">Link-3</a></li>
 								<li><a href="#">Link-4</a></li>
 								<li><a href="#">Link-5</a></li>
-								<li><a href="#">Link-6</a></li>
+								<li><a href="#">Контакты</a></li>
 							</ul>
 						</nav>
 						<div class="menu-main-overlay"></div>
 					</div>
 					<ul>
-						<li><a href="#">Link-1</a></li>
-						<li><a href="#">Link-2</a></li>
+						<li><a href="#">Главная</a></li>
+						<li><a href="#">Каталог</a></li>
 						<li><a href="#">Link-3</a></li>
 						<li><a href="#">Link-4</a></li>
 						<li><a href="#">Link-5</a></li>
-						<li><a href="#">Link-6</a></li>
+						<li><a href="#">Контакты</a></li>
 					</ul>
 				</nav>
 				<div class="social_network">
@@ -224,11 +224,106 @@
 					<span class="product__price">2 005</span>
 				</div>
 			</div>
+						<div class="product">
+				<div class="product__image">
+					<a href="#">
+						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
+					</a>
+				</div>
+				<div class="product__info">
+					<p class="product__brand">Vaide</p>
+					<p class="product__title">Product Title</p>
+					<span class="product__price">2 005</span>
+				</div>
+			</div>
+						<div class="product">
+				<div class="product__image">
+					<a href="#">
+						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
+					</a>
+				</div>
+				<div class="product__info">
+					<p class="product__brand">Vaide</p>
+					<p class="product__title">Product Title</p>
+					<span class="product__price">2 005</span>
+				</div>
+			</div>
+						<div class="product">
+				<div class="product__image">
+					<a href="#">
+						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
+					</a>
+				</div>
+				<div class="product__info">
+					<p class="product__brand">Vaide</p>
+					<p class="product__title">Product Title</p>
+					<span class="product__price">2 005</span>
+				</div>
+			</div>
+						<div class="product">
+				<div class="product__image">
+					<a href="#">
+						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
+					</a>
+				</div>
+				<div class="product__info">
+					<p class="product__brand">Vaide</p>
+					<p class="product__title">Product Title</p>
+					<span class="product__price">2 005</span>
+				</div>
+			</div>
+						<div class="product">
+				<div class="product__image">
+					<a href="#">
+						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
+					</a>
+				</div>
+				<div class="product__info">
+					<p class="product__brand">Vaide</p>
+					<p class="product__title">Product Title</p>
+					<span class="product__price">2 005</span>
+				</div>
+			</div>
 		</div>
+
 	</div>
 </section>
 
-
+<section class="featured_brand" id="featured_brand">
+	<div class="container">
+		<div class="title">
+			<h1>Популярные бренды</h1>
+			<h3>Lorem ipsum dolor sit amet, consectetur.</h3>
+		</div>
+	</div>
+	<div class="container brand_container">
+		<div class="brand_item">
+			<a href="#">
+				<img src="/static/img/logo/comvill.png" alt="Logo">
+			</a>
+		</div>
+		<div class="brand_item">
+			<a href="#">
+				<img src="/static/img/logo/magnolica.png" alt="Logo">
+			</a>
+		</div>
+		<div class="brand_item">
+			<a href="#">
+				<img src="/static/img/logo/TopDesign.png" alt="Logo">
+			</a>
+		</div>
+		<div class="brand_item">
+			<a href="#">
+				<img src="/static/img/logo/vaideslide.png" alt="Logo">
+			</a>
+		</div>
+		<div class="brand_item">
+			<a href="#">
+				<img src="/static/img/logo/vito-logo.png" alt="Logo">
+			</a>
+		</div>
+	</div>
+</section>
 <footer>
 	<div class="container">
 		<div class="footer-left">

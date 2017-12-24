@@ -722,6 +722,90 @@ header {
 		}
 	}
 }
+
+.title {
+	text-align: center;
+	line-height: 1.5;
+	padding: 20px 0;
+	h1, h3 {
+		font-family: $main-font-family;
+	} 
+	h1 {
+		font-size: em(28px);
+	}
+}
+
+.product_list {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.product {
+		width: 19%;
+		margin: 0 5px;
+		margin-bottom: 25px;
+		&__image {
+			img {
+				width: 100%;
+			}
+		}
+		&__info {
+			text-align: center;
+			color: #595959;
+			span, p {
+				line-height: 1.4;
+			}
+			&:before {
+				content: '';
+				display: block;
+				width: 40px;
+				height: 2px;
+				border-radius: 5px;
+				margin: 2px auto;
+				background-color: #cdcdcd;
+			}
+		}
+		&__brand {
+			margin-top: 5px;
+			font-size: em(10px);
+		}
+		&__title {
+			font-size: em(15px);
+			font-family: $font-source;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		&__price {
+			font-size: em(18px);
+			font-family: $font-source;
+			font-weight: 300;
+			&-old {
+				text-decoration: line-through;
+				font-size: em(13px);
+			}
+			&:after {
+				content: ' руб.';
+			}
+		}
+	}
+}
+
+
+
+.featured_brand {
+	margin: 0 0 20px 0;
+	.brand_container {
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	.brand_item {
+		width: 17%;
+		img {
+			width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
 footer {
 	width: 100%;
 	background-color: #292929;
@@ -873,6 +957,15 @@ footer {
 			"new_collections subscribe all_catalog";
 	}
 }
+@media only screen and (max-width: 1080px) {
+	.product_list {
+		justify-content: center;
+		.product {
+			width: 25%;
+			margin-bottom: 20px;
+		}
+	}
+}
 @media only screen and (max-width: 996px) {
 	.header_menu {
 		.header_container {
@@ -919,6 +1012,123 @@ footer {
 		.social_network {
 			grid-area: social;
 			text-align: center;
+		}
+	}
+}
+
+@media only screen and (max-width: 760px) {
+	.blocks {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(3, 250px);
+		grid-template-areas: 
+			"new_arrivals new_arrivals"
+			"new_collections season_sale"
+			"subscribe all_catalog";
+	}
+}
+
+
+
+
+@media only screen and (max-width: 700px) {
+	.product_list {
+		justify-content: center;
+		.product {
+			width: 85%;
+			margin-bottom: 20px;
+			&__title {
+				font-size: em(25px);
+				letter-spacing: 1px;
+			}
+			&__brand {
+				font-size: em(16px);
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+			&__price {
+				font-size: em(22px);
+			}
+		}
+	}
+	.featured_brand {
+		.brand_container {
+			justify-content: space-around;
+		}
+		.brand_item {
+			width: 40%;
+			img {
+				width: 70%;
+			}
+		}
+	}
+	footer {
+		.container {
+			flex-direction: column;
+			.footer-left {
+				width: 100%;
+				padding: 0 0 15px 0;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				.footer_about {
+					h4 {
+						text-align: center;
+						font-size: em(18px);
+					}
+				}
+			}
+			.footer-center {
+				width: 100%;
+				padding: 15px;
+				border-top: 1px solid rgba(255,255,255,.4);
+				justify-content: center;
+				nav {
+					margin: 0 15px;
+				}
+			}
+			.footer-right {
+				width: 100%;
+				padding: 15px 0 0 0;
+				border-top: 1px solid rgba(255,255,255,.4);
+				.footer_contact {
+					text-align: center;
+					p {
+						text-transform: uppercase;
+					}
+				}
+				.footer_email {
+					font-size: em(20px);
+				}
+				.footer_social {
+					text-align: center;
+					font-size: em(30px);
+				}
+			}
+		}
+	}
+}
+@media only screen and (max-width: 550px) {
+	.blocks {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(5, 220px);
+		grid-template-areas:
+			"new_arrivals" 
+			"new_collections"
+			"season_sale"
+			"all_catalog"
+			"subscribe";
+	}
+}
+@media only screen and (max-width: 450px) {
+	.featured_brand {
+		.brand_container {
+			justify-content: center;
+		}
+		.brand_item {
+			width: 90%;
+			img {
+				width: 80%;
+			}
 		}
 	}
 }
@@ -993,156 +1203,6 @@ footer {
 			line-height: 30px;
 			i {
 				font-size: em(20px);
-			}
-		}
-	}
-}
-@media only screen and (max-width: 760px) {
-	.blocks {
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: repeat(3, 250px);
-		grid-template-areas: 
-			"new_arrivals new_arrivals"
-			"new_collections season_sale"
-			"subscribe all_catalog";
-	}
-}
-@media only screen and (max-width: 550px) {
-	.blocks {
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(5, 220px);
-		grid-template-areas:
-			"new_arrivals" 
-			"new_collections"
-			"season_sale"
-			"all_catalog"
-			"subscribe";
-	}
-}
-.title {
-	text-align: center;
-	line-height: 1.5;
-	padding: 20px 0;
-	h1, h3 {
-		font-family: $main-font-family;
-	} 
-	h1 {
-		font-size: em(28px);
-	}
-}
-
-.product_list {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	.product {
-		width: 19%;
-		margin: 0 5px;
-		&__image {
-			img {
-				width: 100%;
-			}
-		}
-		&__info {
-			text-align: center;
-			color: #595959;
-			span, p {
-				line-height: 1.4;
-			}
-			&:before {
-				content: '';
-				display: block;
-				width: 40px;
-				height: 2px;
-				border-radius: 5px;
-				margin: 2px auto;
-				background-color: #cdcdcd;
-			}
-		}
-		&__brand {
-			margin-top: 5px;
-			font-size: em(10px);
-		}
-		&__title {
-			font-size: em(15px);
-			font-family: $font-source;
-			font-weight: bold;
-			text-transform: uppercase;
-		}
-		&__price {
-			font-size: em(18px);
-			font-family: $font-source;
-			font-weight: 300;
-			&-old {
-				text-decoration: line-through;
-				font-size: em(13px);
-			}
-			&:after {
-				content: ' руб.';
-			}
-		}
-	}
-}
-
-@media only screen and (max-width: 1080px) {
-	.product_list {
-		justify-content: center;
-		.product {
-			width: 25%;
-			margin-bottom: 20px;
-		}
-	}
-}
-@media only screen and (max-width: 700px) {
-	.product_list {
-		justify-content: center;
-		.product {
-			width: 90%;
-			margin-bottom: 20px;
-		}
-	}
-	footer {
-		.container {
-			flex-direction: column;
-			.footer-left {
-				width: 100%;
-				padding: 0 0 15px 0;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				.footer_about {
-					h4 {
-						text-align: center;
-						font-size: em(18px);
-					}
-				}
-			}
-			.footer-center {
-				width: 100%;
-				padding: 15px;
-				border-top: 1px solid rgba(255,255,255,.4);
-				justify-content: center;
-				nav {
-					margin: 0 15px;
-				}
-			}
-			.footer-right {
-				width: 100%;
-				padding: 15px 0 0 0;
-				border-top: 1px solid rgba(255,255,255,.4);
-				.footer_contact {
-					text-align: center;
-					p {
-						text-transform: uppercase;
-					}
-				}
-				.footer_email {
-					font-size: em(20px);
-				}
-				.footer_social {
-					text-align: center;
-					font-size: em(30px);
-				}
 			}
 		}
 	}

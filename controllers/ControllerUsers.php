@@ -13,17 +13,20 @@
 			$view = new View();
 			$view->render('users/login');
 		}
-	    public function logout()
-	    {
-	        session_start();
-	        unset($_SESSION["username"]);
-	        setcookie("username_id", $_COOKIE['username_id'], time()-60*60*24*30, '/', $params['domain']);
-	        setcookie("username_hash", $_COOKIE['username_hash'], time()-60*60*24*30, '/', $params['domain']);	 
-            header("Location: /");
+		public function register() {
+			$view = new View();
+			$view->render('users/register');
+		}
+	    public function logout() {
+	    	User::logoutUser();
 	    }
 		public function login_action() {
 			$view = new View();
 			$view->render('users/login_action');
+		}
+		public function profile() {
+       		require_once('views/users/profile.php');
+	        return true;		
 		}
 	}
 
