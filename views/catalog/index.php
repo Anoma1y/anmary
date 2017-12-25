@@ -40,9 +40,11 @@
         category.addEventListener('change', function(e) {
             if (e.target.checked) {
                 state["categoryFilter"].push(e.target.value);
+                load_data(currentPage, state);
             } else if (!e.target.checked) {
                 let index = state["categoryFilter"].indexOf(e.target.value);
                 state["categoryFilter"].splice(index, 1);
+                load_data(currentPage, state);
             }
         }, false);
     }
@@ -51,14 +53,16 @@
         brand.addEventListener('change', function(e) {
             if (e.target.checked) {
                 state["brandFilter"].push(e.target.value);
+                load_data(currentPage, state);
             } else if (!e.target.checked) {
                 let index = state["brandFilter"].indexOf(e.target.value);
                 state["brandFilter"].splice(index, 1);
+                load_data(currentPage, state);
             }
         }, false);
     }
 
- load_data(currentPage, state); 
+    load_data(currentPage, state); 
 
     //AJAX запрос для вызова каталог продуктов (принимает значения: текущая страница и объект состояний)
     function load_data(page, state) {  
@@ -84,14 +88,10 @@
                     onPageClick : function(pageNumber) {
 
                         load_data(pageNumber, state);
-                            //Изменение пагинации
-                        
-                    }
+                   }
                 });                
             }                   
-            //Переменные для создания пагинации (всего страниц, продуктов на странице, текущая страница)
-
-           
+    
       })//AJAX 
     }
 
