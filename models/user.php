@@ -2,7 +2,7 @@
 	require_once "engine/Session.php";
 	require_once "engine/Cookie.php";
 	require_once "engine/functions.php";
-	require_once "engine/db.php";
+	require_once "engine/Db.php";
 
 	class User
 	{

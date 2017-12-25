@@ -1,77 +1,7 @@
 <?php require_once 'views/index/header.php'; ?>
 
 
-<header>
-	<div class="container">
-		<div class="header_info">
-			<div class="user_info">
-				<div class="icon">
-					<i class="fa fa-user-circle" aria-hidden="true"></i>
-				</div>
-				<div class="user_control">
-					<span class="sign_in">Войти</span>
-					<span class="sign_up">Регистрация</span>
-				</div>
-			</div>
-			<div class="logo">
-				<img src="/static/img/2.svg" alt="">
-			</div>
-			<div class="shop_info">
-				<div class="compare_info">
-					<span class="info_count">13</span>
-					<i class="fa fa-heart-o" aria-hidden="true"></i>
-				</div>
-				<div class="products_info">
-					<span class="info_count">13</span>
-					<i class="fa  fa-shopping-basket" aria-hidden="true"></i>
-					<p>4500</p>					
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="menu_container">
-		<div class="header_menu">
-			<div class="header_container">
-				<div class="search">
-					<i class="fa fa-search" id="searchBtn" aria-hidden="true"></i>
-					<div class="search_input">
-						<input type="text" class="searchText" id="searchText" placeholder="Поиск">
-						<button id="search"><i class="fa fa-search" aria-hidden="true"></i></button>		
-					</div>
-				</div>	
-				<nav class="navigation">
-					<div class="mobile-menu">
-						<a class="mobile-trigger" href="#" id="mobile-trigger"><span></span></a>
-						<nav class="menu-main-wrap">
-							<ul class="ui menu menu-effect_1">
-								<li><a href="#">Главная</a></li>
-								<li><a href="#">Каталог</a></li>
-								<li><a href="#">Link-3</a></li>
-								<li><a href="#">Link-4</a></li>
-								<li><a href="#">Link-5</a></li>
-								<li><a href="#">Контакты</a></li>
-							</ul>
-						</nav>
-						<div class="menu-main-overlay"></div>
-					</div>
-					<ul>
-						<li><a href="#">Главная</a></li>
-						<li><a href="#">Каталог</a></li>
-						<li><a href="#">Link-3</a></li>
-						<li><a href="#">Link-4</a></li>
-						<li><a href="#">Link-5</a></li>
-						<li><a href="#">Контакты</a></li>
-					</ul>
-				</nav>
-				<div class="social_network">
-					<i class="fa fa-vk" aria-hidden="true"></i>
-					<i class="fa fa-skype" aria-hidden="true"></i>
-					<i class="fa fa-odnoklassniki" aria-hidden="true"></i>
-				</div>		
-			</div>
-		</div>
-	</div>
-</header>
+
 
 
 <section id="main_slider">
@@ -163,127 +93,31 @@
 	</div>
 	<div class="container">
 		<div class="product_list">
-			<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
+			<?php foreach ($lastProduct as $key => $product): ?>
+				
+				
+				<div class="product">
+					<div class="product__image">
+						<a href="/product/<?=$product[id];?>">
+							<img src="<?=$product[image];?>" alt="Latest Product">
+						</a>
+					</div>
+					<div class="product__info">
+						<p class="product__brand"><?=$product[brand_name];?></p>
+						<p class="product__title"><?=$product[name];?><?=$product[article];?></p>
+						<?php if ($product['is_sale'] == 0): ?>
+							<span class="product__price"><?=$product[price];?></span>
+						<?php elseif ($product['is_sale'] == 1): ?>
+							<span class="product__price product__price-old"><?=$product[price];?></span>
+							<span class="product__price product__price-sale"><?=$product[sale_price];?></span>
+						<?php endif ?>
+					</div>
 				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 001</span>
-				</div>
-			</div>
-			<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price product__price-old">2 002</span>
-					<span class="product__price product__price-sale">1 750</span>
-				</div>
-			</div>
-			<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">ComvilL</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 003</span>
-				</div>
-			</div>
-			<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 004</span>
-				</div>
-			</div>
-			<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 005</span>
-				</div>
-			</div>
-						<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 005</span>
-				</div>
-			</div>
-						<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 005</span>
-				</div>
-			</div>
-						<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 005</span>
-				</div>
-			</div>
-						<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 005</span>
-				</div>
-			</div>
-						<div class="product">
-				<div class="product__image">
-					<a href="#">
-						<img src="http://via.placeholder.com/238x350" alt="Latest Product">
-					</a>
-				</div>
-				<div class="product__info">
-					<p class="product__brand">Vaide</p>
-					<p class="product__title">Product Title</p>
-					<span class="product__price">2 005</span>
-				</div>
-			</div>
+
+
+
+			<?php endforeach ?>
+
 		</div>
 
 	</div>

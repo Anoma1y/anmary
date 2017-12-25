@@ -2,9 +2,6 @@
 	class Admin {
 	    public function indexView() {
 	    	require_once 'engine/functions.php';
-	    	// $user = User::getCurrentUser();
-	    	// $checkAdmin = new User();
-	    	// $check = $checkAdmin->checkAdministrator($_COOKIE["user_hash"]); 
 	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
 	    	if ($check['permissions'] == '{"admin": 1}') {
 				require_once('views/admin/index.php');

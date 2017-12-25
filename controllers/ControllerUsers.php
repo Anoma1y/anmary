@@ -28,6 +28,8 @@
        		require_once('views/users/profile.php');
 	        return true;		
 		}
+		public function cart() {
+       		require_once('views/users/cart.php');
+	        return true;		
+		}
 	}
-
-?>

@@ -3,7 +3,7 @@
 	/**
 	* Пагинация AJAX
 	*/
-	require_once 'db.php';
+	require_once 'Db.php';
 	class Pagination {
 	    private $current_page;
 	    private $record_per_page;

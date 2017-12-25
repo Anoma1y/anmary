@@ -1,10 +1,9 @@
 <?php
 	class Main {
 		public function index() {
-			$getPopularModel = CatalogModel::getPopularModel();
-			$view = new View();
-			$view->render('index/index', $getPopularModel);
+			$lastProduct = CatalogModel::getLastProduct(10);
+	        require_once('views/index/index.php');
+	        return true;
 		}
 	}
-
 ?>
