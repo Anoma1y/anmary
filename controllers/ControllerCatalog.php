@@ -27,7 +27,7 @@
 		        $filterQuery = $filterQuery.' AND brand_id IN ('.implode(",",$brandFilterList).')';
 		    }
 		    //Основной запрос на поиск по фильтру
-		    $sql = 'SELECT id, name, price, sale_price, is_sale, is_availability, image FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.' ORDER BY id DESC LIMIT :start_from, :record_per_page';
+		    $sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.is_sale, product.is_availability, product.image FROM product, brand WHERE product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.' ORDER BY id DESC LIMIT :start_from, :record_per_page';
 		    //Запрос на количество записей и количество страниц
 		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.' ORDER BY id';
 		    $order_by = 'id';

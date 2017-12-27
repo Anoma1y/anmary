@@ -23,7 +23,7 @@
 	    'password' => '', //Пароль от БД
 	    'dbcharset' => 'utf8', //Кодировка БД
 	     //Пагинация AJAX
-	    'record_per_page' => 6, //Записей на странице
+	    'record_per_page' => 9, //Записей на странице
 	    'record_admin_page' => 20, //Записей на странице админки
 	    //Куки
 	    'domain' => 'anmary',
