@@ -145,8 +145,10 @@ searchBtn.addEventListener('click', function () {
         searchValue = "";
         getData(currentPage, state, sortBy, searchValue);
     } else if (val.length >= 3 && val.length <= 20) {
-        searchValue = '%' + val + '%';
-        getData(currentPage, state, sortBy, searchValue);
+        if (!val.match(/[^a-zA-Z0-9]/g)) {
+            searchValue = '%' + val + '%';
+            getData(currentPage, state, sortBy, searchValue);
+        }
     }
 });
 
