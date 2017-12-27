@@ -71,7 +71,7 @@
         <div class="catalog-container">
             <div class="catalog-header">
                 <div class="catalog-count_item">
-                    Найдено товаров: <span>120</span>
+                    Найдено товаров: <span id="countItems"></span>
                 </div>
                 <div class="catalog-sort">
                     <div class="catalog-sort-by">
@@ -92,116 +92,17 @@
                 <div class="catalog-items-list">
 
                 </div>
+                <div class="main-pagination">
+                    <div class="paginations"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-
-<script src="/static/js/libs.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<script type="text/javascript">
-    const categoryList = document.getElementsByName('categoryList');
-    const brandList = document.getElementsByName('brandList');
-    const minPrice = document.getElementById('minPrice');
-    const maxPrice = document.getElementById('maxPrice');
+<script type="text/javascript" src="/static/js/libs.min.js"></script>
+<script type="text/javascript" src="/static/js/catalog.js"></script>
 
 
-    var total_pages, 
-        items, 
-        currentPage = 1;
-    // var page = 1;
-    var state = {
-        categoryFilter: [],
-        brandFilter: [],
-        minPrice: minPrice.value,
-        maxPrice: maxPrice.value
-    }
-    function checkPrice(value) {
-        if (value != "" && value.match(/^\d+$/)) {
-            return true; 
-        }
-        return false;
-    }
-    minPrice.addEventListener('change', function(e) {
-        let target = e.target.value;
-        state["minPrice"] = target;
-        console.log(checkPrice(target));
-        if (checkPrice(target)) {
-           setTimeout(function(){ load_data(currentPage, state); },500); 
-        }
-    }, false);
-    maxPrice.addEventListener('change', function(e) {
-        let target = e.target.value;
-        state["maxPrice"] = target;
-        if (checkPrice(target)) {
-           setTimeout(function(){ load_data(currentPage, state); },500); 
-        }
-    }, false);
-    //Назначение события для фильтра категорий товара
-    for (let category of categoryList) {
-        category.addEventListener('change', function(e) {
-            if (e.target.checked) {
-                state["categoryFilter"].push(e.target.value);
-                load_data(currentPage, state);
-            } else if (!e.target.checked) {
-                let index = state["categoryFilter"].indexOf(e.target.value);
-                state["categoryFilter"].splice(index, 1);
-                load_data(currentPage, state);
-            }
-        }, false);
-    }
-    //Назначение события для фильтра бренда товара
-    for (let brand of brandList) {
-        brand.addEventListener('change', function(e) {
-            if (e.target.checked) {
-                state["brandFilter"].push(e.target.value);
-                load_data(currentPage, state);
-            } else if (!e.target.checked) {
-                let index = state["brandFilter"].indexOf(e.target.value);
-                state["brandFilter"].splice(index, 1);
-                load_data(currentPage, state);
-            }
-        }, false);
-    }
-
-    load_data(currentPage, state);
-    //AJAX запрос для вызова каталог продуктов (принимает значения: текущая страница и объект состояний)
-    function load_data(page, state) {  
-        $.ajax({  
-            url:"getAllProduct", 
-            method:"POST",  
-            data:{page: page, state: state},  
-            success:function(data){ 
-                items = $.parseJSON(data);
-                $('.catalog-items-list').html("");
-                let total_items = items['total_item'];
-                let item_on_page = items['record_per_page'];
-                for (let val of items["item"]) {
-                    $('.catalog-items-list').append(`<div class="catalog-item"><div class="item-image"><a href='../product/${val["id"]}'><img src="${val["image"]}" alt="Item-${val["id"]}"></a><div class="item-compare"><i class="fa fa-heart-o" aria-hidden="true"></i></div></div><div class="item-info"><div class="item-info-price"><span>${val["price"]} руб.</span></div><div class="item-info-shop-now" id="shop-now-${val["id"]}">Добавить в корзину</div><div class="item-info-title"><h3>${val["name"]} ${val["article"]}</h3></div><div class="item-info-brand"><span>${val["brand_name"]}</span></div><div class="item-info-size"><span>${val["size"]}</span></div></div></div>`);
-                }
-                //Установка новой текущей страницы
-                let currentPage = items['current_page'];
-                //Пагинация
-                $('.paginations').pagination({
-                    items: total_items,
-                    itemsOnPage: item_on_page,
-                    cssStyle: 'dark-theme',
-                    prevText: '',
-                    nextText: '',
-                    hrefTextPrefix: '',
-                    currentPage : currentPage,
-                    onPageClick : function(pageNumber) {
-
-                        load_data(pageNumber, state);
-                   }
-                });                
-            }                   
-    
-      })//AJAX 
-    }
-
-</script>
-<!-- <script src="/static/js/catalog.js"></script> -->
 <?php require_once "views/index/footer.php"; ?>

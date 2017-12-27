@@ -159,55 +159,8 @@
 	</div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static/js/libs.min.js"></script>
 <script src="/static/js/responsiveslides.min.js"></script>
-<script>
-	$("#slider").responsiveSlides({
-		auto: true,
-		pager: false,
-		nav: true,
-		speed: 1000,
-		namespace: "callbacks",
-		before: function() {
-			$('.events').append("<li>before event fired.</li>");
-		},
-		after: function() {
-			$('.events').append("<li>after event fired.</li>");
-		}
-	});
-	$('#searchBtn').on('click', function() {
-		$(this).fadeOut('400');
-		$('.search_input').fadeIn('400');
-	});
-	//Mobile Menu
-	$('#mobile-trigger').bind('click', function (e) {
-		$(this).toggleClass('active');
-		e.preventDefault();
-		$('.menu-main-overlay').fadeIn('400', function () {
-			$('#menu-open').toggleClass('active');
-			$('.menu-main-wrap').toggleClass('active');
-			$('.menu-effect_1').toggleClass('active');
-		});
-	});
+<script src="static/js/index.js"></script> 
 
-	$('.menu-main-overlay').bind('click', function () {
-		$('.menu-main-overlay').fadeOut('400', function () {
-			$('#menu-open').removeClass('active');
-			$('#icon-toggle').removeClass('active');
-			$('.menu-main-wrap').removeClass('active');
-			$('.menu-effect_1').removeClass('active');
-		});
-	});
-	$(window).resize(function() {
-		if ($(window).width() >= 996) {
-			$('.menu-main-overlay').fadeOut('400', function () {
-				$('#menu-open').removeClass('active');
-				$('#icon-toggle').removeClass('active');
-				$('.menu-main-wrap').removeClass('active');
-				$('.menu-effect_1').removeClass('active');
-			});
-		}
-	});
-
-</script>
 <?php require_once 'views/index/footer.php'; ?>

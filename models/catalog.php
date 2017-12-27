@@ -18,6 +18,7 @@
 		public static function filter($brandFilterList = [], $categoryFilterList = [], $priceMin = 0, $priceMax = 999999) {
 			$db = Db::getConnection();
 			$filterQuery = "";
+			
 			if (!empty($categoryFilterList)) {
 				$filterQuery = $filterQuery.' AND category_id IN ('.implode(",",$categoryFilterList).')';
 			}

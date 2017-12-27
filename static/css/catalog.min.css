@@ -21,7 +21,7 @@
             transform: scale(1); } }
 
 .catalog {
-  padding-bottom: 40px; }
+  padding-bottom: 80px; }
   .catalog .container {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
@@ -181,7 +181,8 @@
           height: 0;
           border-bottom: 1px solid #000; }
   .catalog .catalog-container {
-    width: 75%; }
+    width: 75%;
+    position: relative; }
     .catalog .catalog-container .catalog-header {
       padding: 0 0 10px 0;
       display: -webkit-box;
@@ -246,6 +247,13 @@
                       box-shadow: none; }
               .catalog .catalog-container .catalog-header .catalog-sort .catalog-pagination .paginations ul li span.current {
                 background-color: #e0e0e0; }
+    .catalog .catalog-container .main-pagination {
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      bottom: -50px; }
     .catalog .catalog-container .catalog-items-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, 262px);
@@ -281,18 +289,16 @@
         .catalog .catalog-container .catalog-items-list .catalog-item .item-info {
           position: relative; }
           .catalog .catalog-container .catalog-items-list .catalog-item .item-info-price {
-            position: absolute;
-            top: -45px;
-            left: 10px;
-            background-color: #333;
             padding: 0 10px;
-            height: 35px;
-            text-align: center;
-            font: 300 16px/35px "Oswald", "Open Sans", sans-serif;
+            font: bold 18px/35px "Oswald", "Open Sans", sans-serif;
             letter-spacing: 1px;
-            color: #d6d6d6;
-            -webkit-border-radius: 2px;
-                    border-radius: 2px; }
+            color: #333; }
+            .catalog .catalog-container .catalog-items-list .catalog-item .item-info-price .item-old-price {
+              text-decoration: line-through;
+              font-size: 0.75em; }
+            .catalog .catalog-container .catalog-items-list .catalog-item .item-info-price .item-sale-price {
+              margin-left: 5px;
+              color: #f44336; }
           .catalog .catalog-container .catalog-items-list .catalog-item .item-info-shop-now {
             position: absolute;
             top: -45px;
@@ -314,7 +320,7 @@
               background-color: #ffc44d;
               color: #000; }
           .catalog .catalog-container .catalog-items-list .catalog-item .item-info-title {
-            padding: 5px 10px;
+            padding: 0 10px 5px 10px;
             font-family: "Oswald", "Open Sans", sans-serif;
             font-size: 1.125em;
             letter-spacing: 0.6px; }
