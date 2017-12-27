@@ -4,7 +4,7 @@
 		* Главная страница каталога 
 		**/
 	    public function all() {
-	    	$productList = CatalogModel::getAllProducts();
+	    	$priceList = CatalogModel::getPrice();
 	    	$categoryList = CatalogModel::getCategory();
 	    	$brandList = CatalogModel::getBrand();//Список брендов
 	    	$countItems = CatalogModel::countItems();
@@ -19,8 +19,11 @@
 		    $priceMax = $_POST["state"]["maxPrice"];
 		    $categoryFilterList = $_POST["state"]["categoryFilter"];
 		    $brandFilterList = $_POST["state"]["brandFilter"];
+		    $sortValue = $_POST["sort"];
+			$searchValue = $_POST["searchValue"];
 		    $filterQuery = "";
 		    $sortQuery = "";
+		    $searchLike = "";
 		    //Добавление фильтра категорий (categoryFilterList содержит массив категорий товаров)
 		    if (!empty($categoryFilterList)) {
 		        $filterQuery = $filterQuery.' AND category_id IN ('.implode(",",$categoryFilterList).')';
@@ -30,19 +33,21 @@
 		        $filterQuery = $filterQuery.' AND brand_id IN ('.implode(",",$brandFilterList).')';
 		    }
 		    //Сортировка товаров
-		    if ($_POST["sort"] == "sortByNewest") {
+		    if ($sortValue == "sortByNewest") {
 		    	$sortQuery = "product.id DESC";
-		    } else if ($_POST["sort"] == "sortBySales") {
+		    } else if ($sortValue == "sortBySales") {
 		    	$sortQuery = "product.is_sale DESC";
-		    } else if ($_POST["sort"] == "sortByPriceLower") {
+		    } else if ($sortValue == "sortByPriceLower") {
 		    	$sortQuery = "product.price DESC";
-		    } else if ($_POST["sort"] == "sortByPriceHigher") {
+		    } else if ($sortValue == "sortByPriceHigher") {
 		    	$sortQuery = "product.price";
-		    } 
-		    //Основной запрос на поиск по фильтру
-		    $sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.is_sale, product.is_availability, product.image FROM product, brand WHERE product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';
+		    }
+		    if (!empty($searchValue) && strlen($searchValue) >= 3 && strlen($searchValue) <= 20) {
+		    	$searchLike = ' AND (product.name LIKE "'.$searchValue.'" OR product.article LIKE "'.$searchValue.'" or product.composition LIKE "'.$searchValue.'")';
+		    }
+			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.is_sale, product.is_availability, product.image FROM product, brand WHERE product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц
-		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.' ORDER BY id';
+		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY id';
 		    $order_by = 'id';
 		    $q = new Pagination(1, $params["record_per_page"], $sql, $sql1, $order_by);
 		    $q->getPages();

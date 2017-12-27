@@ -4,6 +4,8 @@ var categoryList = document.getElementsByName('categoryList');
 var brandList = document.getElementsByName('brandList');
 var minPrice = document.getElementById('minPrice');
 var maxPrice = document.getElementById('maxPrice');
+var searchInput = document.getElementById('searchFilter_input');
+var searchBtn = document.getElementById('searchFilterBtn');
 var countItems = document.getElementById('countItems');
 
 var total_pages,
@@ -16,7 +18,7 @@ var state = {
     maxPrice: maxPrice.value
 };
 var sortBy = "sortByNewest";
-window.onload = load_data(currentPage, state, sortBy);
+var searchValue = "";
 //Функция проверки цены на наличия в ней текста или пустого значения
 function checkPrice(value) {
     if (value != "" && value.match(/^\d+$/)) {
@@ -28,10 +30,9 @@ function checkPrice(value) {
 minPrice.addEventListener('change', function (e) {
     var target = e.target.value;
     state["minPrice"] = target;
-    console.log(checkPrice(target));
     if (checkPrice(target)) {
         setTimeout(function () {
-            load_data(currentPage, state, sortBy);
+            getData(currentPage, state, sortBy, searchValue);;
         }, 500);
     }
 }, false);
@@ -40,10 +41,11 @@ maxPrice.addEventListener('change', function (e) {
     state["maxPrice"] = target;
     if (checkPrice(target)) {
         setTimeout(function () {
-            load_data(currentPage, state, sortBy);
+            getData(currentPage, state, sortBy, searchValue);;
         }, 500);
     }
 }, false);
+
 //Назначение события для фильтра категорий товара
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
@@ -54,13 +56,14 @@ try {
         var category = _step.value;
 
         category.addEventListener('change', function (e) {
-            if (e.target.checked) {
-                state["categoryFilter"].push(e.target.value);
-                load_data(currentPage, state, sortBy);
-            } else if (!e.target.checked) {
-                var index = state["categoryFilter"].indexOf(e.target.value);
+            var target = e.target;
+            if (target.checked) {
+                state["categoryFilter"].push(target.value);
+                getData(currentPage, state, sortBy, searchValue);
+            } else if (!target.checked) {
+                var index = state["categoryFilter"].indexOf(target.value);
                 state["categoryFilter"].splice(index, 1);
-                load_data(currentPage, state, sortBy);
+                getData(currentPage, state, sortBy, searchValue);
             }
         }, false);
     }
@@ -89,13 +92,14 @@ try {
         var brand = _step2.value;
 
         brand.addEventListener('change', function (e) {
-            if (e.target.checked) {
-                state["brandFilter"].push(e.target.value);
-                load_data(currentPage, state, sortBy);
-            } else if (!e.target.checked) {
-                var index = state["brandFilter"].indexOf(e.target.value);
+            var target = e.target;
+            if (target.checked) {
+                state["brandFilter"].push(target.value);
+                getData(currentPage, state, sortBy, searchValue);
+            } else if (!target.checked) {
+                var index = state["brandFilter"].indexOf(target.value);
                 state["brandFilter"].splice(index, 1);
-                load_data(currentPage, state, sortBy);
+                getData(currentPage, state, sortBy, searchValue);
             }
         }, false);
     }
@@ -119,20 +123,41 @@ try {
 $('select[name="sortBy"]').on('change', function () {
     var sort = $('select[name="sortBy"] option:selected').val();
     sortBy = sort;
-    load_data(currentPage, state, sortBy);
+    getData(currentPage, state, sortBy, searchValue);
 });
 
-//AJAX запрос для вызова каталог продуктов (принимает значения: текущая страница и объект состояний)
-function load_data(page, state, sortBy) {
-    $.ajax({
-        url: "getAllProduct",
-        method: "POST",
-        data: { page: page, state: state, sort: sortBy }, //текущая страница, фильтр и сортировка  
-        success: function success(data) {
-            items = $.parseJSON(data);
-            $('.catalog-items-list').html("");
-            var total_items = items['total_item'];
-            var item_on_page = items['record_per_page'];
+function receivingВata(page, state, sortBy) {
+    var searchValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
+
+    return new Promise(function (res, rej) {
+        $.ajax({
+            url: "getAllProduct",
+            method: "POST",
+            data: { page: page, state: state, sort: sortBy, searchValue: searchValue } //текущая страница, фильтр и сортировка
+        }).done(res).fail(rej);
+    });
+}
+window.onload = getData(currentPage, state, sortBy, searchValue);
+
+searchBtn.addEventListener('click', function () {
+    var val = searchInput.value;
+    if (val.length == 0) {
+        searchValue = "";
+        getData(currentPage, state, sortBy, searchValue);
+    } else if (val.length >= 3 && val.length <= 20) {
+        searchValue = '%' + val + '%';
+        getData(currentPage, state, sortBy, searchValue);
+    }
+});
+
+async function getData(currentPage, state, sortBy, searchValue) {
+    try {
+        var data = await receivingВata(currentPage, state, sortBy, searchValue);
+        var items = $.parseJSON(data);
+        $('.catalog-items-list').html("");
+        var total_items = items['total_item'];
+        var item_on_page = items['record_per_page'];
+        if (items["item"] != undefined) {
             var _iteratorNormalCompletion3 = true;
             var _didIteratorError3 = false;
             var _iteratorError3 = undefined;
@@ -149,7 +174,6 @@ function load_data(page, state, sortBy) {
                     }
                     $('.catalog-items-list').append('<div class="catalog-item"><div class="item-image"><a href=\'../product/' + val["id"] + '\'><img src="' + val["image"] + '" alt="Item-' + val["id"] + '"></a><div class="item-compare"><i class="fa fa-heart-o" aria-hidden="true"></i></div></div><div class="item-info"><div class="item-info-price">' + _checkPrice + '</div><div class="item-info-shop-now" id="shop-now-' + val["id"] + '">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</div><div class="item-info-title"><h3>' + val["name"] + ' ' + val["article"] + '</h3></div><div class="item-info-brand"><span>' + val["brand_name"] + '</span></div><div class="item-info-size"><span>' + val["size"] + '</span></div></div></div>');
                 }
-                //Установка новой текущей страницы
             } catch (err) {
                 _didIteratorError3 = true;
                 _iteratorError3 = err;
@@ -164,23 +188,30 @@ function load_data(page, state, sortBy) {
                     }
                 }
             }
-
-            var currentPage = items['current_page'];
-            countItems.innerText = total_items;
-            //Пагинация
-            $('.paginations').pagination({
-                items: total_items,
-                itemsOnPage: item_on_page,
-                cssStyle: 'dark-theme',
-                prevText: '',
-                nextText: '',
-                hrefTextPrefix: '',
-                currentPage: currentPage,
-                onPageClick: function onPageClick(pageNumber) {
-                    load_data(pageNumber, state, sortBy);
-                }
-            });
+        } else {
+            $('.catalog-items-list').append('<h1>Список пуст</h1>');
+            countItems.innerText = 0;
         }
-
-    }); //AJAX 
+        //Установка новой текущей страницы
+        var currentPage = items['current_page'];
+        countItems.innerText = total_items;
+        //Пагинация
+        $('.paginations').pagination({
+            items: total_items,
+            itemsOnPage: item_on_page,
+            cssStyle: 'dark-theme',
+            prevText: '',
+            nextText: '',
+            hrefTextPrefix: '',
+            currentPage: currentPage,
+            onPageClick: function onPageClick(pageNumber) {
+                getData(pageNumber, state, sortBy, searchValue);
+            }
+        });
+    } catch (error) {
+        $('.catalog-items-list').html("");
+        $('.catalog-items-list').append('<h1>Список пуст</h1>');
+        countItems.innerText = 0;
+        throw new Error(error);
+    }
 }

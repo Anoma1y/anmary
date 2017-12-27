@@ -1,9 +1,4 @@
 <?php require_once 'views/index/header.php'; ?>
-
-
-
-
-
 <section id="main_slider">
 	<div class="container">
 		<div class="main_slider">

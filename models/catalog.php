@@ -1,9 +1,9 @@
 <?php
 	require_once "engine/Db.php";
 	class CatalogModel {
-	    public static function getAllProducts() {
+	    public static function getPrice() {
 			$db = Db::getConnection();
- 	        $sql = 'SELECT * FROM product';
+ 	        $sql = 'SELECT price FROM product';
 	        $result = $db->prepare($sql);
 	    	$result->setFetchMode(PDO::FETCH_ASSOC);
 	    	$result->execute();
@@ -14,28 +14,6 @@
 	            $i++;
 	        }
 	        return $all;
-		}
-		public static function filter($brandFilterList = [], $categoryFilterList = [], $priceMin = 0, $priceMax = 999999) {
-			$db = Db::getConnection();
-			$filterQuery = "";
-			
-			if (!empty($categoryFilterList)) {
-				$filterQuery = $filterQuery.' AND category_id IN ('.implode(",",$categoryFilterList).')';
-			}
-			if (!empty($brandFilterList)) {
-				$filterQuery = $filterQuery.' AND brand_id IN ('.implode(",",$brandFilterList).')';
-			}
-	        $sql = 'SELECT product.id FROM product WHERE product.price >= '.$priceMin.' AND product.price <= '.$priceMax.''.$filterQuery;
-	        $result = $db->prepare($sql);
-	        $result->setFetchMode(PDO::FETCH_ASSOC);
-	    	$result->execute();
-	        $i = 0;
-	        $res = array();
-	        while ($row = $result->fetch()) {
-	            $res[$i] = $row;
-	            $i++;
-	        }
-	        return $res;
 		}
 		public static function countItems() {
 			$db = Db::getConnection();

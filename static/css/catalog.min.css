@@ -60,6 +60,8 @@
         border-left: none;
         background-color: #fff;
         cursor: pointer; }
+        .catalog .catalog_filter .filter_search button:focus {
+          outline: none; }
         .catalog .catalog_filter .filter_search button:hover i {
           color: #1F3779;
           -webkit-animation-name: scal;
@@ -322,12 +324,14 @@
           .catalog .catalog-container .catalog-items-list .catalog-item .item-info-title {
             padding: 0 10px 5px 10px;
             font-family: "Oswald", "Open Sans", sans-serif;
-            font-size: 1.125em;
+            font-size: 1.0625em;
+            color: #333333;
             letter-spacing: 0.6px; }
           .catalog .catalog-container .catalog-items-list .catalog-item .item-info-brand {
             font-family: "Oswald", "Open Sans", sans-serif;
             font-size: 0.875em;
-            padding: 0 10px; }
+            padding: 0 10px;
+            color: #333333; }
           .catalog .catalog-container .catalog-items-list .catalog-item .item-info-size {
             position: absolute;
             right: 10px;

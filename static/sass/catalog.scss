@@ -44,6 +44,9 @@ $output-bourbon-deprecation-warnings: false !default;
 				border-left: none;
 				background-color: #fff;
 				cursor: pointer;
+				&:focus {
+					outline: none;
+				}
 				&:hover i {
 					color: #1F3779;
 					animation-name: scal;
@@ -317,13 +320,15 @@ $output-bourbon-deprecation-warnings: false !default;
 					&-title {
 						padding: 0 10px 5px 10px;
 						font-family: $main-font-family;
-						font-size: em(18px);
+						font-size: em(17px);
+						color: #333333;
 						letter-spacing: 0.6px;
 					}
 					&-brand {
 						font-family: $main-font-family;
 						font-size: em(14px);
 						padding: 0 10px;
+						color: #333333;
 					}
 					&-size {
 						position: absolute;
