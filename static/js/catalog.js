@@ -184,7 +184,7 @@ searchBtn.addEventListener('click', function () {
         searchValue = "";
         getData(currentPage, state, sortBy, searchValue);
     } else if (val.length >= 3 && val.length <= 20) {
-        if (!val.match(/[^a-zA-Z0-9]/g)) {
+        if (!val.match(/[^a-zA-Zа-яА-Я0-9]/g)) {
             searchValue = '%' + val + '%';
             getData(currentPage, state, sortBy, searchValue);
         }
@@ -193,12 +193,25 @@ searchBtn.addEventListener('click', function () {
 
 async function getData(currentPage, state, sortBy, searchValue) {
     try {
+        var currentCountItems = function currentCountItems(itemsPerPage, currentPage, recordPerPage, totalItems) {
+            if (countItemsPerPage != 0) {
+                var fromPage = recordPerPage * (currentPage - 1) + 1;
+                var toPage = fromPage - 1 + itemsPerPage;
+                return '\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0441 ' + fromPage + ' \u043F\u043E ' + toPage + ' \u0438\u0437 ' + totalItems;
+            } else {
+                return '0';
+            }
+        };
+
         var data = await receivingВata(currentPage, state, sortBy, searchValue);
         var items = $.parseJSON(data);
         $('.catalog-items-list').html("");
         var total_items = items['total_item'];
         var item_on_page = items['record_per_page'];
+
+        var countItemsPerPage = 0;
         if (items["item"] != undefined) {
+            countItemsPerPage = Object.keys(items["item"]).length;
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
             var _iteratorError4 = undefined;
@@ -209,11 +222,11 @@ async function getData(currentPage, state, sortBy, searchValue) {
 
                     var _checkPrice = '';
                     if (val["is_sale"] == 1) {
-                        _checkPrice = '<span class="item-old-price">' + val["price"] + ' \u0440\u0443\u0431.</span><span class="item-sale-price">' + val["sale_price"] + ' \u0440\u0443\u0431.</span>';
+                        _checkPrice = '<p class="item-old-price">' + val["price"] + ' \u0440\u0443\u0431.</p><p class="item-sale-price">' + val["sale_price"] + ' \u0440\u0443\u0431.</p>';
                     } else {
-                        _checkPrice = '<span>' + val["price"] + ' \u0440\u0443\u0431.</span>';
+                        _checkPrice = '<p>' + val["price"] + ' \u0440\u0443\u0431.</p>';
                     }
-                    $('.catalog-items-list').append('<div class="catalog-item"><div class="item-image"><a href=\'../product/' + val["id"] + '\'><img src="' + val["image"] + '" alt="Item-' + val["id"] + '"></a><div class="item-compare"><i class="fa fa-heart-o" aria-hidden="true"></i></div></div><div class="item-info"><div class="item-info-price">' + _checkPrice + '</div><div class="item-info-shop-now" id="shop-now-' + val["id"] + '">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</div><div class="item-info-title"><h3>' + val["name"] + ' ' + val["article"] + '</h3></div><div class="item-info-brand"><span>' + val["brand_name"] + '</span></div><div class="item-info-size"><span>' + val["size"] + '</span></div></div></div>');
+                    $('.catalog-items-list').append('\n                        <div class="catalog-item">\n                            <div class="shadow"></div>\n                            <img src="https://www.juicycouture.asia/skin/frontend/jc/default/images/homepage/MMe21_IMGs_CollectionFeatured.jpg" alt="Item-' + val["id"] + '">\n                            <div class="image_overlay"></div>\n                            <div class="add_to_cart product_opacity">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</div>\n                            <div class="add_to_compare product_opacity">\u041E\u0442\u043B\u043E\u0436\u0438\u0442\u044C</div>\n                            <div class="product-info">         \n                                <div class="info-container">\n                                    <div class="info-container-header">\n                                        <div class="product-name">\n                                            <a href="../product/' + val["id"] + '">\n                                            <p class="product-title">' + val["name"] + ' ' + val["article"] + '</p>\n                                            <p class="product-brand">' + val["brand_name"] + '</p>\n                                            </a> \n                                        </div>\n                                        <div class="product-price">' + _checkPrice + '</div>\n                                    </div>\n                                    <div class="product-hide-info">\n                                        <strong>\u0420\u0430\u0437\u043C\u0435\u0440</strong>\n                                        <div class="product-size">' + val["size"] + '</div>\n                                        <strong>\u0421\u043E\u0441\u0442\u0430\u0432</strong>\n                                        <div class="product-compositions">\n                                            ' + val["composition"] + '\n                                        </div>\n                                    </div>                       \n                                </div>                         \n                            </div>\n                        </div>\n                    ');
                 }
             } catch (err) {
                 _didIteratorError4 = true;
@@ -235,7 +248,7 @@ async function getData(currentPage, state, sortBy, searchValue) {
         }
         //Установка новой текущей страницы
         var currentPage = items['current_page'];
-        countItems.innerText = total_items;
+        countItems.innerText = currentCountItems(countItemsPerPage, currentPage, item_on_page, total_items);
         //Пагинация
         $('.paginations').pagination({
             items: total_items,

@@ -5,9 +5,9 @@
 		**/
 	    public function all() {
 	    	$priceList = CatalogModel::getPrice();
-	    	$categoryList = CatalogModel::getCategory("category");
-	    	$brandList = CatalogModel::getCategory("brand");
-	    	$seasonList = CatalogModel::getCategory("season");
+	    	$categoryList = CatalogModel::getCategory();
+	    	$brandList = CatalogModel::getBrand();
+	    	$seasonList = CatalogModel::getSeason();
 	    	$countItems = CatalogModel::countItems();
 	        require_once('views/catalog/index.php');
 	        return true;				
@@ -53,7 +53,7 @@
 		    	$searchLike = ' AND (product.name LIKE "'.$searchValue.'" OR product.article LIKE "'.$searchValue.'" or product.composition LIKE "'.$searchValue.'")';
 		    }
 		    //Основной запрос
-			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.is_sale, product.is_availability, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
+			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.composition, product.is_sale, product.is_availability, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц
 		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY id';
 		    $order_by = 'id';

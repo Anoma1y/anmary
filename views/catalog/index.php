@@ -11,6 +11,7 @@
             </div>
             <div class="filter_by">
                 <h3>Параметры поиска:</h3>
+
                 <div class="filter-category catalog-filter-block">
                     <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-category">
                     <label for="tab-catalog-filter-category" class="filter-label">Категории</label>
@@ -94,7 +95,7 @@
         <div class="catalog-container">
             <div class="catalog-header">
                 <div class="catalog-count_item">
-                    Найдено товаров: <span id="countItems"></span>
+                    <span id="countItems"></span>
                 </div>
                 <div class="catalog-sort">
                     <div class="catalog-sort-by">
@@ -113,6 +114,29 @@
             </div>
             <div class="catalog-main">
                 <div class="catalog-items-list">
+                    
+<!--                     <div class="catalog-item">
+                        <div class="shadow"></div>
+                        <img src="http://i65.tinypic.com/vzeucz.png" alt="" />
+                        <div class="image_overlay"></div>
+                        <div class="add_to_cart product_opacity">Добавить в корзину</div>
+                        <div class="add_to_compare product_opacity">Отложить</div>
+                        <div class="product-info">         
+                            <div class="info-container">
+                                <p class="product-price">4000 руб.</p>
+                                <p class="product-name">Платье 08D/34</p>    
+                                <p class="product-brand">VAIDE</p>                                            
+                            <div class="product-hide-info">
+                                <strong>Размер</strong>
+                                <div class="product-size">44, 46, 50, 54</div>
+                                <strong>Состав</strong>
+                                <div class="product-compositions">
+                                    Шерсть-33%, Хлопок-55%
+                                </div>
+                            </div>                       
+                            </div>                         
+                        </div>
+                    </div> -->
 
                 </div>
                 <div class="main-pagination">
@@ -128,4 +152,4 @@
 <script type="text/javascript" src="/static/js/catalog.js"></script>
 
 
-<?php require_once "views/index/footer.php"; ?>
+<?php //require_once "views/index/footer.php"; ?>

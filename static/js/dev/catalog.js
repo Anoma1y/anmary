@@ -115,7 +115,7 @@
             searchValue = "";
             getData(currentPage, state, sortBy, searchValue);
         } else if (val.length >= 3 && val.length <= 20) {
-            if (!val.match(/[^a-zA-Z0-9]/g)) {
+            if (!val.match(/[^a-zA-Zа-яА-Я0-9]/g)) {
                 searchValue = `%${val}%`;
                 getData(currentPage, state, sortBy, searchValue);                
             }
@@ -130,15 +130,55 @@
             $('.catalog-items-list').html("");
             var total_items = items['total_item'];
             var item_on_page = items['record_per_page'];
+            function currentCountItems(itemsPerPage, currentPage, recordPerPage, totalItems) {
+                if (countItemsPerPage != 0) {
+                    let fromPage = recordPerPage * (currentPage - 1) + 1;
+                    let toPage = (fromPage - 1) + itemsPerPage;
+                    return `Показано с ${fromPage} по ${toPage} из ${totalItems}`                    
+                } else {
+                    return `0`;
+                }
+            }
+            var countItemsPerPage = 0;
             if (items["item"] != undefined) {
+                countItemsPerPage = Object.keys(items["item"]).length;
                 for (let val of items["item"]) {
                     let checkPrice = '';
                     if (val["is_sale"] == 1) {
-                        checkPrice = `<span class="item-old-price">${val["price"]} руб.</span><span class="item-sale-price">${val["sale_price"]} руб.</span>`;
+                        checkPrice = `<p class="item-old-price">${val["price"]} руб.</p><p class="item-sale-price">${val["sale_price"]} руб.</p>`;
                     } else {
-                        checkPrice = `<span>${val["price"]} руб.</span>`;
+                        checkPrice = `<p>${val["price"]} руб.</p>`;
                     }
-                    $('.catalog-items-list').append(`<div class="catalog-item"><div class="item-image"><a href='../product/${val["id"]}'><img src="${val["image"]}" alt="Item-${val["id"]}"></a><div class="item-compare"><i class="fa fa-heart-o" aria-hidden="true"></i></div></div><div class="item-info"><div class="item-info-price">${checkPrice}</div><div class="item-info-shop-now" id="shop-now-${val["id"]}">Добавить в корзину</div><div class="item-info-title"><h3>${val["name"]} ${val["article"]}</h3></div><div class="item-info-brand"><span>${val["brand_name"]}</span></div><div class="item-info-size"><span>${val["size"]}</span></div></div></div>`);
+                    $('.catalog-items-list').append(`
+                        <div class="catalog-item">
+                            <div class="shadow"></div>
+                            <img src="https://www.juicycouture.asia/skin/frontend/jc/default/images/homepage/MMe21_IMGs_CollectionFeatured.jpg" alt="Item-${val["id"]}">
+                            <div class="image_overlay"></div>
+                            <div class="add_to_cart product_opacity">Добавить в корзину</div>
+                            <div class="add_to_compare product_opacity">Отложить</div>
+                            <div class="product-info">         
+                                <div class="info-container">
+                                    <div class="info-container-header">
+                                        <div class="product-name">
+                                            <a href="../product/${val["id"]}">
+                                            <p class="product-title">${val["name"]} ${val["article"]}</p>
+                                            <p class="product-brand">${val["brand_name"]}</p>
+                                            </a> 
+                                        </div>
+                                        <div class="product-price">${checkPrice}</div>
+                                    </div>
+                                    <div class="product-hide-info">
+                                        <strong>Размер</strong>
+                                        <div class="product-size">${val["size"]}</div>
+                                        <strong>Состав</strong>
+                                        <div class="product-compositions">
+                                            ${val["composition"]}
+                                        </div>
+                                    </div>                       
+                                </div>                         
+                            </div>
+                        </div>
+                    `);
                 }
             } else {
                 $('.catalog-items-list').append('<h1>Список пуст</h1>');
@@ -146,7 +186,7 @@
             }
             //Установка новой текущей страницы
             var currentPage = items['current_page'];
-            countItems.innerText = total_items;
+            countItems.innerText = currentCountItems(countItemsPerPage, currentPage, item_on_page, total_items);
             //Пагинация
             $('.paginations').pagination({
                 items: total_items,
