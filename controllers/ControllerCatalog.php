@@ -21,6 +21,7 @@
 		    $categoryFilterList = $_POST["state"]["categoryFilter"];
 		    $brandFilterList = $_POST["state"]["brandFilter"];
 		    $seasonFilterList = $_POST["state"]["seasonFilter"];
+		    $isSaleFilterList = $_POST["state"]["isSaleFilter"];
 		    $sortValue = $_POST["sort"];
 			$searchValue = $_POST["searchValue"];
 		    $filterQuery = "";
@@ -38,6 +39,10 @@
 		    if (!empty($seasonFilterList)) {
 		        $filterQuery = $filterQuery.' AND season_id IN ('.implode(",",$seasonFilterList).')';
 		    }
+		    //Добавления фильтра скидок (1 или 0)
+		    if (strlen($isSaleFilterList) != 0) {
+		        $filterQuery = $filterQuery.' AND is_sale = 1 ';
+		    }
 		    //Сортировка товаров
 		    if ($sortValue == "sortByNewest") {
 		    	$sortQuery = "product.id DESC";
@@ -53,7 +58,7 @@
 		    	$searchLike = ' AND (product.name LIKE "'.$searchValue.'" OR product.article LIKE "'.$searchValue.'" or product.composition LIKE "'.$searchValue.'")';
 		    }
 		    //Основной запрос
-			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.composition, product.is_sale, product.is_availability, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
+			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.composition, product.is_sale, product.is_availability, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND product.price >= '.$priceMin.' AND product.price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц
 		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY id';
 		    $order_by = 'id';

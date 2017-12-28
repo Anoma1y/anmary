@@ -13,10 +13,10 @@
 	    public function add() {
 	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
 	    	if ($check['permissions'] == '{"admin": 1}') {
-		    	$brandList = Admins::getCategory("brand");
-		    	$categoryList = Admins::getCategory("category");
-		    	$seasonList = Admins::getCategory("season");
-		    	$colorList = Admins::getCategory("color");
+		    	$brandList = Admins::getBrand();
+		    	$categoryList = Admins::getCategory();
+		    	$seasonList = Admins::getSeason();
+		    	$colorList = Admins::getColor();
 				require_once('views/admin/add.php');
 			    return true;  		
 	    	} else {
@@ -35,10 +35,10 @@
 	    public function edit() {
 	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
 	    	if ($check['permissions'] == '{"admin": 1}') {
-		    	$brandList = Admins::getCategory("brand");
-		    	$categoryList = Admins::getCategory("category");
-		    	$seasonList = Admins::getCategory("season");
-		    	$colorList = Admins::getCategory("color");
+		    	$brandList = Admins::getBrand();
+		    	$categoryList = Admins::getCategory();
+		    	$seasonList = Admins::getSeason();
+		    	$colorList = Admins::getColor();
 		    	$productData = ProductModel::editProductById();
 				require_once('views/admin/edit.php');
 			    return true;  		

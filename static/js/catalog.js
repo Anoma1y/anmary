@@ -7,6 +7,7 @@ var minPrice = document.getElementById('minPrice');
 var maxPrice = document.getElementById('maxPrice');
 var searchInput = document.getElementById('searchFilter_input');
 var searchBtn = document.getElementById('searchFilterBtn');
+var filterIsSale = document.getElementById('filterIsSale');
 var countItems = document.getElementById('countItems');
 
 var total_pages,
@@ -16,14 +17,15 @@ var state = {
     categoryFilter: [],
     brandFilter: [],
     seasonFilter: [],
+    isSaleFilter: '',
     minPrice: minPrice.value,
     maxPrice: maxPrice.value
 };
-var sortBy = "sortByNewest";
-var searchValue = "";
+var sortBy = 'sortByNewest';
+var searchValue = '';
 //Функция проверки цены на наличия в ней текста или пустого значения
 function checkPrice(value) {
-    if (value != "" && value.match(/^\d+$/)) {
+    if (value != '' && value.match(/^\d+$/)) {
         return true;
     }
     return false;
@@ -31,7 +33,7 @@ function checkPrice(value) {
 //обработчик события обновления ценогого диапазона, срабатывает через 500 мс
 minPrice.addEventListener('change', function (e) {
     var target = e.target.value;
-    state["minPrice"] = target;
+    state['minPrice'] = target;
     if (checkPrice(target)) {
         setTimeout(function () {
             getData(currentPage, state, sortBy, searchValue);;
@@ -142,8 +144,6 @@ try {
             }
         }, false);
     }
-
-    //сортировка товаров
 } catch (err) {
     _didIteratorError3 = true;
     _iteratorError3 = err;
@@ -159,6 +159,18 @@ try {
     }
 }
 
+filterIsSale.addEventListener('change', function (e) {
+    var target = e.target;
+    if (target.checked) {
+        state["isSaleFilter"] = 1;
+        getData(currentPage, state, sortBy, searchValue);
+    } else if (!target.checked) {
+        state["isSaleFilter"] = '';
+        getData(currentPage, state, sortBy, searchValue);
+    }
+}, false);
+
+//сортировка товаров
 $('select[name="sortBy"]').on('change', function () {
     var sort = $('select[name="sortBy"] option:selected').val();
     sortBy = sort;
@@ -209,6 +221,7 @@ async function getData(currentPage, state, sortBy, searchValue) {
         var total_items = items['total_item'];
         var item_on_page = items['record_per_page'];
 
+        console.log(items);
         var countItemsPerPage = 0;
         if (items["item"] != undefined) {
             countItemsPerPage = Object.keys(items["item"]).length;

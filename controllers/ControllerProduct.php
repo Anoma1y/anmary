@@ -9,19 +9,13 @@
             $cmp_i = 0;
             $sz_i = 0;
             $getComposition = array();
-            $setSize;
             foreach ($composition as $key) {
             	if (strlen($key) > 1) {
 	                $getComposition[$cmp_i] = str_replace('-', ' ', $key);
 	                $cmp_i++;
             	}
             }
-            $size = explode(' ', $data['size']);
-            foreach ($size as $key) {
-                $setSize = str_replace(',', ' ', $key);
-                $sz_i++;
-            }
-            $getSize = explode(' ', $setSize);
+            $getSize = explode(', ', $data['size']);
 			if (!empty($routes[2])) {
 	       		require_once('views/product/index.php');
 		        return true;				

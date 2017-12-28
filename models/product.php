@@ -27,7 +27,7 @@
 		public static function getRelatedProducts($category_id) {
 			try {
 				$db = Db::getConnection();
-	 	        $sql = 'SELECT name, article, price, sale_price, is_sale, is_availability, image FROM product WHERE category_id = :category_id and is_availability = 1 ORDER BY RAND() LIMIT 6';
+	 	        $sql = 'SELECT name, article, price, sale_price, is_sale, image FROM product WHERE category_id = :category_id and is_availability = 1 ORDER BY RAND() LIMIT 4';
 		        $result = $db->prepare($sql);
 		        $result->bindParam(':category_id', $category_id, PDO::PARAM_INT);
 		        $result->setFetchMode(PDO::FETCH_ASSOC);

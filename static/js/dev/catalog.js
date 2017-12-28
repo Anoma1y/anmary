@@ -6,6 +6,7 @@
     const maxPrice = document.getElementById('maxPrice');
     const searchInput = document.getElementById('searchFilter_input');
     const searchBtn = document.getElementById('searchFilterBtn');
+    const filterIsSale = document.getElementById('filterIsSale');
     var countItems = document.getElementById('countItems');
 
 
@@ -16,14 +17,15 @@
         categoryFilter: [],
         brandFilter: [],
         seasonFilter: [],
+        isSaleFilter: '',
         minPrice: minPrice.value,
         maxPrice: maxPrice.value
     }
-    var sortBy = "sortByNewest";
-    var searchValue = "";
+    var sortBy = 'sortByNewest';
+    var searchValue = '';
     //Функция проверки цены на наличия в ней текста или пустого значения
     function checkPrice(value) {
-        if (value != "" && value.match(/^\d+$/)) {
+        if (value != '' && value.match(/^\d+$/)) {
             return true; 
         }
         return false;
@@ -31,7 +33,7 @@
     //обработчик события обновления ценогого диапазона, срабатывает через 500 мс
     minPrice.addEventListener('change', function(e) {
         let target = e.target.value;
-        state["minPrice"] = target;
+        state['minPrice'] = target;
         if (checkPrice(target)) {
            setTimeout(function(){ getData(currentPage, state, sortBy, searchValue);; },500); 
         }
@@ -89,6 +91,17 @@
         }, false);
     }
 
+    filterIsSale.addEventListener('change', function(e) {
+        let target = e.target;
+        if (target.checked) {
+            state["isSaleFilter"] = 1;
+            getData(currentPage, state, sortBy, searchValue);
+        } else if (!target.checked) {
+            state["isSaleFilter"] = '';
+            getData(currentPage, state, sortBy, searchValue);
+        }
+    }, false);
+
     //сортировка товаров
     $('select[name="sortBy"]').on('change', function(){
         let sort = $('select[name="sortBy"] option:selected').val();
@@ -139,6 +152,7 @@
                     return `0`;
                 }
             }
+            console.log(items);
             var countItemsPerPage = 0;
             if (items["item"] != undefined) {
                 countItemsPerPage = Object.keys(items["item"]).length;

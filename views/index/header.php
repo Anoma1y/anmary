@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/css/responsiveslides.css">
 	<link rel="stylesheet" href="/static/css/simplePagination.css">
+	<link rel="stylesheet" href="/static/css/polyfill.object-fit.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- <link rel="stylesheet" href="/static/css/aos.css"> -->
 	<!-- <link rel="stylesheet" href="/static/css/owl.carousel.css"> -->

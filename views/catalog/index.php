@@ -72,7 +72,6 @@
                     </div>
                 </div>
 
-
                 <div class="filter-price catalog-filter-block">
                     <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-price">
                     <label for="tab-catalog-filter-price" class="filter-label">Цена</label>                  
@@ -87,9 +86,19 @@
                                 <input type="text" value="<?=$maxPrice?>" name="maxPrice" id="maxPrice"> 
                             </div>                            
                         </div>
+                        <div class="catalog-filter-price-inpanel is_sale">
+                            <div>
+                                <input type="checkbox" class="filterIsSale" id="filterIsSale">
+                                <label for="filterIsSale" class="filterIsSale"></label>
+                            </div>
+                            <div>
+                                <p>Только скидки</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
+
             </div>
         </div>
         <div class="catalog-container">
@@ -114,30 +123,6 @@
             </div>
             <div class="catalog-main">
                 <div class="catalog-items-list">
-                    
-<!--                     <div class="catalog-item">
-                        <div class="shadow"></div>
-                        <img src="http://i65.tinypic.com/vzeucz.png" alt="" />
-                        <div class="image_overlay"></div>
-                        <div class="add_to_cart product_opacity">Добавить в корзину</div>
-                        <div class="add_to_compare product_opacity">Отложить</div>
-                        <div class="product-info">         
-                            <div class="info-container">
-                                <p class="product-price">4000 руб.</p>
-                                <p class="product-name">Платье 08D/34</p>    
-                                <p class="product-brand">VAIDE</p>                                            
-                            <div class="product-hide-info">
-                                <strong>Размер</strong>
-                                <div class="product-size">44, 46, 50, 54</div>
-                                <strong>Состав</strong>
-                                <div class="product-compositions">
-                                    Шерсть-33%, Хлопок-55%
-                                </div>
-                            </div>                       
-                            </div>                         
-                        </div>
-                    </div> -->
-
                 </div>
                 <div class="main-pagination">
                     <div class="paginations"></div>
