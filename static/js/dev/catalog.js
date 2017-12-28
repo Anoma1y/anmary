@@ -166,7 +166,7 @@
                     $('.catalog-items-list').append(`
                         <div class="catalog-item">
                             <div class="shadow"></div>
-                            <img src="https://www.juicycouture.asia/skin/frontend/jc/default/images/homepage/MMe21_IMGs_CollectionFeatured.jpg" alt="Item-${val["id"]}">
+                            <img src="${val["image"]}" alt="Item-${val["id"]}">
                             <div class="image_overlay"></div>
                             <div class="add_to_cart product_opacity">Добавить в корзину</div>
                             <div class="add_to_compare product_opacity">Отложить</div>

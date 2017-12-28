@@ -4,7 +4,7 @@
 	<div class="catalog-container">
 		<div class="left-col">
 			<div class="detail-image">
-				<img src="/static/img/E 8.jpg_Thumbnail0.jpg" alt="Detail Image">
+				<img src="<?=$data["image"]?>" alt="Detail Image">
 			</div>
 		</div>
 		<div class="right-col">
@@ -91,7 +91,7 @@
 			
 			<?php foreach ($relatedProducts as $key => $value): ?>
 				<div class="like-item">
-					<div class="like-item-image"><img src="/static/img/E 8.jpg_Thumbnail0.jpg" alt="Like Image"></div>
+					<div class="like-item-image"><a href="../product/<?=$value["id"]?>"><img src="<?=$value["image"]?>" alt="Like Image"></a></div>
 					<div class="like-item-info">
 						<div class="like-item-info-title">
 							<span><?=$value["name"];?> <?=$value["article"];?></span>

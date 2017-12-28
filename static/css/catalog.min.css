@@ -302,7 +302,9 @@
             opacity: 1; }
         .catalog .catalog-container .catalog-items-list .catalog-item img {
           width: 100%;
-          height: 315px; }
+          height: 315px;
+          -o-object-fit: cover;
+             object-fit: cover; }
         .catalog .catalog-container .catalog-items-list .catalog-item .image_overlay {
           position: absolute;
           top: 0;

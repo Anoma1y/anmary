@@ -83,7 +83,7 @@
 								<li><a href="#">Link-3</a></li>
 								<li><a href="#">Link-4</a></li>
 								<li><a href="#">Link-5</a></li>
-								<li><a href="#">Контакты</a></li>
+								<li><a href="/contacts">Контакты</a></li>
 							</ul>
 						</nav>
 						<div class="menu-main-overlay"></div>
@@ -94,7 +94,7 @@
 						<li><a href="#">Link-3</a></li>
 						<li><a href="#">Link-4</a></li>
 						<li><a href="#">Link-5</a></li>
-						<li><a href="#">Контакты</a></li>
+						<li><a href="/contacts">Контакты</a></li>
 					</ul>
 				</nav>
 				<div class="social_network">
