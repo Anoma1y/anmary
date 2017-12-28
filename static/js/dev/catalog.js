@@ -1,6 +1,7 @@
     "use strict";
     const categoryList = document.getElementsByName('categoryList');
     const brandList = document.getElementsByName('brandList');
+    const seasonList = document.getElementsByName('seasonList');
     const minPrice = document.getElementById('minPrice');
     const maxPrice = document.getElementById('maxPrice');
     const searchInput = document.getElementById('searchFilter_input');
@@ -14,6 +15,7 @@
     var state = {
         categoryFilter: [],
         brandFilter: [],
+        seasonFilter: [],
         minPrice: minPrice.value,
         maxPrice: maxPrice.value
     }
@@ -42,6 +44,7 @@
         }
     }, false);
 
+
     //Назначение события для фильтра категорий товара
     for (let category of categoryList) {
         category.addEventListener('change', function(e) {
@@ -66,6 +69,21 @@
             } else if (!target.checked) {
                 let index = state["brandFilter"].indexOf(target.value);
                 state["brandFilter"].splice(index, 1);
+                getData(currentPage, state, sortBy, searchValue);
+            }
+        }, false);
+    }
+
+    //Назначение события для фильтра сезонов товара
+    for (let brand of seasonList) {
+        brand.addEventListener('change', function(e) {
+            let target = e.target;
+            if (target.checked) {
+                state["seasonFilter"].push(target.value);
+                getData(currentPage, state, sortBy, searchValue);
+            } else if (!target.checked) {
+                let index = state["seasonFilter"].indexOf(target.value);
+                state["seasonFilter"].splice(index, 1);
                 getData(currentPage, state, sortBy, searchValue);
             }
         }, false);

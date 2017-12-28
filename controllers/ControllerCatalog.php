@@ -5,8 +5,9 @@
 		**/
 	    public function all() {
 	    	$priceList = CatalogModel::getPrice();
-	    	$categoryList = CatalogModel::getCategory();
-	    	$brandList = CatalogModel::getBrand();//Список брендов
+	    	$categoryList = CatalogModel::getCategory("category");
+	    	$brandList = CatalogModel::getCategory("brand");
+	    	$seasonList = CatalogModel::getCategory("season");
 	    	$countItems = CatalogModel::countItems();
 	        require_once('views/catalog/index.php');
 	        return true;				
@@ -19,6 +20,7 @@
 		    $priceMax = $_POST["state"]["maxPrice"];
 		    $categoryFilterList = $_POST["state"]["categoryFilter"];
 		    $brandFilterList = $_POST["state"]["brandFilter"];
+		    $seasonFilterList = $_POST["state"]["seasonFilter"];
 		    $sortValue = $_POST["sort"];
 			$searchValue = $_POST["searchValue"];
 		    $filterQuery = "";
@@ -32,6 +34,10 @@
 		    if (!empty($brandFilterList)) {
 		        $filterQuery = $filterQuery.' AND brand_id IN ('.implode(",",$brandFilterList).')';
 		    }
+		    //Добавление фильтра сезонов (seasonFilterList содержит массив сезонов товаров)
+		    if (!empty($seasonFilterList)) {
+		        $filterQuery = $filterQuery.' AND season_id IN ('.implode(",",$seasonFilterList).')';
+		    }
 		    //Сортировка товаров
 		    if ($sortValue == "sortByNewest") {
 		    	$sortQuery = "product.id DESC";
@@ -42,10 +48,12 @@
 		    } else if ($sortValue == "sortByPriceHigher") {
 		    	$sortQuery = "product.price";
 		    }
+		    //Добавление фильтра поискового запроса
 		    if (!empty($searchValue) && strlen($searchValue) >= 3 && strlen($searchValue) <= 20) {
 		    	$searchLike = ' AND (product.name LIKE "'.$searchValue.'" OR product.article LIKE "'.$searchValue.'" or product.composition LIKE "'.$searchValue.'")';
 		    }
-			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.is_sale, product.is_availability, product.image FROM product, brand WHERE product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
+		    //Основной запрос
+			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.is_sale, product.is_availability, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц
 		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY id';
 		    $order_by = 'id';

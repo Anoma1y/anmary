@@ -2,6 +2,7 @@
 
 var categoryList = document.getElementsByName('categoryList');
 var brandList = document.getElementsByName('brandList');
+var seasonList = document.getElementsByName('seasonList');
 var minPrice = document.getElementById('minPrice');
 var maxPrice = document.getElementById('maxPrice');
 var searchInput = document.getElementById('searchFilter_input');
@@ -14,6 +15,7 @@ var total_pages,
 var state = {
     categoryFilter: [],
     brandFilter: [],
+    seasonFilter: [],
     minPrice: minPrice.value,
     maxPrice: maxPrice.value
 };
@@ -104,7 +106,7 @@ try {
         }, false);
     }
 
-    //сортировка товаров
+    //Назначение события для фильтра сезонов товара
 } catch (err) {
     _didIteratorError2 = true;
     _iteratorError2 = err;
@@ -116,6 +118,43 @@ try {
     } finally {
         if (_didIteratorError2) {
             throw _iteratorError2;
+        }
+    }
+}
+
+var _iteratorNormalCompletion3 = true;
+var _didIteratorError3 = false;
+var _iteratorError3 = undefined;
+
+try {
+    for (var _iterator3 = seasonList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var _brand = _step3.value;
+
+        _brand.addEventListener('change', function (e) {
+            var target = e.target;
+            if (target.checked) {
+                state["seasonFilter"].push(target.value);
+                getData(currentPage, state, sortBy, searchValue);
+            } else if (!target.checked) {
+                var index = state["seasonFilter"].indexOf(target.value);
+                state["seasonFilter"].splice(index, 1);
+                getData(currentPage, state, sortBy, searchValue);
+            }
+        }, false);
+    }
+
+    //сортировка товаров
+} catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+} finally {
+    try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+            _iterator3.return();
+        }
+    } finally {
+        if (_didIteratorError3) {
+            throw _iteratorError3;
         }
     }
 }
@@ -160,13 +199,13 @@ async function getData(currentPage, state, sortBy, searchValue) {
         var total_items = items['total_item'];
         var item_on_page = items['record_per_page'];
         if (items["item"] != undefined) {
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
 
             try {
-                for (var _iterator3 = items["item"][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var val = _step3.value;
+                for (var _iterator4 = items["item"][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var val = _step4.value;
 
                     var _checkPrice = '';
                     if (val["is_sale"] == 1) {
@@ -177,16 +216,16 @@ async function getData(currentPage, state, sortBy, searchValue) {
                     $('.catalog-items-list').append('<div class="catalog-item"><div class="item-image"><a href=\'../product/' + val["id"] + '\'><img src="' + val["image"] + '" alt="Item-' + val["id"] + '"></a><div class="item-compare"><i class="fa fa-heart-o" aria-hidden="true"></i></div></div><div class="item-info"><div class="item-info-price">' + _checkPrice + '</div><div class="item-info-shop-now" id="shop-now-' + val["id"] + '">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</div><div class="item-info-title"><h3>' + val["name"] + ' ' + val["article"] + '</h3></div><div class="item-info-brand"><span>' + val["brand_name"] + '</span></div><div class="item-info-size"><span>' + val["size"] + '</span></div></div></div>');
                 }
             } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
                     }
                 } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
                     }
                 }
             }

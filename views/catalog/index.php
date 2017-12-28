@@ -30,6 +30,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="filter-brand catalog-filter-block">
                     <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-brand">
                     <label for="tab-catalog-filter-brand" class="filter-label">Бренды</label>
@@ -49,6 +50,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="filter-season catalog-filter-block">
+                    <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-season">
+                    <label for="tab-catalog-filter-season" class="filter-label">Сезон</label>
+                    <div class="catalog-filter-panel">
+                        <div class="catalog-filter-category-inpanel">
+                            <?php foreach ($seasonList as $key => $value): ?>
+                                <div class="filter-category-item">
+                                    <div class="filter-category-item-input">
+                                         <input type="checkbox" class="seasonList" name="seasonList" id="seasonList_<?=$value["id"];?>" value="<?=$value["id"];?>">
+                                        <label for="seasonList_<?=$value["id"];?>"></label>                                       
+                                    </div>
+                                    <div class="filter-category-item-value">
+                                         <span><?=$value["season_name"];?></span>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="filter-price catalog-filter-block">
                     <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-price">
                     <label for="tab-catalog-filter-price" class="filter-label">Цена</label>                  
@@ -65,6 +88,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
         <div class="catalog-container">
