@@ -44,10 +44,12 @@
 			<div class="overlay"></div>
 		</div>
 		<div class="block season_sale">
-			<div class="season_sale_info">
-				<p>Сезонная распродажа</p>
-				<h1>Sale</h1>
-			</div>
+			<a href="/catalog/sale">
+				<div class="season_sale_info">
+					<p>Сезонная распродажа</p>
+					<h1>Sale</h1>
+				</div>
+			</a>
 		</div>
 		<div class="block new_arrivals">
 			<div class="overlay"></div>
@@ -82,8 +84,9 @@
 <section id="latest_viewed">
 	<div class="container">
 		<div class="title">
-			<h1>Lorem ipsum dolor sit.</h1>
-			<h3>Lorem ipsum dolor sit amet, consectetur.</h3>
+			<!-- <h1>Lorem ipsum dolor sit.</h1> -->
+			<h1><span>Рекомендуем</span></h1>
+			<!-- <h3>Lorem ipsum dolor sit amet, consectetur.</h3> -->
 		</div>
 	</div>
 	<div class="container">
@@ -121,8 +124,7 @@
 <section class="featured_brand" id="featured_brand">
 	<div class="container">
 		<div class="title">
-			<h1>Популярные бренды</h1>
-			<h3>Lorem ipsum dolor sit amet, consectetur.</h3>
+			<h1><span>Популярные бренды</span></h1>
 		</div>
 	</div>
 	<div class="container brand_container">

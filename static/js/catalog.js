@@ -1,246 +1,331 @@
 "use strict";
 
-var categoryList = document.getElementsByName('categoryList');
-var brandList = document.getElementsByName('brandList');
-var seasonList = document.getElementsByName('seasonList');
-var minPrice = document.getElementById('minPrice');
-var maxPrice = document.getElementById('maxPrice');
-var searchInput = document.getElementById('searchFilter_input');
-var searchBtn = document.getElementById('searchFilterBtn');
-var filterIsSale = document.getElementById('filterIsSale');
-var countItems = document.getElementById('countItems');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var total_pages,
-    items,
-    currentPage = 1;
-var state = {
-    categoryFilter: [],
-    brandFilter: [],
-    seasonFilter: [],
-    isSaleFilter: '',
-    minPrice: minPrice.value,
-    maxPrice: maxPrice.value
-};
-var sortBy = 'sortByNewest';
-var searchValue = '';
-//Функция проверки цены на наличия в ней текста или пустого значения
-function checkPrice(value) {
-    if (value != '' && value.match(/^\d+$/)) {
-        return true;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Catalog = function () {
+    function Catalog(url, method) {
+        _classCallCheck(this, Catalog);
+
+        this.total_pages;
+        this.items;
+        this.currentPage = 1;
+        this.url = url;
+        this.method = method;
+        this.total_items = 1;
+        this.item_on_page = 1;
+        this.countItems = document.getElementById('countItems');
+        this.countItemsPerPage = 0;
     }
-    return false;
-}
-//обработчик события обновления ценогого диапазона, срабатывает через 500 мс
-minPrice.addEventListener('change', function (e) {
-    var target = e.target.value;
-    state['minPrice'] = target;
-    if (checkPrice(target)) {
-        setTimeout(function () {
-            getData(currentPage, state, sortBy, searchValue);;
-        }, 500);
-    }
-}, false);
-maxPrice.addEventListener('change', function (e) {
-    var target = e.target.value;
-    state["maxPrice"] = target;
-    if (checkPrice(target)) {
-        setTimeout(function () {
-            getData(currentPage, state, sortBy, searchValue);;
-        }, 500);
-    }
-}, false);
 
-//Назначение события для фильтра категорий товара
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+    _createClass(Catalog, [{
+        key: 'init',
+        value: function init(initialState) {
+            this.getData(this.currentPage, initialState);
+        }
+    }, {
+        key: 'receiving\u0412ata',
+        value: function receivingAta(page, state) {
+            var _this = this;
 
-try {
-    for (var _iterator = categoryList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var category = _step.value;
+            return new Promise(function (res, rej) {
+                $.ajax({
+                    url: _this.url,
+                    method: _this.method,
+                    data: { page: page, state: state } //текущая страница, фильтр и сортировка
+                }).done(res).fail(rej);
+            });
+        }
+    }, {
+        key: 'getData',
+        value: async function getData(currentPage, state) {
+            var _this2 = this;
 
-        category.addEventListener('change', function (e) {
-            var target = e.target;
-            if (target.checked) {
-                state["categoryFilter"].push(target.value);
-                getData(currentPage, state, sortBy, searchValue);
-            } else if (!target.checked) {
-                var index = state["categoryFilter"].indexOf(target.value);
-                state["categoryFilter"].splice(index, 1);
-                getData(currentPage, state, sortBy, searchValue);
+            try {
+                var data = await this.receivingВata(currentPage, state);
+                this.items = $.parseJSON(data);
+                //Всего записей
+                this.total_items = this.items['total_item'];
+                //Записей на странице
+                this.item_on_page = this.items['record_per_page'];
+                //Установка новой текущей страницы
+                this.currentPage = this.items['current_page'];
+                $('.catalog-items-list').html("");
+                if (this.items["item"] != undefined) {
+                    this.itemsRender(this.items);
+                    this.countItemsPerPage = Object.keys(this.items["item"]).length;
+                } else {
+                    this.countItemsRender(0);
+                }
+                this.countItems.innerText = this.currentCountItems(this.countItemsPerPage, this.currentPage, this.item_on_page, this.total_items);
+                $('.paginations').pagination({
+                    items: this.total_items,
+                    itemsOnPage: this.item_on_page,
+                    cssStyle: 'dark-theme',
+                    prevText: '',
+                    nextText: '',
+                    hrefTextPrefix: '',
+                    currentPage: this.currentPage,
+                    onPageClick: function onPageClick(pageNumber) {
+                        _this2.getData(pageNumber, filter.state);
+                    }
+                });
+            } catch (error) {
+                this.countItemsRender("Error");
+                throw new Error(error);
             }
-        }, false);
-    }
-    //Назначение события для фильтра бренда товара
-} catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-} finally {
-    try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
         }
-    } finally {
-        if (_didIteratorError) {
-            throw _iteratorError;
-        }
-    }
-}
+    }, {
+        key: 'itemsRender',
+        value: function itemsRender(items) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-var _iteratorNormalCompletion2 = true;
-var _didIteratorError2 = false;
-var _iteratorError2 = undefined;
+            try {
+                for (var _iterator = items["item"][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var val = _step.value;
 
-try {
-    for (var _iterator2 = brandList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var brand = _step2.value;
-
-        brand.addEventListener('change', function (e) {
-            var target = e.target;
-            if (target.checked) {
-                state["brandFilter"].push(target.value);
-                getData(currentPage, state, sortBy, searchValue);
-            } else if (!target.checked) {
-                var index = state["brandFilter"].indexOf(target.value);
-                state["brandFilter"].splice(index, 1);
-                getData(currentPage, state, sortBy, searchValue);
+                    var checkPrice = '';
+                    var checkPercentSale = '';
+                    if (val["is_sale"] == 1) {
+                        checkPrice = '<p class="item-old-price">' + val["price"] + ' \u0440\u0443\u0431.</p><p class="item-sale-price">' + val["sale_price"] + ' \u0440\u0443\u0431.</p>';
+                        checkPercentSale = '<div class="item-sale-percent"><p>' + val["percentSale"] + '%</p></div>';
+                    } else {
+                        checkPrice = '<p>' + val["price"] + ' \u0440\u0443\u0431.</p>';
+                    }
+                    $('.catalog-items-list').append('\n                    <div class="catalog-item">\n                        <div class="shadow"></div>\n                        <img src="' + val["image"] + '" alt="Item-' + val["id"] + '">\n                        ' + checkPercentSale + '\n                        <div class="image_overlay"></div>\n                        <div class="add_to_cart product_opacity">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</div>\n                        <div class="add_to_compare product_opacity">\u041E\u0442\u043B\u043E\u0436\u0438\u0442\u044C</div>\n                        <div class="product-info">         \n                            <div class="info-container">\n                                <div class="info-container-header">\n                                    <div class="product-name">\n                                        <a href="../product/' + val["id"] + '">\n                                        <p class="product-title">' + val["name"] + ' ' + val["article"] + '</p>\n                                        <p class="product-brand">' + val["brand_name"] + '</p>\n                                        </a> \n                                    </div>\n                                    <div class="product-price">' + checkPrice + '</div>\n                                </div>\n                                <div class="product-hide-info">\n                                    <strong>\u0420\u0430\u0437\u043C\u0435\u0440</strong>\n                                    <div class="product-size">' + val["size"] + '</div>\n                                    <strong>\u0421\u043E\u0441\u0442\u0430\u0432</strong>\n                                    <div class="product-compositions">\n                                        ' + val["composition"] + '\n                                    </div>\n                                </div>                       \n                            </div>                         \n                        </div>\n                    </div>\n                ');
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
             }
-        }, false);
-    }
-
-    //Назначение события для фильтра сезонов товара
-} catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-} finally {
-    try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-            _iterator2.return();
         }
-    } finally {
-        if (_didIteratorError2) {
-            throw _iteratorError2;
-        }
-    }
-}
-
-var _iteratorNormalCompletion3 = true;
-var _didIteratorError3 = false;
-var _iteratorError3 = undefined;
-
-try {
-    for (var _iterator3 = seasonList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var _brand = _step3.value;
-
-        _brand.addEventListener('change', function (e) {
-            var target = e.target;
-            if (target.checked) {
-                state["seasonFilter"].push(target.value);
-                getData(currentPage, state, sortBy, searchValue);
-            } else if (!target.checked) {
-                var index = state["seasonFilter"].indexOf(target.value);
-                state["seasonFilter"].splice(index, 1);
-                getData(currentPage, state, sortBy, searchValue);
+    }, {
+        key: 'countItemsRender',
+        value: function countItemsRender(count) {
+            if (count == "Error") {
+                $('.catalog-items-list').html("");
+                $('.catalog-items-list').append('<h1>Список пуст</h1>');
+                this.countItems.innerText = 0;
+            } else if (count == 0) {
+                $('.catalog-items-list').append('<h1>Список пуст</h1>');
+                this.countItems.innerText = 0;
             }
-        }, false);
-    }
-} catch (err) {
-    _didIteratorError3 = true;
-    _iteratorError3 = err;
-} finally {
-    try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
         }
-    } finally {
-        if (_didIteratorError3) {
-            throw _iteratorError3;
-        }
-    }
-}
-
-filterIsSale.addEventListener('change', function (e) {
-    var target = e.target;
-    if (target.checked) {
-        state["isSaleFilter"] = 1;
-        getData(currentPage, state, sortBy, searchValue);
-    } else if (!target.checked) {
-        state["isSaleFilter"] = '';
-        getData(currentPage, state, sortBy, searchValue);
-    }
-}, false);
-
-//сортировка товаров
-$('select[name="sortBy"]').on('change', function () {
-    var sort = $('select[name="sortBy"] option:selected').val();
-    sortBy = sort;
-    getData(currentPage, state, sortBy, searchValue);
-});
-
-function receivingВata(page, state, sortBy) {
-    var searchValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
-
-    return new Promise(function (res, rej) {
-        $.ajax({
-            url: "getAllProduct",
-            method: "POST",
-            data: { page: page, state: state, sort: sortBy, searchValue: searchValue } //текущая страница, фильтр и сортировка
-        }).done(res).fail(rej);
-    });
-}
-window.onload = getData(currentPage, state, sortBy, searchValue);
-
-searchBtn.addEventListener('click', function () {
-    var val = searchInput.value;
-    if (val.length == 0) {
-        searchValue = "";
-        getData(currentPage, state, sortBy, searchValue);
-    } else if (val.length >= 3 && val.length <= 20) {
-        if (!val.match(/[^a-zA-Zа-яА-Я0-9]/g)) {
-            searchValue = '%' + val + '%';
-            getData(currentPage, state, sortBy, searchValue);
-        }
-    }
-});
-
-async function getData(currentPage, state, sortBy, searchValue) {
-    try {
-        var currentCountItems = function currentCountItems(itemsPerPage, currentPage, recordPerPage, totalItems) {
-            if (countItemsPerPage != 0) {
+    }, {
+        key: 'currentCountItems',
+        value: function currentCountItems(itemsPerPage, currentPage, recordPerPage, totalItems) {
+            if (this.countItemsPerPage != 0) {
                 var fromPage = recordPerPage * (currentPage - 1) + 1;
                 var toPage = fromPage - 1 + itemsPerPage;
                 return '\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E \u0441 ' + fromPage + ' \u043F\u043E ' + toPage + ' \u0438\u0437 ' + totalItems;
             } else {
                 return '0';
             }
+        }
+    }]);
+
+    return Catalog;
+}();
+
+var Filter = function () {
+    function Filter(object) {
+        _classCallCheck(this, Filter);
+
+        this.minPrice = document.getElementById('minPrice');
+        this.maxPrice = document.getElementById('maxPrice');
+        this.categoryList = document.getElementsByName('categoryList');
+        this.brandList = document.getElementsByName('brandList');
+        this.seasonList = document.getElementsByName('seasonList');
+        this.searchInput = document.getElementById('searchFilter_input');
+        this.searchBtn = document.getElementById('searchFilterBtn');
+        this.filterIsSale = document.getElementById('filterIsSale');
+        this.sortingList = document.getElementsByName('sortBy');
+        this.checkPrice = this.checkPrice.bind(this);
+        this.masd = document.getElementById('adsfa');
+        this.state = {
+            categoryFilter: [],
+            brandFilter: [],
+            seasonFilter: [],
+            isSaleFilter: '',
+            minPrice: this.minPrice.value,
+            maxPrice: this.maxPrice.value,
+            sortBy: 'sortByNewest',
+            searchValue: ''
         };
+        this.obj = object;
+    }
 
-        var data = await receivingВata(currentPage, state, sortBy, searchValue);
-        var items = $.parseJSON(data);
-        $('.catalog-items-list').html("");
-        var total_items = items['total_item'];
-        var item_on_page = items['record_per_page'];
+    _createClass(Filter, [{
+        key: 'init',
+        value: function init() {
+            try {
+                if (this.checkUndefined(this.minPrice, this.maxPrice)) {
+                    this.filterPrice();
+                }
+                if (this.checkUndefined(this.categoryList, this.brandList, this.seasonList)) {
+                    this.filterCategory();
+                }
+                if (this.checkUndefined(this.searchInput, this.searchBtn)) {
+                    this.filterSearch();
+                }
+                if (this.checkUndefined(this.filterIsSale)) {
+                    this.filterSale();
+                }
+                if (this.checkUndefined(this.sortingList)) {
+                    this.sorting();
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    }, {
+        key: 'checkUndefined',
+        value: function checkUndefined() {
+            for (var _len = arguments.length, variable = Array(_len), _key = 0; _key < _len; _key++) {
+                variable[_key] = arguments[_key];
+            }
 
-        console.log(items);
-        var countItemsPerPage = 0;
-        if (items["item"] != undefined) {
-            countItemsPerPage = Object.keys(items["item"]).length;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = variable[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var vars = _step2.value;
+
+                    if (vars == undefined) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        }
+        //Функция проверки цены на наличия в ней текста или пустого значения
+
+    }, {
+        key: 'checkPrice',
+        value: function checkPrice(value) {
+            var check = value != '' && value.match(/^\d+$/) ? true : false;
+            return check;
+        }
+        //сортировка товаров
+
+    }, {
+        key: 'sorting',
+        value: function sorting() {
+            var _this3 = this;
+
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = this.sortingList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var sort = _step3.value;
+
+                    sort.addEventListener('change', function (e) {
+                        _this3.state["sortBy"] = e.target.value;
+                        _this3.obj.currentPage = 1;
+                        _this3.obj.getData(_this3.obj.currentPage, _this3.state);
+                    }, false);
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+        }
+        //Обработчик события обновления ценогого диапазона, срабатывает через 500 мс
+
+    }, {
+        key: 'filterPrice',
+        value: function filterPrice() {
+            var _this4 = this;
+
+            this.minPrice.addEventListener('change', function (e) {
+                var target = e.target.value;
+                if (_this4.checkPrice(target)) {
+                    _this4.state['minPrice'] = target;
+                    setTimeout(function () {
+                        _this4.obj.getData(_this4.obj.currentPage, _this4.state);
+                    }, 500);
+                }
+            }, false);
+            this.maxPrice.addEventListener('change', function (e) {
+                var target = e.target.value;
+                if (_this4.checkPrice(target)) {
+                    _this4.state["maxPrice"] = target;
+                    setTimeout(function () {
+                        _this4.obj.getData(_this4.obj.currentPage, _this4.state);
+                    }, 500);
+                }
+            }, false);
+        }
+    }, {
+        key: 'filterCategory',
+        value: function filterCategory() {
+            var _this5 = this;
+
+            //Назначение события для фильтра категорий товара
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
             var _iteratorError4 = undefined;
 
             try {
-                for (var _iterator4 = items["item"][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var val = _step4.value;
+                for (var _iterator4 = this.categoryList[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var category = _step4.value;
 
-                    var _checkPrice = '';
-                    if (val["is_sale"] == 1) {
-                        _checkPrice = '<p class="item-old-price">' + val["price"] + ' \u0440\u0443\u0431.</p><p class="item-sale-price">' + val["sale_price"] + ' \u0440\u0443\u0431.</p>';
-                    } else {
-                        _checkPrice = '<p>' + val["price"] + ' \u0440\u0443\u0431.</p>';
-                    }
-                    $('.catalog-items-list').append('\n                        <div class="catalog-item">\n                            <div class="shadow"></div>\n                            <img src="' + val["image"] + '" alt="Item-' + val["id"] + '">\n                            <div class="image_overlay"></div>\n                            <div class="add_to_cart product_opacity">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</div>\n                            <div class="add_to_compare product_opacity">\u041E\u0442\u043B\u043E\u0436\u0438\u0442\u044C</div>\n                            <div class="product-info">         \n                                <div class="info-container">\n                                    <div class="info-container-header">\n                                        <div class="product-name">\n                                            <a href="../product/' + val["id"] + '">\n                                            <p class="product-title">' + val["name"] + ' ' + val["article"] + '</p>\n                                            <p class="product-brand">' + val["brand_name"] + '</p>\n                                            </a> \n                                        </div>\n                                        <div class="product-price">' + _checkPrice + '</div>\n                                    </div>\n                                    <div class="product-hide-info">\n                                        <strong>\u0420\u0430\u0437\u043C\u0435\u0440</strong>\n                                        <div class="product-size">' + val["size"] + '</div>\n                                        <strong>\u0421\u043E\u0441\u0442\u0430\u0432</strong>\n                                        <div class="product-compositions">\n                                            ' + val["composition"] + '\n                                        </div>\n                                    </div>                       \n                                </div>                         \n                            </div>\n                        </div>\n                    ');
+                    category.addEventListener('change', function (e) {
+                        var target = e.target;
+                        if (target.checked) {
+                            _this5.obj.currentPage = 1;
+                            _this5.state["categoryFilter"].push(target.value);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                        } else if (!target.checked) {
+                            _this5.obj.currentPage = 1;
+                            var index = _this5.state["categoryFilter"].indexOf(target.value);
+                            _this5.state["categoryFilter"].splice(index, 1);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                        }
+                    }, false);
                 }
+                //Назначение события для фильтра бренда товара
             } catch (err) {
                 _didIteratorError4 = true;
                 _iteratorError4 = err;
@@ -255,30 +340,128 @@ async function getData(currentPage, state, sortBy, searchValue) {
                     }
                 }
             }
-        } else {
-            $('.catalog-items-list').append('<h1>Список пуст</h1>');
-            countItems.innerText = 0;
-        }
-        //Установка новой текущей страницы
-        var currentPage = items['current_page'];
-        countItems.innerText = currentCountItems(countItemsPerPage, currentPage, item_on_page, total_items);
-        //Пагинация
-        $('.paginations').pagination({
-            items: total_items,
-            itemsOnPage: item_on_page,
-            cssStyle: 'dark-theme',
-            prevText: '',
-            nextText: '',
-            hrefTextPrefix: '',
-            currentPage: currentPage,
-            onPageClick: function onPageClick(pageNumber) {
-                getData(pageNumber, state, sortBy, searchValue);
+
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
+
+            try {
+                for (var _iterator5 = this.brandList[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var brand = _step5.value;
+
+                    brand.addEventListener('change', function (e) {
+                        var target = e.target;
+                        if (target.checked) {
+                            _this5.obj.currentPage = 1;
+                            _this5.state["brandFilter"].push(target.value);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                        } else if (!target.checked) {
+                            _this5.obj.currentPage = 1;
+                            var index = _this5.state["brandFilter"].indexOf(target.value);
+                            _this5.state["brandFilter"].splice(index, 1);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                        }
+                    }, false);
+                }
+                //Назначение события для фильтра сезонов товара
+            } catch (err) {
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
+                    }
+                } finally {
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
+                    }
+                }
             }
-        });
-    } catch (error) {
-        $('.catalog-items-list').html("");
-        $('.catalog-items-list').append('<h1>Список пуст</h1>');
-        countItems.innerText = 0;
-        throw new Error(error);
-    }
+
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
+
+            try {
+                for (var _iterator6 = this.seasonList[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var _brand = _step6.value;
+
+                    _brand.addEventListener('change', function (e) {
+                        var target = e.target;
+                        if (target.checked) {
+                            _this5.obj.currentPage = 1;
+                            _this5.state["seasonFilter"].push(target.value);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                        } else if (!target.checked) {
+                            _this5.obj.currentPage = 1;
+                            var index = _this5.state["seasonFilter"].indexOf(target.value);
+                            _this5.state["seasonFilter"].splice(index, 1);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                        }
+                    }, false);
+                }
+            } catch (err) {
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
+                    }
+                } finally {
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
+                    }
+                }
+            }
+        }
+    }, {
+        key: 'filterSearch',
+        value: function filterSearch() {
+            var _this6 = this;
+
+            this.searchBtn.addEventListener('click', function () {
+                var val = _this6.searchInput.value;
+                if (val.length == 0) {
+                    _this6.state["searchValue"] = "";
+                    _this6.obj.currentPage = 1;
+                    _this6.obj.getData(_this6.obj.currentPage, _this6.state);
+                } else if (val.length >= 3 && val.length <= 20) {
+                    if (!val.match(/[^a-zA-Zа-яА-Я0-9]/g)) {
+                        _this6.state["searchValue"] = '%' + val + '%';
+                        _this6.obj.currentPage = 1;
+                        _this6.obj.getData(_this6.obj.currentPage, _this6.state);
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'filterSale',
+        value: function filterSale() {
+            var _this7 = this;
+
+            this.filterIsSale.addEventListener('change', function (e) {
+                var target = e.target;
+                if (target.checked) {
+                    _this7.state["isSaleFilter"] = 1;
+                    _this7.obj.currentPage = 1;
+                    _this7.obj.getData(_this7.obj.currentPage, _this7.state);
+                } else if (!target.checked) {
+                    _this7.state["isSaleFilter"] = '';
+                    _this7.obj.currentPage = 1;
+                    _this7.obj.getData(_this7.obj.currentPage, _this7.state);
+                }
+            }, false);
+        }
+    }]);
+
+    return Filter;
+}();
+
+var catalog = new Catalog("getAllProduct", "POST");
+var filter = new Filter(catalog);
+if (catalog != undefined && filter != undefined) {
+    filter.init();
+    catalog.init(filter.state);
 }

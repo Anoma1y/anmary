@@ -315,13 +315,32 @@ $output-bourbon-deprecation-warnings: false !default;
 
 .title {
 	text-align: center;
-	line-height: 1.5;
-	padding: 20px 0;
+	padding: 40px 0;
+	width: 100%;
 	h1, h3 {
 		font-family: $main-font-family;
 	} 
 	h1 {
-		font-size: em(28px);
+		position: relative;
+		overflow: hidden;
+		font-size: em(24px);
+		text-align: center;
+		text-transform: uppercase;
+		> span {
+			&:before, &:after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				border-top: 2px solid #bfbfbf;
+				margin-top: em(9.7px);
+			}
+			&:before {
+				margin-left: -102%;
+			}
+			&:after {
+				margin-left: 2%;
+			}
+		}
 	}
 }
 

@@ -847,12 +847,26 @@ header .header_info {
 
 .title {
   text-align: center;
-  line-height: 1.5;
-  padding: 20px 0; }
+  padding: 40px 0;
+  width: 100%; }
   .title h1, .title h3 {
     font-family: "Oswald", "Open Sans", sans-serif; }
   .title h1 {
-    font-size: 1.75em; }
+    position: relative;
+    overflow: hidden;
+    font-size: 1.5em;
+    text-align: center;
+    text-transform: uppercase; }
+    .title h1 > span:before, .title h1 > span:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      border-top: 2px solid #bfbfbf;
+      margin-top: 0.60625em; }
+    .title h1 > span:before {
+      margin-left: -102%; }
+    .title h1 > span:after {
+      margin-left: 2%; }
 
 .product_list {
   display: -webkit-box;
@@ -1342,6 +1356,25 @@ footer {
           height: 315px;
           -o-object-fit: cover;
              object-fit: cover; }
+        .catalog .catalog-container .catalog-items-list .catalog-item .item-sale-percent {
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-family: "Oswald", "Open Sans", sans-serif;
+          font-size: 1em;
+          font-weight: bold;
+          color: #f3f3f3;
+          border-style: solid;
+          border-width: 4em 4em 0 0;
+          border-color: #ea1c0d transparent transparent transparent;
+          text-align: center;
+          vertical-align: middle;
+          width: 0;
+          height: 0; }
+          .catalog .catalog-container .catalog-items-list .catalog-item .item-sale-percent p {
+            position: absolute;
+            top: -55px;
+            left: 5px; }
         .catalog .catalog-container .catalog-items-list .catalog-item .image_overlay {
           position: absolute;
           top: 0;

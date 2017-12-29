@@ -9,11 +9,11 @@
 			$view->render('users/index', $data);
 		}
 	  
-		public function login() {
+		public function signin() {
 			$view = new View();
 			$view->render('users/login');
 		}
-		public function register() {
+		public function signup() {
 			$view = new View();
 			$view->render('users/register');
 		}

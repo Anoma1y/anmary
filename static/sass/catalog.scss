@@ -294,6 +294,27 @@ $output-bourbon-deprecation-warnings: false !default;
 					height: 315px;
 					object-fit: cover;
 				}
+				.item-sale-percent {
+					position: absolute;
+					top: 0;
+					left: 0;
+					font-family: $main-font-family;
+					font-size: em(16px);
+					font-weight: bold;
+					color: #f3f3f3;
+					border-style: solid;
+					border-width: 4em 4em 0 0;
+					border-color: darken(#f44336, 10%) transparent transparent transparent;
+					text-align: center;
+					vertical-align: middle;
+					width: 0;
+					height: 0;
+					p {
+						position: absolute;
+						top: -55px;
+						left: 5px;
+					}
+				}
 				.image_overlay {
 					position: absolute;
 					top: 0;

@@ -1,6 +1,5 @@
-<?php require_once "views/index/header.php"; ?>
-<?php $price = array(); $i = 0; foreach ($priceList as $key) { $price[$i] = $key['price']; $i++; } $minPrice = min($price); $maxPrice = max($price); ?>;
-
+<?php require_once "views/index/header.php";?>
+<?php $price=array();$i=0;foreach($priceList as $key){$price[$i]=$key['price'];$i++;}$minPrice=min($price);$maxPrice=max($price);?>;
 <div class="catalog">
     <div class="container">
         <div class="catalog_filter">
@@ -137,4 +136,4 @@
 <script type="text/javascript" src="/static/js/catalog.js"></script>
 
 
-<?php //require_once "views/index/footer.php"; ?>
+<?php require_once "views/index/footer.php"; ?>

@@ -22,8 +22,8 @@
 		    $brandFilterList = $_POST["state"]["brandFilter"];
 		    $seasonFilterList = $_POST["state"]["seasonFilter"];
 		    $isSaleFilterList = $_POST["state"]["isSaleFilter"];
-		    $sortValue = $_POST["sort"];
-			$searchValue = $_POST["searchValue"];
+		    $sortValue = $_POST["state"]["sortBy"];
+			$searchValue = $_POST["state"]["searchValue"];
 		    $filterQuery = "";
 		    $sortQuery = "";
 		    $searchLike = "";
@@ -58,12 +58,16 @@
 		    	$searchLike = ' AND (product.name LIKE "'.$searchValue.'" OR product.article LIKE "'.$searchValue.'" or product.composition LIKE "'.$searchValue.'")';
 		    }
 		    //Основной запрос
-			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.composition, product.is_sale, product.is_availability, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND product.price >= '.$priceMin.' AND product.price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
+			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.composition, product.is_sale, product.is_availability, product.percentSale, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND product.price >= '.$priceMin.' AND product.price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц
 		    $sql1 = 'SELECT id FROM product WHERE price >= '.$priceMin.' AND price <= '.$priceMax.$filterQuery.$searchLike.' ORDER BY id';
 		    $order_by = 'id';
 		    $q = new Pagination(1, $params["record_per_page"], $sql, $sql1, $order_by);
 		    $q->getPages();
+	    }
+	    public function sale() {
+	        require_once('views/catalog/sale.php');
+	        return true;	
 	    }
 	    public function category() {
 		    $data = CatalogModel::getAllProducts();

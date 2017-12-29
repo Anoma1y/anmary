@@ -43,8 +43,8 @@
 					<i class="fa fa-user-circle" aria-hidden="true"></i>
 				</div>
 				<div class="user_control">
-					<span class="sign_in">Войти</span>
-					<span class="sign_up">Регистрация</span>
+					<a href="/users/signin"><span class="sign_in">Войти</span></a>
+					<a href="/users/signup"><span class="sign_up">Регистрация</span></a>
 				</div>
 			</div>
 			<div class="logo">

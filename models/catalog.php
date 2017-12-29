@@ -95,11 +95,12 @@
 	        }
 	        return $all;			
 		}
-		public static function getPopularModel() {
+		public static function getPopularModel($count) {
 			$db = Db::getConnection();
- 	        $sql = 'SELECT product.*, brand.brand_name FROM product, brand WHERE brand.id = product.brand_id ORDER BY RAND() LIMIT 8';
+ 	        $sql = 'SELECT product.*, brand.brand_name FROM product, brand WHERE brand.id = product.brand_id ORDER BY RAND() LIMIT :count';
 	        $result = $db->prepare($sql);
 	    	$result->setFetchMode(PDO::FETCH_ASSOC);
+	    	$result->bindParam(':count', $count, PDO::PARAM_INT);
 	    	$result->execute();
 	        $i = 0;
 	        $all = array();
