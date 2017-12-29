@@ -133,7 +133,14 @@
 
 
 <script type="text/javascript" src="/static/js/libs.min.js"></script>
-<script type="text/javascript" src="/static/js/catalog.js"></script>
-
+<script type="text/javascript" src="/static/js/dev/catalog.js"></script>
+<script type="text/javascript">
+    var catalog = new Catalog("getAllProduct", "POST");
+    var filter = new Filter(catalog);
+    if (catalog != undefined && filter != undefined) {
+        filter.init();
+        catalog.init();         
+    }
+</script>
 
 <?php require_once "views/index/footer.php"; ?>

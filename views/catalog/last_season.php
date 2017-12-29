@@ -1,5 +1,16 @@
 	<?php require_once 'views/index/header.php'; ?>
 	<div class="catalog">
+		<div class="container">
+			<div class="page-banner">
+				<div class="overlay"></div>
+				<div class="banner-info">
+					<h2>Осень/Зима</h2>
+					<h2>2017/2018</h2>
+					<p>Новое поступление</p>
+				</div>
+				<img src="/static/img/banner.jpg" alt="Banner">
+			</div>
+		</div>
 	    <div class="container without-container">
 	        <div class="catalog-container without-catalog-container">
 	            <div class="catalog-header">
@@ -35,7 +46,7 @@
 	<script type="text/javascript" src="/static/js/libs.min.js"></script>
 	<script type="text/javascript" src="/static/js/catalog.js"></script>
 	<script type="text/javascript">
-	    var catalog = new Catalog("getAllProductSale", "POST");
+	    var catalog = new Catalog("getAllProductSeason", "POST");
 	    var filter = new Filter(catalog);
 	    if (catalog != undefined && filter != undefined) {
 	        filter.init();

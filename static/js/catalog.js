@@ -17,12 +17,22 @@ var Catalog = function () {
         this.item_on_page = 1;
         this.countItems = document.getElementById('countItems');
         this.countItemsPerPage = 0;
+        this.state = {
+            categoryFilter: [],
+            brandFilter: [],
+            seasonFilter: [],
+            isSaleFilter: '',
+            minPrice: 0,
+            maxPrice: 0,
+            sortBy: 'sortByNewest',
+            searchValue: ''
+        };
     }
 
     _createClass(Catalog, [{
         key: 'init',
-        value: function init(initialState) {
-            this.getData(this.currentPage, initialState);
+        value: function init() {
+            this.getData(this.currentPage, this.state);
         }
     }, {
         key: 'receiving\u0412ata',
@@ -30,11 +40,18 @@ var Catalog = function () {
             var _this = this;
 
             return new Promise(function (res, rej) {
-                $.ajax({
-                    url: _this.url,
-                    method: _this.method,
-                    data: { page: page, state: state } //текущая страница, фильтр и сортировка
-                }).done(res).fail(rej);
+                if (_this.method == "POST") {
+                    $.ajax({
+                        url: _this.url,
+                        method: _this.method,
+                        data: { page: page, state: state } //текущая страница, фильтр и сортировка
+                    }).done(res).fail(rej);
+                } else if (_this.method == "GET") {
+                    $.ajax({
+                        url: _this.url,
+                        method: _this.method
+                    }).done(res).fail(rej);
+                }
             });
         }
     }, {
@@ -42,38 +59,45 @@ var Catalog = function () {
         value: async function getData(currentPage, state) {
             var _this2 = this;
 
-            try {
-                var data = await this.receivingВata(currentPage, state);
-                this.items = $.parseJSON(data);
-                //Всего записей
-                this.total_items = this.items['total_item'];
-                //Записей на странице
-                this.item_on_page = this.items['record_per_page'];
-                //Установка новой текущей страницы
-                this.currentPage = this.items['current_page'];
-                $('.catalog-items-list').html("");
-                if (this.items["item"] != undefined) {
-                    this.itemsRender(this.items);
-                    this.countItemsPerPage = Object.keys(this.items["item"]).length;
-                } else {
-                    this.countItemsRender(0);
-                }
-                this.countItems.innerText = this.currentCountItems(this.countItemsPerPage, this.currentPage, this.item_on_page, this.total_items);
-                $('.paginations').pagination({
-                    items: this.total_items,
-                    itemsOnPage: this.item_on_page,
-                    cssStyle: 'dark-theme',
-                    prevText: '',
-                    nextText: '',
-                    hrefTextPrefix: '',
-                    currentPage: this.currentPage,
-                    onPageClick: function onPageClick(pageNumber) {
-                        _this2.getData(pageNumber, filter.state);
+            if (this.method == "POST") {
+                try {
+                    var data = await this.receivingВata(currentPage, state);
+                    this.items = $.parseJSON(data);
+                    //Всего записей
+                    this.total_items = this.items['total_item'];
+                    //Записей на странице
+                    this.item_on_page = this.items['record_per_page'];
+                    //Установка новой текущей страницы
+                    this.currentPage = this.items['current_page'];
+                    $('.catalog-items-list').html("");
+                    if (this.items["item"] != undefined) {
+                        this.itemsRender(this.items["item"]);
+                        this.countItemsPerPage = Object.keys(this.items["item"]).length;
+                        this.countItems.innerText = this.currentCountItems(this.countItemsPerPage, this.currentPage, this.item_on_page, this.total_items);
+                        $('.paginations').pagination({
+                            items: this.total_items,
+                            itemsOnPage: this.item_on_page,
+                            cssStyle: 'dark-theme',
+                            prevText: '',
+                            nextText: '',
+                            hrefTextPrefix: '',
+                            currentPage: this.currentPage,
+                            onPageClick: function onPageClick(pageNumber) {
+                                _this2.getData(pageNumber, _this2.state);
+                            }
+                        });
+                    } else if (this.items.length >= 1) {
+                        this.itemsRender(this.items);
+                    } else {
+                        this.countItemsRender(0);
                     }
-                });
-            } catch (error) {
-                this.countItemsRender("Error");
-                throw new Error(error);
+                } catch (error) {
+                    this.countItemsRender("Error");
+                    throw new Error(error);
+                }
+            } else if (this.method == "GET") {
+                var data = await this.receivingВata(currentPage, state);
+                console.log($.parseJSON(data));
             }
         }
     }, {
@@ -84,7 +108,7 @@ var Catalog = function () {
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = items["item"][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (var _iterator = items[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var val = _step.value;
 
                     var checkPrice = '';
@@ -154,17 +178,6 @@ var Filter = function () {
         this.filterIsSale = document.getElementById('filterIsSale');
         this.sortingList = document.getElementsByName('sortBy');
         this.checkPrice = this.checkPrice.bind(this);
-        this.masd = document.getElementById('adsfa');
-        this.state = {
-            categoryFilter: [],
-            brandFilter: [],
-            seasonFilter: [],
-            isSaleFilter: '',
-            minPrice: this.minPrice.value,
-            maxPrice: this.maxPrice.value,
-            sortBy: 'sortByNewest',
-            searchValue: ''
-        };
         this.obj = object;
     }
 
@@ -173,6 +186,8 @@ var Filter = function () {
         value: function init() {
             try {
                 if (this.checkUndefined(this.minPrice, this.maxPrice)) {
+                    this.obj.state["minPrice"] = minPrice.value;
+                    this.obj.state["maxPrice"] = maxPrice.value;
                     this.filterPrice();
                 }
                 if (this.checkUndefined(this.categoryList, this.brandList, this.seasonList)) {
@@ -227,6 +242,7 @@ var Filter = function () {
                 }
             }
         }
+
         //Функция проверки цены на наличия в ней текста или пустого значения
 
     }, {
@@ -235,6 +251,7 @@ var Filter = function () {
             var check = value != '' && value.match(/^\d+$/) ? true : false;
             return check;
         }
+
         //сортировка товаров
 
     }, {
@@ -251,9 +268,9 @@ var Filter = function () {
                     var sort = _step3.value;
 
                     sort.addEventListener('change', function (e) {
-                        _this3.state["sortBy"] = e.target.value;
+                        _this3.obj.state["sortBy"] = e.target.value;
                         _this3.obj.currentPage = 1;
-                        _this3.obj.getData(_this3.obj.currentPage, _this3.state);
+                        _this3.obj.getData(_this3.obj.currentPage, _this3.obj.state);
                     }, false);
                 }
             } catch (err) {
@@ -271,6 +288,7 @@ var Filter = function () {
                 }
             }
         }
+
         //Обработчик события обновления ценогого диапазона, срабатывает через 500 мс
 
     }, {
@@ -281,18 +299,18 @@ var Filter = function () {
             this.minPrice.addEventListener('change', function (e) {
                 var target = e.target.value;
                 if (_this4.checkPrice(target)) {
-                    _this4.state['minPrice'] = target;
+                    _this4.obj.state['minPrice'] = target;
                     setTimeout(function () {
-                        _this4.obj.getData(_this4.obj.currentPage, _this4.state);
+                        _this4.obj.getData(_this4.obj.currentPage, _this4.obj.state);
                     }, 500);
                 }
             }, false);
             this.maxPrice.addEventListener('change', function (e) {
                 var target = e.target.value;
                 if (_this4.checkPrice(target)) {
-                    _this4.state["maxPrice"] = target;
+                    _this4.obj.state["maxPrice"] = target;
                     setTimeout(function () {
-                        _this4.obj.getData(_this4.obj.currentPage, _this4.state);
+                        _this4.obj.getData(_this4.obj.currentPage, _this4.obj.state);
                     }, 500);
                 }
             }, false);
@@ -315,13 +333,13 @@ var Filter = function () {
                         var target = e.target;
                         if (target.checked) {
                             _this5.obj.currentPage = 1;
-                            _this5.state["categoryFilter"].push(target.value);
-                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                            _this5.obj.state["categoryFilter"].push(target.value);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.obj.state);
                         } else if (!target.checked) {
                             _this5.obj.currentPage = 1;
-                            var index = _this5.state["categoryFilter"].indexOf(target.value);
-                            _this5.state["categoryFilter"].splice(index, 1);
-                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                            var index = _this5.obj.state["categoryFilter"].indexOf(target.value);
+                            _this5.obj.state["categoryFilter"].splice(index, 1);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.obj.state);
                         }
                     }, false);
                 }
@@ -353,13 +371,13 @@ var Filter = function () {
                         var target = e.target;
                         if (target.checked) {
                             _this5.obj.currentPage = 1;
-                            _this5.state["brandFilter"].push(target.value);
-                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                            _this5.obj.state["brandFilter"].push(target.value);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.obj.state);
                         } else if (!target.checked) {
                             _this5.obj.currentPage = 1;
-                            var index = _this5.state["brandFilter"].indexOf(target.value);
-                            _this5.state["brandFilter"].splice(index, 1);
-                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                            var index = _this5.obj.state["brandFilter"].indexOf(target.value);
+                            _this5.obj.state["brandFilter"].splice(index, 1);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.obj.state);
                         }
                     }, false);
                 }
@@ -391,13 +409,13 @@ var Filter = function () {
                         var target = e.target;
                         if (target.checked) {
                             _this5.obj.currentPage = 1;
-                            _this5.state["seasonFilter"].push(target.value);
-                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                            _this5.obj.state["seasonFilter"].push(target.value);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.obj.state);
                         } else if (!target.checked) {
                             _this5.obj.currentPage = 1;
-                            var index = _this5.state["seasonFilter"].indexOf(target.value);
-                            _this5.state["seasonFilter"].splice(index, 1);
-                            _this5.obj.getData(_this5.obj.currentPage, _this5.state);
+                            var index = _this5.obj.state["seasonFilter"].indexOf(target.value);
+                            _this5.obj.state["seasonFilter"].splice(index, 1);
+                            _this5.obj.getData(_this5.obj.currentPage, _this5.obj.state);
                         }
                     }, false);
                 }
@@ -424,14 +442,14 @@ var Filter = function () {
             this.searchBtn.addEventListener('click', function () {
                 var val = _this6.searchInput.value;
                 if (val.length == 0) {
-                    _this6.state["searchValue"] = "";
+                    _this6.obj.state["searchValue"] = "";
                     _this6.obj.currentPage = 1;
-                    _this6.obj.getData(_this6.obj.currentPage, _this6.state);
+                    _this6.obj.getData(_this6.obj.currentPage, _this6.obj.state);
                 } else if (val.length >= 3 && val.length <= 20) {
                     if (!val.match(/[^a-zA-Zа-яА-Я0-9]/g)) {
-                        _this6.state["searchValue"] = '%' + val + '%';
+                        _this6.obj.state["searchValue"] = '%' + val + '%';
                         _this6.obj.currentPage = 1;
-                        _this6.obj.getData(_this6.obj.currentPage, _this6.state);
+                        _this6.obj.getData(_this6.obj.currentPage, _this6.obj.state);
                     }
                 }
             });
@@ -444,13 +462,13 @@ var Filter = function () {
             this.filterIsSale.addEventListener('change', function (e) {
                 var target = e.target;
                 if (target.checked) {
-                    _this7.state["isSaleFilter"] = 1;
+                    _this7.obj.state["isSaleFilter"] = 1;
                     _this7.obj.currentPage = 1;
-                    _this7.obj.getData(_this7.obj.currentPage, _this7.state);
+                    _this7.obj.getData(_this7.obj.currentPage, _this7.obj.state);
                 } else if (!target.checked) {
-                    _this7.state["isSaleFilter"] = '';
+                    _this7.obj.state["isSaleFilter"] = '';
                     _this7.obj.currentPage = 1;
-                    _this7.obj.getData(_this7.obj.currentPage, _this7.state);
+                    _this7.obj.getData(_this7.obj.currentPage, _this7.obj.state);
                 }
             }, false);
         }
@@ -458,10 +476,3 @@ var Filter = function () {
 
     return Filter;
 }();
-
-var catalog = new Catalog("getAllProduct", "POST");
-var filter = new Filter(catalog);
-if (catalog != undefined && filter != undefined) {
-    filter.init();
-    catalog.init(filter.state);
-}

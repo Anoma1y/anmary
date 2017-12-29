@@ -1,8 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Oswald:300,400,700");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
-@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,700");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -56,6 +54,28 @@ table {
   50% {
     -webkit-transform: scale(1.4);
             transform: scale(1.4); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@-webkit-keyframes scal1 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes scal1 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
   100% {
     -webkit-transform: scale(1);
             transform: scale(1); } }
@@ -594,35 +614,47 @@ header .header_info {
             color: #1a1a1a; }
     .blocks .block.season_sale {
       grid-area: season_sale;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-          -ms-flex-direction: column;
-              flex-direction: column;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-          -ms-flex-pack: center;
-              justify-content: center;
       background-color: #EE3D43; }
       .blocks .block.season_sale .season_sale_info {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         text-align: center;
+        height: 100%;
         font-family: "Source Sans Pro", sans-serif; }
+        .blocks .block.season_sale .season_sale_info:hover h1 {
+          color: black;
+          -webkit-animation-name: scal1;
+                  animation-name: scal1;
+          -webkit-animation-duration: 1s;
+                  animation-duration: 1s; }
+        .blocks .block.season_sale .season_sale_info:hover p {
+          color: black; }
+        .blocks .block.season_sale .season_sale_info p, .blocks .block.season_sale .season_sale_info h1 {
+          color: #fff;
+          text-transform: uppercase;
+          -webkit-transition: color .3s ease;
+          -o-transition: color .3s ease;
+          transition: color .3s ease; }
         .blocks .block.season_sale .season_sale_info p {
           font-weight: 300;
           letter-spacing: 5px;
-          color: #fff;
           font-size: 1em;
-          text-transform: uppercase; }
+          font-weight: normal; }
         .blocks .block.season_sale .season_sale_info h1 {
           line-height: 0.8;
-          color: #fff;
           font-weight: bold;
-          font-size: 8.125em;
-          text-transform: uppercase; }
+          font-size: 8.125em; }
     .blocks .block.new_arrivals {
       position: relative;
       grid-area: new_arrivals;
@@ -1071,6 +1103,55 @@ footer {
     -webkit-transform: scale(1);
             transform: scale(1); } }
 
+@keyframes scal1 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+.page-banner {
+  position: relative;
+  margin: 10px auto;
+  width: 95%;
+  height: 300px; }
+  .page-banner .overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0; }
+  .page-banner img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover; }
+  .page-banner .banner-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    font-family: "Oswald", "Open Sans", sans-serif;
+    text-transform: uppercase;
+    color: #eeeeee;
+    text-align: center; }
+    .page-banner .banner-info h2 {
+      font-weight: bold;
+      font-size: 1.875em;
+      letter-spacing: 3.5px; }
+    .page-banner .banner-info p {
+      margin: 5px;
+      font-weight: 300;
+      font-size: 1.125em;
+      letter-spacing: 1.7px; }
+
 .catalog {
   padding-bottom: 80px; }
   .catalog .container {
@@ -1078,6 +1159,11 @@ footer {
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between; }
+    .catalog .container.without-container {
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center; }
   .catalog .catalog_filter {
     width: 20%; }
     .catalog .catalog_filter .filter_search {
@@ -1257,6 +1343,8 @@ footer {
   .catalog .catalog-container {
     width: 75%;
     position: relative; }
+    .catalog .catalog-container.without-catalog-container {
+      width: 95%; }
     .catalog .catalog-container .catalog-header {
       padding: 0 0 10px 0;
       display: -webkit-box;

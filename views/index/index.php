@@ -39,23 +39,21 @@
 					<h2>2017/2018</h2>
 					<p>Новое поступление</p>
 				</div>
-				<a href="#">Смотреть коллекцию</a>
+				<a href="/catalog/last_season">Смотреть коллекцию</a>
 			</div>
 			<div class="overlay"></div>
 		</div>
 		<div class="block season_sale">
-			<a href="/catalog/sale">
-				<div class="season_sale_info">
-					<p>Сезонная распродажа</p>
-					<h1>Sale</h1>
-				</div>
+			<a href="/catalog/sale" class="season_sale_info">
+				<p>Сезонная распродажа</p>
+				<h1>Sale</h1>
 			</a>
 		</div>
 		<div class="block new_arrivals">
 			<div class="overlay"></div>
 			<div class="arrivals_info">
 				<h1>Последнее поступление</h1>
-				<a href="#">Смотреть</a>
+				<a href="/catalog/newest">Смотреть</a>
 			</div>			
 		</div>
 		<div class="block subscribe">
@@ -73,7 +71,7 @@
 			<div class="catalog_info">
 				<h2>Большой выбор женской одежды</h2>
 			</div>
-			<a href="#" class="get_catalog">
+			<a href="/catalog/all" class="get_catalog">
 				Перейти в каталог
 			</a>
 		</div>
