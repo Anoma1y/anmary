@@ -20,11 +20,11 @@
 </div>
 
 <div class="main">
-	<form action="addProduct" method="POST" enctype="multipart/form-data">
-		<p>Название:</p> <input type="text" name="name" value="">
-		<p>Артикль:</p> <input type="text" name="article" value="">
+	<form action="#" method="POST" enctype="multipart/form-data">
+		<p>Название:</p> <input type="text" id="productTitle" name="productTitle" value="">
+		<p>Артикль:</p> <input type="text" id="productArticle" name="productArticle" value="">
 		<p>Бренд:</p> 
-			<select name="brand" id="brand">
+			<select name="productBrand" id="productBrand">
 				<?php 
 					foreach ($brandList as $key) {
 						echo "<option value='$key[id]'>$key[brand_name]</option>";
@@ -33,7 +33,7 @@
 			</select>
 		
 		<p>Категория:</p> 
-			<select name="category" id="category">
+			<select name="productCategory" id="productCategory">
 				<?php 
 					foreach ($categoryList as $key) {
 						echo "<option value='$key[id]'>$key[category_name]</option>";
@@ -42,7 +42,7 @@
 			</select>
 		
 		<p>Сезон: </p>
-			<select name="season" id="season">
+			<select name="productSeason" id="productSeason">
 				<?php 
 					foreach ($seasonList as $key) {
 						echo "<option value='$key[id]'>$key[season_name]</option>";
@@ -50,9 +50,9 @@
 				?>		
 			</select>
 		
-		<p>Размер: </p><input type="text" name="size" readonly>
+		<p>Размер: </p><input type="text" name="productSize" id="productSize" value="" readonly>
 		<p>Цвет: </p>
-			<select name="colour" id="colour">
+			<select name="productColour" id="productColour">
 				<?php 
 					foreach ($colorList as $key) {
 						echo "<option value='$key[id]'>$key[color_name]</option>";
@@ -60,25 +60,35 @@
 				?>		
 			</select>
 		
-		<p>Состав: </p><input type="text" name="composition" readonly>
-		<p>Скидка: </p><input type="checkbox" name="is_sale">
-		<p>Цена: </p><input type="text" name="price" value="">
-		<p>Цена со скидкой: </p><input type="text" name="sale_price" value="0">
-		<p>Наличие: </p><input type="checkbox" name="is_availability" checked>
-		<p>Изображение: </p><input id="uploadimage" type="file" name="image">
-		<button>Добавить</button>
+		<p>Состав: </p><input type="text" name="productComposition" id="productComposition" readonly value="">
+
+
+	
+		<p>Скидка: </p><input type="checkbox" name="productIsSale" id="productIsSale">
+
+		<p>Процент скидки</p><input type="text" name="productSalePercent" id="productSalePercent" value="">
+
+		<p>Цена: </p><input type="text" name="productPrice"  id="productPrice" value="">
+
+		<p>Цена со скидкой: </p><input type="text" name="productPriceAfterSale" id="productPriceAfterSale" value="">
+
+		<p>Наличие: </p><input type="checkbox" name="productIsavailability" id="productIsavailability" checked>
+		
+		<p>Изображение: </p><input  type="file" name="uploadimage" id="uploadimage">
+		<input type="submit" value="Добавить" id="addProduct">
+		<p id="error"></p>
+		<p id="success"></p>
+
 	</form>
 	<p>Размер: </p>
-	<div class="size_chois">
+	<div class="size_chois" id="size_chois">
 	</div>
 	<p>Состав: </p>
 	<div id="composition_chois">
 	</div> 
 </div>
 
-<script src="/static/js/libs.min.js"></script>
-<script src="/static/js/add_product.js"></script>
-
+<script src="/static/js/adminEdit.js"></script>
 
 
 

@@ -2,8 +2,8 @@
 	class Admin {
 	    public function indexView() {
 	    	require_once 'engine/functions.php';
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 				require_once('views/admin/index.php');
 			    return true;	    		
 	    	} else {
@@ -11,8 +11,8 @@
 			}
 	    }
 	    public function add() {
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 		    	$brandList = Admins::getBrand();
 		    	$categoryList = Admins::getCategory();
 		    	$seasonList = Admins::getSeason();
@@ -24,8 +24,8 @@
 			}
 	    }
 	    public function delete() {
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 				require_once('views/admin/delete.php');
 			    return true;  	
 			   } else {
@@ -33,8 +33,8 @@
 			}	    	
 	    }
 	    public function edit() {
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 		    	$brandList = Admins::getBrand();
 		    	$categoryList = Admins::getCategory();
 		    	$seasonList = Admins::getSeason();
@@ -47,8 +47,8 @@
 			}    	
 	    }
 	    public function addProduct() {
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 		    	$view = new View();
 				$view->render('admin/add_product');    		
 	    	} else {
@@ -56,8 +56,8 @@
 			}
 	    }
 	    public function editProduct() {
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 		    	$view = new View();
 				$view->render('admin/edit_product');    		
 	    	} else {
@@ -65,8 +65,8 @@
 			}
 	    }
 	    public function getAllProducts() {
-	    	$user = User::getCurrentUser();
-	    	if ($user['role'] == "admin") {
+	    	$check = User::checkAdministrator($_COOKIE["user_hash"]);
+	    	if ($check['permissions'] == '{"admin": 1}') {
 		    	$view = new View();
 				$view->render('admin/getAllProducts_action');    		
 	    	} else {

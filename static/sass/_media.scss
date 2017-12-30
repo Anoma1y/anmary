@@ -1,0 +1,265 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+
+@media only screen and (max-width: 1180px) {
+	.blocks {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 320px 0 320px;
+		grid-template-areas: 
+			"new_collections season_sale new_arrivals"
+			"new_collections season_sale new_arrivals"
+			"new_collections subscribe all_catalog"
+			"new_collections subscribe all_catalog";
+	}
+}
+@media only screen and (max-width: 1080px) {
+	.product_list {
+		justify-content: center;
+		.product {
+			width: 25%;
+			margin-bottom: 20px;
+		}
+	}
+}
+@media only screen and (max-width: 996px) {
+	.header_menu {
+		.header_container {
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-areas:
+				"search social mobile_menu";
+		}
+		.search {
+			grid-area: search;
+			#searchBtn {
+			}
+			.search_input {
+				.searchText {
+				}
+				#search {
+				}			
+			}
+		}
+		.navigation {
+			grid-area: mobile_menu;
+			justify-content: flex-end;
+			.mobile-menu {
+				display: block; 
+				.menu-main-wrap {
+					width: 100%;
+					margin: 0px 0 0 0%;
+					left: 0%;
+				}
+				.menu-effect_1.active {
+					width: 80%;
+					opacity: 1;
+					visibility: visible; 
+					transition: all 0.6s ease 0s;
+				}
+			}
+			>ul {
+				display: none;
+				li {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+		.social_network {
+			grid-area: social;
+			text-align: center;
+		}
+	}
+}
+
+@media only screen and (max-width: 760px) {
+	.blocks {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(3, 250px);
+		grid-template-areas: 
+			"new_arrivals new_arrivals"
+			"new_collections season_sale"
+			"subscribe all_catalog";
+	}
+}
+
+
+
+
+@media only screen and (max-width: 700px) {
+	.product_list {
+		justify-content: center;
+		.product {
+			width: 85%;
+			margin-bottom: 20px;
+			&__title {
+				font-size: em(25px);
+				letter-spacing: 1px;
+			}
+			&__brand {
+				font-size: em(16px);
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+			&__price {
+				font-size: em(22px);
+			}
+		}
+	}
+	.featured_brand {
+		.brand_container {
+			justify-content: space-around;
+		}
+		.brand_item {
+			width: 40%;
+			img {
+				width: 70%;
+			}
+		}
+	}
+	footer {
+		.container {
+			flex-direction: column;
+			.footer-left {
+				width: 100%;
+				padding: 0 0 15px 0;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				.footer_about {
+					h4 {
+						text-align: center;
+						font-size: em(18px);
+					}
+				}
+			}
+			.footer-center {
+				width: 100%;
+				padding: 15px;
+				border-top: 1px solid rgba(255,255,255,.4);
+				justify-content: center;
+				nav {
+					margin: 0 15px;
+				}
+			}
+			.footer-right {
+				width: 100%;
+				padding: 15px 0 0 0;
+				border-top: 1px solid rgba(255,255,255,.4);
+				.footer_contact {
+					text-align: center;
+					p {
+						text-transform: uppercase;
+					}
+				}
+				.footer_email {
+					font-size: em(20px);
+				}
+				.footer_social {
+					text-align: center;
+					font-size: em(30px);
+				}
+			}
+		}
+	}
+}
+@media only screen and (max-width: 550px) {
+	.blocks {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(5, 220px);
+		grid-template-areas:
+			"new_arrivals" 
+			"new_collections"
+			"season_sale"
+			"all_catalog"
+			"subscribe";
+	}
+}
+@media only screen and (max-width: 450px) {
+	.featured_brand {
+		.brand_container {
+			justify-content: center;
+		}
+		.brand_item {
+			width: 90%;
+			img {
+				width: 80%;
+			}
+		}
+	}
+}
+@media only screen and (max-width: 360px) {
+	header { 
+		.header_info {
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas:
+			    "logo logo"
+			    "user_info shop_info";
+			.logo {
+				grid-area: logo;
+				width: 85%;
+				margin: 10px auto;
+			}
+			.user_info {
+				grid-area: user_info;
+				width: 100%;
+				.user_control {
+					font-size: em(14px);
+					.sign_up {
+						&:before {
+							content: "| ";
+						}
+					}
+				}
+			}
+			.shop_info {
+				grid-area: shop_info;
+				width: 100%;
+				i {
+					font-size: em(25px);
+				}
+				.products_info {
+					i {
+						font-size: em(25px);
+					}
+					p {
+						font-size: em(12px);
+						letter-spacing: 0;
+						&:after {
+							letter-spacing: 0;
+							content: ' руб.'
+						}
+					}
+				}
+
+			}
+		}
+	}
+	.header_menu {
+		.header_container {
+		}
+		.search {
+			height: 30px;
+			#searchBtn {
+				font-size: em(25px);
+				line-height: 30px;
+			}
+			.search_input {
+				.searchText {
+				}
+				#search {
+					i {
+						transition: transform .5s ease;
+						
+					}
+				}			
+			}
+		}
+		.social_network {
+			line-height: 30px;
+			i {
+				font-size: em(20px);
+			}
+		}
+	}
+}
+

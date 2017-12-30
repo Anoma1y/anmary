@@ -1,196 +1,112 @@
-<?php //require_once '/views/index/header.php'; ?>
-<!-- <link rel="stylesheet" href="/static/css/catalog.min.css"> -->
+<?php require_once 'views/index/header.php'; ?>
 
+<div class="catalog-detail">
+	<div class="catalog-container">
+		<div class="left-col">
+			<div class="detail-image">
+				<img src="<?=$data["image"]?>" alt="Detail Image">
+			</div>
+		</div>
+		<div class="right-col">
+			<div class="detail-info">
+				<div class="detail-block">
+					<div class="detail-info-title">
+						<h4><?=$data["name"]?></h4>
+					</div>
+					<div class="detail-info-price">
+						<?php if ($data["is_sale"] == 1): ?>
+							<span class="detail-product-old-price"><?=$data["price"]; ?></span>
+							<span><?=$data["sale_price"]; ?></span>
+						<?php else: ?>
+							<span><?=$data["price"]; ?></span>
+						<?php endif ?>
+						
+					</div>								
+				</div>
+				<div class="detail-block">
+					<div class="detail-info-is_availability">
+						Наличие: 
+						<?php if ($data["is_availability"] == 1): ?>
+							<span class="are_available">Есть в наличии</span>
+						<?php else: ?>
+							<span class="not_available">Нет в наличии</span>
+						<?php endif ?>
+						
+					</div>
+					<div class="detail-info-article">
+						Артикль: <span><?=$data["article"]?></span>
+					</div>
+					<div class="detail-info-category">
+						Категория: <a href="#"><?=$data["category_name"]?></a>
+					</div>
+				</div>
+				<div class="detail-block">
+					<div class="detail-info-size">
+						<h5>Размер</h5>
+						<div class="block-size">
+							<?php foreach ($getSize as $index => $size): ?>
+								<?php if ($index == 0): ?>
+									<input type="radio" name="size-item" id="size-item_<?=$size?>" checked>
+									<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
+								<?php else: ?>
+									<input type="radio" name="size-item" id="size-item_<?=$size?>">
+									<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
+								<?php endif ?>				
+							<?php endforeach ?>
 
-<?php require_once 'views/catalog/header.php'; ?>
-<!-- <link rel="stylesheet" href="/static/css/product.min.css">
- -->
+						</div>
+					</div>
+					<div class="detail-info-composition">
+						<h5>Состав</h5>
+						<div class="block-composition">
+							<?php foreach ($getComposition as $composition): ?>
+								<div class="composition-item"><?=$composition?></div>
+							<?php endforeach ?>
+						</div>
+					</div>
+				</div>
+				<div class="detail-block">
+					<div class="detail-button-block">
+						<div class="detail-add-to-cart detail-add-btn">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+							Добавить в корзину
+						</div>
+						<div class="detail-add-to-compare detail-add-btn">
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							Отложить
+						</div>									
+					</div>
 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container">
-    <div class="product-area">
-        <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-            <div class="current-item">
-                <div class="row">
-                    <div class="col-md-6">
-                         <div class="product-image">
-                            <img src="<?=$data['image']; ?>" alt="">
-                        </div>                       
-                    </div>
-                    <div class="col-md-6">
-                        <div class="product-content">
-                            <div class="product-name">
-                                <h2 class="product-title"><?=$data['name'].", ". $data['brand_name'] ?></h2>
-                                <h2 class="product-article"><?=$data['article'] ?></h2>
-                            </div>
-                            <div class="availability">
-                                <?php if ($data['is_availability'] == 1): ?>
-                                    Наличие: <span class="is_availability_yes">Есть в наличии</span>
-                                <?php else: ?>
-                                    Наличие: <span class="is_availability_no">Нет в наличии</span>
-                                <?php endif ?>
-                            </div>
-                            <div class="product-price">
-                                <?php if ($data['is_sale'] == 1): ?>
-                                    <p class="old-price"><?=$data['price'] ?></p>
-                                    <p class="price sale"><?=$data['sale_price'] ?></p>
-                                <?php else: ?>
-                                    <p class="price"><?=$data['price'] ?></p>
-                                <?php endif ?>
-
-                            </div>
-                            <div class="product-info">
-                                <div class="product-color">
-                                    <h3>Цвет</h3> <?=$data['color_name'] ?>
-                                </div>
-                                <div class="product-size">
-                                    <h3>Размер</h3>
-                                    <?php foreach ($getSize as $key): ?>
-                                        <div class="product-size-item"><?=$key; ?></div>
-                                    <?php endforeach ?>
-                                </div>
-                                
-                                <div class="product-composition">
-                                    <h3>Состав</h3>
-                                    <?php foreach ($getComposition as $key): ?>
-                                        <p class="product-composition-item"><?=$key; ?></p>    
-                                    <?php endforeach ?>
-                                </div>
-                            </div>
-                        </div>              
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <div class="product-title">
-                <h2>Последние товары</h2>
-            </div>
-            <div class="category-products">
-                <?php foreach ($lastProducts as $key): ?>
-                    <div class="last-items">
-                        <div class="last-items-image">
-                            <a href="#">
-                                <img alt="" src="<?=$key['image']; ?>">
-                            </a>
-                        </div>
-                        <div class="last-items-text">
-                            <div class="last-items-name">
-                                <a href="#"><?=$key['name']." ".$key['article']?></a>
-                            </div>
-                            <div class="last-items-price">
-                                <?php if ($key['is_sale'] == 1): ?>
-                                    <p class="old-price"><?=$key['price']; ?></p>
-                                    <p class="price">&nbsp;<?=$key['sale_price']; ?></p>
-                                <?php else: ?>
-                                    <p class="price">&nbsp;<?=$key['price']; ?></p>
-                                <?php endif ?>
-                            </div>                                            
-                        </div>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="related-products-name">
-                <h2>Похожие товары</h2>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="related-products">
-
-            <?php foreach ($relatedProducts as $key): ?>
-                <div class="col-md-2">
-                    <div class="related-product">
-                        <div class="related-image">
-                            <a href="#">
-                                <img src="<?=$key['image']; ?>" alt="">
-                            </a>
-                        </div>
-                        <p class="related-name"><?=$key['name']; ?> <?=$key['article']; ?></p>
-                        <div class="related-price">
-                            <?php if ($key['is_sale'] == 1): ?>
-                                <p class="old-price"><?=$key['price']; ?></p>
-                                <p class="price">&nbsp;<?=$key['sale_price']; ?></p>
-                            <?php else: ?>
-                                <p class="price">&nbsp;<?=$key['price']; ?></p>
-                            <?php endif ?>
-                        </div>                   
-                    </div>
-                </div>
-            <?php endforeach ?>
-
-            </div>    
-        </div>
-    </div>
-	
+	<div class="might-like">
+		<div class="might-like-title">
+			<h3>Вам также может понравиться</h3>
+		</div>
+		<div class="might-like-content">
+			
+			<?php foreach ($relatedProducts as $key => $value): ?>
+				<div class="like-item">
+					<div class="like-item-image"><a href="../product/<?=$value["id"]?>"><img src="<?=$value["image"]?>" alt="Like Image"></a></div>
+					<div class="like-item-info">
+						<div class="like-item-info-title">
+							<span><?=$value["name"];?> <?=$value["article"];?></span>
+						</div>
+						<div class="like-item-info-price">
+							<?php if ($value["is_sale"] == 1): ?>
+								<span class="like-old-price"><?=$value["price"];?></span> <span><?=$value["sale_price"];?></span>
+							<?php else: ?>
+								<span><?=$value["price"];?></span>
+							<?php endif ?>
+						</div>
+					</div>				
+				</div>				
+			<?php endforeach ?>
+		</div>
+	</div>
 </div>
-<div id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 col-sm-3 col-xs-4">
-                <div class="footer_menu">
-                    <p>Информация</p>
-                    <ul>
-                        <li><a href="#main">Главная</a></li>
-                        <li><a href="#">Контакты</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-3 col-xs-4">
-                <div class="footer_menu">
-                    <p>Каталог</p>
-                    <ul>
-                        <li><a href="#">Перейти к каталогу</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 col-md-offset-5 col-sm-6 col-xs-4">
-                <div class="credit_card">
-                    <p>Принимаем к оплате:</p>
-                    <div class="card_item">
-                        <img src="../static/img/maestro.png" alt="">
-                    </div>
-                    <div class="card_item">
-                        <img src="../static/img/maestro.png" alt="">
-                    </div>
-                    <div class="card_item">
-                        <img src="../static/img/maestro.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="copyright">
-                    <div class="logo">
-                        <img src="../static/img/logo.png" alt="">
-                    </div>
-                    <span>
-                        Авторские права © 2017 "Магазин"
-                    </span>
-                </div>  
-            </div>
-            <div class="col-md-6">
-                <div class="contact">
-                    <div class="telephone">
-                        <p>7-(963)-040-25-19</p>
-                    </div>
-                    <div class="adress">
-                        <p>г. Санкт Петербург, Скобелевский пр.,</p>
-                        <p>ТЦ Президентский, 2 этаж</p>
-                        <p>nt-nt@mail.ru</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    
-</script>
+ <?php require_once 'views/index/footer.php'; ?>

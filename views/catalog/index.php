@@ -1,156 +1,146 @@
-<?php require_once 'views/catalog/header.php'; ?>
-
-
-        <div class="banner-image-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="category-image"><img alt="" src="../static/img/13.jpg" width="100%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="shop-main-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="sidebar-content">
-                            <div class="section-title"><h2>Категории</h2></div>
-                            <div class="sidebar-category-list">
-                            	<ul id="category_list">
-                                    <li id="all_category" class="active">Все</li>
-	 								<?php 
-	 									foreach ($categoryList as $key) {
-	 										echo '<li id='.'category_'.$key['id'].'>'.$key['category_name'].'</li>';
-	 									}
-									?>                           		
-                            	</ul>
-                            </div>
-                            <div class="section-title border-none"><h2>Цена</h2></div>
-                            <div class="sidebar-category-list">
-                                <div class="price_filter">
-                                    <div id="slider-range"></div>
-                                    <div class="price_slider_amount">
-                                       <div class="slider-values">
-                                            <input type="text"  id="amount_min" value="0">
-                                            <input type="text"  id="amount_max" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="section-title border-none"><h2>Производитель</h2></div>
-                            <div class="sidebar-category-list">
-                            	<ul id="brand_list">
-                                    <li id="all_brand" class="active">Все</li>
-                                    <?php 
-                                        foreach ($brandList as $key) {
-                                            echo '<li id='.'brand_'.$key['id'].'>'.$key['brand_name'].'</li>';
-                                        }
-                                    ?>                           		
-                            	</ul>
-                            </div>
-                        </div>
-                        <div class="sidebar-content">
-                            <div class="banner-box">
-                                <a href="#">
-                                    <img src="../static/img/14.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="shop-item-filter">
-                        <div class="clearfix"></div> 
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="grid">
-                                <div class="row">
-
-								<div id="list_product">
-									
-								</div>
-							 </div>
-                            </div>
-                         </div>   
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="pagination-content">
-                                    <div class="pagination-button">
-										<div class="paginations"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<div id="footer">
+<?php require_once "views/index/header.php";?>
+<?php $price=array();$i=0;foreach($priceList as $key){$price[$i]=$key['price'];$i++;}$minPrice=min($price);$maxPrice=max($price);?>;
+<div class="catalog">
     <div class="container">
-        <div class="row">
-            <div class="col-md-2 col-sm-3 col-xs-4">
-                <div class="footer_menu">
-                    <p>Информация</p>
-                    <ul>
-                        <li><a href="#main">Главная</a></li>
-                        <li><a href="#">Контакты</a></li>
-                    </ul>
-                </div>
+        <div class="catalog_filter">
+            <div class="filter_search">
+                <h3>Поиск:</h3>
+                <input type="text" name="searchFilter_input" id="searchFilter_input" placeholder="Поиск...">
+                <button id="searchFilterBtn"><i class="fa fa-search"></i></button>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-4">
-                <div class="footer_menu">
-                    <p>Каталог</p>
-                    <ul>
-                        <li><a href="#">Перейти к каталогу</a></li>
-                    </ul>
+            <div class="filter_by">
+                <h3>Параметры поиска:</h3>
+
+                <div class="filter-category catalog-filter-block">
+                    <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-category">
+                    <label for="tab-catalog-filter-category" class="filter-label">Категории</label>
+                    <div class="catalog-filter-panel">
+                        <div class="catalog-filter-category-inpanel">
+                            <?php foreach ($categoryList as $key => $value): ?>
+                                <div class="filter-category-item">
+                                    <div class="filter-category-item-input">
+                                         <input type="checkbox" class="categoryList" name="categoryList" id="categoryList_<?=$value["id"];?>" value="<?=$value["id"];?>">
+                                        <label for="categoryList_<?=$value["id"];?>"></label>                                       
+                                    </div>
+                                    <div class="filter-category-item-value">
+                                         <span><?=$value["category_name"];?></span>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-md-offset-5 col-sm-6 col-xs-4">
-                <div class="credit_card">
-                    <p>Принимаем к оплате:</p>
-                    <div class="card_item">
-                        <img src="../static/img/maestro.png" alt="">
-                    </div>
-                    <div class="card_item">
-                        <img src="../static/img/maestro.png" alt="">
-                    </div>
-                    <div class="card_item">
-                        <img src="../static/img/maestro.png" alt="">
+
+                <div class="filter-brand catalog-filter-block">
+                    <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-brand">
+                    <label for="tab-catalog-filter-brand" class="filter-label">Бренды</label>
+                    <div class="catalog-filter-panel">
+                        <div class="catalog-filter-category-inpanel">
+                            <?php foreach ($brandList as $key => $value): ?>
+                                <div class="filter-category-item">
+                                    <div class="filter-category-item-input">
+                                         <input type="checkbox" class="brandList" name="brandList" id="brandList_<?=$value["id"];?>" value="<?=$value["id"];?>">
+                                        <label for="brandList_<?=$value["id"];?>"></label>                                       
+                                    </div>
+                                    <div class="filter-category-item-value">
+                                         <span><?=$value["brand_name"];?></span>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
                     </div>
                 </div>
+
+                <div class="filter-season catalog-filter-block">
+                    <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-season">
+                    <label for="tab-catalog-filter-season" class="filter-label">Сезон</label>
+                    <div class="catalog-filter-panel">
+                        <div class="catalog-filter-category-inpanel">
+                            <?php foreach ($seasonList as $key => $value): ?>
+                                <div class="filter-category-item">
+                                    <div class="filter-category-item-input">
+                                         <input type="checkbox" class="seasonList" name="seasonList" id="seasonList_<?=$value["id"];?>" value="<?=$value["id"];?>">
+                                        <label for="seasonList_<?=$value["id"];?>"></label>                                       
+                                    </div>
+                                    <div class="filter-category-item-value">
+                                         <span><?=$value["season_name"];?></span>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-price catalog-filter-block">
+                    <input type="checkbox" class="filter-checkbox" id="tab-catalog-filter-price">
+                    <label for="tab-catalog-filter-price" class="filter-label">Цена</label>                  
+                    <div class="catalog-filter-panel">
+                        <div class="catalog-filter-price-inpanel">
+                            <div class="filter-minmax-price">
+                               <input type="text" value="<?=$minPrice?>" name="minPrice" id="minPrice"> 
+                            </div>
+                            <div class="filter-minmax-line">
+                            </div>
+                            <div class="filter-minmax-price">
+                                <input type="text" value="<?=$maxPrice?>" name="maxPrice" id="maxPrice"> 
+                            </div>                            
+                        </div>
+                        <div class="catalog-filter-price-inpanel is_sale">
+                            <div>
+                                <input type="checkbox" class="filterIsSale" id="filterIsSale">
+                                <label for="filterIsSale" class="filterIsSale"></label>
+                            </div>
+                            <div>
+                                <p>Только скидки</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="copyright">
-                    <div class="logo">
-                        <img src="../static/img/logo.png" alt="">
+        <div class="catalog-container">
+            <div class="catalog-header">
+                <div class="catalog-count_item">
+                    <span id="countItems"></span>
+                </div>
+                <div class="catalog-sort">
+                    <div class="catalog-sort-by">
+                        <span>Сортировка: </span>
+                        <select name="sortBy" id="sortBy">
+                            <option value="sortByNewest">По новинкам</option>
+                            <option value="sortBySales">По скидкам</option>
+                            <option value="sortByPriceLower">По убыванию цены</option>
+                            <option value="sortByPriceHigher">По возрастанию цены</option>
+                        </select>
                     </div>
-                    <span>
-                        Авторские права © 2017 "Магазин"
-                    </span>
-                </div>  
+                    <div class="catalog-pagination">
+                        <div class="paginations"></div>
+                    </div>                    
+                </div>
             </div>
-            <div class="col-md-6">
-                <div class="contact">
-                    <div class="telephone">
-                        <p>7-(963)-040-25-19</p>
-                    </div>
-                    <div class="adress">
-                        <p>г. Санкт Петербург, Скобелевский пр.,</p>
-                        <p>ТЦ Президентский, 2 этаж</p>
-                        <p>nt-nt@mail.ru</p>
-                    </div>
+            <div class="catalog-main">
+                <div class="catalog-items-list">
+                </div>
+                <div class="main-pagination">
+                    <div class="paginations"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/static/js/libs.min.js"></script>
+
+<script type="text/javascript" src="/static/js/libs.min.js"></script>
+<script type="text/javascript" src="/static/js/dev/catalog.js"></script>
 <script type="text/javascript">
-    //Получение максимальной цены товара из каталога
-    var maxPrice = <?php $maxPrice = array(); $i = 0; foreach ($productList as $key) { $maxPrice[$i] = $key['price']; $i++; } echo json_encode(max($maxPrice)); ?>; 
+    var catalog = new Catalog("getAllProduct", "POST");
+    var filter = new Filter(catalog);
+    if (catalog != undefined && filter != undefined) {
+        filter.init();
+        catalog.init();         
+    }
 </script>
-<script src="/static/js/catalog.js"></script>
+
+<?php require_once "views/index/footer.php"; ?>

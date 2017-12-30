@@ -1,0 +1,69 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import 'bourbon';
+
+$main-font-family: 'Oswald', 'Open Sans', sans-serif;
+$font-source: 'Source Sans Pro', sans-serif;
+$default-fontsize: 16px;
+
+
+
+
+
+
+
+
+
+// //Шрифт по-умолчанию
+// $defaul-fontsize: 16px;
+// //Цвета 
+
+// $transparent-color: rgba(15, 17, 23, 0.7);
+
+// $primary-color: #0f1117 ;
+
+// $secondary-color: #e91e63 ;
+ 
+// //Шрифты и цвета 
+// $base-font-size: 16px ;
+// $base-font-family:  'Lato', sans-serif;
+// $ui-text-color: #333 ;
+// $ui-text-light-color: #fff ;
+// $ui-text-transform: uppercase ;
+// //Цвет ссылок в меню при наведении
+// $hover_menu: #cf0325;
+
+// //Мобильное меню (меньше 992px)
+// $toggle_color: #fff;
+// $toggle_hover_color: rgba($toggle_color, .7);
+// $border_mobile_menu_color: #fff;
+// $mobile_menu_color: #272727;
+// $mobile_menu_text_color: #fff;
+
+// //Цвета с причин выбора
+// $border_reasons_color: rgba(255,255,255,.8);
+// $border_reasons_color_hover: #f73453;
+// $bg_hover_reasos: #f7f7f7;
+// $reason_text_color: #fff;
+// $reason_text_color_hover: #f73453;
+
+// //Цвета скаталога
+// $white_catalog: #fff;
+// $get_catalog_color: #c52323;
+
+// //Цвета футера
+// $bg_footer_color: #333333;
+
+// //Цвета слайдера цены
+// $slider_color: #ec5355;
+// $slider_range: #DBDBDB;
+
+// //Цвета каталога + меню верхнее
+// $catalog_menu_color: #000000;
+// $catalog-menu-border-color: rgba(0,0,0, .15)  ;
+// $menu-color-hover: #f73453;
+
+// //Цвет контактов
+// $color-contact: rgba(0,0,0,.5);
+
+// //Цвет с продуктов
+// $sale-color-font: #f25549;
