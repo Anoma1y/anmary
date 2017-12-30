@@ -61,5 +61,5 @@ body{
   <hr>
   <div class='text'>Запрашиваемая страница</div>
   <div class='text2'>не найдена</div>
-  <a class='btn' href='../'>Вернуться на главную</a>
+  <a class='btn' href='/'>Вернуться на главную</a>
 </div>

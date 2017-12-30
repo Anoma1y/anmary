@@ -1,7 +1,7 @@
 <?php 
 
 	/**
-	* Пагинация AJAX
+	* Класс Pagination для генерации постраничной навигации методом AJAX
 	*/
 	require_once 'Db.php';
 	class Pagination {
@@ -62,7 +62,11 @@
 	   		$this->total_records = $this->page_result->rowCount();
 	   		$this->total_pages = $this->amount();
 		}
-		//Вывод всех записей
+		//Вывод всех записей 
+		/**
+		 * Функция, возврващает JSON ответ методу AJAX
+		 * @return JSON возвращает JSON объект
+		 */
 		public function getPages() {
 		    $this->data['total_item'] = $this->total_records;
 		    $this->data['total_page'] = $this->total_pages;

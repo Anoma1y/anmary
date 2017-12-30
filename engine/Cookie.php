@@ -14,6 +14,8 @@
 	    public static function destroy() {
 		    setcookie('user_hash', null, -1, '/', $params['domain']);
 		    setcookie('user_email', null, -1, '/', $params['domain']);
+		    setcookie('user_id', null, -1, '/', $params['domain']);
+		    setcookie('user_username', null, -1, '/', $params['domain']);
 		    return true;
 	    }
 	}

@@ -476,3 +476,5 @@ var Filter = function () {
 
     return Filter;
 }();
+
+// console.log(window.location.pathname);

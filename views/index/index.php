@@ -30,7 +30,7 @@
 	</div>
 </section>
 
-<section>
+<section id="blocks-info">
 	<div class="blocks">
 		<div class="block new_collections">
 			<div class="collection_info">

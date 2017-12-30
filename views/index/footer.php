@@ -15,19 +15,18 @@
 				<nav>
 					<h4>Навигация</h4>
 					<ul class="footer_menu">
-						<li><a href="#">Ссылка-1</a></li>
-						<li><a href="#">Ссылка-2</a></li>
-						<li><a href="#">Ссылка-3</a></li>
-						<li><a href="#">Ссылка-4</a></li>
+						<li><a href="/">Главная</a></li>
+						<li><a href="/catalog">Каталог</a></li>
+						<li><a href="/news">Новости</a></li>
+						<li><a href="/contacts">Контакты</a></li>
 					</ul>
 				</nav>
 				<nav>
 					<h4>Каталог</h4>
 					<ul class="footer_menu">
-						<li><a href="#">Ссылка-1</a></li>
-						<li><a href="#">Ссылка-2</a></li>
-						<li><a href="#">Ссылка-3</a></li>
-						<li><a href="#">Ссылка-4</a></li>
+						<li><a href="/catalog/newest">Новинки</a></li>
+						<li><a href="/catalog/sale">Скидки</a></li>
+						<li><a href="/catalog/last_season">Новый сезон</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -37,7 +36,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, maxime!</p>
 				</div>
 				<div class="footer_email">
-					<p>email@mail.ru</p>
+					<p><?=$info["email"]?></p>
 				</div>
 				<div class="footer_social">
 					<i class="fa fa-vk" aria-hidden="true"></i>
@@ -47,7 +46,6 @@
 			</div>
 		</div>
 	</footer>
-
 	<!--[if lt IE 9]>
 	<script src="libs/html5shiv/es5-shim.min.js"></script>
 	<script src="libs/html5shiv/html5shiv.min.js"></script>
@@ -58,9 +56,28 @@
 	<script src="/static/js/polyfill.object-fit.min.js"></script>
 	<script>
 		objectFit.polyfill({
-			selector: 'img', // this can be any CSS selector
-			fittype: 'cover', // either contain, cover, fill or none
-			disableCrossDomain: 'true' // either 'true' or 'false' to not parse external CSS files.
+			selector: 'img', 
+			fittype: 'cover', 
+			disableCrossDomain: 'true'
+		});
+		//Mobile Menu
+		$('#mobile-trigger').bind('click', function (e) {
+			$(this).toggleClass('active');
+			e.preventDefault();
+			$('.menu-main-overlay').fadeIn('400', function () {
+				$('#menu-open').toggleClass('active');
+				$('.menu-main-wrap').toggleClass('active');
+				$('.menu-effect_1').toggleClass('active');
+			});
+		});
+
+		$('.menu-main-overlay').bind('click', function () {
+			$('.menu-main-overlay').fadeOut('400', function () {
+				$('#menu-open').removeClass('active');
+				$('#icon-toggle').removeClass('active');
+				$('.menu-main-wrap').removeClass('active');
+				$('.menu-effect_1').removeClass('active');
+			});
 		});
 	</script>
 </body>

@@ -4,13 +4,18 @@
 		* Главная страница каталога 
 		**/
 	    public function all() {
-	    	$priceList = CatalogModel::getPrice();
-	    	$categoryList = CatalogModel::getCategory();
-	    	$brandList = CatalogModel::getBrand();
-	    	$seasonList = CatalogModel::getSeason();
-	    	$countItems = CatalogModel::countItems();
-	        require_once('views/catalog/index.php');
-	        return true;				
+	    	try {
+		    	$priceList = CatalogModel::getPrice();
+		    	$categoryList = CatalogModel::getCategory();
+		    	$brandList = CatalogModel::getBrand();
+		    	$seasonList = CatalogModel::getSeason();
+		    	$countItems = CatalogModel::countItems();
+		        require_once('views/catalog/index.php');
+		        return true;		    		
+	    	} catch (Exception $e) {
+	    		echo $e;
+	    	}
+			
 	    }
 	    //Метод получение списка товаров
 	    public function getAllProduct() {

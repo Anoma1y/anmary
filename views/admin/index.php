@@ -1,4 +1,4 @@
-
+<?php require_once 'header.php'; ?>
 
 
 
@@ -7,9 +7,9 @@
 
 
 <div class="main">
-    <div id="tabs">
-      <table id="table">
-        <thead>
+  <div id="tabs">
+    <table id="table">
+      <thead>
         <tr>
           <th class="sortingProduct" id="product-id">id</th>
           <th class="sortingProduct" id="product-name">Название</th>
@@ -28,15 +28,15 @@
           <th></th>
           <th></th>
         </tr>
-        </thead>
-        <tbody id="tbody">
-          
-        </tbody>
-      </table>
-    </div> 
-    <div class="paginations">
-    
-    </div> 
+      </thead>
+      <tbody id="tbody">
+
+      </tbody>
+    </table>
+  </div> 
+  <div class="paginations">
+
+  </div> 
 </div>
 
 
@@ -44,3 +44,5 @@
 
 <!-- <script src="/static/js/libs.min.js"></script> -->
 <script src="/static/js/adminMain.js"></script>
+<?php require_once 'footer.php'; ?>
+

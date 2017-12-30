@@ -3,9 +3,8 @@
 <head>
 
 	<meta charset="utf-8">
-
 	<title>Магазин женской одежды Анмари</title>
-
+	
 	<meta name="description" content="Магазин женской одежды в Санкт-Петербурге. Прибалтийский трикотаж от известных латвийских производителей женской одежды Vaide, Comvill, Top Design и т.д. Одежда российского бренда Bravissimo">
 	<meta name="google-site-verification" content="XTGy26KTjTbJvVrvgTcx4V98DO1COFmE_3cVT-R8DTk" />
 	<meta name="yandex-verification" content="ef739025f523584c" />
@@ -39,24 +38,39 @@
 	<div class="container">
 		<div class="header_info">
 			<div class="user_info">
-				<div class="icon">
+				<div class="user-info-icon">
 					<i class="fa fa-user-circle" aria-hidden="true"></i>
 				</div>
-				<div class="user_control">
-					<a href="/users/signin"><span class="sign_in">Войти</span></a>
-					<a href="/users/signup"><span class="sign_up">Регистрация</span></a>
+				<div class="user-control">
+
+
+                    <?php if (!isset($_COOKIE["user_username"])): ?>                                        
+						<a href="/users/signin">
+							<span class="sign_in_link">Войти</span>
+						</a>
+						<a href="/users/signup">
+							<span class="sign_up_link">Регистрация</span>
+						</a>                        
+                    <?php else: ?>
+						<a href="/users/logout">
+							<span class="sign_in_link">Выйти</span>
+						</a>
+						<a href="/users/signup">
+							<span class="sign_up_link">Мой профиль</span>
+						</a>      
+                    <?php endif; ?>
 				</div>
 			</div>
-			<div class="logo">
+			<div class="header-logo">
 				<img src="/static/img/2.svg" alt="">
 			</div>
-			<div class="shop_info">
-				<div class="compare_info">
-					<span class="info_count">0</span>
+			<div class="shop-info">
+				<div class="shop-info-compare">
+					<span class="shop-info-count">0</span>
 					<i class="fa fa-heart-o" aria-hidden="true"></i>
 				</div>
-				<div class="products_info">
-					<span class="info_count">0</span>
+				<div class="shop-info-products">
+					<span class="shop-info-count">0</span>
 					<i class="fa  fa-shopping-basket" aria-hidden="true"></i>
 					<p>0</p>					
 				</div>
@@ -64,11 +78,11 @@
 		</div>
 	</div>
 	<div class="menu_container">
-		<div class="header_menu">
+		<div class="header-menu">
 			<div class="header_container">
-				<div class="search">
+				<div class="search-button">
 					<i class="fa fa-search" id="searchBtn" aria-hidden="true"></i>
-					<div class="search_input">
+					<div class="search-content">
 						<input type="text" class="searchText" id="searchText" placeholder="Поиск">
 						<button id="search"><i class="fa fa-search" aria-hidden="true"></i></button>		
 					</div>
@@ -79,10 +93,9 @@
 						<nav class="menu-main-wrap">
 							<ul class="ui menu menu-effect_1">
 								<li><a href="/">Главная</a></li>
+								<li><a href="/catalog/newest">Новинки</a></li>
 								<li><a href="/catalog/all">Каталог</a></li>
-								<li><a href="#">Link-3</a></li>
-								<li><a href="#">Link-4</a></li>
-								<li><a href="#">Link-5</a></li>
+								<li><a href="/catalog/sale">Скидки</a></li>
 								<li><a href="/contacts">Контакты</a></li>
 							</ul>
 						</nav>
@@ -90,14 +103,13 @@
 					</div>
 					<ul>
 						<li><a href="/">Главная</a></li>
+						<li><a href="/catalog/newest">Новинки</a></li>
 						<li><a href="/catalog/all">Каталог</a></li>
-						<li><a href="#">Link-3</a></li>
-						<li><a href="#">Link-4</a></li>
-						<li><a href="#">Link-5</a></li>
+						<li><a href="/catalog/sale">Скидки</a></li>
 						<li><a href="/contacts">Контакты</a></li>
 					</ul>
 				</nav>
-				<div class="social_network">
+				<div class="social-network">
 					<i class="fa fa-vk" aria-hidden="true"></i>
 					<i class="fa fa-skype" aria-hidden="true"></i>
 					<i class="fa fa-odnoklassniki" aria-hidden="true"></i>

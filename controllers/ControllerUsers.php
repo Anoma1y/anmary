@@ -1,5 +1,6 @@
 <?php
-    
+	require_once "engine/Session.php";
+	require_once "engine/Cookie.php";
     $params = include('engine/config.php');
 	class Users {
 		public function index() {
@@ -18,7 +19,16 @@
 			$view->render('users/register');
 		}
 	    public function logout() {
-	    	User::logoutUser();
+	    	if (isset($_COOKIE)) {
+		    	// Удаление сессий
+		    	Session::destroy();
+		    	// Удаление куков
+		    	Cookie::destroy();
+	        	// Перенаправляем пользователя на главную страницу
+	        	header("Location: /");
+	    	}
+
+	    	// User::logoutUser();
 	    }
 		public function login_action() {
 			$view = new View();
