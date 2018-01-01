@@ -105,33 +105,40 @@
 	     * @param array $data POST запрос, передающий почту и пароль
 	     * @return boolean если почта используется, отклонить, если почта уникальная - добавить запись в БД
 	     */
-	    public function userRegistration($data) {
+	    public function userRegistration($data) {	
 	    	$db = Db::getConnection();
-	        $username = $data['username'];
-	        $email = $data['email'];
-	        $password = $data['password'];
-	        $chk_email = $this->emailCheck($email);
-	         //добавить проверку...
-	         //добавить проверку...
-	         //добавить проверку...
-	         //добавить проверку... + при удачной регистрации перенаправить
-	        if ($chk_email) {
-	        	return;
-	        }
-	        $password = md5(md5($data['password']));
-	        $sql = "INSERT INTO users (username, email, password, joined, role) VALUES (:username, :email, :password, now(), 2)";
-	        $query = $db->prepare($sql);
-	        $query->bindValue(':username', $username);
-	        $query->bindValue(':email', $email);
-	        $query->bindValue(':password', $password);
-	        $result = $query->execute();
+	    	if (!empty($data)) {
+		        $username = $data['username'];
+		        $email = $data['email'];
+		        $password = $data['password'];
+		        //Проверка почты на уже имеющиеся
+		        $chk_email = User::emailCheck($email);
+		        if ($chk_email) {
+		        	die(json_encode("E-Mail уже используется"));
+		        }
+		    	Session::destroy();
+		    	Cookie::destroy();
+		        $password = md5(md5($data['password']));
+		        //По умолчанию 2 это обычный пользователь, 1 - админ
+		        $sql = "INSERT INTO users (username, email, password, joined, role) VALUES (:username, :email, :password, now(), 2)";
+		        $query = $db->prepare($sql);
+		        $query->bindValue(':username', $username);
+		        $query->bindValue(':email', $email);
+		        $query->bindValue(':password', $password);
+		        $result = $query->execute();
+		        if ($result) {
+		       		die(json_encode(true));
+		       	} else {
+		       		die(json_encode("Ошибка регистрации"));
+		       	}
+	    	}
 	    }
 	    /**
 	     * Проверка на уникальность почты
 	     * @param string $email Почта
 	     * @return boolean вызов true если почта уникальная, false если почта уже используется
 	     */
-	    public function emailCheck($email) {
+	    public static function emailCheck($email) {
 	        // Соединение с БД        
 	        $db = Db::getConnection();
 

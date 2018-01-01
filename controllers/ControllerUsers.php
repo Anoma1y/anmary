@@ -29,8 +29,16 @@
 	    	}
 	    }
 		public function login_action() {
-			$user = User::userLogin($_POST);
-			return $user;
+			if (!empty($_POST)) {
+				$user = User::userLogin($_POST);
+				return $user;				
+			}
+		}
+		public function signup_action() {
+			if (!empty($_POST)) {
+				$user = User::userRegistration($_POST);
+				return $user;
+			}
 		}
 		public function profile() {
        		require_once('views/users/profile.php');

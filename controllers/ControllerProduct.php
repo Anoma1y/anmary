@@ -1,5 +1,12 @@
 <?php
+	/**
+	 * Класс Product
+	 */
 	class Product {
+		/**
+		 * [indexView метод контроллера товара по ID]
+		 * Возвращает сгенерированную страницу
+		 */
 	    public function indexView() {
 	    	$routes = explode('/', $_SERVER['REQUEST_URI']);
 	    	$data = ProductModel::getProductById();

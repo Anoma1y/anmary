@@ -1,6 +1,11 @@
 <?php 
+	/**
+	 * [generateCode функция генерации ХЭШ кода]
+	 * @param  integer $length [длина кода]
+	 * @return string         [ХЭШ код из $length символов]
+	 */
 	function generateCode($length=6) {
-	    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI JKLMNOPRQSTUVWXYZ0123456789";
+	    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI%@#!*JKLMNOPRQSTUVWXYZ0123456789";
 	    $code = "";
 	    $sch = strlen($chars) - 1;  
 	    while (strlen($code) < $length) {

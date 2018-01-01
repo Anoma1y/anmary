@@ -124,7 +124,8 @@ body {
   padding: 60px 50px;
   -webkit-box-shadow: 0 0 30px 0 #333;
           box-shadow: 0 0 30px 0 #333;
-  position: relative; }
+  position: relative;
+  cursor: default; }
   .user_form .back {
     position: absolute;
     bottom: 8px;
@@ -154,7 +155,7 @@ body {
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column; }
-    .user_form form input[type="email"], .user_form form input[type="password"] {
+    .user_form form input[type="email"], .user_form form input[type="password"], .user_form form input[type="text"] {
       width: 390px;
       height: 42px;
       border: 1px solid #c2c2c2;
@@ -171,18 +172,19 @@ body {
       -webkit-transition: .5s ease;
       -o-transition: .5s ease;
       transition: .5s ease; }
-      .user_form form input[type="email"]:hover, .user_form form input[type="password"]:hover {
+      .user_form form input[type="email"]:hover, .user_form form input[type="password"]:hover, .user_form form input[type="text"]:hover {
         -webkit-transform: scale(1.05);
             -ms-transform: scale(1.05);
                 transform: scale(1.05);
         background-color: #f2f2f2; }
-      .user_form form input[type="email"]:focus, .user_form form input[type="password"]:focus {
+      .user_form form input[type="email"]:focus, .user_form form input[type="password"]:focus, .user_form form input[type="text"]:focus {
         -webkit-transform: scale(1.05);
             -ms-transform: scale(1.05);
                 transform: scale(1.05);
         outline: none;
         -webkit-box-shadow: 0 0 30px 0 rgba(20, 20, 20, 0.2);
-                box-shadow: 0 0 30px 0 rgba(20, 20, 20, 0.2); }
+                box-shadow: 0 0 30px 0 rgba(20, 20, 20, 0.2);
+        cursor: text; }
     .user_form form .label {
       position: relative; }
       .user_form form .label label {

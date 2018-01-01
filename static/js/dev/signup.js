@@ -1,11 +1,13 @@
 'use strict';
 
+const input_username = document.getElementById('username');
 const input_email = document.getElementById('email');
 const input_password = document.getElementById('password');
-const button = document.getElementById('login');
+const button = document.getElementById('register');
 var error = document.getElementById('error');
 var checkEmail = false;
 var checkPassword = false;
+var checkUsername = false;
 
 function handlerCheck(target, bool, textError = "") {
 	if (bool) {
@@ -19,7 +21,21 @@ function handlerCheck(target, bool, textError = "") {
 function errorText(text) {
 	error.innerText = text;
 }
-
+input_username.addEventListener('change', function(e){
+	var target = e.target;
+	if (target.value.length >= 3 && target.value.length <= 50) {
+		if (!target.value.match(/[^a-zA-Z0-9]/g)) {
+			checkUsername = true;
+			handlerCheck(target, true);
+		} else {
+			checkUsername = false;
+			handlerCheck(target, false, "Можно использовать только английские буквы и цифры");
+		}
+	} else {
+		checkUsername = false;
+		handlerCheck(target, false, "Логин должен содержать от 3 до 50 символов")
+	}
+})
 input_password.addEventListener('change', function(e){
 	var target = e.target;
 	if (target.value.length >= 3 && target.value.length <= 50) {
@@ -38,18 +54,22 @@ input_email.addEventListener('change', function(e){
 			handlerCheck(target, true);
 		} else {
 			checkEmail = false;
-			handlerCheck(target, false, "Неверный E-Mail");
+			handlerCheck(target, true, "Неверный E-Mail");
 		}
+	} else {
+		checkEmail = false;
+		handlerCheck(target, false, "Введите E-Mail");
 	}
 })
 
 button.addEventListener('click', function (e) {
 	e.preventDefault();
-	if (checkPassword === true && checkEmail === true) {
+	if (checkPassword === true && checkEmail === true && checkUsername === true) {
 		$.ajax({
-			url: 'login_action',
+			url: 'signup_action',
 			type: 'POST',
 			data: {
+				username: input_username.value,
 				email: input_email.value,
 				password: input_password.value
 			},
@@ -65,8 +85,8 @@ button.addEventListener('click', function (e) {
 		.fail(function() {
 			console.log("error");
 		})			
-	} else if (!checkEmail || !checkPassword) {
-		error.innerText = 'Введите логин и пароль';
+	} else if (!checkEmail || !checkPassword || !checkUsername) {
+		error.innerText = 'Введите логин, почту и пароль';
 	} 
 
 })
