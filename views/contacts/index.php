@@ -2,6 +2,9 @@
 
 <section class="contacts">
 	<div class="container">
+		<div class="title">
+			<h1><span>Контакты</span></h1>
+		</div>
 		<div class="our_contacts">
 			<div class="our_contacts_item">
 				<div class="our_contacts_item_icon">
@@ -47,10 +50,8 @@
 	</div>
 	<div class="container">
 		<div class="title">
-			<h1><span>Связаться с нами</span></h1>
+			<h1><span>Обратная связь</span></h1>
 		</div>
-	</div>
-	<div class="container">
 		<div class="feedback">
 			<div class="feedback__form">
 				<form action="#" method="POST" id="feedback_form">

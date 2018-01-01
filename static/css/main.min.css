@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Oswald:300,400,700");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -319,6 +320,8 @@ body {
         letter-spacing: 1px;
         text-transform: uppercase;
         color: #000; }
+      .navigation > ul li.active {
+        background-color: #ffab00; }
   .navigation .mobile-menu {
     display: none;
     height: 30px; }
@@ -590,7 +593,7 @@ body {
         bottom: 0; }
       .blocks .block.new_collections .collection_info {
         text-align: center;
-        font-family: "Source Sans Pro", sans-serif;
+        font-family: "Merriweather", sans-serif;
         color: #fff;
         text-transform: uppercase;
         z-index: 9999; }
@@ -598,13 +601,13 @@ body {
           margin: 30px; }
           .blocks .block.new_collections .collection_info .collection_name h2 {
             font-weight: bold;
-            font-size: 1.875em;
+            font-size: 1.5625em;
             letter-spacing: 1.5px; }
           .blocks .block.new_collections .collection_info .collection_name p {
             display: block;
             margin: 5px;
             font-weight: 300;
-            font-size: 1.125em;
+            font-size: 0.875em;
             letter-spacing: 1.7px; }
         .blocks .block.new_collections .collection_info a {
           font-weight: bold;
@@ -640,7 +643,7 @@ body {
                 justify-content: center;
         text-align: center;
         height: 100%;
-        font-family: "Source Sans Pro", sans-serif; }
+        font-family: "Merriweather", sans-serif; }
         .blocks .block.season_sale .season_sale_info:hover h1 {
           color: black;
           -webkit-animation-name: scal1;
@@ -658,12 +661,13 @@ body {
         .blocks .block.season_sale .season_sale_info p {
           font-weight: 300;
           letter-spacing: 5px;
+          line-height: 2;
           font-size: 1em;
           font-weight: normal; }
         .blocks .block.season_sale .season_sale_info h1 {
           line-height: 0.8;
-          font-weight: bold;
-          font-size: 8.125em; }
+          font-weight: 900;
+          font-size: 6.25em; }
     .blocks .block.new_arrivals {
       position: relative;
       grid-area: new_arrivals;
@@ -693,17 +697,17 @@ body {
       .blocks .block.new_arrivals .arrivals_info {
         text-align: center;
         text-transform: uppercase;
-        font-family: "Source Sans Pro", sans-serif;
+        font-family: "Merriweather", sans-serif;
         z-index: 9999; }
         .blocks .block.new_arrivals .arrivals_info h1 {
-          font-size: 2em;
+          font-size: 1.5625em;
           color: #fff;
           font-weight: bold;
           margin-bottom: 25px;
           letter-spacing: 2px; }
         .blocks .block.new_arrivals .arrivals_info a {
           font-weight: bold;
-          font-size: 0.875em;
+          font-size: 0.8125em;
           color: #fff;
           padding: 15px 30px;
           background-color: #24A0A9;
@@ -742,7 +746,7 @@ body {
         z-index: 9999;
         margin: 0 auto; }
         .blocks .block.subscribe .formSubscribe input {
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: "Merriweather", sans-serif;
           font-weight: bold;
           border: none;
           outline: none;
@@ -771,7 +775,7 @@ body {
             text-transform: uppercase; }
         .blocks .block.subscribe .formSubscribe button {
           position: relative;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: "Merriweather", sans-serif;
           height: 30px;
           width: 40px;
           font-weight: bold;
@@ -797,13 +801,13 @@ body {
         text-align: center;
         z-index: 9999;
         text-transform: uppercase;
-        font-family: "Source Sans Pro", sans-serif; }
+        font-family: "Merriweather", sans-serif; }
         .blocks .block.subscribe .get_subscribe h2 {
-          font-size: 1.625em;
+          font-size: 1.25em;
           color: #fff;
           font-weight: 300;
           margin-bottom: 25px;
-          letter-spacing: 2px; }
+          letter-spacing: 1.5px; }
     .blocks .block.all_catalog {
       grid-area: all_catalog;
       position: relative;
@@ -838,9 +842,9 @@ body {
         text-align: center;
         z-index: 9999;
         text-transform: uppercase;
-        font-family: "Source Sans Pro", sans-serif; }
+        font-family: "Merriweather", sans-serif; }
         .blocks .block.all_catalog .catalog_info h2 {
-          font-size: 1.375em;
+          font-size: 1.125em;
           color: #fff;
           font-weight: 800;
           margin-bottom: 25px;
@@ -853,8 +857,9 @@ body {
         text-align: center;
         overflow: hidden;
         padding: 15px 40px 15px 10px;
-        font-weight: 800;
-        font-size: 1.25em;
+        font-weight: normal;
+        font-family: "Merriweather", sans-serif;
+        font-size: 1.125em;
         text-transform: uppercase;
         color: #fff;
         -webkit-transition-property: background-color color;
@@ -950,15 +955,20 @@ body {
         background-color: #cdcdcd; }
     .product_list .product__brand {
       margin-top: 5px;
-      font-size: 0.625em; }
+      font-size: 0.625em;
+      font-family: "Merriweather", sans-serif;
+      color: #000000; }
     .product_list .product__title {
-      font-size: 0.9375em;
-      font-family: "Source Sans Pro", sans-serif;
-      font-weight: bold;
+      font-size: 0.875em;
+      font-family: "Merriweather", sans-serif;
+      font-weight: normal;
+      letter-spacing: -0.3px;
+      color: #000000;
       text-transform: uppercase; }
     .product_list .product__price {
-      font-size: 1.125em;
-      font-family: "Source Sans Pro", sans-serif;
+      color: #000000;
+      font-size: 1em;
+      font-family: "Merriweather", sans-serif;
       font-weight: 300; }
       .product_list .product__price-old {
         text-decoration: line-through;
@@ -1024,9 +1034,9 @@ footer {
       margin-bottom: 30px;
       color: #ffab00; }
     footer .footer-left .footer_about {
-      font-family: "Source Sans Pro", sans-serif;
+      font-family: "Merriweather", sans-serif;
       letter-spacing: 0.5px;
-      font-size: 0.875em;
+      font-size: 0.75em;
       color: rgba(255, 255, 255, 0.8);
       font-weight: normal;
       padding: 0 20px 0 0;
@@ -1081,8 +1091,8 @@ footer {
         font-size: 1.25em;
         letter-spacing: 0.6px; }
       footer .footer-right .footer_contact p {
-        font-family: "Source Sans Pro", sans-serif;
-        font-size: 0.875em;
+        font-family: "Merriweather", sans-serif;
+        font-size: 0.75em;
         line-height: 1.5; }
     footer .footer-right .footer_email {
       border-top: 1px solid #ffab00;
@@ -1192,7 +1202,7 @@ footer {
       .catalog .catalog_filter .filter_search input {
         width: 100%;
         padding: 0 40px 0 5px;
-        font-family: "Source Sans Pro", sans-serif;
+        font-family: "Merriweather", sans-serif;
         font-size: 1em;
         font-weight: 300;
         letter-spacing: 0.5px;
@@ -1200,6 +1210,16 @@ footer {
         border-right: none;
         height: 35px;
         float: left; }
+        .catalog .catalog_filter .filter_search input::-webkit-input-placeholder {
+          font-size: 0.75em; }
+        .catalog .catalog_filter .filter_search input::-moz-placeholder {
+          font-size: 0.75em; }
+        .catalog .catalog_filter .filter_search input:-ms-input-placeholder {
+          font-size: 0.75em; }
+        .catalog .catalog_filter .filter_search input::-ms-input-placeholder {
+          font-size: 0.75em; }
+        .catalog .catalog_filter .filter_search input::placeholder {
+          font-size: 0.75em; }
         .catalog .catalog_filter .filter_search input:focus {
           outline: none; }
       .catalog .catalog_filter .filter_search button {
@@ -1246,7 +1266,10 @@ footer {
       .catalog .catalog_filter .filter_by label.filter-label {
         display: block;
         position: relative;
-        font-family: "Source Sans Pro", sans-serif;
+        font-family: "Merriweather", sans-serif;
+        font-weight: 300;
+        font-size: 0.875em;
+        text-transform: uppercase;
         padding: 10px 0;
         width: 100%;
         cursor: pointer; }
@@ -1284,7 +1307,8 @@ footer {
             display: block;
             width: 80%; }
             .catalog .catalog_filter .filter_by .catalog-filter-category-inpanel .filter-category-item .filter-category-item-value span {
-              font-family: "Source Sans Pro", sans-serif;
+              font-family: "Merriweather", sans-serif;
+              font-weight: 300;
               font-size: 0.875em; }
           .catalog .catalog_filter .filter_by .catalog-filter-category-inpanel .filter-category-item .filter-category-item-input {
             width: 20%; }
@@ -1353,7 +1377,8 @@ footer {
             -webkit-border-radius: 3px;
                     border-radius: 3px; }
           .catalog .catalog_filter .filter_by .filter-price .catalog-filter-price-inpanel.is_sale p {
-            font-family: "Source Sans Pro", sans-serif;
+            font-family: "Merriweather", sans-serif;
+            font-weight: 300;
             font-size: 0.9375em;
             padding: 0 5px; }
   .catalog .catalog-container {
@@ -1551,22 +1576,23 @@ footer {
                 -o-transition: color .3s ease;
                 transition: color .3s ease; }
               .catalog .catalog-container .catalog-items-list .catalog-item .product-info .info-container .info-container-header .product-name .product-title {
-                font-family: "Source Sans Pro", sans-serif;
+                font-family: "Merriweather", sans-serif;
                 color: #393c45;
                 font-weight: bold;
-                font-size: 1em;
+                font-size: 0.8125em;
                 text-transform: uppercase; }
               .catalog .catalog-container .catalog-items-list .catalog-item .product-info .info-container .info-container-header .product-name .product-brand {
                 color: #a3a3a3;
-                font-size: 0.875em;
-                font-family: "Source Sans Pro", sans-serif;
+                font-size: 0.75em;
+                font-family: "Merriweather", sans-serif;
                 padding: 2px 0 20px 0; }
             .catalog .catalog-container .catalog-items-list .catalog-item .product-info .info-container .info-container-header .product-price {
               width: 48%;
               text-align: right;
               color: #ffab00;
-              font-family: "Source Sans Pro", sans-serif;
-              font-size: 1.375em;
+              font-family: "Merriweather", sans-serif;
+              font-size: 1.1875em;
+              font-weight: 900;
               cursor: default; }
               .catalog .catalog-container .catalog-items-list .catalog-item .product-info .info-container .info-container-header .product-price .item-old-price {
                 text-decoration: line-through;
@@ -1580,15 +1606,16 @@ footer {
             margin-top: 10px;
             cursor: default; }
             .catalog .catalog-container .catalog-items-list .catalog-item .product-info .product-hide-info strong {
-              font-family: "Source Sans Pro", sans-serif;
+              font-family: "Merriweather", sans-serif;
               color: #393c45;
-              font-weight: bold;
-              font-size: 1em;
+              font-weight: normal;
+              font-size: 0.8125em;
               text-transform: uppercase; }
             .catalog .catalog-container .catalog-items-list .catalog-item .product-info .product-hide-info .product-size, .catalog .catalog-container .catalog-items-list .catalog-item .product-info .product-hide-info .product-compositions {
               color: #969699;
-              font-family: "Source Sans Pro", sans-serif;
-              font-size: 0.875em;
+              font-family: "Merriweather", sans-serif;
+              font-size: 0.8125em;
+              font-weight: 300;
               display: block;
               margin: 4px; }
 
@@ -1635,6 +1662,7 @@ footer {
       .catalog-detail .right-col .detail-info-price {
         font-size: 3.6875em;
         color: #086fcf;
+        font-weight: bold;
         border-bottom: 1px solid #d3d3d3;
         padding: 10px 0; }
         .catalog-detail .right-col .detail-info-price .detail-product-old-price {
@@ -1981,23 +2009,23 @@ footer {
     transition: background-color .5s ease;
     cursor: default; }
     .contacts .feedback textarea::-webkit-input-placeholder {
-      line-height: 50px;
+      padding: 2px 0;
       font-size: 0.8125em;
       font-weight: 300; }
     .contacts .feedback textarea::-moz-placeholder {
-      line-height: 50px;
+      padding: 2px 0;
       font-size: 0.8125em;
       font-weight: 300; }
     .contacts .feedback textarea:-ms-input-placeholder {
-      line-height: 50px;
+      padding: 2px 0;
       font-size: 0.8125em;
       font-weight: 300; }
     .contacts .feedback textarea::-ms-input-placeholder {
-      line-height: 50px;
+      padding: 2px 0;
       font-size: 0.8125em;
       font-weight: 300; }
     .contacts .feedback textarea::placeholder {
-      line-height: 50px;
+      padding: 2px 0;
       font-size: 0.8125em;
       font-weight: 300; }
     .contacts .feedback textarea:hover {

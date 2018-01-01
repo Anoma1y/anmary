@@ -92,7 +92,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			@include overlay(.2);
 			.collection_info {
 				text-align: center;
-				font-family: $font-source;
+				font-family: $font-merri;
 				color: #fff;
 				text-transform: uppercase;
 				z-index: 9999;
@@ -100,14 +100,14 @@ $output-bourbon-deprecation-warnings: false !default;
 					margin: 30px;
 					h2 {
 						font-weight: bold;
-						font-size: em(30px);
+						font-size: em(25px);
 						letter-spacing: 1.5px;
 					} 
 					p {
 						display: block;
 						margin: 5px;
 						font-weight: 300;
-						font-size: em(18px);
+						font-size: em(14px);
 						letter-spacing: 1.7px;
 					}					
 				}
@@ -135,7 +135,7 @@ $output-bourbon-deprecation-warnings: false !default;
 				justify-content: center;
 				text-align: center;
 				height: 100%;
-				font-family: $font-source;
+				font-family: $font-merri;
 				&:hover {
 					& h1 {
 						color: black;
@@ -144,7 +144,6 @@ $output-bourbon-deprecation-warnings: false !default;
 					}
 					& p {
 						color: black;
-
 					}
 				}
 				p, h1 {
@@ -155,13 +154,14 @@ $output-bourbon-deprecation-warnings: false !default;
 				p {
 					font-weight: 300;
 					letter-spacing: 5px;
+					line-height: 2;
 					font-size: em(16px);
 					font-weight: normal;
 				}
 				h1 {
 					line-height: 0.8;
-					font-weight: bold;
-					font-size: em(130px);
+					font-weight: 900;
+					font-size: em(100px);
 				}
 			}
 		}
@@ -177,10 +177,10 @@ $output-bourbon-deprecation-warnings: false !default;
 			.arrivals_info {
 				text-align: center;
 				text-transform: uppercase;
-				font-family: $font-source;
+				font-family: $font-merri;
 				z-index: 9999;
 				h1 {
-					font-size: em(32px);
+					font-size: em(25px);
 					color: #fff;
 					font-weight: bold;
 					margin-bottom: 25px;
@@ -188,7 +188,7 @@ $output-bourbon-deprecation-warnings: false !default;
 				}
 				a {
 					font-weight: bold;
-					font-size: em(14px);
+					font-size: em(13px);
 					color: #fff;
 					padding: 15px 30px;
 					background-color: #24A0A9;
@@ -212,7 +212,7 @@ $output-bourbon-deprecation-warnings: false !default;
 				z-index: 9999;
 				margin: 0 auto;
 				input {
-					font-family: $font-source;
+					font-family: $font-merri;
 					font-weight: bold;
 					border: none;
 					outline: none;
@@ -227,7 +227,7 @@ $output-bourbon-deprecation-warnings: false !default;
 				}	
 				button {
 					position: relative;
-					font-family: $font-source;
+					font-family: $font-merri;
 					height: 30px;
 					width: 40px;
 					font-weight: bold;
@@ -253,13 +253,13 @@ $output-bourbon-deprecation-warnings: false !default;
 				text-align: center;
 				z-index: 9999;
 				text-transform: uppercase;
-				font-family: $font-source;
+				font-family: $font-merri;
 				h2 {
-					font-size: em(26px);
+					font-size: em(20px);
 					color: #fff;
 					font-weight: 300;
 					margin-bottom: 25px;
-					letter-spacing: 2px;
+					letter-spacing: 1.5px;
 				}
 			}
 		}
@@ -278,9 +278,9 @@ $output-bourbon-deprecation-warnings: false !default;
 				text-align: center;
 				z-index: 9999;
 				text-transform: uppercase;
-				font-family: $font-source;
+				font-family: $font-merri;
 				h2 {
-					font-size: em(22px);
+					font-size: em(18px);
 					color: #fff;
 					font-weight: 800;
 					margin-bottom: 25px;
@@ -295,8 +295,9 @@ $output-bourbon-deprecation-warnings: false !default;
 				text-align: center;
 				overflow: hidden;
 				padding: 15px 40px 15px 10px;
-				font-weight: 800;
-				font-size: em(20px);
+				font-weight: normal;
+				font-family: $font-merri;
+				font-size: em(18px);
 				text-transform: uppercase;
 				color: #fff;
 				transition-property: background-color color;
@@ -395,16 +396,21 @@ $output-bourbon-deprecation-warnings: false !default;
 		&__brand {
 			margin-top: 5px;
 			font-size: em(10px);
+			font-family: $font-merri;
+			color: #000000;
 		}
 		&__title {
-			font-size: em(15px);
-			font-family: $font-source;
-			font-weight: bold;
+			font-size: em(14px);
+			font-family: $font-merri;
+			font-weight: normal;
+			letter-spacing: -0.3px;
+			color: #000000;
 			text-transform: uppercase;
 		}
 		&__price {
-			font-size: em(18px);
-			font-family: $font-source;
+			color: #000000;
+			font-size: em(16px);
+			font-family: $font-merri;
 			font-weight: 300;
 			&-old {
 				text-decoration: line-through;
@@ -461,9 +467,9 @@ footer {
 			color: #ffab00;
 		}
 		.footer_about {
-			font-family: $font-source;
+			font-family: $font-merri;
 			letter-spacing: 0.5px;
-			font-size: em(14px);
+			font-size: em(12px);
 			color: rgba(255,255,255,.8);
 			font-weight: normal;
 			padding: 0 20px 0 0;
@@ -523,8 +529,8 @@ footer {
 				letter-spacing: 0.6px;
 			}
 			p {
-				font-family: $font-source;
-				font-size: em(14px);
+				font-family: $font-merri;
+				font-size: em(12px);
 				line-height: 1.5;
 			}
 		}

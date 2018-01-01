@@ -57,7 +57,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			input {
 				width: 100%;
 				padding: 0 40px 0 5px;
-				font-family: $font-source;
+				font-family: $font-merri;
 				font-size: em(16px);
 				font-weight: 300;
 				letter-spacing: 0.5px;
@@ -65,6 +65,9 @@ $output-bourbon-deprecation-warnings: false !default;
 				border-right: none;
 				height: 35px;
 				float: left;
+				&::placeholder {
+					font-size: em(12px);
+				}
 				&:focus {
 					outline: none;
 				}
@@ -118,7 +121,10 @@ $output-bourbon-deprecation-warnings: false !default;
 			label.filter-label {
 				display: block;
 				position: relative;
-				font-family: $font-source;
+				font-family: $font-merri;
+				font-weight: 300;
+				font-size: em(14px);
+				text-transform: uppercase;
 				padding: 10px 0;
 				width: 100%;
 				cursor: pointer;
@@ -147,7 +153,8 @@ $output-bourbon-deprecation-warnings: false !default;
 						display: block;
 						width: 80%;
 						span {
-							font-family: $font-source;
+							font-family: $font-merri;
+							font-weight: 300;
 							font-size: em(14px);
 						}
 					}
@@ -225,7 +232,8 @@ $output-bourbon-deprecation-warnings: false !default;
 						}
 						justify-content: flex-start;
 						p {
-							font-family: $font-source;
+							font-family: $font-merri;
+							font-weight: 300;
 							font-size: em(15px);
 							padding: 0 5px;
 						}
@@ -416,16 +424,16 @@ $output-bourbon-deprecation-warnings: false !default;
 	 								transition: color .3s ease;
 	 							}	
 								.product-title {
-									font-family: $font-source;
+									font-family: $font-merri;
 									color: #393c45;
 									font-weight: bold;
-									font-size: em(16px);
+									font-size: em(13px);
 									text-transform: uppercase;
 								}
 								.product-brand {
 									color: lighten(#3d3d3d, 40%);
-									font-size: em(14px);
-									font-family: $font-source;
+									font-size: em(12px);
+									font-family: $font-merri;
 									padding: 2px 0 20px 0;
 								}								
 							}
@@ -433,8 +441,9 @@ $output-bourbon-deprecation-warnings: false !default;
 								width: 48%;
 								text-align: right;
 								color: #ffab00;
-								font-family: $font-source;
-								font-size: em(22px);
+								font-family: $font-merri;
+								font-size: em(19px);
+								font-weight: 900;
 								cursor: default;
 								.item-old-price {
 									text-decoration: line-through;
@@ -453,17 +462,17 @@ $output-bourbon-deprecation-warnings: false !default;
 						margin-top: 10px;
 						cursor: default;
 						strong {
-							font-family: $font-source;
+							font-family: $font-merri;
 							color: #393c45;
-							font-weight: bold;
-							font-size: em(16px);
+							font-weight: normal;
+							font-size: em(13px);
 							text-transform: uppercase;
 						}
 						.product-size, .product-compositions {
 						    color: #969699;
-
-						    font-family: $font-source;
-						    font-size: em(14px);
+						    font-family: $font-merri;
+						    font-size: em(13px);
+						    font-weight: 300;
 						    display: block;
 						    margin: 4px;
 						}

@@ -42,6 +42,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			&-price {
 				font-size: em(59px);
 				color: #086fcf;
+				font-weight: bold;
 				border-bottom: 1px solid #d3d3d3;
 				padding: 10px 0;
 				.detail-product-old-price {

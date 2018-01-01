@@ -84,8 +84,8 @@
 </div>
 <div class="container">
 	<div class="might-like">
-		<div class="might-like-title">
-			<h3>Вам также может понравиться</h3>
+		<div class="title">
+			<h1><span>Также может понравиться</span></h1>
 		</div>
 		<div class="might-like-content">
 			

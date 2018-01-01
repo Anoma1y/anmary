@@ -231,6 +231,9 @@ $easeInCubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
 				text-transform: uppercase;
 				color: #000;
 			}
+			&.active {
+				background-color: #ffab00;
+			}
 		}
 	}
 	.mobile-menu {
