@@ -435,6 +435,7 @@ $output-bourbon-deprecation-warnings: false !default;
 								color: #ffab00;
 								font-family: $font-source;
 								font-size: em(22px);
+								cursor: default;
 								.item-old-price {
 									text-decoration: line-through;
 									font-size: em(11px);
@@ -450,6 +451,7 @@ $output-bourbon-deprecation-warnings: false !default;
 					}
 					.product-hide-info {
 						margin-top: 10px;
+						cursor: default;
 						strong {
 							font-family: $font-source;
 							color: #393c45;
@@ -459,6 +461,7 @@ $output-bourbon-deprecation-warnings: false !default;
 						}
 						.product-size, .product-compositions {
 						    color: #969699;
+
 						    font-family: $font-source;
 						    font-size: em(14px);
 						    display: block;

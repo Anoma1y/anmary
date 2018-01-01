@@ -82,16 +82,12 @@
 <section id="latest_viewed">
 	<div class="container">
 		<div class="title">
-			<!-- <h1>Lorem ipsum dolor sit.</h1> -->
 			<h1><span>Рекомендуем</span></h1>
-			<!-- <h3>Lorem ipsum dolor sit amet, consectetur.</h3> -->
 		</div>
 	</div>
 	<div class="container">
 		<div class="product_list">
 			<?php foreach ($lastProduct as $key => $product): ?>
-				
-				
 				<div class="product">
 					<div class="product__image">
 						<a href="/product/<?=$product[id];?>">
@@ -109,13 +105,8 @@
 						<?php endif ?>
 					</div>
 				</div>
-
-
-
 			<?php endforeach ?>
-
 		</div>
-
 	</div>
 </section>
 
@@ -127,29 +118,19 @@
 	</div>
 	<div class="container brand_container">
 		<div class="brand_item">
-			<a href="#">
-				<img src="/static/img/logo/comvill.png" alt="Logo">
-			</a>
+			<img src="/static/img/logo/comvill.png" alt="Logo">
 		</div>
 		<div class="brand_item">
-			<a href="#">
-				<img src="/static/img/logo/magnolica.png" alt="Logo">
-			</a>
+			<img src="/static/img/logo/magnolica.png" alt="Logo">
 		</div>
 		<div class="brand_item">
-			<a href="#">
-				<img src="/static/img/logo/TopDesign.png" alt="Logo">
-			</a>
+			<img src="/static/img/logo/TopDesign.png" alt="Logo">
 		</div>
 		<div class="brand_item">
-			<a href="#">
-				<img src="/static/img/logo/vaideslide.png" alt="Logo">
-			</a>
+			<img src="/static/img/logo/vaideslide.png" alt="Logo">
 		</div>
 		<div class="brand_item">
-			<a href="#">
-				<img src="/static/img/logo/vito-logo.png" alt="Logo">
-			</a>
+			<img src="/static/img/logo/vito-logo.png" alt="Logo">
 		</div>
 	</div>
 </section>

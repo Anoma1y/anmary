@@ -1,14 +1,15 @@
+
 	<footer>
 		<div class="container">
 			<div class="footer-left">
 				<div class="footer_logo">
-					<h1>Anmary</h1>
+					<h1><?=$info["name"];?></h1>
 				</div>
 				<div class="footer_about">
-					<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam molestias eligendi officiis in. Voluptate officia, velit dolore. Molestias, obcaecati, quidem.</h4>
+					<h4><?=$info["footer_description"];?></h4>
 				</div>
 				<div class="copyright">
-					<p>© 2016 - 2017 Anmary</p>
+					<p>© <?=$info["copyright_year"]?> <?=$info["name"];?></p>
 				</div>
 			</div>
 			<div class="footer-center">
@@ -33,7 +34,7 @@
 			<div class="footer-right">
 				<div class="footer_contact">
 					<h3>Связаться с нами</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, maxime!</p>
+					<p>Вы задать свой вопрос, отправив письмо на указанный адрес e-mail</p>
 				</div>
 				<div class="footer_email">
 					<p><?=$info["email"]?></p>

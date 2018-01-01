@@ -478,7 +478,8 @@
               text-align: right;
               color: #ffab00;
               font-family: "Source Sans Pro", sans-serif;
-              font-size: 1.375em; }
+              font-size: 1.375em;
+              cursor: default; }
               .catalog .catalog-container .catalog-items-list .catalog-item .product-info .info-container .info-container-header .product-price .item-old-price {
                 text-decoration: line-through;
                 font-size: 0.6875em;
@@ -488,7 +489,8 @@
                 color: #f44336;
                 font-weight: bold; }
           .catalog .catalog-container .catalog-items-list .catalog-item .product-info .product-hide-info {
-            margin-top: 10px; }
+            margin-top: 10px;
+            cursor: default; }
             .catalog .catalog-container .catalog-items-list .catalog-item .product-info .product-hide-info strong {
               font-family: "Source Sans Pro", sans-serif;
               color: #393c45;

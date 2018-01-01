@@ -41,7 +41,7 @@
 	     * @param  string пароль
 	     * @return array возвращает все данные о пользователе
 	     */
-	    public function getLoginUser($email, $password) {
+	    public static function getLoginUser($email, $password) {
 	    	$db = Db::getConnection();
 	        $sql = "SELECT * FROM users WHERE email = :email AND password = :password LIMIT 1";
 	        $query = $db->prepare($sql);
@@ -60,38 +60,44 @@
 	     * 		   в сессии и куки.
 	     */
 		public function userLogin($data) {
-	        $email = $data['email'];
-	        $password = md5(md5($data['password']));
-	        //добавить проверку...
-	        $result = $this->getLoginUser($email, $password);
-	        if ($result) {
-	        	$db = Db::getConnection();
-	        	$sql = "UPDATE users SET last_login = NOW(), hash = :hash WHERE email = :email";
-	        	$query = $db->prepare($sql);
-	        	$hash = md5(generateCode(10));
-	        	$query->bindParam(':email', $data["email"], PDO::PARAM_STR);
-				$query->bindParam(':hash', $hash, PDO::PARAM_STR);
-				if ($query->execute() === true) {
-					try {
-						Cookie::set("user_hash", $hash); 
-						Cookie::set("user_email", $data["email"]);
-						Cookie::set("user_id", $result->id);
-						Cookie::set("user_username", $result->username);
-			            Session::init();
-			            Session::set("login", true);
-			            Session::set("id", $result->id);
-			            Session::set("hash", $hash);
-			            Session::set("email", $result->email);
-			            Session::set("username", $result->username);
-			            Session::set("login_msg", "Вы вошли в систему!");
-		            	header("Location: /");	
-					} catch (Exception $e) {
-						die($e);
+	        $email = $_POST['email'];
+	        $password = md5(md5($_POST['password']));
+	        if (strlen($email) != 0 && strlen(password) != 0) {
+		        $result = User::getLoginUser($email, $password);
+		        if ($result != false) {
+		        	$db = Db::getConnection();
+		        	$sql = "UPDATE users SET last_login = NOW(), hash = :hash WHERE email = :email";
+		        	$query = $db->prepare($sql);
+		        	if (!$query) {
+		        		die(json_encode("Ошибка"));
+		        	}
+		        	//Генерация хэша из 15 символов
+		        	$hash = md5(generateCode(15));
+		        	$query->bindParam(':email', $email, PDO::PARAM_STR);
+					$query->bindParam(':hash', $hash, PDO::PARAM_STR);
+					if ($query->execute()) {
+						try {
+							Cookie::set("user_hash", $hash); 
+							Cookie::set("user_email", $email);
+							Cookie::set("user_id", $result->id);
+							Cookie::set("user_username", $result->username);
+				            Session::init();
+				            Session::set("login", true);
+				            Session::set("id", $result->id);
+				            Session::set("hash", $hash);
+				            Session::set("email", $result->email);
+				            Session::set("username", $result->username);
+				            Session::set("login_msg", "Вы вошли в систему!");
+			            	die(json_encode(true));	
+						} catch (Exception $e) {
+							die(json_encode('Ошибка'));
+						}
+					} else {
+						die(json_encode('Ошибка'));
 					}
-				}
-
-	        } else {
-	        	echo 'Неверный логин или пароль';
+		        } else {
+		        	die(json_encode('Неверный логин или пароль'));
+		        }	        	
 	        }
 		}
 	    /**

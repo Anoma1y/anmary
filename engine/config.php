@@ -10,6 +10,7 @@
 
 	require_once 'models/product.php';
 
+	
 	/* Основные настройки */
 	return array(
 		'home_title' => 'SITE NAME',

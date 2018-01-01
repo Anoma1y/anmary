@@ -331,6 +331,7 @@ $output-bourbon-deprecation-warnings: false !default;
 	text-align: center;
 	padding: 40px 0;
 	width: 100%;
+	cursor: default;
 	h1, h3 {
 		font-family: $main-font-family;
 	} 
@@ -367,8 +368,12 @@ $output-bourbon-deprecation-warnings: false !default;
 		margin: 0 5px;
 		margin-bottom: 25px;
 		&__image {
+			width: 212px;
+			height: 319px;
 			img {
 				width: 100%;
+				height: 100%;
+				object-fit: cover;
 			}
 		}
 		&__info {
@@ -557,4 +562,5 @@ footer {
 
 @import 'catalog.scss';
 @import 'product.scss';
+@import 'contacts.scss';
 @import 'media.scss';

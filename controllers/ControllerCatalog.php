@@ -107,7 +107,7 @@
 		    	$sortQuery = "product.price";
 		    }
 			$db = Db::getConnection();
- 	        $sql = 'SELECT product.id, product.name, product.article, product.price, product.sale_price, product.is_sale, product.percentSale, product.image ,category.category_name, brand.brand_name FROM product, brand, category WHERE product.brand_id = brand.id AND product.category_id = category.id ORDER BY '. $sortQuery .' LIMIT 12';
+ 	        $sql = 'SELECT product.id, product.name, product.article, product.price, product.sale_price, product.is_sale, product.size, product.composition, product.percentSale, product.image ,category.category_name, brand.brand_name FROM product, brand, category WHERE product.brand_id = brand.id AND product.category_id = category.id ORDER BY '. $sortQuery .' LIMIT 12';
 	        $result = $db->prepare($sql);
 	    	$result->setFetchMode(PDO::FETCH_ASSOC);
 	    	$result->execute();

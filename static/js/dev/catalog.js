@@ -58,6 +58,7 @@
                     //Записей на странице
                     this.item_on_page = this.items['record_per_page'];
                     //Установка новой текущей страницы
+                    console.log(this.items);
                     this.currentPage = this.items['current_page'];
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {

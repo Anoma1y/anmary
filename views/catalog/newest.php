@@ -1,4 +1,5 @@
 <?php require_once 'views/index/header.php'; ?>
+
     <div class="catalog">
         <div class="container without-container">
             <div class="catalog-container without-catalog-container">

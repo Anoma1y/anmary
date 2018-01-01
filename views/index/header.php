@@ -33,7 +33,7 @@
 	<link rel="stylesheet" href="/static/css/main.min.css">
 </head>
 <body>
-
+<?php $info = include('engine/info.php'); ?>
 <header>
 	<div class="container">
 		<div class="header_info">

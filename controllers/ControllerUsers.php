@@ -27,12 +27,10 @@
 	        	// Перенаправляем пользователя на главную страницу
 	        	header("Location: /");
 	    	}
-
-	    	// User::logoutUser();
 	    }
 		public function login_action() {
-			$view = new View();
-			$view->render('users/login_action');
+			$user = User::userLogin($_POST);
+			return $user;
 		}
 		public function profile() {
        		require_once('views/users/profile.php');
