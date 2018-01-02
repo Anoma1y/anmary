@@ -1741,12 +1741,18 @@ footer {
     .catalog-detail .left-col .detail-image {
       width: 393px;
       height: 472px;
-      margin: 0 auto; }
+      margin: 0 auto;
+      display: inline-block; }
       .catalog-detail .left-col .detail-image img {
+        display: block;
         width: 100%;
         height: 100%;
         -o-object-fit: cover;
            object-fit: cover; }
+        .catalog-detail .left-col .detail-image img::-moz-selection {
+          background-color: transparent; }
+        .catalog-detail .left-col .detail-image img::selection {
+          background-color: transparent; }
   .catalog-detail .right-col {
     padding: 0 10px; }
     .catalog-detail .right-col .detail-info {

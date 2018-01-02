@@ -3,9 +3,9 @@
 <div class="catalog-detail">
 	<div class="catalog-container">
 		<div class="left-col">
-			<div class="detail-image">
+			<span class="detail-image zoom" id="product_image">
 				<img src="<?=$data["image"]?>" alt="Detail Image">
-			</div>
+			</span>
 		</div>
 		<div class="right-col">
 			<div class="detail-info">
@@ -109,4 +109,7 @@
 		</div>
 	</div>
 </div>
+<script src="/static/js/libs.min.js"></script>
+<script src="/static/js/jquery.zoom.min.js"></script>
+<script>$('#product_image').zoom();</script>
  <?php require_once 'views/index/footer.php'; ?>
