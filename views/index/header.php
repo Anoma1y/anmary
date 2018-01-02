@@ -51,10 +51,10 @@
 				<div class="header-top-user">
                     <?php if (!isset($_COOKIE["user_username"])): ?>
 						<div>
-							<i class="fa fa-sign-in" aria-hidden="true"></i><a href="#">Вход</a>
+							<i class="fa fa-sign-in" aria-hidden="true"></i><a href="/users/signin">Вход</a>
 						</div>
 						<div>
-							<i class="fa fa-user-plus" aria-hidden="true"></i><a href="#">Регистрация</a>
+							<i class="fa fa-user-plus" aria-hidden="true"></i><a href="/users/signup">Регистрация</a>
 						</div>                     
                     <?php else: ?>
 						<div>

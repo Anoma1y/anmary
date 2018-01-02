@@ -1,4 +1,275 @@
 $output-bourbon-deprecation-warnings: false !default;
 @import "bourbon";
+@import 'reset.scss';
+@import 'fonts.scss';
 @import "vars.scss";
+@import 'mixin.scss';
 
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-size: $default-fontsize;
+	min-width: 320px;
+	position: relative;
+	overflow-x: hidden;
+	padding: 10px;
+}
+.admin-nav {
+	background-color: #2D3438;
+	display: flex;
+	justify-content: space-between;
+	a {
+		display: block;
+		width: 25%;
+		padding: 30px 0;
+		text-align: center;
+		font-family: $main-font-family;
+		color: #fff;
+		border-right: 1px solid #d3d3d3;
+		transition: background-color .3s ease;
+		&:last-child {
+			border-right: none;
+		}
+		&:hover {
+			background-color: lighten(#2D3438, 20%);
+		}
+	}
+}
+#tabs {
+	font-family: "Merriweather", sans-serif;
+	font-weight: normal;
+	cursor: default;
+	color: #000;
+	table {
+		background-color: #f3f3f3;
+		border-collapse: separate;
+		font-size: 12px;
+		line-height: 24px;
+		margin: 30px auto;
+		text-align: left;
+		width: 100%;
+		th {
+			font-weight: bold;
+			padding: 10px 15px;
+			position: relative;
+			text-align: center;
+			font-size: em(18px);
+			border-right: 1px solid #3f3f3f;
+			color: #fff;
+			vertical-align: middle;
+			cursor: pointer;
+			background-color: #2980B9;
+			&:last-child {
+				border-right: none;
+			}
+		}
+		tr {
+			td {
+				padding: 1px;
+				vertical-align: middle;
+				border-bottom: 1px solid #3f3f3f;
+				border-right: 1px solid #3f3f3f;
+				font-size: em(20px);
+				font-weight: 300;
+				text-align: center;
+				transition: color .1s ease;
+				&:last-child {
+					border-right: none;
+				}
+				&.tdBtnEdit {
+					background-color: #27AE60;
+					color: #fff;
+					font-weight: bold;
+					padding: 0 5px;
+					cursor: pointer;
+				}
+				&.tdBtnDelete {
+					background-color: #EA6153;
+					color: #fff;
+					font-weight: bold;
+					padding: 0 5px;
+					cursor: pointer;
+				}
+			}
+		}
+		tbody:hover td {
+			color: rgba(0,0,0,0.4);
+		}
+
+		tbody:hover tr:hover td {
+			background-color: #777;
+			color: #fff;
+			&.tdBtnDelete {
+				background-color: darken(#EA6153, 15%);
+			}
+			&.tdBtnEdit {
+				background-color: darken(#27AE60, 15%);
+			}
+		}
+	}
+}		
+.add {
+	padding: 20px 10px;
+	font-family: $main-font-family;
+	form {
+		width: 80%;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: flex-start;
+		> div {
+			width: 33%;
+		}
+		.left-col {
+			.left_block {
+				display: flex;
+				justify-content: space-between;
+				margin: 5px;
+				label {
+					display: block;
+					width: 25%;
+				}
+				input, select {
+					display: block;
+					width: 70%;
+					height: 25px;
+					border: 1px solid #333;
+					font-family: $main-font-family;
+					letter-spacing: 1px;
+				}
+			}
+		}
+		.center-col {
+			.center-block {
+				display: flex;
+				justify-content: space-between;
+				margin: 5px;
+				flex-wrap: wrap;
+				width: 100%;
+				.input_size {
+					display: flex;
+					justify-content: space-between;
+					width: 100%;
+					input {
+						display: block;
+						width: 70%;
+						height: 25px;
+						border: 1px solid #333;
+						font-family: $main-font-family;
+						letter-spacing: 1px;
+					}
+					label {
+						display: block;
+						width: 25%;
+					}
+				}
+				.size_chois {
+					display: flex;
+					width: 100%;
+					justify-content: flex-end;
+					flex-wrap: wrap;
+					margin: 5px 0;
+				}
+				.input_composition {
+					width: 100%;
+					display: flex;
+					justify-content: space-between;
+					flex-wrap: wrap;
+					>label {
+						width: 25%;
+					}
+					>input {
+						width: 70%;
+						height: 25px;
+						border: 1px solid #333;
+					}
+					#composition_chois {
+						display: flex;
+						margin-top: 10px;
+						flex-direction: column;
+						width: 100%;
+						.composition_box {
+							display: flex;
+							margin-top: 3px;
+							align-items: center;
+							justify-content: space-between;
+							label {
+								display: block;
+								width: 10%;
+							}
+							input[type="checkbox"] {
+								margin: 0 30px;
+							}
+							input[type="text"] {
+								width: 30%;
+								height: 25px;
+								border: 1px solid #333;
+							}
+							input[type="button"] {
+								width: 20%;
+								height: 25px;
+								border: none;
+								background-color: #777;
+								color: #fff;
+								cursor: pointer;
+								&:hover {
+									background-color: darken(#777, 10%);
+								}
+							}
+						}
+					}	
+				}
+			}
+		}
+		.right-col {
+			display: flex;
+			justify-content: space-between;
+			margin-left: 10px;
+			flex-wrap: wrap;
+			
+			.right_block {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;;
+				width: 100%;
+				margin-top: 5px;
+				label {
+					display: block;
+					width: 25%;
+				}
+				input[type="text"] {
+					display: block;
+					width: 70%;
+					height: 25px;
+					border: 1px solid #333;
+					font-family: $main-font-family;
+					letter-spacing: 1px;
+				}
+				input[type="checkbox"] {
+					display: block;
+					height: 30px;
+					width: 30px;
+				}
+				input[type="submit"] {
+					width: 80%;
+					margin: 20px auto;
+					border: none;
+					height: 35px;
+					background-color: #333;
+					color: #fff;
+					text-transform: uppercase;
+					font-size: em(17px);
+					cursor: pointer;
+					transition: background-color .3s ease;
+					&:hover {
+						background-color: lighten(#333, 15%);
+					}
+				}
+			}
+		}
+	}
+}

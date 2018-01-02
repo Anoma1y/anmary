@@ -81,7 +81,7 @@
 			let url = 'addProduct';
 			let file = document.getElementById('uploadimage').files[0];
 			let fd = new FormData();
-		
+			
 			xhr.open('POST', url, true);
 			fd.append("uploadimage", file);
 			fd.append("productTitle", productTitle.value);
@@ -98,15 +98,17 @@
 			fd.append("productPriceAfterSale", productPriceAfterSale.value);
 			fd.append("productIsAvailability", translateBoolToInt(productIsAvailability.checked));
 			xhr.send(fd);
+
 			xhr.onreadystatechange = () => { 
 				if (xhr.readyState != 4) return;
 				if (xhr.status != 200) {
 					console.log(`${xhr.status} : ${xhr.statusText}`);
 					errorText.textContent = 'Ошибка';
 				} else {
-					if (xhr.responseText == 1) {
-						window.location = './';
-					}
+					console.log(xhr.responseText)
+					// if (xhr.responseText == 1) {
+					// 	window.location = './';
+					// }
 				}
 			}			
 		} else {
@@ -158,6 +160,7 @@
 		const appendTo = document.getElementById('size_chois');
 		if (appendTo) {
 			for (var key of sizeName) {
+				let div = document.createElement('div');
 				let checkBox = document.createElement('input');
 				let label = document.createElement('label');
 				checkBox.type = 'checkbox';
@@ -166,8 +169,9 @@
 				checkBox.id = `size_${key}`;
 				label.htmlFor = `size_${key}`;
 				label.textContent =  key;
-				appendTo.appendChild(label);
-				appendTo.appendChild(checkBox);
+				div.appendChild(label);
+				div.appendChild(checkBox);
+				appendTo.appendChild(div);
 			}			
 		}
 	}

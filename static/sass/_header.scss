@@ -121,8 +121,6 @@ $header-top-color: #000000;
 		max-width: 1140px;
 		margin: 0 auto;
 		padding: 0 10px;
-		display: grid;
-		// grid-template-columns: 1fr 2fr 1fr;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -194,7 +192,7 @@ $header-top-color: #000000;
 		width: 40px;
 		height: 40px;
 		margin: 0 5px;
-		border: 1px solid #000;
+		border: 1px solid #292929;
 		border-radius: 50%;
 		&:hover i {
 			transform: scale(1.2);
@@ -203,7 +201,7 @@ $header-top-color: #000000;
 			font-size: em(25px);
 			margin-right: 10px;
 			cursor: pointer;
-			color: #000;
+			color: #292929;
 			transition-property: color transform;
 			transition: .3s ease;
 			&:last-child {
@@ -214,7 +212,7 @@ $header-top-color: #000000;
 	
 }
 .header-bottom {
-	background-color: #000000;
+	background-color: #292929;
 	width: 100%;
 	.container {
 		justify-content: center

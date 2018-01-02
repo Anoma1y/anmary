@@ -104,15 +104,17 @@ function ajaxAdd(e) {
 		fd.append("productPriceAfterSale", productPriceAfterSale.value);
 		fd.append("productIsAvailability", translateBoolToInt(productIsAvailability.checked));
 		xhr.send(fd);
+
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState != 4) return;
 			if (xhr.status != 200) {
 				console.log(xhr.status + ' : ' + xhr.statusText);
 				errorText.textContent = 'Ошибка';
 			} else {
-				if (xhr.responseText == 1) {
-					window.location = './';
-				}
+				console.log(xhr.responseText);
+				// if (xhr.responseText == 1) {
+				// 	window.location = './';
+				// }
 			}
 		};
 	} else {
@@ -172,6 +174,7 @@ function createCheckBox(sizeName) {
 			for (var _iterator = sizeName[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 				var key = _step.value;
 
+				var div = document.createElement('div');
 				var checkBox = document.createElement('input');
 				var label = document.createElement('label');
 				checkBox.type = 'checkbox';
@@ -180,8 +183,9 @@ function createCheckBox(sizeName) {
 				checkBox.id = 'size_' + key;
 				label.htmlFor = 'size_' + key;
 				label.textContent = key;
-				appendTo.appendChild(label);
-				appendTo.appendChild(checkBox);
+				div.appendChild(label);
+				div.appendChild(checkBox);
+				appendTo.appendChild(div);
 			}
 		} catch (err) {
 			_didIteratorError = true;

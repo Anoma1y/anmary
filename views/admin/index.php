@@ -1,12 +1,5 @@
 <?php require_once 'header.php'; ?>
 
-
-
-
-
-
-
-<div class="main">
   <div id="tabs">
     <table id="table">
       <thead>
@@ -37,7 +30,6 @@
   <div class="paginations">
 
   </div> 
-</div>
 
 
 

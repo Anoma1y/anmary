@@ -234,7 +234,6 @@ body {
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 10px;
-    display: grid;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -327,7 +326,7 @@ body {
     width: 40px;
     height: 40px;
     margin: 0 5px;
-    border: 1px solid #000;
+    border: 1px solid #292929;
     -webkit-border-radius: 50%;
             border-radius: 50%; }
     .social-network-item:hover i {
@@ -338,7 +337,7 @@ body {
       font-size: 1.5625em;
       margin-right: 10px;
       cursor: pointer;
-      color: #000;
+      color: #292929;
       -webkit-transition-property: color transform;
       -o-transition-property: color transform;
       transition-property: color transform;
@@ -349,7 +348,7 @@ body {
         margin-right: 0; }
 
 .header-bottom {
-  background-color: #000000;
+  background-color: #292929;
   width: 100%; }
   .header-bottom .container {
     -webkit-box-pack: center;
@@ -1651,7 +1650,7 @@ footer {
         .catalog .catalog-container .catalog-items-list .catalog-item .product-info {
           background-color: #fff;
           position: absolute;
-          top: 315px;
+          top: 305px;
           left: 0;
           width: 262px;
           height: 190px;
