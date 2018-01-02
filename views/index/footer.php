@@ -34,7 +34,7 @@
 			<div class="footer-right">
 				<div class="footer_contact">
 					<h3>Связаться с нами</h3>
-					<p>Вы задать свой вопрос, отправив письмо на указанный адрес e-mail</p>
+					<p>Вы можете задать свой вопрос, отправив письмо на указанный адрес e-mail</p>
 				</div>
 				<div class="footer_email">
 					<p><?=$info["email"]?></p>

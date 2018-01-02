@@ -38,6 +38,7 @@ $output-bourbon-deprecation-warnings: false !default;
 }
 .catalog {
 	padding-bottom: 80px; 
+	
 	.container {
 		justify-content: space-between;
 		&.without-container {
@@ -143,6 +144,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			}
 			.catalog-filter-category-inpanel {
 				margin-top: 10px;
+				margin-bottom: 15px;
 				.filter-category-item {
 					display: flex;
 					margin: 5px 15px;

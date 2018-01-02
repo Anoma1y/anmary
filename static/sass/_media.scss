@@ -12,6 +12,16 @@ $output-bourbon-deprecation-warnings: false !default;
 			"new_collections subscribe all_catalog";
 	}
 }
+@media only screen and (max-width: 1100px) {
+	.catalog {
+		.catalog-container {
+			.catalog-items-list {
+				justify-content: space-around;
+			}
+		}
+	}
+
+}
 @media only screen and (max-width: 1080px) {
 	.product_list {
 		justify-content: center;
@@ -72,6 +82,20 @@ $output-bourbon-deprecation-warnings: false !default;
 }
 
 @media only screen and (max-width: 760px) {
+
+	#main_slider {
+		.main_slider {
+			.caption {
+				padding: 20px 40px;
+				h4 {
+					font-size: em(15px);
+				}
+				h2 {
+					font-size: em(30px);
+				}
+			}		
+		}
+	}
 	.blocks {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: repeat(3, 250px);
@@ -80,10 +104,80 @@ $output-bourbon-deprecation-warnings: false !default;
 			"new_collections season_sale"
 			"subscribe all_catalog";
 	}
+	.contacts {
+		.our_contacts {
+			justify-content: center;
+			&_item {
+				width: 40%;
+				justify-content: center;
+				margin: 10px;
+				
+				&.left-items {
+					text-align: right;
+					flex-direction: row-reverse;
+					justify-content: flex-start;
+				}
+				&.right-items {
+					text-align: left;
+					justify-content: flex-start;
+				}
+			}
+		}
+	}
 }
-
-
-
+@media only screen and (max-width: 735px) {
+	.catalog {
+		.container {
+			flex-direction: column;
+		}
+		.catalog_filter {
+			width: 100%;
+			margin-bottom: 20px;
+			.filter_by {
+				.catalog-filter-category-inpanel {
+					.filter-category-item {
+						justify-content: center;
+						align-items: center;
+						width: 90%;
+						.filter-category-item-value {
+							width: 40%;
+						}
+						.filter-category-item-input {
+							width: 40%;
+							label {
+								margin: 0 10px;
+								float: right;
+							}							
+						}
+					
+					}
+				}
+			}
+		}
+		.catalog-container {
+			width: 100%;
+			.catalog-header {
+				flex-direction: column;
+				.catalog-count_item {
+					width: 100%;
+					text-align: center;
+					text-transform: uppercase;
+					font-weight: 300;
+					margin-bottom: 20px;
+				}
+				.catalog-sort {
+					flex-direction: column;
+					.catalog-pagination {
+						margin: 10px 0 2px 0;
+					}
+				}
+			}
+			.catalog-items-list {
+				justify-content: center;
+			}
+		}
+	}
+}
 
 @media only screen and (max-width: 700px) {
 	.product_list {
@@ -173,8 +267,37 @@ $output-bourbon-deprecation-warnings: false !default;
 			"all_catalog"
 			"subscribe";
 	}
+	.contacts {
+		.feedback {
+			input {
+				width: 100%;
+				&::placeholder {
+					text-align: center;
+				}
+			}
+			textarea {
+				&::placeholder {
+					text-align: center;
+				}
+			}
+		}
+	}	
+
 }
 @media only screen and (max-width: 450px) {
+	#main_slider {
+		.main_slider {
+			.caption {
+				padding: 10px 20px;
+				h4 {
+					font-size: em(12px);
+				}
+				h2 {
+					font-size: em(20px);
+				}
+			}		
+		}
+	}
 	.featured_brand {
 		.brand_container {
 			justify-content: center;

@@ -6,7 +6,7 @@
 			<h1><span>Контакты</span></h1>
 		</div>
 		<div class="our_contacts">
-			<div class="our_contacts_item">
+			<div class="our_contacts_item left-items">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-phone" aria-hidden="true"></i>
 				</div>
@@ -15,7 +15,7 @@
 					<span><?=$info['telephone']?></span>
 				</div>
 			</div>
-			<div class="our_contacts_item">
+			<div class="our_contacts_item right-items">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-envelope-open" aria-hidden="true"></i>
 				</div>
@@ -24,7 +24,7 @@
 					<span><?=$info['email']?></span>
 				</div>
 			</div>
-			<div class="our_contacts_item">
+			<div class="our_contacts_item left-items">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-calendar" aria-hidden="true"></i>
 				</div>
@@ -33,7 +33,7 @@
 					<span><?=$info['schedule']?></span>
 				</div>
 			</div>
-			<div class="our_contacts_item">
+			<div class="our_contacts_item right-items">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-map-marker" aria-hidden="true"></i>
 				</div>

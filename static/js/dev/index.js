@@ -40,7 +40,19 @@ $(document).ready(function() {
         navigation:false,	  
         items : 3,
     }); 
-
+      $("#slider").responsiveSlides({
+        auto: true,
+        pager: false,
+        nav: true,
+        speed: 800,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      });
 	// $('.bg-image').parallax({imageSrc: '/static/img/bg.jpg'});
 	// $('.bg-image').css('backgroundSize', 'cover');
 });

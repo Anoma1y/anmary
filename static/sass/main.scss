@@ -50,13 +50,16 @@ $output-bourbon-deprecation-warnings: false !default;
 			font-family: $main-font-family;
 			text-transform: uppercase;
 			color: #fff;
+			transition: padding .5s ease;
 			h4 {
 				font-size: em(20px);
 				letter-spacing: 5px;
 				margin: 5px 0;
+				transition: font-size .5s ease;
 			}
 			h2 {
 				font-size: em(50px);
+				transition: font-size .5s ease;
 			}
 		}		
 	}
@@ -364,22 +367,26 @@ $output-bourbon-deprecation-warnings: false !default;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	align-items: center;
 	.product {
 		width: 19%;
 		margin: 0 5px;
 		margin-bottom: 25px;
+		overflow: hidden;
+		position: relative;
 		&__image {
-			width: 212px;
-			height: 319px;
 			img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
+				transition: transform .5s ease;
 			}
 		}
 		&__info {
+			cursor: default;
 			text-align: center;
 			color: #595959;
+			background-color: #FFF;
 			span, p {
 				line-height: 1.4;
 			}
@@ -405,7 +412,9 @@ $output-bourbon-deprecation-warnings: false !default;
 			font-weight: normal;
 			letter-spacing: -0.3px;
 			color: #000000;
-			text-transform: uppercase;
+			&:first-letter {
+				text-transform: uppercase;
+			}
 		}
 		&__price {
 			color: #000000;
@@ -414,10 +423,16 @@ $output-bourbon-deprecation-warnings: false !default;
 			font-weight: 300;
 			&-old {
 				text-decoration: line-through;
+				color: #6d6d6d;
 				font-size: em(13px);
 			}
 			&:after {
 				content: ' руб.';
+			}
+		}
+		&:hover {
+			& img{
+				transform: scale(1.1);					
 			}
 		}
 	}
@@ -500,6 +515,7 @@ footer {
 				margin-top: 10px;
 				li {
 					padding: 10px;
+					text-align: center;
 					transition-property: color background-color;
 					transition: .3s ease;
 					cursor: pointer;
