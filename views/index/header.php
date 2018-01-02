@@ -35,85 +35,102 @@
 <body>
 <?php $info = include('engine/info.php'); ?>
 <header>
-	<div class="container">
-		<div class="header_info">
-			<div class="user_info">
-				<div class="user-info-icon">
-					<i class="fa fa-user-circle" aria-hidden="true"></i>
+	<div class="header-top">
+		<div class="container">
+			<div class="header-top-left">
+				<div class="header-top-email">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					<a href="mailto:<?=$info["email"];?>"><?=$info["email"];?></a>
 				</div>
-				<div class="user-control">
-
-
-                    <?php if (!isset($_COOKIE["user_username"])): ?>                                        
-						<a href="/users/signin">
-							<span class="sign_in_link">Войти</span>
-						</a>
-						<a href="/users/signup">
-							<span class="sign_up_link">Регистрация</span>
-						</a>                        
+				<div class="header-top-telephone">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					<span><?=$info["telephone"];?></span>
+				</div>
+			</div>
+			<div class="header-top-right">
+				<div class="header-top-user">
+                    <?php if (!isset($_COOKIE["user_username"])): ?>
+						<div>
+							<i class="fa fa-sign-in" aria-hidden="true"></i><a href="#">Вход</a>
+						</div>
+						<div>
+							<i class="fa fa-user-plus" aria-hidden="true"></i><a href="#">Регистрация</a>
+						</div>                     
                     <?php else: ?>
-						<a href="/users/logout">
-							<span class="sign_in_link">Выйти</span>
-						</a>
-						<a href="/users/signup">
-							<span class="sign_up_link">Мой профиль</span>
-						</a>      
+						<div>
+							<i class="fa fa-sign-out" aria-hidden="true"></i><a href="/users/logout">Выход</a>
+						</div>
+						<div>
+							<i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">Мой профиль</a>
+						</div>
                     <?php endif; ?>
+
 				</div>
-			</div>
-			<div class="header-logo">
-				<img src="/static/img/2.svg" alt="">
-			</div>
-			<div class="shop-info">
-				<div class="shop-info-compare">
-					<span class="shop-info-count">0</span>
-					<i class="fa fa-heart-o" aria-hidden="true"></i>
-				</div>
-				<div class="shop-info-products">
-					<span class="shop-info-count">0</span>
-					<i class="fa  fa-shopping-basket" aria-hidden="true"></i>
-					<p>0</p>					
-				</div>
+				<div class="header-top-cart">
+					<a href="#">
+						<div class="cart-total">
+							<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+							<span class="cart-total-price">0</span> (Товаров: <span id="cart-quantity" class="cart-quantity">0</span>)
+
+						</div>
+					</a>
+				</div>	
 			</div>
 		</div>
 	</div>
 	<div class="menu_container">
-		<div class="header-menu">
+		<div class="header-middle">
 			<div class="header_container">
-				<div class="search-button">
-					<i class="fa fa-search" id="searchBtn" aria-hidden="true"></i>
-					<div class="search-content">
-						<input type="text" class="searchText" id="searchText" placeholder="Поиск">
+				<div class="header-logo">
+					<img src="/static/img/2.svg" alt="">
+				</div>
+				<div class="header-search">
+					<form class="search-content">
+						<input type="text" class="searchText" id="searchText" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Поиск';}" required="" value="Поиск">
 						<button id="search"><i class="fa fa-search" aria-hidden="true"></i></button>		
+					</form>
+				</div>
+				<div class="social-network">
+					<div class="social-network-item">
+						<i class="fa fa-vk" aria-hidden="true"></i>
+					</div>
+					<div class="social-network-item">
+						<i class="fa fa-skype" aria-hidden="true"></i>
+					</div>
+					<div class="social-network-item">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
 					</div>
 				</div>	
-				<nav class="navigation">
-					<div class="mobile-menu">
-						<a class="mobile-trigger" href="#" id="mobile-trigger"><span></span></a>
-						<nav class="menu-main-wrap">
-							<ul class="ui menu menu-effect_1">
-								<li><a href="/">Главная</a></li>
-								<li><a href="/catalog/newest">Новинки</a></li>
-								<li><a href="/catalog/all">Каталог</a></li>
-								<li><a href="/catalog/sale">Скидки</a></li>
-								<li><a href="/contacts">Контакты</a></li>
-							</ul>
-						</nav>
-						<div class="menu-main-overlay"></div>
-					</div>
-					<ul>
-						<li><a href="/">Главная</a></li>
-						<li><a href="/catalog/newest">Новинки</a></li>
-						<li><a href="/catalog/all">Каталог</a></li>
-						<li><a href="/catalog/sale">Скидки</a></li>
-						<li><a href="/contacts">Контакты</a></li>
-					</ul>
-				</nav>
-				<div class="social-network">
-					<i class="fa fa-vk" aria-hidden="true"></i>
-					<i class="fa fa-skype" aria-hidden="true"></i>
-					<i class="fa fa-odnoklassniki" aria-hidden="true"></i>
-				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="menu_container">
+		<div class="header-bottom">
+			<div class="header-menu">
+				<div class="container">
+					<nav class="navigation">
+						<div class="mobile-menu">
+							<a class="mobile-trigger" href="#" id="mobile-trigger"><span></span></a>
+							<nav class="menu-main-wrap">
+								<ul class="ui menu menu-effect_1">
+									<li><a href="/">Главная</a></li>
+									<li><a href="/catalog/newest">Новинки</a></li>
+									<li><a href="/catalog/all">Каталог</a></li>
+									<li><a href="/catalog/sale">Скидки</a></li>
+									<li><a href="/contacts">Контакты</a></li>
+								</ul>
+							</nav>
+							<div class="menu-main-overlay"></div>
+						</div>
+						<ul>
+							<li><a href="/">Главная</a></li>
+							<li><a href="/catalog/newest">Новинки</a></li>
+							<li><a href="/catalog/all">Каталог</a></li>
+							<li><a href="/catalog/sale">Скидки</a></li>
+							<li><a href="/contacts">Контакты</a></li>
+						</ul>
+					</nav>						
+				</div>
 			</div>
 		</div>
 	</div>

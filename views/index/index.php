@@ -1,13 +1,14 @@
 <?php require_once 'views/index/header.php'; ?>
 <section id="main_slider">
-	<div class="container">
+	<!-- <div class="container"> -->
 		<div class="main_slider">
 			<ul class="rslides" id="slider">
 				<li>
 					<img src="static/img/slider/first.jpg" alt="Slider">
 		          <div class="caption">
+		          	
+		          	<h2>Элегантность и качество</h2>
 		          	<h4>SOMTHING IS BETTER</h4>
-		          	<h2>Fashion Lorrem</h2>
 		          </div>
 				</li>
 				<li>
@@ -20,14 +21,14 @@
 				<li>
 					<img src="static/img/slider/third.jpg" alt="Slider">
 		          <div class="caption">
-		          	<h4>SOMTHING IS BETTER</h4>
-		          	<h2>dolor sit amet.</h2>
+		          	<h4>Высокое качество изделий</h4>
+		          	<h2>Уникальные натуральные ткани</h2>
 		          </div>
 				</li>
 			</ul>			
 		</div>
 		
-	</div>
+	<!-- </div> -->
 </section>
 
 <section id="blocks-info">

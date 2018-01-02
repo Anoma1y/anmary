@@ -37,8 +37,8 @@ $output-bourbon-deprecation-warnings: false !default;
 	}
 }
 .catalog {
+	padding-top: 20px;
 	padding-bottom: 80px; 
-	
 	.container {
 		justify-content: space-between;
 		&.without-container {
