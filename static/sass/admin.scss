@@ -141,6 +141,11 @@ body {
 					font-family: $main-font-family;
 					letter-spacing: 1px;
 				}
+				img {
+					width: 262px;
+					height: 318px;
+					border: 1px solid #ddd;
+				}
 			}
 		}
 		.center-col {

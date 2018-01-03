@@ -221,6 +221,10 @@ body {
         border: 1px solid #333;
         font-family: "Oswald", "Open Sans", sans-serif;
         letter-spacing: 1px; }
+      .add form .left-col .left_block img {
+        width: 262px;
+        height: 318px;
+        border: 1px solid #ddd; }
     .add form .center-col .center-block {
       display: -webkit-box;
       display: -webkit-flex;
