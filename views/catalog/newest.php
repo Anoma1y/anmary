@@ -32,16 +32,14 @@
             </div>
         </div>
     </div>
-    <script src="/static/js/libs.min.js"></script>
-	<script type="text/javascript" src="/static/js/libs.min.js"></script>
-	<script type="text/javascript" src="/static/js/catalog.js"></script>
-	<script type="text/javascript">
-	    var catalog = new Catalog("getAllProductNewest", "POST");
-	    var filter = new Filter(catalog);
-	    if (catalog != undefined && filter != undefined) {
-	        filter.init();
-	        catalog.init(filter.state);         
-	    }
-	</script>
 
     <?php require_once 'views/index/footer.php'; ?>
+    <script type="text/javascript" src="/static/js/catalog.js"></script>
+    <script type="text/javascript">
+        var catalog = new Catalog("getAllProductNewest", "POST");
+        var filter = new Filter(catalog);
+        if (catalog != undefined && filter != undefined) {
+            filter.init();
+            catalog.init(filter.state);         
+        }
+    </script>

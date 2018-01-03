@@ -1,12 +1,3 @@
-$(function() {
-	if(!Modernizr.svg) {
-		$("img[src*='svg']").attr("src", function() {
-			return $(this).attr("src").replace(".svg", ".png");
-		});
-	};
-});
-
-AOS.init();
 $(document).ready(function() {
 	// $(window).resize(function(event) {
 	// 	var chechMenu = document.getElementById('mobile_nav').style.display;
@@ -33,13 +24,7 @@ $(document).ready(function() {
             window.location.hash = target;
         });
     });
-	$(".brand-carousel").owlCarousel({
-        autoPlay: true, 
-        slideSpeed:3000,
-        pagination:false,
-        navigation:false,	  
-        items : 3,
-    }); 
+
       $("#slider").responsiveSlides({
         auto: true,
         pager: false,

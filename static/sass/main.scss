@@ -12,7 +12,6 @@ $output-bourbon-deprecation-warnings: false !default;
 }
 #main_slider {
 	margin-bottom: 20px;
-	// margin: 20px 0;
 	.main_slider {
 		position: relative;
 		&:hover .callbacks_nav{
@@ -49,12 +48,12 @@ $output-bourbon-deprecation-warnings: false !default;
 			left: 50%;
 			cursor: default;
 			transform: translate(-50%, -50%);
-			background-color: rgba(255,180,0,.5);
+			background-color: $slider-caption-bgc;
 			padding: 50px 100px;
 			text-align: center;
 			font-family: $main-font-family;
 			text-transform: uppercase;
-			color: #fff;
+			color: $color-white;
 			transition: padding .5s ease;
 			h4 {
 				font-size: em(20px);
@@ -76,7 +75,7 @@ $output-bourbon-deprecation-warnings: false !default;
 	max-width: 1140px;
 	margin: 0 auto;
 	padding: 0 10px;
-	color: #fff;
+	color: $color-white;
 	display: grid;
 	grid-template-columns: 290px 1.5fr 1fr 1.5fr;
 	grid-template-rows: 320px 0 320px;
@@ -95,13 +94,13 @@ $output-bourbon-deprecation-warnings: false !default;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			background-image: url("/static/img/qweqweqwe.jpg");
+			background-image: $block-url-new_collections;
 			background-size: cover;
 			@include overlay(.2);
 			.collection_info {
 				text-align: center;
 				font-family: $font-merri;
-				color: #fff;
+				color: $color-white;
 				text-transform: uppercase;
 				z-index: 9999;
 				.collection_name {
@@ -122,21 +121,21 @@ $output-bourbon-deprecation-warnings: false !default;
 				a {
 					font-weight: bold;
 					font-size: em(14px);
-					color: #fff;
+					color: $color-white;
 					padding: 15px 30px;
-					background-color: #34da94;
+					background-color: $block-color-new_collections;
 					transition-property: background-color color;
 					transition: .6s ease;
 					&:hover {
-						background-color: darken(#34da94, 10%);
-						color: darken(#fff, 90%);
+						background-color: darken($block-color-new_collections, 10%);
+						color: darken($color-white, 90%);
 					}
 				}
 			}
 		}
 		&.season_sale {
 			grid-area: season_sale;
-			background-color: #EE3D43;
+			background-color: $color-light-red;
 			.season_sale_info {
 				display: flex;
 				flex-direction: column;
@@ -146,16 +145,16 @@ $output-bourbon-deprecation-warnings: false !default;
 				font-family: $font-merri;
 				&:hover {
 					& h1 {
-						color: black;
+						color: $color-black;
 						animation-name: scal1;
 						animation-duration: 1s;
 					}
 					& p {
-						color: black;
+						color: $color-black;
 					}
 				}
 				p, h1 {
-					color: #fff;
+					color: $color-white;
 					text-transform: uppercase;
 					transition: color .3s ease;
 				}
@@ -179,7 +178,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			background-image: url("/static/img/_fjlL7HL91M.jpg");
+			background-image: $block-url-new_arrivals;
 			background-size: cover;
 			@include overlay(.3);
 			.arrivals_info {
@@ -189,7 +188,7 @@ $output-bourbon-deprecation-warnings: false !default;
 				z-index: 9999;
 				h1 {
 					font-size: em(25px);
-					color: #fff;
+					color: $color-white;
 					font-weight: bold;
 					margin-bottom: 25px;
 					letter-spacing: 2px;
@@ -197,12 +196,12 @@ $output-bourbon-deprecation-warnings: false !default;
 				a {
 					font-weight: bold;
 					font-size: em(13px);
-					color: #fff;
+					color: $color-white;
 					padding: 15px 30px;
-					background-color: #24A0A9;
+					background-color: $block-color-new_arrivals;
 					transition: background-color .3s ease;
 					&:hover {
-						background-color: darken(#24A0A9, 10%);
+						background-color: darken($block-color-new_arrivals, 10%);
 					}
 				}
 			}
@@ -213,7 +212,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			background-image: url("/static/img/1.jpg");
+			background-image: $block-url-subscribe;
 			background-size: cover;
 			@include overlay(.3);
 			.formSubscribe {
@@ -241,7 +240,7 @@ $output-bourbon-deprecation-warnings: false !default;
 					font-weight: bold;
 					padding: 0;
 					border: none;
-					background-color: #51DC98;
+					background-color: $block-color-subscribe;
 					cursor: pointer;
 					&:hover i {
 						color: #1F3779;
@@ -264,7 +263,7 @@ $output-bourbon-deprecation-warnings: false !default;
 				font-family: $font-merri;
 				h2 {
 					font-size: em(20px);
-					color: #fff;
+					color: $color-white;
 					font-weight: 300;
 					margin-bottom: 25px;
 					letter-spacing: 1.5px;
@@ -277,19 +276,18 @@ $output-bourbon-deprecation-warnings: false !default;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			background-image: url("/static/img/156763701506887283.jpg");
+			background-image: $block-url-all_catalog;
 			align-items: center;
 			background-size: cover;
 			@include overlay(.2);
 			.catalog_info {
-
 				text-align: center;
 				z-index: 9999;
 				text-transform: uppercase;
 				font-family: $font-merri;
 				h2 {
 					font-size: em(18px);
-					color: #fff;
+					color: $color-white;
 					font-weight: 800;
 					margin-bottom: 25px;
 					letter-spacing: 1px;
@@ -298,7 +296,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			.get_catalog {
 				position: relative;
 				display: block;
-				background-color: darken(#51DC98, 10%);
+				background-color: darken($block-color-all_catalog, 10%);
 				z-index: 9999;
 				text-align: center;
 				overflow: hidden;
@@ -307,16 +305,16 @@ $output-bourbon-deprecation-warnings: false !default;
 				font-family: $font-merri;
 				font-size: em(18px);
 				text-transform: uppercase;
-				color: #fff;
+				color: $color-white;
 				transition-property: background-color color;
 				transition: .9s ease;
 				&:hover {
-					background-color: lighten(#51DC98, 10%);
-					color: darken(#fff, 90%);
+					background-color: lighten($block-color-all_catalog, 10%);
+					color: darken($color-white, 90%);
 				}
 				&:hover::after {
-					border: 12px solid #51DC98;
-					border-left: 12px solid #fff;
+					border: 12px solid $block-color-all_catalog;
+					border-left: 12px solid $color-white;
 					right: -5px;
 				}
 				&:after {
@@ -325,10 +323,10 @@ $output-bourbon-deprecation-warnings: false !default;
 					content: '';
 					right: 0;
 					top: 50%;
-					border: 10px solid #51DC98; 
-					border-left: 10px solid #fff; 
+					border: 10px solid $block-color-all_catalog; 
+					border-left: 10px solid $color-white; 
 					transform: translateY(-50%);
-					background-color: #fff;
+					background-color: $color-white;
 					transition: all .5s ease;
 				}
 			}
@@ -391,7 +389,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			cursor: default;
 			text-align: center;
 			color: #595959;
-			background-color: #FFF;
+			background-color: $color-white;
 			span, p {
 				line-height: 1.4;
 			}
@@ -409,23 +407,23 @@ $output-bourbon-deprecation-warnings: false !default;
 			margin-top: 5px;
 			font-size: em(10px);
 			font-family: $font-merri;
-			color: #000000;
+			color: $color-black;
 		}
 		&__title {
 			font-size: em(14px);
 			font-family: $font-merri;
-			font-weight: normal;
+			font-weight: bold;
 			letter-spacing: -0.3px;
-			color: #000000;
+			color: $color-black;
 			&:first-letter {
 				text-transform: uppercase;
 			}
 		}
 		&__price {
-			color: #000000;
+			color: $color-black;
 			font-size: em(16px);
 			font-family: $font-merri;
-			font-weight: 300;
+			font-weight: normal;
 			&-old {
 				text-decoration: line-through;
 				color: #6d6d6d;
@@ -464,7 +462,7 @@ footer {
 	width: 100%;
 	background-color: #292929;
 	padding: 60px 0;
-	color: #fff;
+	color: $color-white;
 	.container {
 		justify-content: space-between;
 	}
@@ -476,7 +474,7 @@ footer {
 		align-items: flex-start;
 		.footer_logo {
 			padding: 10px;
-			border: 3px solid #ffab00;
+			border: 3px solid $color-orange;
 			text-align: left;
 			text-transform: uppercase;
 			font-family: $main-font-family;
@@ -484,7 +482,7 @@ footer {
 			font-size: em(30px);
 			letter-spacing: 2px;
 			margin-bottom: 30px;
-			color: #ffab00;
+			color: $color-orange;
 		}
 		.footer_about {
 			font-family: $font-merri;
@@ -525,7 +523,7 @@ footer {
 					transition: .3s ease;
 					cursor: pointer;
 					&:hover {
-						background-color: #ffab00;
+						background-color: $color-orange;
 					}
 					&:hover a { 
 						color: #000;
@@ -533,7 +531,7 @@ footer {
 					a {
 						font-family: $main-font-family;
 						font-size: em(16px);
-						color: #fff;
+						color: $color-white;
 					}
 				}
 			}
@@ -556,8 +554,8 @@ footer {
 			}
 		}
 		.footer_email {
-			border-top: 1px solid #ffab00;
-			border-bottom: 1px solid #ffab00;
+			border-top: 1px solid $color-orange;
+			border-bottom: 1px solid $color-orange;
 			margin-bottom: 30px;
 			p {
 				padding: 10px;
@@ -571,7 +569,7 @@ footer {
 		.footer_social {
 			i {
 				font-size: em(20px);
-				color: #fff;
+				color: $color-white;
 				cursor: pointer;
 				transition: color .3s ease;
 				margin-left: 30px;
@@ -579,7 +577,7 @@ footer {
 					margin-left: 0;
 				}
 				&:hover {
-					color: darken(#fff, 30%);
+					color: darken($color-white, 30%);
 				}	
 			}
 		}

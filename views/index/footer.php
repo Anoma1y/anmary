@@ -1,7 +1,7 @@
 
 	<footer>
 		<div class="container">
-			<div class="footer-left">
+			<div class="footer-left" data-aos="fade-up-right">
 				<div class="footer_logo">
 					<h1><?=$info["name"];?></h1>
 				</div>
@@ -12,7 +12,7 @@
 					<p>© <?=$info["copyright_year"]?> <?=$info["name"];?></p>
 				</div>
 			</div>
-			<div class="footer-center">
+			<div class="footer-center" data-aos="fade-up">
 				<nav>
 					<h4>Навигация</h4>
 					<ul class="footer_menu">
@@ -31,7 +31,7 @@
 					</ul>
 				</nav>
 			</div>
-			<div class="footer-right">
+			<div class="footer-right" data-aos="fade-up-left">
 				<div class="footer_contact">
 					<h3>Связаться с нами</h3>
 					<p>Вы можете задать свой вопрос, отправив письмо на указанный адрес e-mail</p>
@@ -53,9 +53,9 @@
 	<script src="libs/html5shiv/html5shiv-printshiv.min.js"></script>
 	<script src="libs/respond/respond.min.js"></script>
 	<![endif]-->
-	
-	<script src="/static/js/polyfill.object-fit.min.js"></script>
-	<script>
+	<script type="text/javascript" src="/static/js/libs.min.js"></script>
+	<script type="text/javascript">
+		AOS.init();
 		objectFit.polyfill({
 			selector: 'img', 
 			fittype: 'cover', 

@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="/static/css/simplePagination.css">
 	<link rel="stylesheet" href="/static/css/polyfill.object-fit.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<!-- <link rel="stylesheet" href="/static/css/aos.css"> -->
+	<link rel="stylesheet" href="/static/css/aos.css">
 	<!-- <link rel="stylesheet" href="/static/css/owl.carousel.css"> -->
 	<link rel="stylesheet" href="/static/css/main.min.css">
 </head>
@@ -82,10 +82,10 @@
 		<div class="header-middle">
 			<div class="header_container">
 				<div class="header-logo">
-					<img src="/static/img/2.svg" alt="">
+					<img src="/static/img/logo.svg" alt="Logo">
 				</div>
 				<div class="header-search">
-					<form class="search-content">
+					<form class="search-content" method="#" action="#">
 						<input type="text" class="searchText" id="searchText" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Поиск';}" required="" value="Поиск">
 						<button id="search"><i class="fa fa-search" aria-hidden="true"></i></button>		
 					</form>

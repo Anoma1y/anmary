@@ -109,7 +109,8 @@
 		</div>
 	</div>
 </div>
-<script src="/static/js/libs.min.js"></script>
-<script src="/static/js/jquery.zoom.min.js"></script>
-<script>$('#product_image').zoom();</script>
- <?php require_once 'views/index/footer.php'; ?>
+
+<?php require_once 'views/index/footer.php'; ?>
+<script type="text/javascript">
+	$('#product_image').zoom();
+</script>

@@ -1,6 +1,12 @@
 @import "bourbon";
-@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
-@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900');
+/* Oswald */
+@include font-face("Oswald", "../fonts/Oswald/Oswaldregular", normal, $file-formats: eot woff2 woff);
+@include font-face("Oswald", "../fonts/Oswald/Oswaldlight", lighter, $file-formats: eot woff2 woff);
+@include font-face("Oswald", "../fonts/Oswald/Oswaldbold", bold, $file-formats: eot woff2 woff);
+/* Merriweather */
+@include font-face("Merriweather", "../fonts/Merriweather/Merriweather-Bold", bold, $file-formats: eot woff2 woff);
+@include font-face("Merriweather", "../fonts/Merriweather/Merriweather-Light", 300, $file-formats: eot woff2 woff);
+@include font-face("Merriweather", "../fonts/Merriweather/Merriweather-Regular", normal, $file-formats: eot woff2 woff);
+@include font-face("Merriweather", "../fonts/Merriweather/Merriweather-UltraBold", 900, $file-formats: eot woff2 woff);
 
 

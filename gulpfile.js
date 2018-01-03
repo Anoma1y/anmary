@@ -13,7 +13,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync');
 const errorHandler = require('gulp-error-handle');
 const pug = require('gulp-pug');
-
+const minify = require('gulp-minify');
 gulp.task('styles', () => {
 	return gulp.src('static/sass/**/*.+(sass|scss)')
 	.pipe(sass({
@@ -21,7 +21,7 @@ gulp.task('styles', () => {
 	 }).on('error', sass.logError))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions', 'ie 8', 'ie 7'], { cascade: true }))
-	// .pipe(cleanCSS())
+	.pipe(cleanCSS())
 	.pipe(gulp.dest('static/css/'))
 	.pipe(browserSync.reload({stream: true}))
 });
@@ -35,12 +35,11 @@ gulp.task('browser-sync', () => {
 
 gulp.task('libs', () => {
 	return gulp.src([
-		'./static/libs/modernizr.js',
-		'./static/libs/jquery-2.2.4.min.js',
-		'./static/libs/jquery-ui.min.js',
-		'./static/libs/parallax.min.js',
+		'./static/libs/jquery-3.2.1.min.js',
 		'./static/libs/jquery.simplePagination.js',
-		'./static/libs/owl.carousel.min.js',
+		'./static/libs/jquery.zoom.min.js',
+		'./static/libs/responsiveslides.min.js',
+		'./static/libs/polyfill.object-fit.min.js',
 		'./static/libs/aos.js'
 	])
 	.pipe(concat('libs.min.js'))
@@ -54,6 +53,12 @@ gulp.task('script', () => {
         .pipe(babel({
             presets: ['es2015']
         }))
+	    .pipe(minify({
+	    	ext:{
+            	min:'.js'
+        	},
+	    	noSource: true
+	    }))
         .pipe(gulp.dest('static/js/'));
 })
 

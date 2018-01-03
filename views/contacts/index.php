@@ -6,7 +6,7 @@
 			<h1><span>Контакты</span></h1>
 		</div>
 		<div class="our_contacts">
-			<div class="our_contacts_item left-items">
+			<div class="our_contacts_item left-items" data-aos="zoom-in" data-aos-duration="500">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-phone" aria-hidden="true"></i>
 				</div>
@@ -15,7 +15,7 @@
 					<span><?=$info['telephone']?></span>
 				</div>
 			</div>
-			<div class="our_contacts_item right-items">
+			<div class="our_contacts_item right-items" data-aos="zoom-in" data-aos-duration="500">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-envelope-open" aria-hidden="true"></i>
 				</div>
@@ -24,7 +24,7 @@
 					<span><?=$info['email']?></span>
 				</div>
 			</div>
-			<div class="our_contacts_item left-items">
+			<div class="our_contacts_item left-items" data-aos="zoom-in" data-aos-duration="500">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-calendar" aria-hidden="true"></i>
 				</div>
@@ -33,7 +33,7 @@
 					<span><?=$info['schedule']?></span>
 				</div>
 			</div>
-			<div class="our_contacts_item right-items">
+			<div class="our_contacts_item right-items" data-aos="zoom-in" data-aos-duration="500">
 				<div class="our_contacts_item_icon">
 					<i class="fa fa-map-marker" aria-hidden="true"></i>
 				</div>
@@ -52,7 +52,7 @@
 		<div class="title">
 			<h1><span>Обратная связь</span></h1>
 		</div>
-		<div class="feedback">
+		<div class="feedback" data-aos="zoom-in" data-aos-duration="800">
 			<div class="feedback__form">
 				<form action="#" method="POST" id="feedback_form">
 					<input type="text" name="feedback_name" id="feedback_name" placeholder="Имя">
@@ -65,9 +65,9 @@
 		</div>
 	</div>
 </section>
-<script src="/static/js/libs.min.js"></script>
+
+<?php require_once 'views/index/footer.php'; ?>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADny6Mjy49YDCexGxeRlvNFbi0QdbVqRA&callback=initMap"></script>
 <script>
 	function initMap(){var a={lat:lat,lng:lng},n=new google.maps.Map(document.getElementById("map"),{zoom:14,center:a});new google.maps.Marker({position:a,map:n})}var lat=60.072691,lng=30.337614;
 </script>
-<?php require_once 'views/index/footer.php'; ?>

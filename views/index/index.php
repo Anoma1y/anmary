@@ -33,7 +33,7 @@
 
 <section id="blocks-info">
 	<div class="blocks">
-		<div class="block new_collections">
+		<div class="block new_collections" data-aos="zoom-in-right" data-aos-duration="500">
 			<div class="collection_info">
 				<div class="collection_name">
 					<h2>Осень/Зима</h2>
@@ -44,20 +44,20 @@
 			</div>
 			<div class="overlay"></div>
 		</div>
-		<div class="block season_sale">
+		<div class="block season_sale" data-aos="zoom-in-down" data-aos-duration="500">
 			<a href="/catalog/sale" class="season_sale_info">
 				<p>Сезонная распродажа</p>
 				<h1>Sale</h1>
 			</a>
 		</div>
-		<div class="block new_arrivals">
+		<div class="block new_arrivals" data-aos="zoom-in-left" data-aos-duration="500">
 			<div class="overlay"></div>
 			<div class="arrivals_info">
 				<h1>Последнее поступление</h1>
 				<a href="/catalog/newest">Смотреть</a>
 			</div>			
 		</div>
-		<div class="block subscribe">
+		<div class="block subscribe" data-aos="zoom-in-up" data-aos-duration="500">
 			<div class="overlay"></div>
 			<div class="get_subscribe">
 				<h2>Подписаться на рассылку</h2>
@@ -67,7 +67,7 @@
 				<button id="get_subscribe_btn" name="get_subscribe_btn"><i class="fa fa-plus"></i></button>
 			</div>
 		</div>
-		<div class="block all_catalog">
+		<div class="block all_catalog" data-aos="zoom-in-left" data-aos-duration="500">
 			<div class="overlay"></div>
 			<div class="catalog_info">
 				<h2>Большой выбор женской одежды</h2>
@@ -89,7 +89,7 @@
 	<div class="container">
 		<div class="product_list">
 			<?php foreach ($lastProduct as $key => $product): ?>
-				<div class="product">
+				<div class="product" data-aos="zoom-in" data-aos-duration="1000">
 					<div class="product__image">
 						<a href="/product/<?=$product[id];?>">
 							<img src="<?=$product[image];?>" alt="Latest Product">
@@ -118,26 +118,25 @@
 		</div>
 	</div>
 	<div class="container brand_container">
-		<div class="brand_item">
+		<div class="brand_item" data-aos="zoom-in-left">
 			<img src="/static/img/logo/comvill.png" alt="Logo">
 		</div>
-		<div class="brand_item">
+		<div class="brand_item" data-aos="zoom-in-left">
 			<img src="/static/img/logo/magnolica.png" alt="Logo">
 		</div>
-		<div class="brand_item">
+		<div class="brand_item" data-aos="zoom-in-up">
 			<img src="/static/img/logo/TopDesign.png" alt="Logo">
 		</div>
-		<div class="brand_item">
+		<div class="brand_item" data-aos="zoom-in-right">
 			<img src="/static/img/logo/vaideslide.png" alt="Logo">
 		</div>
-		<div class="brand_item">
+		<div class="brand_item" data-aos="zoom-in-right">
 			<img src="/static/img/logo/vito-logo.png" alt="Logo">
 		</div>
 	</div>
 </section>
 
 <script src="static/js/libs.min.js"></script>
-<script src="/static/js/responsiveslides.min.js"></script>
 <script src="static/js/index.js"></script> 
 
 <?php require_once 'views/index/footer.php'; ?>

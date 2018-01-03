@@ -11,6 +11,9 @@
             this.item_on_page = 1;
             this.countItems = document.getElementById('countItems');
             this.countItemsPerPage = 0;
+            //анимиация библиотеки AOS
+            this.animationAOS = ["fade-up", "fade-in", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left"];
+            //текущее состояние для фильтров, сортировки и поиска
             this.state = {
                 categoryFilter: [],
                 brandFilter: [],
@@ -23,8 +26,12 @@
             };
         }
 
+        randomInteger(min, max) {
+            return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+        }
+
         init() {
-            this.getData(this.currentPage, this.state)
+            this.getData(this.currentPage, this.state);
         }
 
         receivingВata(page, state) {
@@ -58,7 +65,6 @@
                     //Записей на странице
                     this.item_on_page = this.items['record_per_page'];
                     //Установка новой текущей страницы
-                    console.log(this.items);
                     this.currentPage = this.items['current_page'];
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {
@@ -103,7 +109,7 @@
                     checkPrice = `<p>${val["price"]} руб.</p>`;
                 }
                 $('.catalog-items-list').append(`
-                    <div class="catalog-item">
+                    <div class="catalog-item" data-aos="${this.animationAOS[this.randomInteger(0,7)]}" data-aos-duration="500">
                         <div class="shadow"></div>
                         <img src="${val["image"]}" alt="Item-${val["id"]}">
                         ${checkPercentSale}
@@ -220,7 +226,7 @@
                 sort.addEventListener('change', (e) => {
                     this.obj.state["sortBy"] = e.target.value;
                     this.obj.currentPage = 1;
-                    this.obj.getData(this.obj.currentPage, this.obj.state);
+                    setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                 }, false);
             }
         }
@@ -251,12 +257,12 @@
                     if (target.checked) {
                         this.obj.currentPage = 1;
                         this.obj.state["categoryFilter"].push(target.value);
-                        this.obj.getData(this.obj.currentPage, this.obj.state);
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                     } else if (!target.checked) {
                         this.obj.currentPage = 1;
                         let index = this.obj.state["categoryFilter"].indexOf(target.value);
                         this.obj.state["categoryFilter"].splice(index, 1);
-                        this.obj.getData(this.obj.currentPage, this.obj.state);
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                     }
                 }, false);
             }
@@ -267,12 +273,12 @@
                     if (target.checked) {
                         this.obj.currentPage = 1;
                         this.obj.state["brandFilter"].push(target.value);
-                        this.obj.getData(this.obj.currentPage, this.obj.state);
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                     } else if (!target.checked) {
                         this.obj.currentPage = 1;
                         let index = this.obj.state["brandFilter"].indexOf(target.value);
                         this.obj.state["brandFilter"].splice(index, 1);
-                        this.obj.getData(this.obj.currentPage, this.obj.state);
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                     }
                 }, false);
             }
@@ -283,12 +289,12 @@
                     if (target.checked) {
                         this.obj.currentPage = 1;
                         this.obj.state["seasonFilter"].push(target.value);
-                        this.obj.getData(this.obj.currentPage, this.obj.state);
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                     } else if (!target.checked) {
                         this.obj.currentPage = 1;
                         let index = this.obj.state["seasonFilter"].indexOf(target.value);
                         this.obj.state["seasonFilter"].splice(index, 1);
-                        this.obj.getData(this.obj.currentPage, this.obj.state);
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                     }
                 }, false);
             }
@@ -300,12 +306,12 @@
                 if (val.length == 0) {
                     this.obj.state["searchValue"] = "";
                     this.obj.currentPage = 1;
-                    this.obj.getData(this.obj.currentPage, this.obj.state);
+                    setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                 } else if (val.length >= 3 && val.length <= 20) {
                     if (!val.match(/[^a-zA-Zа-яА-Я0-9]/g)) {
                         this.obj.state["searchValue"] = `%${val}%`;
                         this.obj.currentPage = 1;
-                        this.obj.getData(this.obj.currentPage, this.obj.state);               
+                        setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);               
                     }
                 }
             })
@@ -317,16 +323,12 @@
                 if (target.checked) {
                     this.obj.state["isSaleFilter"] = 1;
                     this.obj.currentPage = 1;
-                    this.obj.getData(this.obj.currentPage, this.obj.state);
+                    setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                 } else if (!target.checked) {
                     this.obj.state["isSaleFilter"] = '';
                     this.obj.currentPage = 1;
-                    this.obj.getData(this.obj.currentPage, this.obj.state);
+                    setTimeout(() => { this.obj.getData(this.obj.currentPage, this.obj.state); },500);
                 }
             }, false);
         }
     }
-
-
-
-    // console.log(window.location.pathname);

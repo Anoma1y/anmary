@@ -31,8 +31,8 @@
 	        </div>
 	    </div>
 	</div>
-    <script src="/static/js/libs.min.js"></script>
-	<script type="text/javascript" src="/static/js/libs.min.js"></script>
+
+    <?php require_once 'views/index/footer.php'; ?>
 	<script type="text/javascript" src="/static/js/catalog.js"></script>
 	<script type="text/javascript">
 	    var catalog = new Catalog("getAllProductSale", "POST");
@@ -42,5 +42,3 @@
 	        catalog.init(filter.state);         
 	    }
 	</script>
-
-    <?php require_once 'views/index/footer.php'; ?>
