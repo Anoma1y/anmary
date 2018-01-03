@@ -55,7 +55,9 @@
 	<![endif]-->
 	<script type="text/javascript" src="/static/js/libs.min.js"></script>
 	<script type="text/javascript">
-		AOS.init();
+		AOS.init({
+			disable: 'mobile' //Отключение для телефонов
+		});
 		objectFit.polyfill({
 			selector: 'img', 
 			fittype: 'cover', 

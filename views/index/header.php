@@ -9,7 +9,8 @@
 	<meta name="google-site-verification" content="XTGy26KTjTbJvVrvgTcx4V98DO1COFmE_3cVT-R8DTk" />
 	<meta name="yandex-verification" content="ef739025f523584c" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<meta property="og:image" content="path/to/image.jpg">
 	
 	<link rel="shortcut icon" href="" type="image/x-icon">

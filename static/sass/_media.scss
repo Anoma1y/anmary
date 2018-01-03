@@ -64,7 +64,53 @@ $output-bourbon-deprecation-warnings: false !default;
 }
 
 @media only screen and (max-width: 760px) {
+	.might-like {
+		&-content {
+			justify-content: center;
+		}
+		.like-item {
 
+		}
+	}
+	.catalog-detail {
+		.catalog-container {
+			grid-template-columns: 1fr;
+			justify-content: center;
+		}
+		.left-col {
+			display: flex;
+			justify-content: center;
+			.detail-image {
+				padding: 5px;
+				img {
+					margin: 0 auto;
+				}
+			}
+		}
+		.right-col {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+			.detail-info {
+				&-size {
+					.block-size {
+						justify-content: center;
+					}
+				}
+				&-composition {
+					.block-composition {
+						flex-direction: row;
+						justify-content: center;
+						.composition-item {
+							&:before {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 	#main_slider {
 		.main_slider {
 			.caption {
