@@ -80,7 +80,7 @@
                             hrefTextPrefix: '',
                             currentPage: this.currentPage,
                             onPageClick: (pageNumber) => {
-                                this.getData(pageNumber, this.state);
+                                setTimeout(() => { this.getData(pageNumber, this.state); },500);
                            }
                         });
                     } else if (this.items.length >= 1) {

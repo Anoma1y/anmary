@@ -370,7 +370,7 @@ $output-bourbon-deprecation-warnings: false !default;
 					left: 0; 
 					width: 100%;
 					height: 100%;
-					background-color: #FFAB00; //#5ff7d2
+					background-color: $color-orange; //#5ff7d2
 					opacity: 0;
 					transition: opacity .3s ease;
 				}
@@ -393,7 +393,7 @@ $output-bourbon-deprecation-warnings: false !default;
 					transition: opacity .3s ease;
 					&:hover {
 						background: #fff;
-						color: #FFAB00;
+						color: $color-orange;
 						cursor: pointer;
 					}
 				}
@@ -420,7 +420,7 @@ $output-bourbon-deprecation-warnings: false !default;
 	 						.product-name {	
 	 							width: 50%;
 	 							&:hover p {
-	 								color: #ffab00;
+	 								color: $color-orange;
 	 							}
 	 							p {
 	 								transition: color .3s ease;
@@ -442,10 +442,10 @@ $output-bourbon-deprecation-warnings: false !default;
 							.product-price {
 								width: 48%;
 								text-align: right;
-								color: #ffab00;
+								color: $color-orange;
 								font-family: $font-merri;
 								font-size: em(19px);
-								font-weight: 900;
+								font-weight: bold;
 								cursor: default;
 								.item-old-price {
 									text-decoration: line-through;

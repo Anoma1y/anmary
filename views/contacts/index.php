@@ -54,11 +54,11 @@
 		</div>
 		<div class="feedback" data-aos="zoom-in" data-aos-duration="800">
 			<div class="feedback__form">
-				<form action="#" method="POST" id="feedback_form">
-					<input type="text" name="feedback_name" id="feedback_name" placeholder="Имя">
-					<input type="text" name="feedback_email" id="feedback_email" placeholder="E-Mail">
-					<textarea name="feedback_text" id="feedback_text" placeholder="Вопрос"></textarea>
-					<button id="feedback_btn">Отправить</button>
+				<form action="javascript:void(null);" method="POST" id="sendEmailForm">
+					<input type="text" name="form-name" id="form-name" placeholder="Имя">
+					<input type="text" name="form-email" id="form-email" placeholder="E-Mail">
+					<textarea name="form-text" id="form-text" placeholder="Вопрос"></textarea>
+					<button id="sendEmailBtn">Отправить</button>
 
 				</form>
 			</div>
@@ -71,3 +71,4 @@
 <script>
 	function initMap(){var a={lat:lat,lng:lng},n=new google.maps.Map(document.getElementById("map"),{zoom:14,center:a});new google.maps.Marker({position:a,map:n})}var lat=60.072691,lng=30.337614;
 </script>
+<script type="text/javascript" src="/static/js/contacts.js"></script>

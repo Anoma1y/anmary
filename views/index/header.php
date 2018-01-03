@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="ru">
+<html lang="en">
 <head>
 
 	<meta charset="utf-8">
@@ -17,20 +17,13 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="">
 	<link rel="apple-touch-icon" sizes="114x114" href="">
 
-	<!-- BOOTSTRAP GRID -->
-	
-
-	<style>
-		
-	</style>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/css/responsiveslides.css">
 	<link rel="stylesheet" href="/static/css/simplePagination.css">
 	<link rel="stylesheet" href="/static/css/polyfill.object-fit.min.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/static/css/aos.css">
-	<!-- <link rel="stylesheet" href="/static/css/owl.carousel.css"> -->
 	<link rel="stylesheet" href="/static/css/main.min.css">
+
 </head>
 <body>
 <?php $info = include('engine/info.php'); ?>

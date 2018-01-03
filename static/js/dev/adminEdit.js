@@ -105,10 +105,9 @@
 					console.log(`${xhr.status} : ${xhr.statusText}`);
 					errorText.textContent = 'Ошибка';
 				} else {
-					console.log(xhr.responseText)
-					// if (xhr.responseText == 1) {
-					// 	window.location = './';
-					// }
+					if (xhr.responseText == 1) {
+						window.location = './';
+					}
 				}
 			}			
 		} else {

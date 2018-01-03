@@ -11,12 +11,12 @@
 		}
 	  
 		public function signin() {
-			$view = new View();
-			$view->render('users/login');
+			// $view = new View();
+			// $view->render('users/login');
 		}
 		public function signup() {
-			$view = new View();
-			$view->render('users/register');
+			// $view = new View();
+			// $view->render('users/register');
 		}
 	    public function logout() {
 	    	if (isset($_COOKIE)) {

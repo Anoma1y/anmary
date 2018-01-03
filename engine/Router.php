@@ -20,6 +20,8 @@ class Route
 		if (!empty($routes[2])) {
 			$method_name = $routes[2];
 		}
+		$char = mb_strtoupper(substr($class_name,0,2), "utf-8"); // это первый символ
+		$class_name[0] = $char[0];
 		$file_name = "controllers/Controller".$class_name.".php";
 		try {
 			/* Если 4 и более уровней URL - вызывает ошибку */

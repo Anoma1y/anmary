@@ -119,7 +119,7 @@
 	</div>
 	<div class="container brand_container">
 		<div class="brand_item" data-aos="zoom-in-left">
-			<img src="/static/img/logo/comvill.png" alt="Logo">
+			<img src="/static/img/logo/Comvill.png" alt="Logo">
 		</div>
 		<div class="brand_item" data-aos="zoom-in-left">
 			<img src="/static/img/logo/magnolica.png" alt="Logo">
