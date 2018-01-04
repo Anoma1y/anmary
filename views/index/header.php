@@ -61,7 +61,7 @@
 
 				</div>
 				<div class="header-top-cart">
-					<a href="#">
+					<a href="./cart">
 						<div class="cart-total">
 							<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 							<span class="cart-total-price">0</span> (Товаров: <span id="cart-quantity" class="cart-quantity">0</span>)
