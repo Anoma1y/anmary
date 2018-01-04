@@ -15,11 +15,11 @@
 				$keys = array_keys($_SESSION['products']);
 				$str = implode(", ", $keys);
 				$db = Db::getConnection();
-				$sql = 'SELECT product.id, product.name, product.article, product.size, product.image, product.is_sale, product.price, product.sale_price, product.is_availability, brand.brand_name, category.category_name FROM product, brand, category WHERE product.id in ('.$str.') AND product.brand_id = brand.id AND product.category_id = category.id';
+				$sql = 'SELECT product.id, product.name, product.article, product.image, product.is_sale, product.price, product.sale_price, product.is_availability, brand.brand_name, category.category_name FROM product, brand, category WHERE product.id in ('.$str.') AND product.brand_id = brand.id AND product.category_id = category.id';
 				$result = $db->prepare($sql);
 				$result->setFetchMode(PDO::FETCH_ASSOC);
 				$result->execute();
-				$i = 0;
+				$i = 1;
 				$all = array();
 				while ($row = $result->fetch()) {
 					$all[$i] = $row;
@@ -34,7 +34,7 @@
 		* @param int $id товара
 		* @return bool true
 		*/
-	    public static function addProduct($id) {
+	    public static function addProduct($id, $size) {
 	        $id = intval($id);
 	        $cart_items = array();
 	        Session::init();
@@ -44,7 +44,7 @@
 	        }
 	        // Проверка на наличия товара в корзине 
 	        if (!array_key_exists($id, $cart_items)) {
-	           $cart_items[$id] = 1;
+	           $cart_items[$id] = $size;
 	        }
 	        // Записывает массив с товарами в сессию
 	        Session::set('products', $cart_items);
@@ -59,7 +59,7 @@
 	        if (isset($_SESSION['products'])) {
 	            $count = 0;
 	            foreach ($_SESSION['products'] as $id => $quantity) {
-	                $count = $count + $quantity;
+	                $count += 1;
 	            }
 	            return $count;
 	        } else {
@@ -102,7 +102,7 @@
 	        $total = 0;
 	        if ($productsInCart) {
 	            foreach ($products as $item) {
-	                $total += $item['price'] * $productsInCart[$item['id']];
+	                $total += $item['price'];
 	            }
 	        }
 	        return $total;

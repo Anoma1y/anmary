@@ -168,6 +168,9 @@ $output-bourbon-deprecation-warnings: false !default;
 					margin: 0 10px;
 					cursor: pointer;
 					transition: background-color .3s ease;
+					&.in-cart {
+						background-color: $color-orange;
+					}
 	    		}
 	    		.detail-add-to-compare {
 					&:hover {

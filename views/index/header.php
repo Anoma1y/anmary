@@ -62,7 +62,7 @@
 
 				</div>
 				<div class="header-top-cart">
-					<a href="./cart">
+					<a href="../cart">
 						<div class="cart-total">
 							<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 								<span class="cart-total-price"><?php echo UserCart::getTotalPrice(UserCart::getCartItems());?></span> 

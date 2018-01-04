@@ -74,7 +74,7 @@
 								Добавить в корзину
 							</div>
 						<?php else: ?>
-							<div class="detail-add-to-cart detail-add-btn" id="detail-add-to-cart-in">
+							<div class="detail-add-to-cart detail-add-btn in-cart" id="detail-add-to-cart-in">
 								В корзине
 							</div>					
 						<?php endif ?>

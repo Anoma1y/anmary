@@ -6,6 +6,9 @@
 	class Cart {
 		public function indexView(){
 			$cartItems = UserCart::getCartItems();
+			foreach ($cartItems as $key => $value) {
+				$cartItems[$key]["size"] = $_SESSION['products'][$value['id']];;
+			}
 			$countItems = UserCart::countItems();
 			$totalPrice = UserCart::getTotalPrice($cartItems);
 	        require_once('views/cart/index.php');
@@ -17,8 +20,9 @@
 	    public function addProduct() {
 	        // Добавляем товар в корзину и печатаем результат: количество товаров в корзине
 	        if (!empty($_POST)) {
-		        $id = $_POST["id"];		      
-		        UserCart::addProduct($id);
+		        $id = $_POST["id"];
+		        $size = $_POST["size"];		      
+		        UserCart::addProduct($id, $size);
 	        	return true;	
 	        }
 	        return false;

@@ -28,7 +28,7 @@
 									<a href="../product/<?=$item[id]?>"><img src="<?=$item[image]?>" alt=""></a>
 								</td>
 								<td class="cart-table-description"><p class="description-name"><?=$item[name]?></p> <p class="description-article"><?=$item[article]?></p></td>
-								<td class="cart-table-size"><?=$item[size]?></td>
+								<td class="cart-table-size"><?=$item[size];?></td>
 								<td class="cart-table-brand"><?=$item[brand_name]?></td>
 								<td class="cart-table-category"><?=$item[category_name]?></td>
 								<?php if ($item["is_sale"] == 1): ?>
