@@ -77,7 +77,6 @@ $output-bourbon-deprecation-warnings: false !default;
 						&:after {
 							transform: rotate(-45deg);
 						}
-						// font-weight: bolder;
 					}
 				}
 			}
@@ -99,7 +98,7 @@ $output-bourbon-deprecation-warnings: false !default;
 		line-height: 58px;
 		margin-top: 5px;
 		font-family: $main-font-family;
-		background-color: #f1f1f1;
+		background-color: #fafafa;
 		padding: 0 10px;
 		.cart-total-price-title {
 			letter-spacing: 1.5px;

@@ -1,3 +1,4 @@
+<?php $info = include('engine/info.php'); require_once 'engine/Cart.php'; Session::init();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
 
 </head>
 <body>
-<?php $info = include('engine/info.php'); ?>
+
 <header>
 	<div class="header-top">
 		<div class="container">
@@ -64,8 +65,8 @@
 					<a href="./cart">
 						<div class="cart-total">
 							<i class="fa fa-shopping-basket" aria-hidden="true"></i>
-							<span class="cart-total-price">0</span> (Товаров: <span id="cart-quantity" class="cart-quantity">0</span>)
-
+								<span class="cart-total-price"><?php echo UserCart::getTotalPrice(UserCart::getCartItems());?></span> 
+								(Товаров: <span id="cart-quantity" class="cart-quantity"><?php echo UserCart::countItems();?></span>)
 						</div>
 					</a>
 				</div>	
