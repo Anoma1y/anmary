@@ -170,6 +170,7 @@ body {
 					label {
 						display: block;
 						width: 25%;
+
 					}
 				}
 				.size_chois {
@@ -178,6 +179,9 @@ body {
 					justify-content: flex-end;
 					flex-wrap: wrap;
 					margin: 5px 0;
+					>div {
+						padding: 0 5px;
+					}
 				}
 				.input_composition {
 					width: 100%;

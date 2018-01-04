@@ -11,8 +11,8 @@
 		}
 	  
 		public function signin() {
-			// $view = new View();
-			// $view->render('users/login');
+			$view = new View();
+			$view->render('users/login');
 		}
 		public function signup() {
 			// $view = new View();

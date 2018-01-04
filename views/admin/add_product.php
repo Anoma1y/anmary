@@ -1,4 +1,5 @@
 <?php 
+	require_once 'engine/functions.php';
     if (isset($_COOKIE['user_hash'])){
 	   	$hash = $_COOKIE['user_hash'];
 	    $db = Db::getConnection();
@@ -17,9 +18,10 @@
 					if ($_FILES["uploadimage"]["size"] > 800000) {
 						die("Большой размер файла");
 					}
+					$randomSrc = generateSrc(50);
 					$src = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
-					$upload = $src.$_FILES['uploadimage']['name'];
-					$sql_src = '/uploads/'.$_FILES['uploadimage']['name'];
+					$upload = $src.$randomSrc.".jpg";
+					$sql_src = '/uploads/'.$randomSrc.".jpg";
 					move_uploaded_file($_FILES['uploadimage']['tmp_name'], $upload);
 					$query = 'INSERT INTO product (name, article, brand_id, category_id, season_id, size, color_id, composition, percentSale, is_sale, price, sale_price, is_availability, image) VALUES (:name, :article, :brand_id, :category_id, :season_id, :size, :color_id, :composition, :percentSale, :is_sale, :price, :sale_price, :is_availability, :image)'; 
 					$result_insert = $db->prepare($query);

@@ -22,6 +22,9 @@
 	            return false;
 	        }
 	    }
+	    public static function getAllSession() {
+	    	var_dump($_SESSION);
+	    }
 	    public static function checkSession() {
 	        if (self::get("login") == false){
 	            self::destroy();

@@ -17,10 +17,11 @@
 						<?php if ($data["is_sale"] == 1): ?>
 							<span class="detail-product-old-price"><?=$data["price"]; ?></span>
 							<span><?=$data["sale_price"]; ?></span>
+
 						<?php else: ?>
 							<span><?=$data["price"]; ?></span>
 						<?php endif ?>
-						
+						<div style="display: none;" id="detail-product-id"><?=$data["id"];?></div>
 					</div>								
 				</div>
 				<div class="detail-block">
@@ -67,11 +68,18 @@
 				</div>
 				<div class="detail-block">
 					<div class="detail-button-block">
-						<div class="detail-add-to-cart detail-add-btn">
-							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-							Добавить в корзину
-						</div>
-						<div class="detail-add-to-compare detail-add-btn">
+						<?php if (!$checkCart): ?>
+							<div class="detail-add-to-cart detail-add-btn" id="detail-add-to-cart">
+								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+								Добавить в корзину
+							</div>
+						<?php else: ?>
+							<div class="detail-add-to-cart detail-add-btn" id="detail-add-to-cart-in">
+								В корзине
+							</div>					
+						<?php endif ?>
+
+						<div class="detail-add-to-compare detail-add-btn" id="detail-add-to-compare">
 							<i class="fa fa-heart" aria-hidden="true"></i>
 							Отложить
 						</div>									
@@ -111,6 +119,7 @@
 </div>
 
 <?php require_once 'views/index/footer.php'; ?>
+<script type="text/javascript" src="/static/js/cart.js"></script>
 <script type="text/javascript">
 	$('#product_image').zoom();
 </script>

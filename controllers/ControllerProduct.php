@@ -1,4 +1,5 @@
 <?php
+	require_once 'engine/Cart.php';
 	/**
 	 * Класс Product
 	 */
@@ -13,6 +14,7 @@
 	    	$relatedProducts = ProductModel::getRelatedProducts($data['category_id']);
 	    	$lastProducts = ProductModel::lastProducts();
             $composition = explode(' ', $data['composition']);
+            $checkCart = UserCart::getProductsById($data["id"]);
             $cmp_i = 0;
             $sz_i = 0;
             $getComposition = array();
