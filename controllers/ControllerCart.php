@@ -5,16 +5,35 @@
     $params = include('engine/config.php');
 	class Cart {
 		public function indexView(){
+			try {
+				$cartItems = UserCart::getCartItems();
+				if (!empty($cartItems)) {
+					foreach ($cartItems as $key => $value) {
+						$cartItems[$key]["size"] = $_SESSION['products'][$value['id']];;
+					}				
+				}
+				$countItems = UserCart::countItems();
+				$totalPrice = UserCart::getTotalPrice($cartItems);
+		        require_once('views/cart/index.php');
+		        return true;				
+			} catch (Exception $e) {
+				require_once "views/errors/404.php";
+			}
+
+		}
+		public function ordering(){
 			$cartItems = UserCart::getCartItems();
 			if (!empty($cartItems)) {
 				foreach ($cartItems as $key => $value) {
 					$cartItems[$key]["size"] = $_SESSION['products'][$value['id']];;
 				}				
+				$countItems = UserCart::countItems();
+				$totalPrice = UserCart::getTotalPrice($cartItems);
+		        require_once('views/cart/ordering.php');
+		        return true;
+			} else {
+				require_once "views/errors/404.php";
 			}
-			$countItems = UserCart::countItems();
-			$totalPrice = UserCart::getTotalPrice($cartItems);
-	        require_once('views/cart/index.php');
-	        return true;
 		}
 	    /**
 	     * Добавления товара в корзину
@@ -43,11 +62,4 @@
 	        }
 	        return false;
 	    }
-	    /**
-	     * Удаление товара из каталога
-	     * @return bool
-	     */
-	    public function deleteProductInCatalog() {
-	        // UserCart::deleteProduct($id);
-	    }  
 	}
