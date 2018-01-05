@@ -125,6 +125,11 @@ $output-bourbon-deprecation-warnings: false !default;
 				content: ' \20BD';
 			}
 		}
+		.cart-total-items-count {
+			color: $color-orange;
+			font-weight: bold;
+			margin-right: 50px;
+		}
 	}
 	.cart-checkout {
 		display: flex;

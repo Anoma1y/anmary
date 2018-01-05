@@ -1,6 +1,7 @@
 <?php 
 	require_once 'engine/Session.php';
 	Session::init();
+	//var_dump($_SESSION['products']);
 	require_once 'views/index/header.php';
 ?>
 
@@ -24,28 +25,40 @@
 						</thead>
 						<tbody>
 							<?php foreach ($cartItems as $item): ?>
-								<tr>
-									<td class="cart-table-image">
-										<a href="../product/<?=$item[id]?>"><img src="<?=$item[image]?>" alt=""></a>
-									</td>
-									<td class="cart-table-description"><a href="../product/<?=$item[id]?>"><p class="description-name"><?=$item[name]?></p> <p class="description-article"><?=$item[article]?></p></a></td>
-									<td class="cart-table-size"><?=$item[size];?></td>
-									<td class="cart-table-brand"><?=$item[brand_name]?></td>
-									<td class="cart-table-category"><?=$item[category_name]?></td>
-									<?php if ($item["is_sale"] == 1): ?>
-										<td class="cart-table-price"><?=$item[sale_price]?>
-											<span class="cart-delete-item" data-id="<?=$item["id"];?>">X</span>
-										</td>
-									<?php elseif($item['is_sale'] == 0): ?>
-										<td class="cart-table-price"><?=$item[price]?>
-											<span class="cart-delete-item" data-id="<?=$item["id"];?>"></span>
-										</td>
-									<?php endif ?>
-								</tr>
+								<?php foreach ($item["size"] as $sizeArr): ?>
+									<?php foreach ($sizeArr as $size): ?>
+
+										<tr>
+											<td class="cart-table-image">
+												<a href="../product/<?=$item[id]?>"><img src="<?=$item[image]?>" alt=""></a>
+											</td>
+											<td class="cart-table-description"><a href="../product/<?=$item[id]?>"><p class="description-name"><?=$item[name]?></p> <p class="description-article"><?=$item[article]?></p></a></td>
+											<td class="cart-table-size">
+												<?=$size;?>
+											</td>
+											<td class="cart-table-brand"><?=$item[brand_name]?></td>
+											<td class="cart-table-category"><?=$item[category_name]?></td>
+											<?php if ($item["is_sale"] == 1): ?>
+												<td class="cart-table-price"><?=$item[sale_price]?>
+													<span class="cart-delete-item" data-size="<?=$size;?>" data-id="<?=$item["id"];?>">X</span>
+												</td>
+											<?php elseif($item['is_sale'] == 0): ?>
+												<td class="cart-table-price"><?=$item[price]?>
+													<span class="cart-delete-item" data-size="<?=$size;?>" data-id="<?=$item["id"];?>"></span>
+												</td>
+											<?php endif ?>
+										</tr>										
+
+
+									<?php endforeach ?>
+								<?php endforeach ?>
+
+
 							<?php endforeach ?>	
 						</tbody>
 					</table>
 					<div class="cart-total-price">
+						<span class="cart-total-price-title">Товаров в корзине: </span><span class="cart-total-items-count"><?=$countItems?></span>
 						<span class="cart-total-price-title">Сумма: </span><span class="cart-total-price-count"><?=$totalPrice?></span>
 					</div>
 					<div class="cart-checkout">

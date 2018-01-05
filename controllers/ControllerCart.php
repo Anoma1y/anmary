@@ -35,8 +35,9 @@
 	     */
 	    public function deleteProductInCart() {
 	        if (!empty($_POST)) {
-		        $id = $_POST["id"];		      
-		        UserCart::deleteProduct($id);
+		        $id = $_POST["id"];
+		        $size = $_POST["size"];		      
+		        UserCart::deleteProduct($id, $size);
 		        header("Location: /cart");
 	        	return true;	
 	        }

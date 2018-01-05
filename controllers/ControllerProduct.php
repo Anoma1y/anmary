@@ -15,6 +15,7 @@
 	    	$lastProducts = ProductModel::lastProducts();
             $composition = explode(' ', $data['composition']);
             $checkCart = UserCart::getProductsById($data["id"]);
+            $checkSizeInCart = UserCart::getProductsByIdSize($data["id"]);
             $cmp_i = 0;
             $sz_i = 0;
             $getComposition = array();

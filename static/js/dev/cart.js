@@ -1,45 +1,118 @@
 const addToCartBtn = document.getElementById('detail-add-to-cart');
 const productId = document.getElementById('detail-product-id');
+const errorText = document.getElementById('detail-product-error');
 const deleteFromCartBtn = document.getElementsByClassName('cart-delete-item');
 const selectedProductSize = document.getElementsByClassName('size-item');
+
+// const selectedProductSize = document.getElementsByName('size-item');
 //Установка для переменной id - id продукта
 var id = productId != undefined ? productId.innerText : undefined;
 
 //По умолчанию размер берется из нулевого элемента
 var currentProductSize = void 0;
 if (selectedProductSize.length != 0) {
-	currentProductSize = selectedProductSize[0].control.checked === true ? selectedProductSize[0].innerText : undefined;
+	currentProductSize = selectedProductSize[0].checked === true ? selectedProductSize[0].innerText : undefined;
+}
+
+/**
+ * [getCurrentSize [Функция для проверки всех чекбоксов и добавления из label - текст размера]
+ * @param  {object} checkbox [Класс чекбоксов]
+ * @return {[type]}          [возвращает массив значений]
+ */
+function getCurrentSize(checkbox) {
+	var checkboxes = document.getElementsByClassName(checkbox);
+	var checkedArray = [];
+	for (let item of checkboxes) {
+		if (item.checked) {
+			checkedArray.push(item.innerText);
+		}
+	}
+	return checkedArray.length > 0 ? checkedArray : null;
+}
+
+/**
+ * [errorSet функция для указания ошибки]
+ * @param  {String} errorId [ID - узла, в который будет записан текст ошибки]
+ * @param  {String} text    [текст ошибки]
+ * @return {id.text}         [запись в указанный ID - текст]
+ */
+function errorSet(errorId, text = "") {
+	errorId.innerText = text.length > 0 ? text : "";
+}
+/**
+ * [getSpan Функция для получения SPAN,a id, для вставки туда текста]
+ * @param  {object} id         [ID узла, в котором нужен поиск]
+ * @param  {string} searchNode [Название узла, который нужно найти]
+ * @return {object}            [Возвращает нужный узел]
+ */
+function getSpan(id, searchNode) {
+	for (let node of id.childNodes) {
+		let searchItem = searchNode.toUpperCase();
+		if (node.nodeName == searchItem) {
+			return node;
+		}
+	}
 }
 //Установка для переменной currentProductSize текущего размера
 //Обработчик события для label > input [ radio ]
 if (selectedProductSize) {
 	for (let sizeBtn of selectedProductSize) {
 		sizeBtn.control.addEventListener('change', (e) => {
-			currentProductSize = e.target.checked === true ? sizeBtn.innerText : undefined;
+			currentProductSize = e.target.checked === true ? e.target.labels[0].innerText : null;
+			if (sizeBtn.control.classList.contains('item_in_cart')) {
+				addToCartBtn.classList.add('in-cart');
+				getSpan(addToCartBtn, "span").innerText = "Удалить из корзины";
+			} else {
+				addToCartBtn.classList.remove('in-cart');
+				getSpan(addToCartBtn, "span").innerText = "Добавить в корзину";
+			}
 		});
 	}	
 }
-
 //Функция добавления товара в корзину
+//Если кнопка добавления имеет класс in-cart, то выполняется AJAX запрос на удаления товара из корзины
+//При удачном удалении, страница будет перезагружена
+//Если класс in-cart не имеется, то происходит добавления товара с помощью AJAX запроса
+//При удачном добавлении, страница перезагружается
 if (addToCartBtn) {
 	try {
 		addToCartBtn.addEventListener('click', () => {
-			$.ajax({
-				url: '../cart/addProduct',
-				type: 'POST',
-				data: {id: id, 
-					   size: currentProductSize
-				},
-			})
-			.done(function(data) {
-				window.location.reload();
-			})
-			.fail(function() {
-				console.log("error");
-			})			
+			if (currentProductSize != null) {
+				if (addToCartBtn.classList.contains('in-cart')) {
+					$.ajax({
+						url: '../cart/deleteProductInCart',
+						type: 'POST',
+						data: {id: id,
+							   size: currentProductSize
+						},
+					})
+					.done(function() {
+						window.location.reload();
+					})
+					.fail(function() {
+						errorSet(errorText, "Ошибка при удалении из корзины");
+					})	
+				} else {
+					$.ajax({
+						url: '../cart/addProduct',
+						type: 'POST',
+						data: {id: id, 
+							   size: currentProductSize
+						},
+					})
+					.done(function() {
+						window.location.reload();
+					})
+					.fail(function() {
+						errorSet(errorText, "Ошибка добавления в корзину");
+					})						
+				}
+			} else {
+				errorSet(errorText, "Выберите размер");
+			}
 		})
 	} catch(e) {
-		console.log(e);
+		errorSet(errorText, "Ошибка");
 	}
 }
 
@@ -48,13 +121,17 @@ if (deleteFromCartBtn) {
 	try {
 		for (var i = 0; i < deleteFromCartBtn.length; i++) {
 			deleteFromCartBtn[i].addEventListener('click', (e) => {
-				id = e.target.dataset.id;
+				let target = e.target.dataset;
+				let id = target.id;
+				let size = target.size;
 				$.ajax({
 					url: '../cart/deleteProductInCart',
 					type: 'POST',
-					data: {id: id},
+					data: {id: id,
+						   size: size
+					},
 				})
-				.done(function(data) {
+				.done(function() {
 					window.location.reload();
 				})
 				.fail(function() {

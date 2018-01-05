@@ -46,15 +46,9 @@
 						<h5>Размер</h5>
 						<div class="block-size">
 							<?php foreach ($getSize as $index => $size): ?>
-								<?php if ($index == 0): ?>
-									<input type="radio" name="size-item" id="size-item_<?=$size?>" checked>
+									<input type="radio" name="size-item" <?php if (in_array($size, $checkSizeInCart)): ?><?="class='item_in_cart'"?><?php endif ?> id="size-item_<?=$size?>">
 									<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
-								<?php else: ?>
-									<input type="radio" name="size-item" id="size-item_<?=$size?>">
-									<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
-								<?php endif ?>				
 							<?php endforeach ?>
-
 						</div>
 					</div>
 					<div class="detail-info-composition">
@@ -68,16 +62,19 @@
 				</div>
 				<div class="detail-block">
 					<div class="detail-button-block">
-						<?php if (!$checkCart): ?>
+						<?//php if (!$checkCart): ?>
 							<div class="detail-add-to-cart detail-add-btn" id="detail-add-to-cart">
 								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-								Добавить в корзину
+								<span>Добавить в корзину</span>
 							</div>
-						<?php else: ?>
-							<div class="detail-add-to-cart detail-add-btn in-cart" id="detail-add-to-cart-in">
-								В корзине
-							</div>					
-						<?php endif ?>
+							<span id="detail-product-error"></span>
+						<?//php else: ?>
+<!-- 							<a href="../cart">
+								<div class="detail-add-to-cart detail-add-btn in-cart" id="detail-add-to-cart-in">
+									В корзине
+								</div>
+							</a>	 -->				
+						<?//php endif ?>
 
 						<div class="detail-add-to-compare detail-add-btn" id="detail-add-to-compare">
 							<i class="fa fa-heart" aria-hidden="true"></i>
