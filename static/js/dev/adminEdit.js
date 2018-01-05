@@ -37,6 +37,14 @@
 	var productCompositionArr = [];
 	var sizeArr = [];
 
+	var isSaleCheck = false;
+
+	/**
+	 * [getSale Функция получение скидки]
+	 * @param  {Number} price   [Цена]
+	 * @param  {Number} percent [Процент скидки]
+	 * @return {Number}         [Цена после скидки]
+	 */
 	function getSale(price ,percent) {
 		if (percent >= 0 && percent <= 100 && percent[0] != '0') {
 			return price - (price * (percent / 100));
@@ -45,6 +53,12 @@
 		}
 	}
 
+	/**
+	 * [getPercent Функция получения процента скидки]
+	 * @param  {Number} price     [Начальная цена]
+	 * @param  {Number} salePrice [Цена после скидки]
+	 * @return {Number}           [Процент между ценой и ценой со скидкой]
+	 */
 	function getPercent(price, salePrice) {
 		let percent = Math.floor(100 - ((salePrice * 100) / price));
 		if (percent <= 100 && percent >= 0) {
@@ -54,6 +68,11 @@
 		}
 	}
 
+	/**
+	 * [getSelected Функция получения текущего значения в теге Select]
+	 * @param  {Node} sel [Селектор Select]
+	 * @return {String}     [Возвращает текущее значение в option]
+	 */
 	function getSelected(sel) {
 		if (sel.options) {
 			for (var i = 0; i < sel.options.length; i++) {
@@ -293,16 +312,31 @@
 		//Скидка
 		productPercent.addEventListener('keyup', (e) => {
 			let value = e.target.value;
-			productPriceAfterSale.value = getSale(productPrice.value, value);
+			if (isSaleCheck) {
+				productPriceAfterSale.value = value != 0 ? getSale(productPrice.value, value) : productPrice.value;
+			}
 		}, false);		
 	}
 	if (productPrice) {
 		//Цена без скидки
 		productPrice.addEventListener('keyup', (e) => {
 			let value = e.target.value;
-			productPriceAfterSale.value = Math.floor(getSale(value, productPercent.value));
+			if (isSaleCheck) {
+				productPriceAfterSale.value = productPercent.value != 0 ? Math.floor(getSale(value, productPercent.value)) : value;
+			} else {
+				productPriceAfterSale.value = productPrice.value;
+			}
 		}, false);		
 	}
+	productIsSale.addEventListener('change', (e) => {
+		if (e.target.checked) {
+			isSaleCheck = true;
+			productPriceAfterSale.value = productPercent.value != 0 ? Math.floor(getSale(productPrice.value, productPercent.value)) : productPrice.value;
+		} else {
+			isSaleCheck = false;
+			productPriceAfterSale.value = productPrice.value;
+		}
+	}, false)
 	if (productPriceAfterSale) {
 		//Цена после скидки
 		productPriceAfterSale.addEventListener('keyup', (e) => {

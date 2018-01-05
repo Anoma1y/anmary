@@ -7,6 +7,13 @@ var error = document.getElementById('error');
 var checkEmail = false;
 var checkPassword = false;
 
+/**
+ * [handlerCheck функция для проверки поля]
+ * @param  {object} target    [текущий узел]
+ * @param  {bool} bool      [если true, то ошибки нет]
+ * @param  {String} textError [текст ошибки]
+ * @return           [возвращает ошибку и цвет]
+ */
 function handlerCheck(target, bool, textError = "") {
 	if (bool) {
 		target.style.borderColor = 'green';
@@ -16,6 +23,11 @@ function handlerCheck(target, bool, textError = "") {
 		errorText(textError);
 	}
 }
+/**
+ * [errorText функция для записи текста ошибки]
+ * @param  {String} text [текст ошибки]
+ * @return {[type]}      [запись ошибки в узел]
+ */
 function errorText(text) {
 	error.innerText = text;
 }

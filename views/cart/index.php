@@ -63,7 +63,7 @@
 					</div>
 					<div class="cart-checkout">
 						<a href="./catalog/all">Продолжить покупки</a>
-						<input type="submit" id="checkoutBtn" class="checkoutBtn" value="Оформить">
+						<a id="checkoutBtn" class="checkoutBtn" href="../cart/ordering">Оформить</a>
 					</div>
 
 				</div>

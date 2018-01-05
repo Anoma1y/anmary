@@ -25,17 +25,6 @@
 	    public static function getAllSession() {
 	    	var_dump($_SESSION);
 	    }
-	    public static function checkSession() {
-	        if (self::get("login") == false){
-	            self::destroy();
-	            // header("Location: login.php");
-	        }
-	    }
-	    // public static function checkLogin() {
-	    //     if (self::get("login") == true){
-	    //         header("Location: index.php");
-	    //     }
-	    // }
 	    public static function destroy() {
 	    	self::init();
 	        session_destroy();

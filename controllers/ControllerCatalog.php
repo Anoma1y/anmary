@@ -54,9 +54,9 @@
 		    } else if ($sortValue == "sortBySales") {
 		    	$sortQuery = "product.is_sale DESC";
 		    } else if ($sortValue == "sortByPriceLower") {
-		    	$sortQuery = "product.price DESC";
+		    	$sortQuery = "product.sale_price DESC";
 		    } else if ($sortValue == "sortByPriceHigher") {
-		    	$sortQuery = "product.price";
+		    	$sortQuery = "product.sale_price";
 		    }
 		    //Добавление фильтра поискового запроса
 		    if (!empty($searchValue) && strlen($searchValue) >= 3 && strlen($searchValue) <= 20) {

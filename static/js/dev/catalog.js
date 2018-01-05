@@ -1,5 +1,7 @@
     "use strict";
-
+    /**
+     * Класс Catalog для вывода товаров в каталоге
+     */
     class Catalog {
         constructor(url, method) {
             this.total_pages;
@@ -25,7 +27,12 @@
                 searchValue: ''                
             };
         }
-
+        /**
+         * [randomInteger метод генерации случайных чисел от и до]
+         * @param  {number} min [минимальное значение]
+         * @param  {number} max [максимальное значение]
+         * @return {number}     [вывод случайного числа от min до max]
+         */
         randomInteger(min, max) {
             return Math.round(min - 0.5 + Math.random() * (max - min + 1));
         }
@@ -54,18 +61,30 @@
                 }
             })
         }
-
-        async getData(currentPage, state) {
-            if (this.method == "POST") {
+        /**
+         * [setItems метод для записи данными]
+         * @param {bool} если удачно, то true
+         */
+        setItems(data) {
+            if (typeof data == "object") {
                 try {
-                    var data = await this.receivingВata(currentPage, state);
-                    this.items = $.parseJSON(data);
+                    this.items = data;
                     //Всего записей
                     this.total_items = this.items['total_item'];
                     //Записей на странице
                     this.item_on_page = this.items['record_per_page'];
                     //Установка новой текущей страницы
                     this.currentPage = this.items['current_page'];
+                } catch(e) {
+                    console.log(e);
+                }
+            }
+        }
+        async getData(currentPage, state) {
+            if (this.method == "POST") {
+                try {
+                    var data = await this.receivingВata(currentPage, state);
+                    this.setItems($.parseJSON(data));
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {
                         this.itemsRender(this.items["item"]);
