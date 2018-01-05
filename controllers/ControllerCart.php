@@ -6,8 +6,10 @@
 	class Cart {
 		public function indexView(){
 			$cartItems = UserCart::getCartItems();
-			foreach ($cartItems as $key => $value) {
-				$cartItems[$key]["size"] = $_SESSION['products'][$value['id']];;
+			if (!empty($cartItems)) {
+				foreach ($cartItems as $key => $value) {
+					$cartItems[$key]["size"] = $_SESSION['products'][$value['id']];;
+				}				
 			}
 			$countItems = UserCart::countItems();
 			$totalPrice = UserCart::getTotalPrice($cartItems);

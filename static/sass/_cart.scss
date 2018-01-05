@@ -12,6 +12,12 @@ $output-bourbon-deprecation-warnings: false !default;
 
 		}
 	}
+	.cart-empty {
+		padding: 50px 0 100px 0;
+		font-family: $main-font-family;
+		text-transform: uppercase;
+		text-align: center;
+	}
 	.cart-table {
 		width: 100%;
 		font-family: $main-font-family;
@@ -35,6 +41,13 @@ $output-bourbon-deprecation-warnings: false !default;
 				vertical-align: middle;
 				text-align: center;
 				font-size: em(14px);
+				a {
+					color: $color-black;
+					transition: color .3s ease;
+					&:hover {
+						color: $color-orange;
+					}
+				}
 				&.cart-table-description {
 					text-align: left;
 					.description-name {
