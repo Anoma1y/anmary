@@ -148,8 +148,7 @@
 	     * @param array $products массив с информацией о товарах (список товаров)
 	     * @return int общая стоимость
 	     */
-	    public static function getTotalPrice($products)
-	    {
+	    public static function getTotalPrice($products) {
 	        $productsInCart = self::getProducts();
 	        $total = 0;
 	        if ($productsInCart) {
@@ -159,5 +158,9 @@
 	            }
 	        }
 	        return $total;
+	    }
+
+	    public static function addOrder($data) {
+	    	die(json_encode($data));
 	    }
 	}

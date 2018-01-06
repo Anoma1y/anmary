@@ -62,4 +62,11 @@
 	        }
 	        return false;
 	    }
+	    public function addOrder() {
+	    	if (!empty($_POST)) {
+	    		$data = $_POST;
+	    		UserCart::addOrder($data);
+	    		return true;
+	    	}
+	    }
 	}

@@ -277,8 +277,7 @@ $output-bourbon-deprecation-warnings: false !default;
 					left: 0;
 					color: $color-light-red;
 					font-family: $main-font-family;
-					text-transform: uppercase;
-					font-weight: bold;
+					font-weight: 300;
 				}
 				button {
 					cursor: pointer;

@@ -4,7 +4,13 @@ const productId = document.getElementById('detail-product-id');
 const errorText = document.getElementById('detail-product-error');
 const deleteFromCartBtn = document.getElementsByClassName('cart-delete-item');
 const selectedProductSize = document.getElementsByClassName('size-item');
-
+//Заказ
+const orderName = document.getElementById('order-user-name');
+const orderEmail = document.getElementById('order-user-email');
+const orderTelephone = document.getElementById('order-user-telephone');
+const orderComment = document.getElementById('order-user-comment');
+const orderBtnSend = document.getElementById('order-user-submit');
+var order = void 0;
 //Установка для переменной id - id продукта
 var id = productId != undefined ? productId.innerText : undefined;
 
@@ -147,18 +153,12 @@ if (deleteFromCartBtn) {
 /**
  * Оформление заказа
  */
-// orderName
-// orderEmail
-// orderTelephone
-// orderComment
-// orderBtnSend
+
 //Форма заказа
-// const orderName = document.getElementById('order-user-name');
-// const orderEmail = document.getElementById('order-user-email');
-// const orderTelephone = document.getElementById('order-user-telephone');
-// const orderComment = document.getElementById('order-user-comment');
-// const orderBtnSend = document.getElementById('order-user-submit');
 // Валидация данных в форме отправки заказа
+/**
+ * Класс Validation для проверки введенных данных
+ */
 class Validation {
 	constructor() {
 		this.emailPattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
@@ -166,112 +166,207 @@ class Validation {
 		this.telephonePattern = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 		this.textPattern = /^[a-zA-ZА-Яа-яЁё\d\s%,.?!#$№:*()]+$/g;
 	}
+	/**
+	 * [errorText функция для вывода ошибки]
+	 * @param  {Node} nodeError [id узла куда выводить ошибку]
+	 * @param  {String} text      []
+	 */
 	errorText(nodeError, text = "") {
 		try {
-			var error = document.getElementById(nodeError);
-			error.innerText = text;
+			if (nodeError) {
+				var error = document.getElementById(nodeError);
+				error.innerText = text;			
+			}
 		} catch(e) {
 			console.log(e);
 		}
-		
 	}
+	/**
+	 * [validationEmail Метод проверки почты]
+	 * @param  {String} email [Почта]
+	 * @return {String}       [Если соответствует regepx то возвращает email]
+	 * @return {String} 	  [Если не соответствует regexp то выводит текст ошибки]
+	 */
 	validationEmail(email) {
 		return new Promise((res, rej) => {
 			if (email.match(this.emailPattern)) {
-				res();
+				res(email);
 			} else {
-				rej();
+				rej("Ошибка при заполнении поля Почта");
 			}			
 		})
 	}
+	/**
+	 * [validationName Метод проверки имени]
+	 * @param  {String} name [Имя]
+	 * @return {String}       [Если соответствует regepx то возвращает name]
+	 * @return {String} 	  [Если не соответствует regexp то выводит текст ошибки]
+	 */
 	validationName(name) {
 		return new Promise((res, rej) => {
 			if (typeof name == "string") {
 				if (name.match(this.namePattern) && name.length > 3 && name.length <= 40) {
-					res();
+					res(name);
 				} else {
-					rej();
+					rej("Ошибка при заполнении поля Имя");
 				}				
 			}
 		})
 	}
+	/**
+	 * [validationText Метод проверки текста комментария]
+	 * @param  {String} text [Почта]
+	 * @return {String}       [Если соответствует regepx то возвращает text]
+	 * @return {String} 	  [Если не соответствует regexp то выводит текст ошибки]
+	 */
 	validationText(text) {
 		return new Promise((res, rej) => {
 			if (typeof text == "string") {
 				if (text.match(this.textPattern) && text.length > 3 && text.length <= 500) {
-					res();
+					res(text);
 				} else {
-					rej();
+					rej("Ошибка при заполнении поля Комментарий");
 				}				
 			}		
 		})
 	}
+	/**
+	 * [validationTelephone Метод проверки телефона]
+	 * @param  {String} telephone [Почта]
+	 * @return {String}       [Если соответствует regepx то возвращает telephone]
+	 * @return {String} 	  [Если не соответствует regexp то выводит текст ошибки]
+	 */
 	validationTelephone(telephone) {
 		return new Promise((res, rej) => {
 			if (typeof telephone == "string") {
 				if (telephone.match(this.telephonePattern)) {
-					res();
+					res(telephone);
 				} else {
-					rej();
+					rej("Ошибка при заполнении поля Контактный телефон");
 				}
 			}
 		})
 	}	
 }
+
+/**
+ * Класс Order для проверки и отправки AJAX запросом заказа
+ */
 class Order extends Validation{
-	constructor() {
+	constructor(orderName, orderEmail, orderTelephone, orderComment, orderBtnSend, url) {
 		super();
-		this.orderName = document.getElementById('order-user-name');
-		this.orderEmail = document.getElementById('order-user-email');
-		this.orderTelephone = document.getElementById('order-user-telephone');
-		this.orderComment = document.getElementById('order-user-comment');
-		this.orderBtnSend = document.getElementById('order-user-submit');
+		this.url = url;
+		this.orderName = orderName; 
+		this.orderEmail = orderEmail; 
+		this.orderTelephone = orderTelephone; 
+		this.orderComment = orderComment; 
+		this.orderBtnSend = orderBtnSend; 
 	}
+	/**
+	 * [init Метод для добавления обработчика событий для кнопки подтвердить заказ]
+	 * {Function} [вызывает метод orderCheck()]
+	 */
+	init() {
+		this.orderBtnSend.addEventListener('click', e => {
+			e.preventDefault();
+			this.orderCheck();
+		})
+	}
+	/**
+	 * [getEmail Метод получения текущей почты]
+	 * @return {[type]} [Возвращает текст узла]
+	 * @return {String} [Если текст узла пустой, то выводит текст ошибки]
+	 */
 	getEmail() {
 		if (this.orderEmail != undefined && this.orderEmail.value.length != 0) {
 			return this.orderEmail.value;
+		} else {
+			this.errorText("error", "Заполните поле Почта");
 		}
 	}
+	/**
+	 * [getName Метод получения текущего имени]
+	 * @return {[type]} [Возвращает текст узла]
+	 * @return {String} [Если текст узла пустой, то выводит текст ошибки]
+	 */
 	getName() {
 		if (this.orderName != undefined && this.orderName.value.length != 0) {
 			return this.orderName.value;
+		} else {
+			this.errorText("error", "Заполните поле Имя");
 		}
 	}
+	/**
+	 * [getTelephone Метод получения текущего телефона]
+	 * @return {[type]} [Возвращает текст узла]
+	 * @return {String} [Если текст узла пустой, то выводит текст ошибки]
+	 */
 	getTelephone() {
 		if (this.orderTelephone != undefined && this.orderTelephone.value.length != 0) {
 			return this.orderTelephone.value;
+		} else {
+			this.errorText("error", "Заполните поле Контактный телефон");
 		}
 	}
+	/**
+	 * [getText Метод получения текущего комментария]
+	 * @return {[type]} [Возвращает текст узла]
+	 * @return {String} [Если текст узла пустой, то выводит текст ошибки]
+	 */
 	getText() {
 		if (this.orderComment != undefined && this.orderComment.value.length != 0) {
 			return this.orderComment.value;
+		} else {
+			this.errorText("error", "Заполните поле Комментарий");
 		}
 	}
+	/**
+	 * [orderSend AJAX запрос для отправки данных с формы]
+	 * @param  {String} url  [URL ссылку]
+	 * @param  {Object} data [Объект данных]
+	 * @return {Function}      [Возвращает функцию]
+	 * @return {Function} 	   [Возвращает текст ошибки]
+	 */
 	orderSend(url, data) {
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: {data: data},
-		})
-		.done(function() {
-			console.log("success");
-		})
-		.fail(function() {
-			console.log("error");
-		})
+		return new Promise((res, rex) => {
+			$.ajax({
+				url: url,
+				type: "POST",
+				data: {data: data},
+			})
+			.done(function(data) {
+				console.log(JSON.parse(data));
+				res();
+			})
+			.fail(function() {
+				rej("Ошибка при отправке данных");
+			})			
+		});
 	}
+	/**
+	 * [orderCheck Метод для проверки полей формы и добавления данных в объект data]
+	 */
 	async orderCheck() {
 		try {
-			await this.validationName(this.getName());
-			await this.validationEmail(this.getEmail());
-			await this.validationTelephone(this.getTelephone());
-			await this.validationText(this.getText());
+			let name = await this.validationName(this.getName());
+			let email = await this.validationEmail(this.getEmail());
+			let telephone = await this.validationTelephone(this.getTelephone());
+			let text = await this.validationText(this.getText());
+			let data = {
+				name: name,
+				email: email,
+				telephone: telephone,
+				text: text
+			}
 			this.errorText("error", "");
+			let ajax = await this.orderSend(this.url, data);
 		} catch(e) {
-			this.errorText("error", "Ошибка");
+			this.errorText("error", e);
 		}
-		
 	}
 }
-var order = new Order();
 
+if (orderName && orderEmail && orderTelephone && orderComment && orderBtnSend) {
+	order = new Order(orderName, orderEmail, orderTelephone, orderComment, orderBtnSend,"addOrder");
+	order.init();
+}
