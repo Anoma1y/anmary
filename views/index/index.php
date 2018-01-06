@@ -8,14 +8,14 @@
 		          <div class="caption">
 		          	
 		          	<h2>Элегантность и качество</h2>
-		          	<h4>SOMTHING IS BETTER</h4>
+		          	<h4>лучшие цены</h4>
 		          </div>
 				</li>
 				<li>
 					<img src="static/img/slider/second.jpg" alt="Slider">
 		          <div class="caption">
-		          	<h4>SOMTHING IS BETTER</h4>
-		          	<h2>Lorem ipsum.</h2>
+		          	<h2>Стильная женская одежда</h2>
+		          	<h4>из стран прибалтики</h4>
 		          </div>
 				</li>
 				<li>

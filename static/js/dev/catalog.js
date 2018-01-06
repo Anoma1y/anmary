@@ -121,6 +121,8 @@
             for (let val of items) {
                 let checkPrice = '';
                 let checkPercentSale = '';
+                //Массив размеров, необходим для добавления товаров в корзину
+                var itemSize = val["size"].split(', ');
                 if (val["is_sale"] == 1) {
                     checkPrice = `<p class="item-old-price">${val["price"]} руб.</p><p class="item-sale-price">${val["sale_price"]} руб.</p>`;
                     checkPercentSale = `<div class="item-sale-percent"><p>${val["percentSale"]}%</p></div>`;
@@ -148,7 +150,11 @@
                                 </div>
                                 <div class="product-hide-info">
                                     <strong>Размер</strong>
-                                    <div class="product-size">${val["size"]}</div>
+                                    <div class="product-size">${itemSize.map((n) => {
+                                            return `<input type="radio" name="size-item" id='size-item_${val["id"]}_${n}'>
+                                                    <label for='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}" class="size-item">${n}</label>`
+                                        })}
+                                    </div>
                                     <strong>Состав</strong>
                                     <div class="product-compositions">
                                         ${val["composition"]}

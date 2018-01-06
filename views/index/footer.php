@@ -1,7 +1,7 @@
 
 	<footer>
 		<div class="container">
-			<div class="footer-left" data-aos="fade-up-right">
+			<div class="footer-left">
 				<div class="footer_logo">
 					<h1><?=$info["name"];?></h1>
 				</div>
@@ -12,7 +12,7 @@
 					<p>© <?=$info["copyright_year"]?> <?=$info["name"];?></p>
 				</div>
 			</div>
-			<div class="footer-center" data-aos="fade-up">
+			<div class="footer-center">
 				<nav>
 					<h4>Навигация</h4>
 					<ul class="footer_menu">
@@ -31,7 +31,7 @@
 					</ul>
 				</nav>
 			</div>
-			<div class="footer-right" data-aos="fade-up-left">
+			<div class="footer-right">
 				<div class="footer_contact">
 					<h3>Связаться с нами</h3>
 					<p>Вы можете задать свой вопрос, отправив письмо на указанный адрес e-mail</p>

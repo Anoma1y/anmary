@@ -110,13 +110,20 @@ function getProduct(obj, column = 'id', activeDesc = false) {
 
 }
 
-//Удаление товара с подтверждением
+/**
+ * [deleteItem Функция удаление товара с подтверждением]
+ * @param  {String} id [ID товара]
+ */
 function deleteItem(id) {
 	if (confirm("Подтвердите удаление") === true) {
 		window.location = "admin/delete/" + id;
 	}
 }
-//Переход на страницу редактирования товара
+
+/**
+ * [editItem Функция перехода на страницу редактирования товара]
+ * @param  {String} id [ID товара]
+ */
 function editItem(id) {
 	window.location = "admin/edit/" + id;
 }

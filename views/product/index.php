@@ -46,8 +46,8 @@
 						<h5>Размер</h5>
 						<div class="block-size">
 							<?php foreach ($getSize as $index => $size): ?>
-									<input type="radio" name="size-item" <?php if (in_array($size, $checkSizeInCart)): ?><?="class='item_in_cart'"?><?php endif ?> id="size-item_<?=$size?>">
-									<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
+								<input type="radio" name="size-item" <?php if (in_array($size, $checkSizeInCart)): ?><?="class='item_in_cart'"?><?php endif ?> id="size-item_<?=$size?>">
+								<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
 							<?php endforeach ?>
 						</div>
 					</div>

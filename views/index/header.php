@@ -56,7 +56,7 @@
 							<i class="fa fa-sign-out" aria-hidden="true"></i><a href="/users/logout">Выход</a>
 						</div>
 						<div>
-							<i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">Мой профиль</a>
+							<i class="fa fa-user-circle" aria-hidden="true"></i><a href="../admin">Мой профиль</a>
 						</div>
                     <?php endif; ?>
 
