@@ -18,6 +18,35 @@ class Admins
         }
         return $data;
 	}
+    public static function getOrder() {
+        $db = Db::getConnection();
+        $sql = 'SELECT * FROM orderShop ORDER BY status, dateOrder';
+        $result = $db->prepare($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        $i = 0;
+        $data = [];
+        while($row = $result->fetch()) {
+            $data[$i] = $row;
+            $i++;
+        }
+        die(json_encode($data));       
+    }
+    public static function getProductForSpecificID($idStr) {
+        $db = Db::getConnection();
+        $sql = 'SELECT id, name, article FROM product WHERE id in (:idStr)';
+        $result = $db->prepare($sql);
+        $result->bindParam(':idStr', $idStr, PDO::PARAM_STR);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        $i = 0;
+        $data = [];
+        while($row = $result->fetch()) {
+            $data[$i] = $row;
+            $i++;
+        }
+        die(json_encode($data));  
+    }
     public static function getBrand() {
         $db = Db::getConnection();
         $sql = 'SELECT * FROM brand';

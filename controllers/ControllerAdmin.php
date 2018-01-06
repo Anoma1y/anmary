@@ -112,7 +112,24 @@
 	    public function order() {
 	        // Проверка доступа
 	        self::checkAdmin();
+	        // $order = Admins::getOrder();
+	        // echo "<pre>";
+	        // foreach ($order as $key) {
+	        // 	var_dump($key['product']);
+	        // }
+	        // echo "</pre>";
 			require_once('views/admin/order.php');
 		    return true;  		
+	    }
+	    public function getOrder() {
+    		Admins::getOrder();
+    		return true;
+	    }
+	    public function getProductOrder() {
+	        if (!empty($_POST)) {
+		        $id = $_POST["id"];
+		    	Admins::getProductForSpecificID($id);
+		    	return true;
+		    }
 	    }
 	}

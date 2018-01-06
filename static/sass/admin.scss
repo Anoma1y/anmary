@@ -282,3 +282,74 @@ body {
 		}
 	}
 }
+.order_list {
+	font-family: "Merriweather", sans-serif;
+	font-weight: normal;
+	cursor: default;
+	color: #000;
+	table {
+		background-color: #f3f3f3;
+		border-collapse: separate;
+		font-size: 12px;
+		line-height: 24px;
+		margin: 30px auto;
+		text-align: left;
+		width: 100%;
+		th {
+			font-weight: bold;
+			padding: 10px 15px;
+			position: relative;
+			text-align: center;
+			font-size: em(18px);
+			border-right: 1px solid #3f3f3f;
+			color: #fff;
+			vertical-align: middle;
+			background-color: #2980B9;
+			&:last-child {
+				border-right: none;
+			}
+		}
+		tr {
+			&.order-close {
+				background-color: darken(#f3f3f3, 20%);
+			}
+			td {
+				padding: 1px;
+				vertical-align: middle;
+				border-bottom: 1px solid #3f3f3f;
+				border-right: 1px solid #3f3f3f;
+				font-size: em(20px);
+				font-weight: 300;
+				text-align: center;
+				transition: color .1s ease;
+				&:last-child {
+					border-right: none;
+				}
+				&.tdBtnEdit {
+					background-color: #27AE60;
+					color: #fff;
+					font-weight: bold;
+					padding: 0 5px;
+					cursor: pointer;
+				}
+				&.tdBtnDelete {
+					background-color: #EA6153;
+					color: #fff;
+					font-weight: bold;
+					padding: 0 5px;
+					cursor: pointer;
+				}
+				&.tdBtnCloseOrder {
+					background-color: #EA6153;
+					color: #fff;
+					font-weight: bold;
+					cursor: pointer;
+					transition: color .5s ease;
+					&:hover {
+						color: $color-black;
+					}
+				}
+			}
+		}
+	}	
+}
