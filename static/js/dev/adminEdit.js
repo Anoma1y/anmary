@@ -37,7 +37,7 @@
 	var productCompositionArr = [];
 	var sizeArr = [];
 
-	var isSaleCheck = false;
+	var isSaleCheck = productIsSale.checked === true ? true : false;
 
 	/**
 	 * [getSale Функция получение скидки]

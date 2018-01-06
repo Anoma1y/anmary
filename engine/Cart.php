@@ -15,7 +15,7 @@
 				$keys = array_keys($_SESSION['products']);
 				$id = implode(", ", $keys);
 				$db = Db::getConnection();
-				$sql = 'SELECT product.id, product.name, product.article, product.image, product.is_sale, product.price, product.sale_price, product.is_availability, brand.brand_name, category.category_name FROM product, brand, category WHERE product.id in ('.$id.') AND product.brand_id = brand.id AND product.category_id = category.id';
+				$sql = 'SELECT product.id, product.name, product.article, product.composition, product.image, product.is_sale, product.price, product.sale_price, product.is_availability, brand.brand_name, category.category_name FROM product, brand, category WHERE product.id in ('.$id.') AND product.brand_id = brand.id AND product.category_id = category.id';
 				$result = $db->prepare($sql);
 				$result->setFetchMode(PDO::FETCH_ASSOC);
 				$result->execute();
@@ -132,11 +132,13 @@
 	    	Session::init();
 	    	if (isset($_SESSION['products'])) {
 	    		$sizeArr = $_SESSION['products'][$id]["size"];
-	    		if(asort($sizeArr)){
-	    			return $sizeArr;
-	    		} else {
+	    		if (!empty($sizeArr)) {
+		    		asort($sizeArr);
+		    		return $sizeArr;
+				}
+				else {
 	    			return [];
-	    		}
+	    		}	 
 		    }
 	    	return []; 
 	    }
@@ -153,7 +155,7 @@
 	        if ($productsInCart) {
 	            foreach ($products as $i => $item) {
 
-	                $total += $item['price'] * count($productsInCart[$item["id"]]["size"]);
+	                $total += $item['sale_price'] * count($productsInCart[$item["id"]]["size"]);
 	            }
 	        }
 	        return $total;

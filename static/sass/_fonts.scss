@@ -1,7 +1,7 @@
 @import "bourbon";
 /* Oswald */
 @include font-face("Oswald", "../fonts/Oswald/Oswaldregular", normal, $file-formats: eot woff2 woff);
-@include font-face("Oswald", "../fonts/Oswald/Oswaldlight", lighter, $file-formats: eot woff2 woff);
+@include font-face("Oswald", "../fonts/Oswald/Oswaldlight", 300, $file-formats: eot woff2 woff);
 @include font-face("Oswald", "../fonts/Oswald/Oswaldbold", bold, $file-formats: eot woff2 woff);
 /* Merriweather */
 @include font-face("Merriweather", "../fonts/Merriweather/Merriweather-Bold", bold, $file-formats: eot woff2 woff);

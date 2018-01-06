@@ -27,7 +27,6 @@
 							<?php foreach ($cartItems as $item): ?>
 								<?php foreach ($item["size"] as $sizeArr): ?>
 									<?php foreach ($sizeArr as $size): ?>
-
 										<tr>
 											<td class="cart-table-image">
 												<a href="../product/<?=$item[id]?>"><img src="<?=$item[image]?>" alt=""></a>
@@ -48,12 +47,8 @@
 												</td>
 											<?php endif ?>
 										</tr>										
-
-
 									<?php endforeach ?>
 								<?php endforeach ?>
-
-
 							<?php endforeach ?>	
 						</tbody>
 					</table>
