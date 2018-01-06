@@ -1,6 +1,7 @@
 <?php
 	require_once 'Session.php';
 	require_once 'Db.php';
+	require_once 'functions.php';
 	/**
 	 * Класс Cart - корзина
 	 */
@@ -161,6 +162,24 @@
 	    }
 
 	    public static function addOrder($data) {
-	    	die(json_encode($data));
+	    	Session::init();
+			$db = Db::getConnection();
+			$genCode = generateInt(6);
+			$products = Session::get('products');
+			$query = 'INSERT INTO orderShop (code, name, telephone, email, comment, product, dateOrder, status) VALUES (:code, :name, :telephone, :email, :comment, :product, now(), 0)'; 
+			$result_insert = $db->prepare($query);
+			$result_insert->bindParam(':code', $genCode, PDO::PARAM_INT);
+			$result_insert->bindParam(':name', $data["data"]["name"], PDO::PARAM_STR);
+			$result_insert->bindParam(':telephone', $data["data"]["telephone"], PDO::PARAM_STR);
+			$result_insert->bindParam(':email', $data["data"]["email"], PDO::PARAM_STR);
+			$result_insert->bindParam(':comment', $data["data"]["text"], PDO::PARAM_STR);
+			$result_insert->bindParam(':product', json_encode($products), PDO::PARAM_STR);
+		    $result_insert->setFetchMode(PDO::FETCH_ASSOC);
+		    if ($result_insert->execute()) {
+		    	Session::destroy();
+		    	die(true);
+		    } else {
+		    	die(false);
+		    }
 	    }
 	}

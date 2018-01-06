@@ -13,6 +13,15 @@
 	    }
 	    return $code;
 	}
+	function generateInt($length=6) {
+	    $chars = "0123456789";
+	    $code = "";
+	    $sch = strlen($chars) - 1;  
+	    while (strlen($code) < $length) {
+	        $code .= $chars[mt_rand(1, $sch)];  
+	    }
+	    return intval($code);
+	}
 	function generateSrc($length=6) {
 	    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
 	    $code = "";

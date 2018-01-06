@@ -178,12 +178,12 @@ $output-bourbon-deprecation-warnings: false !default;
 				color: #b5b5b5;
 				th {
 					padding-bottom: 15px;
-					font-size: em(14px);
+					font-size: em(15px);
 				}
 			}
 			td {
 				font-family: $font-merri;
-				font-size: em(14px);
+				font-size: em(12px);
 				padding: 5px 0;
 				&.cart-table-description {
 					text-align: left;

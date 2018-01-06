@@ -335,8 +335,8 @@ class Order extends Validation{
 				data: {data: data},
 			})
 			.done(function(data) {
-				console.log(JSON.parse(data));
-				res();
+				let status = JSON.parse(data);
+				res(parseInt(status));
 			})
 			.fail(function() {
 				rej("Ошибка при отправке данных");
@@ -360,6 +360,11 @@ class Order extends Validation{
 			}
 			this.errorText("error", "");
 			let ajax = await this.orderSend(this.url, data);
+			if (ajax == 1) {
+				window.location = "/";
+			} else {
+				this.errorText("error", "Ошибка при отправке данных");
+			}
 		} catch(e) {
 			this.errorText("error", e);
 		}
