@@ -364,7 +364,7 @@ class Order extends Validation{
 			this.errorText("error", "");
 			let ajax = await this.orderSend(this.url, data);
 			if (ajax == 1) {
-				window.location = "/";
+				window.location = "/cart/order_status";
 			} else {
 				this.errorText("error", "Ошибка при отправке данных");
 			}

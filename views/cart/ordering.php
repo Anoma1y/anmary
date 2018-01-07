@@ -55,15 +55,15 @@
 				<form action="#" class="form-ordering" method="POST">
 					<div>				
 						<label for="order-user-name">Имя</label>
-						<input type="text" name="order-user-name" id="order-user-name" value="Ivan">
+						<input type="text" name="order-user-name" id="order-user-name" value="">
 					</div>	
 					<div>
 						<label for="order-user-email">Почта</label>
-						<input type="email" name="order-user-email" id="order-user-email" value="nt-nt@mail.ru">
+						<input type="email" name="order-user-email" id="order-user-email" value="">
 					</div>
 					<div>
 						<label for="order-user-telephone">Контактный телефон</label>
-						<input type="text" name="order-user-telephone" id="order-user-telephone" value="+79516606759">
+						<input type="text" name="order-user-telephone" id="order-user-telephone" value="">
 					</div>
 					<div>
 						<label for="order-user-comment">Комментарий к заказу</label>
