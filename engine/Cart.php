@@ -166,7 +166,7 @@
 			$db = Db::getConnection();
 			$genCode = generateInt(6);
 			$products = Session::get('products');
-			$query = 'INSERT INTO orderShop (code, name, telephone, email, comment, product, dateOrder, status) VALUES (:code, :name, :telephone, :email, :comment, :product, now(), 0)'; 
+			$query = 'INSERT INTO orderShop (code, name, telephone, email, comment, product, dateOrder, dateCompleteOrder, status) VALUES (:code, :name, :telephone, :email, :comment, :product, now(), null, 0)'; 
 			$result_insert = $db->prepare($query);
 			$result_insert->bindParam(':code', $genCode, PDO::PARAM_INT);
 			$result_insert->bindParam(':name', $data["data"]["name"], PDO::PARAM_STR);

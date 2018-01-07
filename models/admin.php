@@ -20,7 +20,7 @@ class Admins
 	}
     public static function getOrder() {
         $db = Db::getConnection();
-        $sql = 'SELECT * FROM orderShop ORDER BY status, dateOrder';
+        $sql = 'SELECT * FROM orderShop ORDER BY status, dateOrder DESC';
         $result = $db->prepare($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
@@ -31,7 +31,6 @@ class Admins
             $i++;
         }
         return $data;
-        // die(json_encode($data));       
     }
     public static function getProductForSpecificID($idStr) {
         $db = Db::getConnection();
@@ -46,6 +45,18 @@ class Admins
             $i++;
         }
         return $data;
+    }
+    public static function completeOrder($code) {
+        $db = Db::getConnection();
+        $query = "UPDATE orderShop SET dateCompleteOrder = NOW(), status = 1 WHERE code = :code";
+        $result_update = $db->prepare($query);
+        $result_update->bindParam(':code', $code, PDO::PARAM_INT);
+        $result_update->setFetchMode(PDO::FETCH_ASSOC);
+        if ($result_update->execute()) {
+            die(true);
+        } else {
+            die(false);
+        }
     }
     public static function getBrand() {
         $db = Db::getConnection();

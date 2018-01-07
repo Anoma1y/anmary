@@ -1,8 +1,4 @@
 <?php require_once 'header.php'; ?>
-
-
-
-	
 	<div class="order_list">
 		<table>
 			<tr>
@@ -13,11 +9,13 @@
 				<th>Комментарий</th>
 				<th>Товары</th>
 				<th>Дата заказа</th>
+				<th>Дата завершение заказа</th>
 				<th>Статус</th>
 				<th></th>
 			</tr>
 			<tbody>
 			<?php foreach ($order as $index => $item): ?>
+
 				<tr <?php if ($item["status"] == 1): ?> <?php echo "class='order-close'" ?> <?php endif ?>>
 					<td><?=$item["code"];?></td>
 					<td><?=$item["name"];?></td>
@@ -36,6 +34,7 @@
 						<?php endforeach ?>
 					</td>
 					<td><?=$item["dateOrder"];?></td>
+					<td><?=$item["dateCompleteOrder"];?></td>
 					<td>
 						<?php if ($item["status"] == 1): ?>
 							Выполнен
@@ -44,7 +43,7 @@
 						<?php endif ?>
 					</td>
 					<?php if ($item["status"] == 0): ?>
-						<td id="closeOrder" class="tdBtnCloseOrder" data-code="<?=$item["code"]?>">Завершить</td>
+						<td class="tdBtnCloseOrder" data-code="<?=$item["code"]?>">Завершить</td>
 					<?php else: ?>
 						<td></td>
 					<?php endif ?>
@@ -57,6 +56,6 @@
 
 
 <script src="/static/js/libs.min.js"></script>
-<!-- <script src="/static/js/adminOrder.js"></script> -->
+<script src="/static/js/adminOrder.js"></script>
 <?php require_once 'footer.php'; ?>
 

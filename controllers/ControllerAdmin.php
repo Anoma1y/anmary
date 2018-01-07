@@ -127,9 +127,6 @@
 	        foreach ($id as $key) {
 	        	array_push($productOrder, Admins::getProductForSpecificID(implode(", ", $key)));
 	        }
-	        	// echo "<pre>";
-		        // 	var_dump($orderDecode);
-		        // echo "</pre>";
 			require_once('views/admin/order.php');
 		    return true;  		
 	    }
@@ -137,11 +134,11 @@
     		Admins::getOrder();
     		return true;
 	    }
-	    // public function getProductOrder() {
-	    //     if (!empty($_POST)) {
-		   //      $id = $_POST["id"];
-		   //  	Admins::getProductForSpecificID($id);
-		   //  	return true;
-		   //  }
-	    // }
+	    public function completeOrder() {
+	        if (!empty($_POST)) {
+		        $code = intval($_POST["code"]);
+		    	Admins::completeOrder($code);
+		    	return true;
+		    }
+	    }
 	}

@@ -1,9 +1,11 @@
-//Корзина
+//Добавление в корзину (продукт)
 const addToCartBtn = document.getElementById('detail-add-to-cart');
 const productId = document.getElementById('detail-product-id');
 const errorText = document.getElementById('detail-product-error');
 const deleteFromCartBtn = document.getElementsByClassName('cart-delete-item');
 const selectedProductSize = document.getElementsByClassName('size-item');
+//Добавление в корзину (каталог)
+const addToCartBtnCatalog = document.getElementsByClassName('add_to_cart');
 //Заказ
 const orderName = document.getElementById('order-user-name');
 const orderEmail = document.getElementById('order-user-email');
