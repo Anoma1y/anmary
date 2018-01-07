@@ -30,13 +30,13 @@ class Admins
             $data[$i] = $row;
             $i++;
         }
-        die(json_encode($data));       
+        return $data;
+        // die(json_encode($data));       
     }
     public static function getProductForSpecificID($idStr) {
         $db = Db::getConnection();
-        $sql = 'SELECT id, name, article FROM product WHERE id in (:idStr)';
+        $sql = 'SELECT id, name, article, sale_price FROM product WHERE id in ('.$idStr.')';
         $result = $db->prepare($sql);
-        $result->bindParam(':idStr', $idStr, PDO::PARAM_STR);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
         $i = 0;
@@ -45,7 +45,7 @@ class Admins
             $data[$i] = $row;
             $i++;
         }
-        die(json_encode($data));  
+        return $data;
     }
     public static function getBrand() {
         $db = Db::getConnection();

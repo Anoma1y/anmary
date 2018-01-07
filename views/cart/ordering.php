@@ -9,7 +9,7 @@
 			<h1><span>Оформление заказа</span></h1>
 		</div>
 
-		<div class="ordering">
+		<div class="ordering" id="orderingWrapper">
 			<div class="order-confirm-list">
 				<table class="order-confirm-table">
 					<thead>

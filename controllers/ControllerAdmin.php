@@ -112,12 +112,24 @@
 	    public function order() {
 	        // Проверка доступа
 	        self::checkAdmin();
-	        // $order = Admins::getOrder();
-	        // echo "<pre>";
-	        // foreach ($order as $key) {
-	        // 	var_dump($key['product']);
-	        // }
-	        // echo "</pre>";
+	        $order = Admins::getOrder();
+	        
+	        $orderDecode = [];
+	        foreach ($order as $key) {
+	        	array_push($orderDecode, json_decode($key["product"], true));
+	        }
+	        $id = [];
+	        $size = [];
+	        foreach ($orderDecode as $key) {
+	        	array_push($id, array_keys($key));
+	        }
+	        $productOrder = [];
+	        foreach ($id as $key) {
+	        	array_push($productOrder, Admins::getProductForSpecificID(implode(", ", $key)));
+	        }
+	        	// echo "<pre>";
+		        // 	var_dump($orderDecode);
+		        // echo "</pre>";
 			require_once('views/admin/order.php');
 		    return true;  		
 	    }
@@ -125,11 +137,11 @@
     		Admins::getOrder();
     		return true;
 	    }
-	    public function getProductOrder() {
-	        if (!empty($_POST)) {
-		        $id = $_POST["id"];
-		    	Admins::getProductForSpecificID($id);
-		    	return true;
-		    }
-	    }
+	    // public function getProductOrder() {
+	    //     if (!empty($_POST)) {
+		   //      $id = $_POST["id"];
+		   //  	Admins::getProductForSpecificID($id);
+		   //  	return true;
+		   //  }
+	    // }
 	}

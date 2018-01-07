@@ -69,4 +69,8 @@
 	    		return true;
 	    	}
 	    }
+	    public function order_status() {
+	    	require_once('views/cart/order_status.php');
+	    	return true;
+	    }
 	}

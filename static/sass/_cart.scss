@@ -297,3 +297,17 @@ $output-bourbon-deprecation-warnings: false !default;
 		}
 	}
 }
+.order-success {
+	text-align: center;
+	padding: 50px 0;
+	font-family: $main-font-family;
+	h1 {
+		font-size: em(35px);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+	p {
+		padding: 5px 0;
+		font-size: em(25px);
+	}
+}

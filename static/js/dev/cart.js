@@ -10,6 +10,8 @@ const orderEmail = document.getElementById('order-user-email');
 const orderTelephone = document.getElementById('order-user-telephone');
 const orderComment = document.getElementById('order-user-comment');
 const orderBtnSend = document.getElementById('order-user-submit');
+const orderingWrapper = document.getElementById('orderingWrapper');
+
 var order = void 0;
 //Установка для переменной id - id продукта
 var id = productId != undefined ? productId.innerText : undefined;
@@ -346,6 +348,7 @@ class Order extends Validation{
 	/**
 	 * [orderCheck Метод для проверки полей формы и добавления данных в объект data]
 	 */
+	
 	async orderCheck() {
 		try {
 			let name = await this.validationName(this.getName());
