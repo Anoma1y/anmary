@@ -8,7 +8,7 @@
 	    	require_once 'engine/ajax_pagination.php';
 		    $params = include('engine/config.php');
 		    //Основной запрос
-			$sql = 'SELECT * FROM news ORDER BY news_date DESC LIMIT :start_from, :record_per_page';	
+			$sql = 'SELECT * FROM news ORDER BY news_date DESC, id DESC LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц
 		    $sql1 = 'SELECT id FROM news ORDER BY id';
 		    $order_by = 'id';

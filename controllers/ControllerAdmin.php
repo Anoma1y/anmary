@@ -108,14 +108,21 @@
 	    public function news() {
 	        // Проверка доступа
 	        self::checkAdmin();
-	    	$view = new View();
-			$view->render('admin/news');    		
+	        $news = Admins::getNews();
+			require_once('views/admin/news.php');
+		    return true;  	
 	    }
 	    public function add_news() {
 	        // Проверка доступа
 	        self::checkAdmin();
+			require_once('views/admin/add_news.php');
+		    return true;  	
+	    }
+	    public function addNews() {
+	        // Проверка доступа
+	        self::checkAdmin();
 	    	$view = new View();
-			$view->render('admin/add_news');    		
+			$view->render('admin/addNews');    		
 	    }
 	    /**
 	     * Вывод страницы заказов

@@ -27,6 +27,7 @@ $output-bourbon-deprecation-warnings: false !default;
 	&-image {
 		width: 150px;
 		height: 150px;
+		overflow: hidden;
 		img {
 			width: 100%;
 			object-fit: cover;

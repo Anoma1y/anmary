@@ -322,6 +322,11 @@ body {
 				font-weight: 300;
 				text-align: center;
 				transition: color .1s ease;
+				>img {
+					width: 180px;
+					height: 180px;
+					object-fit: cover;
+				}
 				&:last-child {
 					border-right: none;
 				}
@@ -352,4 +357,54 @@ body {
 			}
 		}
 	}	
+}
+.add_news {
+	padding: 50px 0;
+	form {
+		width: 600px;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		font-family: $font-merri;
+		justify-content: space-between;
+		> div {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 5px 0;
+			font-size: em(14px);
+		}
+		label {
+			width: 30%;
+		}
+		input[type="text"] {
+			height: 30px;
+			padding: 5px;
+			display: block;
+			letter-spacing: 1px;
+		}
+		textarea {
+			height: 80px; 
+		}
+		input, textarea {
+			width: 65%;
+			border: 1px solid #333;
+			resize: none;
+			font-family: $main-font-family;
+		}
+		input[type="submit"] {
+			border: none;
+			height: 35px;
+			background-color: #333;
+			color: #fff;
+			text-transform: uppercase;
+			font-size: em(17px);
+			cursor: pointer;
+			transition: background-color .3s ease;
+			&:hover {
+				background-color: lighten(#333, 15%);
+			}
+		}
+	}
 }

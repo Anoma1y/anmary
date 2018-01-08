@@ -114,6 +114,23 @@ class Admins
         }
         return $all;            
     }
+    public static function getNews() {
+        $db = Db::getConnection();
+        $sql = 'SELECT * FROM news ORDER BY id DESC';
+        $result = $db->prepare($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        $i = 0;
+        $all = array();
+        while ($row = $result->fetch()) {
+            $all[$i] = $row;
+            $i++;
+        }
+        return $all;  
+    }
+    public static function addNews() {
+        
+    }
 }
 
 ?>
