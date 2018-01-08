@@ -30,8 +30,11 @@
         <a href="/admin/order"><i class="fa fa-shopping-cart" ></i>
         <h4>Заказы</h4></a>
                  
-        <a href="#"><i class="fa fa-users" ></i>
-        <h4>Список пользователей</h4></a>
+        <a href="/admin/news"><i class="fa fa-users" ></i>
+        <h4>Список новостей</h4></a>
+
+        <a href="/admin/add_news"><i class="fa fa-users" ></i>
+        <h4>Добавить новость</h4></a>
     </div>
 
                

@@ -1,0 +1,54 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import 'mixin.scss';
+@import 'vars.scss';
+
+.news {
+	padding: 5px 0 50px;
+	.container {
+		flex-direction: column;
+	}
+	.news-pagination {
+		align-items: center;
+	}
+	.news-list {
+		display: flex;
+		flex-direction: column;
+	}
+}
+.news-item {
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid #b3b3b3;
+	padding: 10px 0;
+	&:last-child {
+		border: none;
+	}
+	&-image {
+		width: 150px;
+		height: 150px;
+		img {
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+	&-content {
+		width: 70%;
+		font-family: $main-font-family;
+		font-weight: 300;
+		padding: 10px 0;
+		.news-title {
+			font-size: em(18px);
+			letter-spacing: 1px;
+			font-weight: bold;
+		}
+		.news-text {
+			font-size: em(14px);
+			padding: 20px 0;
+		}
+		.news-date {
+			font-size: em(13px);
+			font-weight: normal;
+		}
+	}
+}

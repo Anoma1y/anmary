@@ -1,0 +1,1 @@
+"use strict";var newsList=document.getElementById("news-list");$.ajax({url:"../news/getNews",type:"GET",success:function(e){var s=JSON.parse(e);console.log(s)}});

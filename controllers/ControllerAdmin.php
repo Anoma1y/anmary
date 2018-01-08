@@ -105,6 +105,18 @@
 	    	$view = new View();
 			$view->render('admin/getAllProducts_action');    		
 	    }
+	    public function news() {
+	        // Проверка доступа
+	        self::checkAdmin();
+	    	$view = new View();
+			$view->render('admin/news');    		
+	    }
+	    public function add_news() {
+	        // Проверка доступа
+	        self::checkAdmin();
+	    	$view = new View();
+			$view->render('admin/add_news');    		
+	    }
 	    /**
 	     * Вывод страницы заказов
 	     * @return boolean
