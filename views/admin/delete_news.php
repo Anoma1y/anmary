@@ -13,14 +13,14 @@
 		} else {
 			$getID = explode('/', $_SERVER['REQUEST_URI']);
 			if (!empty($getID[3])) {
-				$query = 'DELETE FROM product WHERE id = :id_product'; 
+				$query = 'DELETE FROM news WHERE id = :id_news'; 
 				$result_insert = $db->prepare($query);
-				$result_insert->bindParam(':id_product', $getID[3], PDO::PARAM_INT);
+				$result_insert->bindParam(':id_news', $getID[3], PDO::PARAM_INT);
 			    $result_insert->setFetchMode(PDO::FETCH_ASSOC);
 			    $result_insert->execute();		
-			    die(header('Location: /admin'));		
+			    die(header('Location: ../news'));		
 			} else {
-				die(header('Location: /admin'));
+				die(header('Location: ../news'));
 			}		
 
 		}

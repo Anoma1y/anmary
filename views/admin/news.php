@@ -23,3 +23,16 @@
 		</tbody>
 	</table>	
 </div>
+
+
+<script type="text/javascript">
+	var btnDelete = document.getElementsByClassName('tdBtnCloseOrder');
+	for (var i = 0; i < btnDelete.length; i++) {
+		btnDelete[i].addEventListener('click', function(e) {
+			var id = e.target.dataset.id;
+				if (confirm("Подтвердите удаление") === true) {
+					window.location = "../admin/deleteNews/" + id;
+				}			
+		});
+	}
+</script>

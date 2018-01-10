@@ -61,6 +61,16 @@
 		    return true;  	
         }
 	    /**
+	     * Метод, вызывающий удаление новости
+	     * @return boolean
+	     */
+	    public function deleteNews() {
+	        // Проверка доступа
+	        self::checkAdmin();
+			require_once('views/admin/delete_news.php');
+		    return true;  	
+        }
+	    /**
 	     * Вывод страницы редактирования товара
 	     * @return boolean
 	     */
