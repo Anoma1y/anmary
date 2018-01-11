@@ -1,0 +1,112 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import 'vars.scss';
+
+
+.about {
+
+}
+.size-info {
+	display: flex;
+	justify-content: space-around;
+	padding: 40px 0 20px;
+}
+.info-content {
+	width: 60%;
+	font-family: $main-font-family;
+	font-size: em(16px);
+	color: #333333;
+	.info-title {
+		padding: 10px 0;
+		font-size: em(20px);
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+	}
+	.size-color {
+		color: #ff660c;
+		cursor: default;
+		font-weight: bold;
+		font-size: em(18px);
+	}
+	p {
+		padding: 4px 0;
+		text-indent: 1.5em;
+		text-align: justify;
+	}
+}
+
+.info-image {
+	width: 189px;
+	height: 460px;
+	position: relative;
+	text-align: center;
+	svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		.hip, .waist, .boobs {
+			cursor: default;
+			stroke: #ff660c;
+			stroke-width: 1.51181102;
+			stroke-linecap: butt;
+			stroke-linejoin: miter;
+			stroke-miterlimit: 4;
+			stroke-dasharray: 4.53543305,1.51181102;
+			stroke-dashoffset: 0;
+			stroke-opacity: .4;
+			fill: #ff660c;
+			fill-opacity: .1;
+			transition: all .5s ease;
+		}
+
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.size-block {
+	padding: 20px 0;
+	display: flex;
+	justify-content: center;
+	table {
+		width: 100%;
+		text-align: center;
+		font-family: $main-font-family;
+		cursor: default;
+		th {
+			background-color: #333333;
+			color: $color-white;
+			font-size: em(14px);
+			padding: 15px 10px;
+			font-weight: normal;
+		}
+		tbody {
+
+			&:hover td {
+				opacity: .5;
+			}
+			&:hover  tr:hover td {
+				opacity: 1;
+				color: #666;
+			}
+		}
+		tr {
+			&:nth-child(even) {
+				background-color: #f6f6f6;
+			}
+
+		}
+		td {
+			padding: 15px 10px;
+			color: #222222;
+			font-weight: 300;
+			transition: opacity .3s ease;
+		}
+	}
+}
