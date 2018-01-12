@@ -2,9 +2,7 @@
 
 <section class="contacts">
 	<div class="container">
-		<div class="title">
-			<h1><span>Контакты</span></h1>
-		</div>
+		<h2 class="line-title">Контакты</h2>
 		<div class="our_contacts">
 			<div class="our_contacts_item left-items" data-aos="zoom-in" data-aos-duration="500">
 				<div class="our_contacts_item_icon">
@@ -49,9 +47,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="title">
-			<h1><span>Обратная связь</span></h1>
-		</div>
+	<h2 class="line-title">Обратная связь</h2>
 		<div class="feedback" data-aos="zoom-in" data-aos-duration="800">
 			<div class="feedback__form">
 				<form action="javascript:void(null);" method="POST" id="sendEmailForm">

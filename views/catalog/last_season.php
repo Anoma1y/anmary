@@ -1,4 +1,4 @@
-	<?php require_once 'views/index/header.php'; ?>
+<?php require_once 'views/index/header.php'; ?>
 	<div class="catalog">
 		<div class="container">
 			<div class="page-banner">

@@ -3,12 +3,10 @@ $output-bourbon-deprecation-warnings: false !default;
 @import 'vars.scss';
 
 
-.about {
-
-}
 .size-info {
 	display: flex;
 	justify-content: space-around;
+	flex-wrap: wrap;
 	padding: 40px 0 20px;
 }
 .info-content {
@@ -107,6 +105,42 @@ $output-bourbon-deprecation-warnings: false !default;
 			color: #222222;
 			font-weight: 300;
 			transition: opacity .3s ease;
+		}
+	}
+}
+.howpay {
+	flex-wrap: wrap;
+}
+.how-make-order {
+	display: flex;
+	flex-wrap: wrap;
+	font-family: $main-font-family;
+	font-weight: 300;
+}
+.make-order-step {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.step-title {
+		width: 100%;
+		text-align: center;
+		h4 {
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+	}
+	.step-content {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		&-text {
+			font-weight: normal;
+		}
+		&-image {
+			width: 70%;
+			img {
+				width: 100%;
+			}
 		}
 	}
 }

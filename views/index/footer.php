@@ -17,13 +17,16 @@
 					<h4>Навигация</h4>
 					<ul class="footer_menu">
 						<li><a href="/">Главная</a></li>
-						<li><a href="/catalog/all">Каталог</a></li>
+						<li><a href="/news">Новости</a></li>
+						<li><a href="/about/size">Таблица размеров</a></li>
 						<li><a href="/contacts">Контакты</a></li>
+
 					</ul>
 				</nav>
 				<nav>
 					<h4>Каталог</h4>
 					<ul class="footer_menu">
+						<li><a href="/catalog/all">Каталог</a></li>
 						<li><a href="/catalog/newest">Новинки</a></li>
 						<li><a href="/catalog/sale">Скидки</a></li>
 						<li><a href="/catalog/last_season">Последний сезон</a></li>

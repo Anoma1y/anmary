@@ -120,7 +120,7 @@
 	        die(json_encode($all));
 		}
 		public function getAllProductSeason() {
-		    $sortValue = $_POST["state"]["sortBy"];//SELECT product.name FROM product, season WHERE season.id = product.season_id AND season.id=(SELECT MAX(id) FROM season)
+		    $sortValue = $_POST["state"]["sortBy"];
 		    $sortQuery = "";
 		    //Сортировка товаров
 		    if ($sortValue == "sortByNewest") {
@@ -133,7 +133,7 @@
 		    	$sortQuery = "product.price";
 		    }
 			$db = Db::getConnection();
- 	        $sql = 'SELECT product.id, product.name, product.article, product.price, product.sale_price, product.is_sale, product.percentSale, product.image ,category.category_name, brand.brand_name FROM product, brand, category, season WHERE product.brand_id = brand.id AND product.category_id = category.id AND season.id = product.season_id AND season.id=(SELECT MAX(id) FROM season) ORDER BY '. $sortQuery;
+ 	        $sql = 'SELECT product.id, product.name, product.article, product.price, product.sale_price, product.is_sale, product.size, product.composition, product.percentSale, product.image ,category.category_name, brand.brand_name FROM product, brand, category, season WHERE product.brand_id = brand.id AND product.category_id = category.id AND season.id = product.season_id AND season.id=(SELECT MAX(id) FROM season) ORDER BY '. $sortQuery;
 	        $result = $db->prepare($sql);
 	    	$result->setFetchMode(PDO::FETCH_ASSOC);
 	    	$result->execute();

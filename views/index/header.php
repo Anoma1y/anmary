@@ -109,6 +109,7 @@
 							<nav class="menu-main-wrap">
 								<ul class="ui menu menu-effect_1">
 									<li><a href="/">Главная</a></li>
+									<li><a href="/news">Новости</a></li>
 									<li><a href="/catalog/newest">Новинки</a></li>
 									<li><a href="/catalog/all">Каталог</a></li>
 									<li><a href="/catalog/sale">Скидки</a></li>
@@ -119,6 +120,7 @@
 						</div>
 						<ul>
 							<li><a href="/">Главная</a></li>
+							<li><a href="/news">Новости</a></li>
 							<li><a href="/catalog/newest">Новинки</a></li>
 							<li><a href="/catalog/all">Каталог</a></li>
 							<li><a href="/catalog/sale">Скидки</a></li>

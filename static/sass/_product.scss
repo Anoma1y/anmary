@@ -96,6 +96,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			}
 			&-size {
 				padding-top: 40px;
+				padding-bottom: 5px;
 				h5 {
 					text-transform: uppercase;
 					font-size: em(20px);
@@ -125,6 +126,15 @@ $output-bourbon-deprecation-warnings: false !default;
 							border-color: $color-orange;
 						}
 					}					
+				}
+				.identify-size {
+					text-align: center;
+					a {
+						color: #086fcf;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
 				}
 			}
 			&-composition {

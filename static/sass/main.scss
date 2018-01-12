@@ -96,6 +96,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			justify-content: center;
 			background-image: $block-url-new_collections;
 			background-size: cover;
+			// transform: perspective(1000px) rotateX(0deg) rotateY(10deg) rotateZ(0deg);
 			@include overlay(.2);
 			.collection_info {
 				text-align: center;
@@ -136,6 +137,9 @@ $output-bourbon-deprecation-warnings: false !default;
 		&.season_sale {
 			grid-area: season_sale;
 			background-color: $color-light-red;
+			&:hover {
+				transform: perspective(500px) rotateX(-5deg) rotateY(0deg) rotateZ(0deg);
+			}
 			.season_sale_info {
 				display: flex;
 				flex-direction: column;
@@ -333,36 +337,33 @@ $output-bourbon-deprecation-warnings: false !default;
 		}
 	}
 }
-
-.title {
-	text-align: center;
-	padding: 40px 0;
+.line-title {
+	padding: 30px 0;
 	width: 100%;
+	overflow: hidden;
+	font-family: $main-font-family;
+	position: relative;
+	text-align: center;
+	font-size: em(24px);
+	text-align: center;
+	text-transform: uppercase;
 	cursor: default;
-	h1, h3 {
-		font-family: $main-font-family;
-	} 
-	h1 {
+	&:before, &:after {
+		background-color: #bfbfbf;
+		bottom: .5ex;
+		content: '';
+		display: inline-block;
+		height: 2px;
 		position: relative;
-		overflow: hidden;
-		font-size: em(24px);
-		text-align: center;
-		text-transform: uppercase;
-		> span {
-			&:before, &:after {
-				content: '';
-				position: absolute;
-				width: 100%;
-				border-top: 2px solid #bfbfbf;
-				margin-top: em(9.7px);
-			}
-			&:before {
-				margin-left: -102%;
-			}
-			&:after {
-				margin-left: 2%;
-			}
-		}
+		width: 100%;
+	}
+	&:before {
+		margin-left: -100%;
+		right: 15px;
+	}
+	&:after {
+		margin-right: -100%;
+		left: 15px;
 	}
 }
 

@@ -82,9 +82,7 @@
 
 <section id="latest_viewed">
 	<div class="container">
-		<div class="title">
-			<h1><span>Рекомендуем</span></h1>
-		</div>
+		<h2 class="line-title">Рекомендуем</h2>
 	</div>
 	<div class="container">
 		<div class="product_list">
@@ -113,9 +111,7 @@
 
 <section class="featured_brand" id="featured_brand">
 	<div class="container">
-		<div class="title">
-			<h1><span>Популярные бренды</span></h1>
-		</div>
+		<h2 class="line-title">Популярные бренды</h2>
 	</div>
 	<div class="container brand_container">
 		<div class="brand_item" data-aos="zoom-in-left">

@@ -2,9 +2,7 @@
 
 <section class="news">
 	<div class="container">
-		<div class="title">
-			<h1><span>Новости</span></h1>
-		</div>
+		<h2 class="line-title">Новости</h2>
 		<div class="news-list" id="news-list">
 
 

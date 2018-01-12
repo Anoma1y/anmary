@@ -50,6 +50,9 @@
 								<label for="size-item_<?=$size?>" class="size-item"><?=$size?></label>
 							<?php endforeach ?>
 						</div>
+						<div class="identify-size">
+							<a href="../about/size">Определить свой размер</a>
+						</div>
 					</div>
 					<div class="detail-info-composition">
 						<h5>Состав</h5>
@@ -62,19 +65,11 @@
 				</div>
 				<div class="detail-block">
 					<div class="detail-button-block">
-						<?//php if (!$checkCart): ?>
 							<div class="detail-add-to-cart detail-add-btn" id="detail-add-to-cart">
 								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 								<span>Добавить в корзину</span>
 							</div>
 							<span id="detail-product-error"></span>
-						<?//php else: ?>
-<!-- 							<a href="../cart">
-								<div class="detail-add-to-cart detail-add-btn in-cart" id="detail-add-to-cart-in">
-									В корзине
-								</div>
-							</a>	 -->				
-						<?//php endif ?>
 
 						<div class="detail-add-to-compare detail-add-btn" id="detail-add-to-compare">
 							<i class="fa fa-heart" aria-hidden="true"></i>
@@ -89,9 +84,7 @@
 </div>
 <div class="container">
 	<div class="might-like">
-		<div class="title">
-			<h1><span>Также может понравиться</span></h1>
-		</div>
+	<h2 class="line-title">Также может понравиться</h2>
 		<div class="might-like-content">
 			
 			<?php foreach ($relatedProducts as $key => $value): ?>
