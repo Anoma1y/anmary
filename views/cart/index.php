@@ -8,9 +8,7 @@
 
 <section class="user-cart">
 	<div class="container">
-		<div class="title">
-			<h1><span>Корзина</span></h1>
-		</div>
+		<h2 class="line-title">Корзина</h2>
 		<div class="cart-container">
 			<?php if (!empty($cartItems)): ?>
 				<div class="cart-list">

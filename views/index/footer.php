@@ -18,6 +18,7 @@
 					<ul class="footer_menu">
 						<li><a href="/">Главная</a></li>
 						<li><a href="/news">Новости</a></li>
+						<li><a href="/about/howpay">Как оплатить</a></li>
 						<li><a href="/about/size">Таблица размеров</a></li>
 						<li><a href="/contacts">Контакты</a></li>
 

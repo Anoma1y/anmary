@@ -5,9 +5,7 @@
 ?>
 <section class="user-cart">
 	<div class="container">
-		<div class="title">
-			<h1><span>Оформление заказа</span></h1>
-		</div>
+		<h2 class="line-title">Оформление заказа</h2>
 
 		<div class="ordering" id="orderingWrapper">
 			<div class="order-confirm-list">
