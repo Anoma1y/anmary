@@ -10,7 +10,9 @@ $output-bourbon-deprecation-warnings: false !default;
 	width: 100%;
 	min-width: 320px;
 }
+
 #main_slider {
+	position: relative;
 	margin-bottom: 20px;
 	.main_slider {
 		position: relative;

@@ -33,7 +33,9 @@ $output-bourbon-deprecation-warnings: false !default;
 		text-align: justify;
 	}
 }
-
+img {
+	cursor: pointer;
+}
 .info-image {
 	width: 189px;
 	height: 460px;
@@ -116,6 +118,28 @@ $output-bourbon-deprecation-warnings: false !default;
 	flex-wrap: wrap;
 	font-family: $main-font-family;
 	font-weight: 300;
+	color: #333333;
+	text-align: justify;
+	p {
+		padding: 3px 0 8px;
+	}
+	a {
+		font-weight: bold;
+		color: #333333;
+		font-size: em(18px);
+		cursor: pointer;
+		transition: color .3s ease;
+		&:hover {
+			color: #777777;
+		}
+	}
+	.make-order-ul-step {
+		padding: 5px 0;
+		i {
+			font-size: em(18px);
+			padding: 5px;
+		}
+	}
 }
 .make-order-step {
 	display: flex;
@@ -127,12 +151,16 @@ $output-bourbon-deprecation-warnings: false !default;
 		h4 {
 			font-weight: bold;
 			text-transform: uppercase;
+			padding: 5px;
 		}
 	}
 	.step-content {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		p {
+			padding: 15px 5px;
+		}
 		&-text {
 			font-weight: normal;
 		}
@@ -142,5 +170,31 @@ $output-bourbon-deprecation-warnings: false !default;
 				width: 100%;
 			}
 		}
+	}
+}
+.how-pay-order {
+	font-family: $main-font-family;
+	font-weight: 300;
+	text-align: justify;
+	padding-bottom: 20px; 
+	p {
+		padding: 5px;
+		text-indent: 2em;
+		line-height: 1.2em;
+	}
+}
+#overlay-image {
+	position: fixed;
+	background-color: rgba(0,0,0,.8);
+	width: 100%;
+	height: 100%;
+	display: none;
+	left: 0;
+	top: 0;
+	text-align: center;
+	img {
+		margin: 5% auto 0;
+		max-width: 60%;
+		border-radius: 5px;
 	}
 }
