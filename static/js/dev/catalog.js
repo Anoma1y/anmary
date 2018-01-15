@@ -167,7 +167,9 @@
                     this.setItems($.parseJSON(data));
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {
-                        this.productInCart = this.items["productInCart"];
+                        if (this.items["productInCart"]) {
+                            this.productInCart = this.items["productInCart"];
+                        }
 
                         this.itemsRender(this.items["item"]);
                         this.selectedProductSize = document.querySelectorAll('input[name="size-item"]');
@@ -210,8 +212,10 @@
                 let checkPrice = '';
                 let checkPercentSale = '';
                 var checkCart;
-                if (this.productInCart[val["id"]]) {
-                    this.productInCart[val["id"]]["size"].sort()
+                if (this.productInCart) {
+                    if (this.productInCart[val["id"]]) {
+                        this.productInCart[val["id"]]["size"].sort()
+                    }                    
                 }
                 //Массив размеров, необходим для добавления товаров в корзину
                 var itemSize = val["size"].split(', ');
@@ -244,10 +248,12 @@
                                     <strong>Размер</strong>
                                     <div class="product-size">${itemSize.map((n) => {
                                             var classInput = "";
-                                            if (this.productInCart[val["id"]]) {
-                                                for (let size of this.productInCart[val["id"]]["size"]) {
-                                                    if (size == n) {
-                                                        classInput = "catalog-item-in-cart";
+                                            if (this.productInCart) {
+                                                if (this.productInCart[val["id"]]) {
+                                                    for (let size of this.productInCart[val["id"]]["size"]) {
+                                                        if (size == n) {
+                                                            classInput = "catalog-item-in-cart";
+                                                        }
                                                     }
                                                 }
                                             }
