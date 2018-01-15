@@ -1,4 +1,5 @@
 <?php
+	require_once 'engine/Session.php';
 	class Catalog {
 		/**
 		* Главная страница каталога 
@@ -19,6 +20,7 @@
 	    }
 	    //Метод получение списка товаров
 	    public function getAllProduct() {
+	    	Session::init();
 	    	require_once 'engine/ajax_pagination.php';
 		    $params = include('engine/config.php');
 		    $priceMin = $_POST["state"]["minPrice"];
@@ -34,15 +36,15 @@
 		    $searchLike = "";
 		    //Добавление фильтра категорий (categoryFilterList содержит массив категорий товаров)
 		    if (!empty($categoryFilterList)) {
-		        $filterQuery = $filterQuery.' AND category_id IN ('.implode(",",$categoryFilterList).')';
+		        $filterQuery = $filterQuery.' AND category_id IN ('.implode("," , $categoryFilterList).')';
 		    }
 		    //Добавление фильтра брендов (brandFilterList содержит массив брендов товаров)
 		    if (!empty($brandFilterList)) {
-		        $filterQuery = $filterQuery.' AND brand_id IN ('.implode(",",$brandFilterList).')';
+		        $filterQuery = $filterQuery.' AND brand_id IN ('.implode("," , $brandFilterList).')';
 		    }
 		    //Добавление фильтра сезонов (seasonFilterList содержит массив сезонов товаров)
 		    if (!empty($seasonFilterList)) {
-		        $filterQuery = $filterQuery.' AND season_id IN ('.implode(",",$seasonFilterList).')';
+		        $filterQuery = $filterQuery.' AND season_id IN ('.implode("," , $seasonFilterList).')';
 		    }
 		    //Добавления фильтра скидок (1 или 0)
 		    if (strlen($isSaleFilterList) != 0) {
@@ -94,6 +96,9 @@
 		    $q->getPages();
 		}
 	    public function getAllProductNewest() {
+
+	    	require_once 'engine/ajax_pagination.php';
+		    $params = include('engine/config.php');
 		    $sortValue = $_POST["state"]["sortBy"];
 		    $sortQuery = "";
 		    //Сортировка товаров
@@ -106,18 +111,14 @@
 		    } else if ($sortValue == "sortByPriceHigher") {
 		    	$sortQuery = "product.price";
 		    }
-			$db = Db::getConnection();
- 	        $sql = 'SELECT product.id, product.name, product.article, product.price, product.sale_price, product.is_sale, product.size, product.composition, product.percentSale, product.image ,category.category_name, brand.brand_name FROM product, brand, category WHERE product.brand_id = brand.id AND product.category_id = category.id ORDER BY '. $sortQuery .' LIMIT 12';
-	        $result = $db->prepare($sql);
-	    	$result->setFetchMode(PDO::FETCH_ASSOC);
-	    	$result->execute();
-	        $i = 0;
-	        $all = array();
-	        while ($row = $result->fetch()) {
-	            $all[$i] = $row;
-	            $i++;
-	        }
-	        die(json_encode($all));
+		    //Основной запрос
+			$sql = 'SELECT product.id, product.name, product.article, brand.brand_name, product.price, product.sale_price, product.size, product.composition, product.is_sale, product.is_availability, product.percentSale, product.image FROM product, brand, season WHERE product.season_id = season.id AND product.brand_id = brand.id AND product.is_availability = 1 ORDER BY '.$sortQuery.' LIMIT :start_from, :record_per_page';	
+		    //Запрос на количество записей и количество страниц
+		    $sql1 = 'SELECT id FROM product WHERE is_availability = 1 ORDER BY id';
+		    $order_by = 'id';
+		    $q = new Pagination(1, $params["record_per_page"], $sql, $sql1, $order_by);
+		    $q->getPages();
+
 		}
 		public function getAllProductSeason() {
 		    $sortValue = $_POST["state"]["sortBy"];

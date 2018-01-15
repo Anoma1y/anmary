@@ -1,5 +1,4 @@
 <?php require_once 'views/index/header.php'; ?>
-
     <div class="catalog">
         <div class="container without-container">
             <div class="catalog-container without-catalog-container">
@@ -40,6 +39,6 @@
         var filter = new Filter(catalog);
         if (catalog != undefined && filter != undefined) {
             filter.init();
-            catalog.init(filter.state);         
+            catalog.init(filter.state);
         }
     </script>

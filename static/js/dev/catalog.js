@@ -13,6 +13,8 @@
             this.item_on_page = 1;
             this.countItems = document.getElementById('countItems');
 
+            this.productInCart;
+
             this.catalogBtnCart;
             this.selectedProductSize;
             this.currentProductSize;
@@ -86,34 +88,74 @@
                 }
             }
         }
-
+        /**
+         * [changeSize метод для добавления текущего выбранного размера]
+         */
         changeSize() {
             for (let sizeBtn of this.selectedProductSize) {
                 sizeBtn.addEventListener('change', (e) => {
-                    this.currentProductSize = e.target.checked === true ? e.target.dataset.size : null;
-                    this.idCartItem = e.target.checked === true ? e.target.dataset.id : null;                 
+                    let target = e.target;
+                    let dataSize = target.getAttribute("data-size");
+                    let dataId = target.getAttribute("data-id");
+                    this.currentProductSize = target.checked === true ? dataSize : null;
+                    this.idCartItem = target.checked === true ? dataId : null;                  
+                    for (let btn of this.catalogBtnCart) {
+                        let idBtn = btn.getAttribute("data-id");
+                        if (sizeBtn.classList.contains('catalog-item-in-cart')) {
+                            if (idBtn == dataId) {
+                                $(sizeBtn).addClass('in-cart');
+                                btn.setAttribute('data-size', dataSize);
+                                btn.innerText = "Удалить из корзины";
+                            }
+                        } else {
+                            if (idBtn == dataId) {
+                                $(sizeBtn).removeClass('in-cart');
+                                btn.setAttribute('data-size', "")
+                                btn.innerText = "Добавить в корзину";
+                            }
+                        }
+                    }
                 });
             }
         }
+        /**
+         * [addBtnEvent метод для добавления обработчика событий для "Добавления товара"]
+         */
         addBtnEvent() {
             this.catalogBtnCart = document.querySelectorAll('.catalog-add-to-cart');
             for (let btnCart of this.catalogBtnCart) {
                 btnCart.addEventListener('click', (e) => {
                     let id = e.target.dataset.id;
                     if (this.currentProductSize != null && id == this.idCartItem) { 
-                        $.ajax({
-                            url: '../cart/addProduct',
-                            type: 'POST',
-                            data: {id: this.idCartItem, 
-                                   size: this.currentProductSize
-                            },
-                        })
-                        .done(function() {
-                            window.location.reload();
-                        })
-                        .fail(function() {
-                            console.log('Error');
-                        })  
+                        if (btnCart.getAttribute('data-size').length != 0) {
+                            $.ajax({
+                                url: '../cart/deleteProductInCart',
+                                type: 'POST',
+                                data: {id: this.idCartItem,
+                                       size: this.currentProductSize
+                                },
+                            })
+                            .done(function() {
+                                window.location.reload();
+                            })
+                            .fail(function() {
+                                errorSet(errorText, "Ошибка при удалении из корзины");
+                            })  
+                        } else {
+                            $.ajax({
+                                url: '../cart/addProduct',
+                                type: 'POST',
+                                data: {id: this.idCartItem, 
+                                       size: this.currentProductSize
+                                },
+                            })
+                            .done(function() {
+                                window.location.reload();
+                            })
+                            .fail(function() {
+                                console.log('Error');
+                            })                             
+                        }
                     }
                 })
             }            
@@ -125,8 +167,9 @@
                     this.setItems($.parseJSON(data));
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {
-                        this.itemsRender(this.items["item"]);
+                        this.productInCart = this.items["productInCart"];
 
+                        this.itemsRender(this.items["item"]);
                         this.selectedProductSize = document.querySelectorAll('input[name="size-item"]');
                         
                         this.changeSize();
@@ -166,6 +209,10 @@
             for (let val of items) {
                 let checkPrice = '';
                 let checkPercentSale = '';
+                var checkCart;
+                if (this.productInCart[val["id"]]) {
+                    this.productInCart[val["id"]]["size"].sort()
+                }
                 //Массив размеров, необходим для добавления товаров в корзину
                 var itemSize = val["size"].split(', ');
                 if (val["is_sale"] == 1) {
@@ -196,8 +243,16 @@
                                 <div class="product-hide-info">
                                     <strong>Размер</strong>
                                     <div class="product-size">${itemSize.map((n) => {
-                                            return `<input type="radio" name="size-item" id='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}">
-                                                    <label for='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}" class="size-item">${n}</label>`
+                                            var classInput = "";
+                                            if (this.productInCart[val["id"]]) {
+                                                for (let size of this.productInCart[val["id"]]["size"]) {
+                                                    if (size == n) {
+                                                        classInput = "catalog-item-in-cart";
+                                                    }
+                                                }
+                                            }
+                                            return `<input type="radio" class="${classInput}" name="size-item" id='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}">
+                                                    <label for='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}" class="size-item">${n}</label>`;
                                         })}
                                     </div>
                                     <strong>Состав</strong>

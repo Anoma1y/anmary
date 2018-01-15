@@ -3,7 +3,9 @@
 	/**
 	* Класс Pagination для генерации постраничной навигации методом AJAX
 	*/
+	require_once 'Session.php';
 	require_once 'Db.php';
+	Session::init();
 	class Pagination {
 	    private $current_page;
 	    private $record_per_page;
@@ -15,6 +17,7 @@
 	    private $page_result;
 	    private $total_records;
 		private $total_pages;
+		private $productInCart;
 	    private $data = array();
 	    public function __construct($current_page = 1, $record_per_page = 5, $sql, $sql1, $order_by = 'id') {
 	        $this->current_page = $current_page;
@@ -22,6 +25,9 @@
 	        $this->sql = $sql;
 	        $this->sql1 = $sql1;
 	        $this->order_by = $this->order_by;
+	        if (isset($_SESSION['products'])) {
+	        	$this->productInCart = $_SESSION['products'];
+	        }
 	        if(isset($_POST["page"])) {  
 				$this->page = $_POST["page"];  
 			} else {  
@@ -72,6 +78,9 @@
 		    $this->data['total_page'] = $this->total_pages;
 		    $this->data['record_per_page'] = $this->record_per_page;
 		    $this->data['current_page'] = $this->page;
+		    if (!empty($this->productInCart)) {
+		    	$this->data['productInCart'] = $this->productInCart;
+		    }
 		    die(json_encode($this->data));		
 		}
 	}

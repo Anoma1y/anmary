@@ -68,10 +68,12 @@ if (selectedProductSize) {
 		sizeBtn.control.addEventListener('change', (e) => {
 			currentProductSize = e.target.checked === true ? e.target.labels[0].innerText : null;
 			if (sizeBtn.control.classList.contains('item_in_cart')) {
-				addToCartBtn.classList.add('in-cart');
+				// addToCartBtn.classList.add('in-cart');
+				$(addToCartBtn).addClass('in-cart')
 				getSpan(addToCartBtn, "span").innerText = "Удалить из корзины";
 			} else {
-				addToCartBtn.classList.remove('in-cart');
+				// addToCartBtn.classList.remove('in-cart');
+				$(addToCartBtn).removeClass('in-cart')
 				getSpan(addToCartBtn, "span").innerText = "Добавить в корзину";
 			}
 		});

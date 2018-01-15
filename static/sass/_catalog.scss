@@ -390,12 +390,30 @@ $output-bourbon-deprecation-warnings: false !default;
 					text-transform: uppercase;
 					font-weight: 700;
 					padding: 10px 5px;	
-					transition: opacity .3s ease;
-					&:hover {
-						background: #fff;
-						color: $color-orange;
-						cursor: pointer;
+					cursor: pointer;
+					transition: opacity .3s ease, color .5s ease;
+					&:before {
+						position: absolute;
+						content: "";
+						top: 0;
+						left: 0;
+						width: 0;
+						height: 100%;
+						background-color: rgba(255,255,255,.3);
+						transition: width .5s ease;
 					}
+					&:hover {
+						color: $color-black;
+					}
+					&:hover:before{
+						width: 100%;
+
+					}
+					// &:hover {
+					// 	background: #fff;
+					// 	color: $color-orange;
+					// 	cursor: pointer;
+					// }
 				}
 				.add_to_cart {
 					top: 40px;
@@ -496,6 +514,9 @@ $output-bourbon-deprecation-warnings: false !default;
 								&:checked + label{
 									border-color: #086fcf;
 								}
+							}
+							.catalog-item-in-cart + label {
+								border-color: $color-light-red;
 							}							
 						}
 						.product-compositions {

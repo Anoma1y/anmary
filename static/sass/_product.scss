@@ -111,6 +111,9 @@ $output-bourbon-deprecation-warnings: false !default;
 							border-color: #086fcf;
 						}
 					}
+					.item_in_cart + label{
+						border-color: $color-light-red;
+					}
 					.size-item {
 						display: block;
 						margin: 0 5px;

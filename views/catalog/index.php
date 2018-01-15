@@ -146,4 +146,3 @@
         catalog.init();         
     }
 </script>
-<!-- <script type="text/javascript" src="/static/js/cart.js"></script> -->
