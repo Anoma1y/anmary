@@ -1,0 +1,73 @@
+$output-bourbon-deprecation-warnings: false !default;
+@import "bourbon";
+@import 'vars.scss';
+@import 'fonts.scss';
+@import 'reset.scss';
+
+body {
+	background-color: $color-orange;
+	cursor: default;
+}
+.wrapper {
+	max-width: 1140px;
+	height: 100vh;
+	margin: 0 auto;
+	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+}
+.back {
+	padding: 5px;
+	text-align: center;
+	a {
+		text-transform: uppercase;
+		font-family: $main-font-family;
+		color: $color-white;
+		font-size: em(20px);
+		transition: color 1s ease;
+		&:hover {
+			color: #086fcf;
+		}
+	}
+}
+.number {
+	position: relative;
+}
+.number-four {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	color: lighten($color-black, 10%);
+	transform: perspective(550px) rotateX(70deg) rotateZ(45deg) translateX(120px) translateY(35px);
+}
+h1, h2 {
+	font-family: $main-font-family;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+}
+h1 {
+	font-size: em(200px);
+	letter-spacing: 30px;
+}
+h2 {
+	font-size: em(100px);
+	letter-spacing: 10px;
+}
+@media only screen and (max-width: 600px) {
+	.number-four {
+		right: 90px;
+		transform: perspective(550px) rotateX(60deg) rotateZ(45deg) translateX(45px) translateY(-5px);
+	}
+	h1 {
+		font-size: em(100px);
+		letter-spacing: 10px;
+		text-align: left;
+	}
+	h2 {
+		font-size: em(50px);
+	}
+}
