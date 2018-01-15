@@ -13,8 +13,10 @@
             this.item_on_page = 1;
             this.countItems = document.getElementById('countItems');
 
+            //Данные из корзины
             this.productInCart;
 
+            //Данные для добавления товара в корзину (кнопки, data-id, data-size)
             this.catalogBtnCart;
             this.selectedProductSize;
             this.currentProductSize;
@@ -49,7 +51,13 @@
             this.getData(this.currentPage, this.state);
         }
 
-        receivingВata(page, state) {
+        /**
+         * [receivingData Метод для выполнения AJAX запроса]
+         * @param  {String} page  [Текущая страница]
+         * @param  {Object} state [Объект состояний - сортировка, фильтр, цена и тп]
+         * @return {Function}       [Если запрос - удачный, передача данных о товарах в асинхронную функцию]
+         */
+        receivingData(page, state) {
             return new Promise((res, rej) => {
                 if (this.method == "POST") {
                     $.ajax({
@@ -163,7 +171,7 @@
         async getData(currentPage, state) {
             if (this.method == "POST") {
                 try {
-                    var data = await this.receivingВata(currentPage, state);
+                    var data = await this.receivingData(currentPage, state);
                     this.setItems($.parseJSON(data));
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {
@@ -174,11 +182,14 @@
                         this.itemsRender(this.items["item"]);
                         this.selectedProductSize = document.querySelectorAll('input[name="size-item"]');
                         
+                        //Вызов методов для добавления обработчиков событий
                         this.changeSize();
                         this.addBtnEvent();
 
                         this.countItemsPerPage = Object.keys(this.items["item"]).length;
                         this.countItems.innerText = this.currentCountItems(this.countItemsPerPage, this.currentPage, this.item_on_page, this.total_items);
+
+                        //Пагинация
                         $('.paginations').pagination({
                             items: this.total_items,
                             itemsOnPage: this.item_on_page,
@@ -201,17 +212,23 @@
                     this.countItemsRender("Error")
                     throw new Error(error);
                 }                
-            } else if (this.method == "GET") {
-                var data = await this.receivingВata(currentPage, state);
+            } else if (this.method == "GET") { //Don't Work
+                var data = await this.receivingData(currentPage, state);
                 console.log($.parseJSON(data));
             }
         }
 
+        /**
+         * [itemsRender Метод для рендеринга товаров на странице]
+         * @param  {Object} items [Объект данных о товарах]
+         * @return {Nodes}       [Рендер узлов]
+         */
         itemsRender(items) {
             for (let val of items) {
                 let checkPrice = '';
                 let checkPercentSale = '';
                 var checkCart;
+                //Если корзина не пустая, то для текущего ID отсортировать размеры по возрастанию
                 if (this.productInCart) {
                     if (this.productInCart[val["id"]]) {
                         this.productInCart[val["id"]]["size"].sort()
@@ -219,6 +236,7 @@
                 }
                 //Массив размеров, необходим для добавления товаров в корзину
                 var itemSize = val["size"].split(', ');
+                //Если товар содержит скидку, то добавить классы скидок
                 if (val["is_sale"] == 1) {
                     checkPrice = `<p class="item-old-price">${val["price"]} руб.</p><p class="item-sale-price">${val["sale_price"]} руб.</p>`;
                     checkPercentSale = `<div class="item-sale-percent"><p>${val["percentSale"]}%</p></div>`;
@@ -274,6 +292,10 @@
 
         }
 
+        /**
+         * [countItemsRender Вывод информации о том, что товаров нет]
+         * @param  {String} count [Количество товаров или ошибка]
+         */
         countItemsRender(count) {
             if (count == "Error") {
                 $('.catalog-items-list').html("");
@@ -285,6 +307,14 @@
             }
         }
 
+        /**
+         * [currentCountItems Метод, показывающий сколько товаров показано на странице]
+         * @param  {Number} itemsPerPage  [Количество товаров на странице]
+         * @param  {Number} currentPage   [Текущая страница]
+         * @param  {Number} recordPerPage [Записей на странице (по умолчанию)]
+         * @param  {Number} totalItems    [Всего товаров в БД]
+         * @return {String}               [Вывод информации в узел]
+         */
         currentCountItems(itemsPerPage, currentPage, recordPerPage, totalItems) {
             if (this.countItemsPerPage != 0) {
                 let fromPage = recordPerPage * (currentPage - 1) + 1;
@@ -336,6 +366,9 @@
             }
         }
 
+        /**
+         * [checkUndefined Метод проверки на наличие в переменной данных
+         */
         checkUndefined(...variable) {
             for (let vars of variable) {
                 if (vars == undefined) {
@@ -346,7 +379,11 @@
             }
         }
 
-        //Функция проверки цены на наличия в ней текста или пустого значения
+        /**
+         * [checkPrice Метод проверки цены на наличия в ней текста или пустого значения]
+         * @param  {String} value [Цена]
+         * @return {Boolean}       [Выводит true || false]
+         */
         checkPrice(value) {
             let check = (value != '' && value.match(/^\d+$/)) ? true : false;
             return check;            

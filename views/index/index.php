@@ -27,7 +27,12 @@
 				</li>
 			</ul>			
 		</div>
-		
+    <a class="arrow-main" href="#blocks-info">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
 	<!-- </div> -->
 </section>
 

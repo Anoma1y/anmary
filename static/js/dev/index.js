@@ -31,19 +31,28 @@ $(document).ready(function() {
         })
     }
 
-
-
-	$('a[href^="#brand"], a[href^="#main"]').on('click', function (e) {
-        e.preventDefault();
-        var target = this.hash;
-        $target = $(target);
-        $('html, body').stop().animate({
-            'scrollTop': $target.offset().top+2
-        }, 800, 'swing', function () {
-            window.location.hash = target;
-        });
+    $(window).scroll(function() {
+          let topWindow = $(window).scrollTop();
+          let topWindow = topWindow * 0.7;
+          let windowHeight = $(window).height();
+          let position = topWindow / windowHeight;
+          position = 1 - position;
+          $('.arrow-main').css('background-color', rgba(0,0,0,position);
     });
 
+
+    $('a[href^="#blocks-info"]').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          let target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
+        }
+    });
       $("#slider").responsiveSlides({
         auto: true,
         pager: false,
