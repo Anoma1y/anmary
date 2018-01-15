@@ -82,6 +82,7 @@ $output-bourbon-deprecation-warnings: false !default;
 	grid-template-columns: 290px 1.5fr 1fr 1.5fr;
 	grid-template-rows: 320px 0 320px;
 	grid-gap: 20px;
+	cursor: default;
 	grid-template-areas: 
 	    "new_collections season_sale season_sale new_arrivals"
 	    "new_collections season_sale season_sale new_arrivals"
@@ -98,7 +99,6 @@ $output-bourbon-deprecation-warnings: false !default;
 			justify-content: center;
 			background-image: $block-url-new_collections;
 			background-size: cover;
-			// transform: perspective(1000px) rotateX(0deg) rotateY(10deg) rotateZ(0deg);
 			@include overlay(.2);
 			.collection_info {
 				text-align: center;
@@ -224,6 +224,7 @@ $output-bourbon-deprecation-warnings: false !default;
 			.formSubscribe {
 				z-index: 9999;
 				margin: 0 auto;
+				position: relative;
 				input {
 					font-family: $font-merri;
 					font-weight: bold;
@@ -260,6 +261,15 @@ $output-bourbon-deprecation-warnings: false !default;
 						font-size: em(20px);
 						transition: color .6s ease;
 					}
+				}
+				#error-subscribe {
+					position: absolute;
+					bottom: -20px;
+					font-size: em(12px);
+					font-family: $main-font-family;
+					font-weight: 300;
+					color: $color-light-red;
+					cursor: default;
 				}								
 			}
 			.get_subscribe {
@@ -347,7 +357,6 @@ $output-bourbon-deprecation-warnings: false !default;
 	position: relative;
 	text-align: center;
 	font-size: em(24px);
-	text-align: center;
 	text-transform: uppercase;
 	cursor: default;
 	&:before, &:after {

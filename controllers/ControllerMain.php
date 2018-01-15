@@ -1,4 +1,5 @@
 <?php
+	
 	class Main {
 		public function index() {
 			$lastProduct = CatalogModel::getPopularModel(10);

@@ -1,6 +1,7 @@
 <?php
 	require_once "engine/Session.php";
 	require_once "engine/Cookie.php";
+	require_once 'models/subscribe.php';
     $params = include('engine/config.php');
 	class Users {
 		public function index() {
@@ -43,5 +44,13 @@
 		public function profile() {
        		require_once('views/users/profile.php');
 	        return true;		
+		}
+		public function subscribe() {
+			if (!empty($_POST)) {
+				$email = $_POST["email_subscribe"];
+				Subscribe::insert($email);				
+			} else {
+				return false;
+			}
 		}
 	}

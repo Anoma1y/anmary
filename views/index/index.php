@@ -63,8 +63,9 @@
 				<h2>Подписаться на рассылку</h2>
 			</div>
 			<div class="formSubscribe">
-				<input type="text" placeholder="Введите E-Mail" id="get_subscribe" name="get_subscribe">
+				<input type="text" placeholder="Введите E-Mail" id="get_subscribe_email" name="get_subscribe_email">
 				<button id="get_subscribe_btn" name="get_subscribe_btn"><i class="fa fa-plus"></i></button>
+				<span id="error-subscribe"></span>
 			</div>
 		</div>
 		<div class="block all_catalog" data-aos="zoom-in-left" data-aos-duration="500">
@@ -132,7 +133,8 @@
 	</div>
 </section>
 
-<script src="static/js/libs.min.js"></script>
-<script src="static/js/index.js"></script> 
+
+ 
 
 <?php require_once 'views/index/footer.php'; ?>
+<script type="text/javascript" src="static/js/index.js"></script>
