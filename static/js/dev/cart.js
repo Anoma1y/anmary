@@ -4,8 +4,6 @@ const productId = document.getElementById('detail-product-id');
 const errorText = document.getElementById('detail-product-error');
 const deleteFromCartBtn = document.getElementsByClassName('cart-delete-item');
 const selectedProductSize = document.getElementsByClassName('size-item');
-//Добавление в корзину (каталог)
-const addToCartBtnCatalog = document.getElementsByClassName('add_to_cart');
 //Заказ
 const orderName = document.getElementById('order-user-name');
 const orderEmail = document.getElementById('order-user-email');
@@ -380,3 +378,4 @@ if (orderName && orderEmail && orderTelephone && orderComment && orderBtnSend) {
 	order = new Order(orderName, orderEmail, orderTelephone, orderComment, orderBtnSend,"addOrder");
 	order.init();
 }
+

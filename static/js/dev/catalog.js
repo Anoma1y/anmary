@@ -12,6 +12,12 @@
             this.total_items = 1;
             this.item_on_page = 1;
             this.countItems = document.getElementById('countItems');
+
+            this.catalogBtnCart;
+            this.selectedProductSize;
+            this.currentProductSize;
+            this.idCartItem;
+
             this.countItemsPerPage = 0;
             //анимиация библиотеки AOS
             this.animationAOS = ["fade-up", "fade-in", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left"];
@@ -80,6 +86,38 @@
                 }
             }
         }
+
+        changeSize() {
+            for (let sizeBtn of this.selectedProductSize) {
+                sizeBtn.addEventListener('change', (e) => {
+                    this.currentProductSize = e.target.checked === true ? e.target.dataset.size : null;
+                    this.idCartItem = e.target.checked === true ? e.target.dataset.id : null;                 
+                });
+            }
+        }
+        addBtnEvent() {
+            this.catalogBtnCart = document.querySelectorAll('.catalog-add-to-cart');
+            for (let btnCart of this.catalogBtnCart) {
+                btnCart.addEventListener('click', (e) => {
+                    let id = e.target.dataset.id;
+                    if (this.currentProductSize != null && id == this.idCartItem) { 
+                        $.ajax({
+                            url: '../cart/addProduct',
+                            type: 'POST',
+                            data: {id: this.idCartItem, 
+                                   size: this.currentProductSize
+                            },
+                        })
+                        .done(function() {
+                            window.location.reload();
+                        })
+                        .fail(function() {
+                            console.log('Error');
+                        })  
+                    }
+                })
+            }            
+        }
         async getData(currentPage, state) {
             if (this.method == "POST") {
                 try {
@@ -88,6 +126,12 @@
                     $('.catalog-items-list').html("");
                     if (this.items["item"] != undefined) {
                         this.itemsRender(this.items["item"]);
+
+                        this.selectedProductSize = document.querySelectorAll('input[name="size-item"]');
+                        
+                        this.changeSize();
+                        this.addBtnEvent();
+
                         this.countItemsPerPage = Object.keys(this.items["item"]).length;
                         this.countItems.innerText = this.currentCountItems(this.countItemsPerPage, this.currentPage, this.item_on_page, this.total_items);
                         $('.paginations').pagination({
@@ -104,6 +148,7 @@
                         });
                     } else if (this.items.length >= 1) {
                         this.itemsRender(this.items);
+
                     } else {
                         this.countItemsRender(0);
                     }
@@ -135,8 +180,8 @@
                         <img src="${val["image"]}" alt="Item-${val["id"]}">
                         ${checkPercentSale}
                         <div class="image_overlay"></div>
-                        <div class="add_to_cart product_opacity">Добавить в корзину</div>
-                        <div class="add_to_compare product_opacity">Отложить</div>
+                        <div class="add_to_cart product_opacity catalog-add-to-cart" data-id="${val["id"]}" data-size="">Добавить в корзину</div>
+                        <div class="add_to_compare product_opacity" data-id="${val["id"]}" data-size="">Отложить</div>
                         <div class="product-info">         
                             <div class="info-container">
                                 <div class="info-container-header">
@@ -151,7 +196,7 @@
                                 <div class="product-hide-info">
                                     <strong>Размер</strong>
                                     <div class="product-size">${itemSize.map((n) => {
-                                            return `<input type="radio" name="size-item" id='size-item_${val["id"]}_${n}'>
+                                            return `<input type="radio" name="size-item" id='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}">
                                                     <label for='size-item_${val["id"]}_${n}' data-id="${val["id"]}" data-size="${n}" class="size-item">${n}</label>`
                                         })}
                                     </div>
@@ -165,6 +210,7 @@
                     </div>
                 `);
             }
+
         }
 
         countItemsRender(count) {

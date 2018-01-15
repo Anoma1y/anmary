@@ -136,7 +136,7 @@
 
 
 <?php require_once "views/index/footer.php"; ?>
-<script type="text/javascript" src="/static/js/cart.js"></script>
+
 <script type="text/javascript" src="/static/js/catalog.js"></script>
 <script type="text/javascript">
     var catalog = new Catalog("getAllProduct", "POST");
@@ -146,3 +146,4 @@
         catalog.init();         
     }
 </script>
+<!-- <script type="text/javascript" src="/static/js/cart.js"></script> -->
