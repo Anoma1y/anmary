@@ -5,7 +5,7 @@
         <div class="catalog_filter">
             <div class="filter_search">
                 <h3>Поиск:</h3>
-                <input type="text" name="searchFilter_input" id="searchFilter_input" placeholder="Поиск...">
+                <input type="text" name="searchFilter_input" id="searchFilter_input" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Поиск';}" value="Поиск">
                 <button id="searchFilterBtn"><i class="fa fa-search"></i></button>
             </div>
             <div class="filter_by">

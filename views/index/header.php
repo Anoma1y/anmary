@@ -2,30 +2,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 	<meta charset="utf-8">
 	<title>Магазин женской одежды Анмари</title>
-	
 	<meta name="description" content="Магазин женской одежды в Санкт-Петербурге. Прибалтийский трикотаж от известных латвийских производителей женской одежды Vaide, Comvill, Top Design и т.д. Одежда российского бренда Bravissimo">
 	<meta name="google-site-verification" content="XTGy26KTjTbJvVrvgTcx4V98DO1COFmE_3cVT-R8DTk" />
 	<meta name="yandex-verification" content="ef739025f523584c" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta property="og:image" content="path/to/image.jpg">
-	
-	<link rel="shortcut icon" href="" type="image/x-icon">
-	<link rel="apple-touch-icon" href="">
-	<link rel="apple-touch-icon" sizes="72x72" href="">
-	<link rel="apple-touch-icon" sizes="114x114" href="">
-
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/static/img/favicon/manifest.json">
+	<link rel="mask-icon" href="/static/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="apple-mobile-web-app-title" content="Anmary">
+	<meta name="application-name" content="Anmary">
+	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/css/responsiveslides.css">
 	<link rel="stylesheet" href="/static/css/simplePagination.css">
 	<link rel="stylesheet" href="/static/css/polyfill.object-fit.min.css">
 	<link rel="stylesheet" href="/static/css/aos.css">
 	<link rel="stylesheet" href="/static/css/main.min.css">
-
+	<script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47320977 = new Ya.Metrika({ id:47320977, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/47320977" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </head>
 <body>
 

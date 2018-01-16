@@ -115,7 +115,7 @@ $output-bourbon-deprecation-warnings: false !default;
 	    display: block;
 	    position: absolute;
 	    background-color: $color-white;
-	    transition: all 0.6s cubic-bezier(.23,.45,.85,.67);
+	    transition: transform 0.6s cubic-bezier(.23,.45,.85,.67);
 	    &:nth-child(1), &:nth-child(2){
 	    	bottom: 35%;
 		    animation-name: arrow-movement-bottom;
@@ -130,22 +130,14 @@ $output-bourbon-deprecation-warnings: false !default;
 		    animation-iteration-count: infinite;
 		    animation-timing-function: ease-in-out;
 	    }
-	    &:nth-child(1) {
+	    &:nth-child(1), &:nth-child(3) {
 			transform: rotate(45deg);
 			left: 25%;
 	    }
-	    &:nth-child(2) {
+	    &:nth-child(2), &:nth-child(4) {
 		    transform: rotate(-45deg);
 		    left: 45%;
 		}
-	    &:nth-child(3) {
-		    transform: rotate(45deg);
-		    left: 25%;
-	    }
-	    &:nth-child(4) {
-		    transform: rotate(-45deg);
-		    left: 45%;
-	    }
     }
     &:hover {
     	& span {
@@ -170,7 +162,7 @@ $output-bourbon-deprecation-warnings: false !default;
 .blocks {
 	max-width: 1140px;
 	margin: 0 auto;
-	padding: 0 10px;
+	padding: 5px 10px 0;
 	color: $color-white;
 	display: grid;
 	grid-template-columns: 290px 1.5fr 1fr 1.5fr;

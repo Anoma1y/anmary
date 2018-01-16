@@ -282,7 +282,6 @@ $output-bourbon-deprecation-warnings: false !default;
 }
 
 @media only screen and (max-width: 700px) {
-
 	.header-middle {
 		.header-logo {
 			width: 100%;
@@ -302,6 +301,20 @@ $output-bourbon-deprecation-warnings: false !default;
 			width: 48%;
 			justify-content: center;
 		}		
+	}
+	.arrow-main {
+		width: 60px;
+		height: 60px;
+		bottom: -25px;
+		span {
+			width: 25px;
+		    &:nth-child(1), &:nth-child(3) {
+				left: 15%;
+		    }
+		    &:nth-child(2), &:nth-child(4) {
+			    left: 44%;
+			}
+		}	
 	}
 	.product_list {
 		justify-content: center;
@@ -332,6 +345,9 @@ $output-bourbon-deprecation-warnings: false !default;
 				width: 70%;
 			}
 		}
+	}
+	.blocks {
+		padding-top: 20px; 
 	}
 	footer {
 		.container {
