@@ -6,7 +6,7 @@
         <tr>
           <th class="sortingProduct" id="product-id">id</th>
           <th class="sortingProduct" id="product-name">Название</th>
-          <th class="sortingProduct" id="product-article">Артикль</th>
+          <th class="sortingProduct" id="product-article">Артикул</th>
           <th class="sortingProduct" id="product-brand_name">Бренд</th>
           <th class="sortingProduct" id="product-category_name">Категория</th>
           <th class="sortingProduct" id="product-season_name">Сезон</th>

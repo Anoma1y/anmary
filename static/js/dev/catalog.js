@@ -23,8 +23,6 @@
             this.idCartItem;
 
             this.countItemsPerPage = 0;
-            //анимиация библиотеки AOS
-            this.animationAOS = ["fade-up", "fade-in", "fade-right", "fade-left", "fade-up-right", "fade-up-left", "fade-down-right", "fade-down-left"];
             //текущее состояние для фильтров, сортировки и поиска
             this.state = {
                 categoryFilter: [],
@@ -244,7 +242,7 @@
                     checkPrice = `<p>${val["price"]} руб.</p>`;
                 }
                 $('.catalog-items-list').append(`
-                    <div class="catalog-item" data-aos="${this.animationAOS[this.randomInteger(0,7)]}" data-aos-duration="500">
+                    <div class="catalog-item">
                         <div class="shadow"></div>
                         <img src="${val["image"]}" alt="Item-${val["id"]}">
                         ${checkPercentSale}

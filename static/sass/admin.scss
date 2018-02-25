@@ -14,7 +14,6 @@ body {
 	font-size: $default-fontsize;
 	min-width: 320px;
 	position: relative;
-	overflow-x: hidden;
 	padding: 10px;
 }
 .admin-nav {
@@ -43,6 +42,7 @@ body {
 	font-weight: normal;
 	cursor: default;
 	color: #000;
+	width: 100%;
 	table {
 		background-color: #f3f3f3;
 		border-collapse: separate;

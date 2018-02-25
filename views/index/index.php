@@ -91,9 +91,9 @@
 		<h2 class="line-title">Рекомендуем</h2>
 	</div>
 	<div class="container">
-		<div class="product_list">
+		<div class="product_list" data-aos="zoom-in" data-aos-duration="1000">
 			<?php foreach ($lastProduct as $key => $product): ?>
-				<div class="product" data-aos="zoom-in" data-aos-duration="1000">
+				<div class="product" >
 					<div class="product__image">
 						<a href="/product/<?=$product[id];?>">
 							<img src="<?=$product[image];?>" alt="Latest Product">

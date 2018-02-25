@@ -35,7 +35,7 @@
 						
 					</div>
 					<div class="detail-info-article" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
-						Артикль: <span><?=$data["article"]?></span>
+						Артикул: <span><?=$data["article"]?></span>
 					</div>
 					<div class="detail-info-category" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
 						Категория: <a href="#"><?=$data["category_name"]?></a>

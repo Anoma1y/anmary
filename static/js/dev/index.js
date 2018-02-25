@@ -39,7 +39,7 @@ $(document).ready(function() {
     let windowHeight = $(window).height();
     let position = topWindow / windowHeight;
     position = 1 - position;
-    $(".arrow-main").css("background-color", rgba(0, 0, 0, position));
+    $(".arrow-main").css("opacity", position);
   });
 
   $('a[href^="#blocks-info"]').click(function() {

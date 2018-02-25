@@ -12,15 +12,11 @@
     	if ($_COOKIE['user_hash'] !== $result['hash']) {
     		die();
     	} else {
-			if ($_FILES["uploadimage"]["size"] > 800000) {
-				die("Большой размер файла");
-			}
 			$randomSrc = generateSrc(50);
 			$src = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
 			$upload = $src.$randomSrc.".jpg";
 			$sql_src = '/uploads/'.$randomSrc.".jpg";
 			move_uploaded_file($_FILES['uploadimage']['tmp_name'], $upload);
-
 			$db = Db::getConnection();
 			//Если не пустой
 			if (empty($_FILES['uploadimage']['name'])) {

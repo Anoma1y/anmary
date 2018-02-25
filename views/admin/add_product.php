@@ -15,9 +15,6 @@
     	else {
 			if (!empty($_FILES) && !empty($_POST)) {
 				if ($_FILES['uploadimage']['error'] == 0) {
-					if ($_FILES["uploadimage"]["size"] > 800000) {
-						die("Большой размер файла");
-					}
 					$randomSrc = generateSrc(50);
 					$src = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
 					$upload = $src.$randomSrc.".jpg";
