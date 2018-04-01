@@ -1,5 +1,5 @@
 <?php 
-	$params = include("config.php");
+	$params = include("engine/config.php");
 	class Cookie {
 	    public static function set($key, $val) {
 			setcookie($key, $val, time()+60*60*24*30, '/', $params['domain']);
