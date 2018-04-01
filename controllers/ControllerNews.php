@@ -6,7 +6,7 @@
 		}
 		public function getNews() {
 	    	require_once 'engine/ajax_pagination.php';
-		    $params = include('engine/config.php');
+		    $params = include('config.php');
 		    //Основной запрос
 			$sql = 'SELECT * FROM news ORDER BY news_date DESC, id DESC LIMIT :start_from, :record_per_page';	
 		    //Запрос на количество записей и количество страниц

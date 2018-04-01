@@ -2,7 +2,7 @@
 	require_once "engine/Session.php";
 	require_once "engine/Cookie.php";
 	require_once "engine/Cart.php";
-    $params = include('engine/config.php');
+    $params = include('config.php');
 	class Cart {
 		public function indexView(){
 			try {

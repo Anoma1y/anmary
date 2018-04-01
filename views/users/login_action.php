@@ -1,7 +1,7 @@
 <?php
 
     if (empty(!$_POST)) {
-        $params = include('engine/config.php');
+        $params = include('config.php');
         require_once 'engine/functions.php';
         mysql_connect($params['host'], $params['user'], $params['password']);
         mysql_select_db($params['dbname']);

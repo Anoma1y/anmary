@@ -2,7 +2,7 @@
 	require_once "engine/Session.php";
 	require_once "engine/Cookie.php";
 	require_once 'models/subscribe.php';
-    $params = include('engine/config.php');
+    $params = include('config.php');
 	class Users {
 		public function index() {
 			$data['users'] = User::getAllUsers();

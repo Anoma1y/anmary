@@ -1,5 +1,5 @@
 <?php
-    $params = include('engine/config.php');
+    $params = include('config.php');
     mysql_connect($params['host'], $params['user'], $params['password']);
     mysql_select_db($params['dbname']);
     if (isset($_COOKIE['user_id']) and isset($_COOKIE['hash'])) {   

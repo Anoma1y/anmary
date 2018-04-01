@@ -22,7 +22,7 @@
 	    public function getAllProduct() {
 	    	Session::init();
 	    	require_once 'engine/ajax_pagination.php';
-		    $params = include('engine/config.php');
+		    $params = include('config.php');
 		    $priceMin = $_POST["state"]["minPrice"];
 		    $priceMax = $_POST["state"]["maxPrice"];
 		    $categoryFilterList = $_POST["state"]["categoryFilter"];
@@ -74,7 +74,7 @@
 	    }
 	    public function getAllProductSale() {
 	    	require_once 'engine/ajax_pagination.php';
-		    $params = include('engine/config.php');
+		    $params = include('config.php');
 		    $sortValue = $_POST["state"]["sortBy"];
 		    $sortQuery = "";
 		    //Сортировка товаров
@@ -98,7 +98,7 @@
 	    public function getAllProductNewest() {
 
 	    	require_once 'engine/ajax_pagination.php';
-		    $params = include('engine/config.php');
+		    $params = include('config.php');
 		    $sortValue = $_POST["state"]["sortBy"];
 		    $sortQuery = "";
 		    //Сортировка товаров

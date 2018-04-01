@@ -1,3 +1,4 @@
 node_modules
+.idea
 uploads
-engine/config.php
+config.php
