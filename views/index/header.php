@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Магазин женской одежды Анмари</title>
-	<meta name="description" content="Магазин женской одежды в Санкт-Петербурге. Прибалтийский трикотаж от известных латвийских производителей женской одежды Vaide, Comvill, Top Design и т.д. Одежда российского бренда Bravissimo">
+	<meta name="description" content="Магазин женской одежды в Санкт-Петербурге. Трикотаж от известных европейских (Италия, Польша, Латвия, Франция) производителей женской одежды Vaide, Comvill, Top Design, MADO, Ancora и т.д.">
 	<meta name="google-site-verification" content="XTGy26KTjTbJvVrvgTcx4V98DO1COFmE_3cVT-R8DTk" />
 	<meta name="yandex-verification" content="ef739025f523584c" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
