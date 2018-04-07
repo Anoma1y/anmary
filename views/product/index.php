@@ -25,7 +25,7 @@
 					</div>								
 				</div>
 				<div class="detail-block">
-					<div class="detail-info-is_availability" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
+					<div class="detail-info-is_availability" data-aos="fade-left" data-aos-duration="800" data-aos-delay="500">
 						Наличие: 
 						<?php if ($data["is_availability"] == 1): ?>
 							<span class="are_available">Есть в наличии</span>
@@ -34,10 +34,10 @@
 						<?php endif ?>
 						
 					</div>
-					<div class="detail-info-article" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
+					<div class="detail-info-article" data-aos="fade-left" data-aos-duration="800" data-aos-delay="600">
 						Артикул: <span><?=$data["article"]?></span>
 					</div>
-					<div class="detail-info-category" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
+					<div class="detail-info-category" data-aos="fade-left" data-aos-duration="800" data-aos-delay="700">
 						Категория: <a href="#"><?=$data["category_name"]?></a>
 					</div>
 					<div class="detail-info-category" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
