@@ -40,6 +40,9 @@
 					<div class="detail-info-category" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
 						Категория: <a href="#"><?=$data["category_name"]?></a>
 					</div>
+					<div class="detail-info-category" data-aos="fade-left" data-aos-duration="800" data-aos-delay="800">
+						Бренд: <a href="#"><?=$data["brand_name"]?></a>
+					</div>
 				</div>
 				<div class="detail-block">
 					<div class="detail-info-size" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">

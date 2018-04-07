@@ -27,9 +27,15 @@
 		polyamide: { ru: "Полиамид", eng: "polyamide" },		
 		nylon: { ru: "Нейлон",	eng: "nylon" },		
 		lyen: { ru: "Лен",	eng: "lyen" },
-		silk: { ru: "Шелк",	eng: "silk" }
+		silk: { ru: "Шелк",	eng: "silk" },
+		acrylic: {ru: "Акрил", eng: "acrylic"},
+		linen: {ru: "Лён", eng: "linen"},
+		angora: {ru: "Ангора", eng: "angora"},
+		polyviskoza: {ru: "Поливискоза", eng: "polyviskoza"},
+		rayon: {ru: "Искусственный шелк", eng: "rayon" },
+		lurex: {ru: "Люрекс", eng: "Lurex"}
 	}
-	const sizeName = [42,44,46,48,50,52,54,56,58,60];
+	const sizeName = [40,42,44,46,48,50,52,54,56,58,60];
 
 	var errorText = document.getElementById('error');
 	var successText = document.getElementById('success');
