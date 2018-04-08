@@ -101,7 +101,7 @@
 					</div>
 					<div class="product__info">
 						<p class="product__brand"><?=$product[brand_name];?></p>
-						<p class="product__title"><?=$product[name];?><?=$product[article];?></p>
+						<p class="product__title"><?=$product[name];?> <?=$product[article];?></p>
 						<?php if ($product['is_sale'] == 0): ?>
 							<span class="product__price"><?=$product[price];?></span>
 						<?php elseif ($product['is_sale'] == 1): ?>
